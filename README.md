@@ -8,17 +8,17 @@ Need for Spear game is developed for educational purposes. We are publishing thi
 
 See the LICENSE file for detailed info.
 
-# Contributions
+# Contributors
 
 Devnull worked as a team while developing Need for Spear, however, each team member had specialized part in the project. Below you can find these parts.
 
 | Flags        | Purpose        |
 | ------------- |:-------------:|
-| Kaan Turkmen      | Database Implementation, Authentication Logic and Views. |
-| Can Usluel     | Obstacle algorithms and GameView GUI.|
-| Melis Oktayoglu | Physics Engine, Sphere movement and interaction.|
-| Doruk Yildirim | Assets, Magical Hex Spell.|
-| Gokce Sevimli | Paddle (Noble Phantasm).|
+| Kaan Turkmen (kaanturkmen)      | Database Implementation, Authentication Logic and Views. |
+| Can Usluel (canusluel)     | Obstacle algorithms and GameView GUI.|
+| Melis Oktayoglu (moktayoglu) | Physics Engine, Sphere movement and interaction.|
+| Doruk Yildirim (dorkyhog) | Assets, Magical Hex Spell.|
+| Gokce Sevimli (gokcesevimli) | Paddle (Noble Phantasm).|
 
 # Bonus
 
