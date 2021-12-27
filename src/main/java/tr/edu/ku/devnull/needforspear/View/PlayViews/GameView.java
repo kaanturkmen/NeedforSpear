@@ -136,12 +136,16 @@ public class GameView {
             unmuteButton.setVisible(true);
             muteButton.setVisible(false);
             System.out.println("Game muted");
+            NeedforSpearGame.setMuteModeActivated(true);
+            NeedforSpearGame.stopBackgroundMusic();
         });
 
         unmuteButton.addActionListener(e -> {
             unmuteButton.setVisible(false);
             muteButton.setVisible(true);
             System.out.println("Game unmuted");
+            NeedforSpearGame.setMuteModeActivated(false);
+            NeedforSpearGame.playBackgroundMusic();
         });
     }
     private void createActionListenerForSpellButtons(){

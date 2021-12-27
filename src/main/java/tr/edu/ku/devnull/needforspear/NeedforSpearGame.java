@@ -42,7 +42,9 @@ public class NeedforSpearGame {
     private GameMap gameMap;
     private GameDatabase gameDatabase;
     private Thread backgroundMusicThread, soundEffectThread;
+    private static boolean muteModeActivated = false;
     private final ScheduledExecutorService executorService = Executors.newScheduledThreadPool(1);
+    private static Clip clip;
     private static NeedforSpearGame onlyInstance;
     private GameView gameView;
     private MainMenuView mainMenuView;
@@ -62,6 +64,7 @@ public class NeedforSpearGame {
      */
     public static void main(String[] args) {
         getInstance().setCurrentState(new InitialState(getInstance()));
+        getInstance().playBackgroundMusic();
         getInstance().init();
         getInstance().startLoginView();
     }
@@ -157,18 +160,16 @@ public class NeedforSpearGame {
 
     /**
      * Plays a music (.wav extension is required) on background.
-     *
-     * @param path Path of the name of the file which is located in Resources directory.
      */
     public void playBackgroundMusic(String path) {
         if (backgroundMusicThread != null) {
-            backgroundMusicThread.stop();
+            backgroundMusicThread.interrupt();
         }
 
         backgroundMusicThread = new Thread(() -> {
             try {
-                Clip clip = AudioSystem.getClip();
-                AudioInputStream inputStream = AudioSystem.getAudioInputStream(new File(findResourceFolder(path)));
+                clip = AudioSystem.getClip();
+                AudioInputStream inputStream = AudioSystem.getAudioInputStream(new File(findResourceFolder("backgroundMusic.wav")));
                 clip.open(inputStream);
                 clip.loop(0);
                 clip.start();
@@ -178,6 +179,15 @@ public class NeedforSpearGame {
         });
 
         backgroundMusicThread.start();
+    }
+
+    /**
+     * Stops the background music.
+     */
+    public static void stopBackgroundMusic() {
+        clip.stop();
+        backgroundMusicThread.stop();
+        backgroundMusicThread = null;
     }
 
     /**
@@ -378,5 +388,20 @@ public class NeedforSpearGame {
 
     public void setActivationView(ActivationView activationView) {
         this.activationView = activationView;
+
+     /**
+     * Check if game is in mute mode where no sound effect or background music is being played.
+     *
+     * @return Boolean value of the mute mode.
+     */
+    public static boolean isMuteModeActivated() {
+        return muteModeActivated;
+    }
+
+    /**
+     * Sets the game's mute mode.
+     */
+    public static void setMuteModeActivated(boolean muteModeActivated) {
+        NeedforSpearGame.muteModeActivated = muteModeActivated;
     }
 }
