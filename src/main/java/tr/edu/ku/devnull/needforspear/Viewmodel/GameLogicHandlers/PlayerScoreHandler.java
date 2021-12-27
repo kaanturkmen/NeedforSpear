@@ -12,15 +12,22 @@ import java.util.concurrent.TimeUnit;
  * and their score and updates it accordingly.
  */
 public class PlayerScoreHandler {
-    private static int score= Constants.UIConstants.INIT_SCORE;
+    private int score= Constants.UIConstants.INIT_SCORE;
     //0 if new map is created, 1 if a map is loaded from db
-    private static int newMapCreated = 0;
+    private int newMapCreated = 0;
+    private static PlayerScoreHandler onlyInstance;
 
     /**
      * Constructor for PlayerScoreHandler.
 
      */
-    public PlayerScoreHandler() {}
+    private PlayerScoreHandler() {}
+
+    public static PlayerScoreHandler getInstance() {
+        if (onlyInstance == null) onlyInstance = new PlayerScoreHandler();
+
+        return onlyInstance;
+    }
 
     /**
      * Updates the score of player with the equation
@@ -28,24 +35,24 @@ public class PlayerScoreHandler {
      *
      * @param player Player whose score will be updated
      */
-    public static void updateScore(Player player) {
-     long currSec= TimeUnit.MILLISECONDS.toSeconds(NeedforSpearGame.getCurrentMillis());
-     long startSec= TimeUnit.MILLISECONDS.toSeconds(NeedforSpearGame.getStartMillis());
+    public void updateScore(Player player) {
+     long currSec= TimeUnit.MILLISECONDS.toSeconds(NeedforSpearGame.getInstance().getCurrentMillis());
+     long startSec= TimeUnit.MILLISECONDS.toSeconds(NeedforSpearGame.getInstance().getStartMillis());
      long division = currSec-startSec;
      if(division != 0){
          score+= 300/division;
      }
         System.out.println(SaveLoadHandler.getInstance().getPreviousScore());
      player.setScore(SaveLoadHandler.getInstance().getPreviousScore() * newMapCreated + score);
-     GameView.updatePlayerScore(player.getScore());
+     NeedforSpearGame.getInstance().getGameView().updatePlayerScore(player.getScore());
     }
 
-    public static void setScore(int score) {
-        PlayerScoreHandler.score = score;
+    public void setScore(int score) {
+        this.score = score;
     }
 
 
-    public static void setNewMapCreated(int newMapCreated) {
-        PlayerScoreHandler.newMapCreated = newMapCreated;
+    public void setNewMapCreated(int newMapCreated) {
+        this.newMapCreated = newMapCreated;
     }
 }

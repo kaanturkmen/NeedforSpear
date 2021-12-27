@@ -27,7 +27,7 @@ public class BackgroundHandler {
      * @return JPanel which has background image on it.
      */
     public JPanel getBackgroundedJPanel(String path) {
-        Image background = Toolkit.getDefaultToolkit().getImage(NeedforSpearGame.findResourceFolder(path))
+        Image background = Toolkit.getDefaultToolkit().getImage(NeedforSpearGame.getInstance().findResourceFolder(path))
                 .getScaledInstance(Constants.UIConstants.INITIAL_SCREEN_WIDTH, Constants.UIConstants.INITIAL_SCREEN_HEIGHT, Image.SCALE_SMOOTH);
 
         return new JPanel() {
@@ -44,7 +44,7 @@ public class BackgroundHandler {
      * @return Image of the background.
      */
     public Image getBackgroundImage(String path) {
-        return Toolkit.getDefaultToolkit().getImage(NeedforSpearGame.findResourceFolder(path))
+        return Toolkit.getDefaultToolkit().getImage(NeedforSpearGame.getInstance().findResourceFolder(path))
                 .getScaledInstance(Constants.UIConstants.INITIAL_SCREEN_WIDTH, Constants.UIConstants.INITIAL_SCREEN_HEIGHT, Image.SCALE_SMOOTH);
     }
 }

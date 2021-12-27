@@ -14,13 +14,13 @@ import tr.edu.ku.devnull.needforspear.View.AuthViews.ValidateAndChangePasswordVi
 import tr.edu.ku.devnull.needforspear.View.PlayViews.GameView;
 import tr.edu.ku.devnull.needforspear.View.AuthViews.LoginView;
 import tr.edu.ku.devnull.needforspear.View.PlayViews.MainMenuView;
-import tr.edu.ku.devnull.needforspear.Viewmodel.GameLogicHandlers.MainMenuHandler;
+import tr.edu.ku.devnull.needforspear.Viewmodel.State.InitialState;
+import tr.edu.ku.devnull.needforspear.Viewmodel.State.ViewState;
 
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.swing.*;
-import java.awt.*;
 import java.io.File;
 import java.net.URL;
 import java.net.URLConnection;
@@ -35,16 +35,25 @@ import java.util.concurrent.TimeUnit;
  * @author Kaan Turkmen
  */
 public class NeedforSpearGame {
-    private static JFrame mainFrame = new JFrame();
-    private static GameMode gameMode = GameMode.BUILDING_MODE;
-    private static boolean isPaused = true;
-    private static Player player;
-    private static GameMap gameMap;
-    private static GameDatabase gameDatabase;
-    private static Thread backgroundMusicThread, soundEffectThread;
-    private static final ScheduledExecutorService executorService = Executors.newScheduledThreadPool(1);
+    private JFrame mainFrame = new JFrame();
+    private GameMode gameMode = GameMode.BUILDING_MODE;
+    private boolean isPaused = true;
+    private Player player;
+    private GameMap gameMap;
+    private GameDatabase gameDatabase;
+    private Thread backgroundMusicThread, soundEffectThread;
+    private final ScheduledExecutorService executorService = Executors.newScheduledThreadPool(1);
+    private static NeedforSpearGame onlyInstance;
+    private GameView gameView;
+    private MainMenuView mainMenuView;
+    private ValidateAndChangePasswordView validateAndChangePasswordView;
+    private SendVerificationView sendVerificationView;
+    private LoginView loginView;
+    private ActivationView activationView;
+    private ViewState currentState;
+    private boolean isGameLoaded = false;
 
-    private static long startMillis;
+    private long startMillis;
 
     /**
      * Main method of the game.
@@ -52,24 +61,28 @@ public class NeedforSpearGame {
      * @param args Args given when program is started.
      */
     public static void main(String[] args) {
-        init();
-        startLoginView();
-//        startExecutorService();
+        getInstance().setCurrentState(new InitialState(getInstance()));
+        getInstance().init();
+        getInstance().startLoginView();
+    }
+
+    private NeedforSpearGame() {}
+
+    public static NeedforSpearGame getInstance() {
+        if (onlyInstance == null) onlyInstance = new NeedforSpearGame();
+
+        return onlyInstance;
     }
 
     /**
      * Init method to do assignments and checks.
      */
-    private static void init() {
+    private void init() {
         gameDatabase = new FirebaseDatabase();
         mainFrame.setResizable(false);
         mainFrame.setSize(Constants.UIConstants.INITIAL_SCREEN_WIDTH, Constants.UIConstants.INITIAL_SCREEN_HEIGHT);
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         if (!checkInternetConnection()) System.exit(0);
-    }
-
-    public static void setMainFrame(JFrame jFrame) {
-        mainFrame = jFrame;
     }
 
     /**
@@ -78,7 +91,7 @@ public class NeedforSpearGame {
      * @param combinedPathString Path string of the required image to be combined with the resources folder.
      * @return Absolute path of the image.
      */
-    public static String findResourceFolder(String combinedPathString) {
+    public String findResourceFolder(String combinedPathString) {
         String gameLocation = System.getProperty(Constants.UIConstants.USER_DIRECTORY_KEYWORD);
         return gameLocation + Constants.UIConstants.USER_DIRECTORY_TO_RESOURCE_FOLDER + combinedPathString;
     }
@@ -86,78 +99,43 @@ public class NeedforSpearGame {
     /**
      * A method to start the LoginView.
      */
-    public static void startLoginView() {
-        LoginView.createView();
+    public void startLoginView() {
+        currentState.switchToLoginView();
     }
 
     /**
      * A method to start the VerificationView.
      */
-    public static void startVerificationView() {
-        SendVerificationView.createView();
+    public void startVerificationView() {
+        currentState.switchToSendVerificationView();
     }
 
     /**
      * A method to start the ResetPasswordView.
      */
-    public static void startResetPasswordView() {
-        ValidateAndChangePasswordView.createView();
+    public void startResetPasswordView() {
+        currentState.switchToValidateAndChangePasswordView();
     }
 
     /**
      * A method to start the ActivationView.
      */
-    public static void startActivationView() {
-        ActivationView.createView();
+    public void startActivationView() {
+        currentState.switchToActivationView();
     }
 
     /**
      * A method to start the MainMenuView.
      */
-    public static void startMainMenu() {
-        MainMenuHandler.getInstance().setGameDatabase(gameDatabase);
-        MainMenuView.setGameViewOpened(true);
-        GameView.setIsGameViewOpened(false);
-        MainMenuView.createView();
+    public void startMainMenu() {
+        currentState.switchToMainMenuView();
     }
 
     /**
      * A method to start the GameView.
      */
-    public static void startGameView() {
-        MainMenuView.setGameViewOpened(false);
-        GameView.setIsGameViewOpened(true);
-        GameView.createView();
-    }
-
-    /**
-     * Gets the color equivalent of the given string.
-     *
-     * @param color String name of the color.
-     * @return Color class equivalent of the given string.
-     */
-    public static Color getColorEquivalent(String color) {
-
-        Color colorSelection = Color.BLACK;
-
-        switch (color) {
-            case Constants.UIConstants.RED_COLOR_STRING:
-                colorSelection = Color.RED;
-                break;
-            case Constants.UIConstants.BLUE_COLOR_STRING:
-                colorSelection = Color.BLUE;
-                break;
-            case Constants.UIConstants.ORANGE_COLOR_STRING:
-                colorSelection = Color.ORANGE;
-                break;
-            case Constants.UIConstants.GREEN_COLOR_STRING:
-                colorSelection = Color.GREEN;
-                break;
-            default:
-                break;
-        }
-
-        return colorSelection;
+    public void startGameView() {
+        currentState.switchToGameView();
     }
 
     /**
@@ -165,7 +143,7 @@ public class NeedforSpearGame {
      *
      * @return Boolean indicating if user has an internet connection.
      */
-    private static boolean checkInternetConnection() {
+    private boolean checkInternetConnection() {
         try {
             URL url = new URL(Constants.UIConstants.WEBSITE_TO_BE_PINGED);
             URLConnection connection = url.openConnection();
@@ -182,7 +160,7 @@ public class NeedforSpearGame {
      *
      * @param path Path of the name of the file which is located in Resources directory.
      */
-    public static void playBackgroundMusic(String path) {
+    public void playBackgroundMusic(String path) {
         if (backgroundMusicThread != null) {
             backgroundMusicThread.stop();
         }
@@ -207,7 +185,7 @@ public class NeedforSpearGame {
      *
      * @param path Path of the name of the file which is located in Resources directory.
      */
-    public static void playSound(String path) {
+    public void playSound(String path) {
         if (soundEffectThread != null) {
             soundEffectThread.stop();
         }
@@ -231,17 +209,17 @@ public class NeedforSpearGame {
      *
      * @return Current gamemode of the game.
      */
-    public static GameMode getGameMode() {
+    public GameMode getGameMode() {
         return gameMode;
     }
 
     /**
      * Starts measuring time the moment game switches to running mode
-     * <p>
+     *
      * /**
      * Switches building mode to the running mode.
      */
-    public static void switchToRunningMode() {
+    public void switchToRunningMode() {
         startMillis = System.currentTimeMillis();
         gameMode = GameMode.RUNNING_MODE;
     }
@@ -249,18 +227,17 @@ public class NeedforSpearGame {
     /**
      * Starts executing Ymir powers by executing threads in given time.
      */
-    public static void startExecutorService() {
+    public void startExecutorService() {
         Ymir y = new Ymir();
         //TODO to try infinite void we should wait until game starts so 0 delay makes it not work
-        NeedforSpearGame.executorService.scheduleAtFixedRate(y, 0, 30, TimeUnit.SECONDS);
-
+       executorService.scheduleAtFixedRate(y, 0, 30, TimeUnit.SECONDS);
     }
 
     /**
      * Stops Ymir powers by executing threads in given time.
      */
-    public static void stopExecutorService() {
-        NeedforSpearGame.executorService.shutdownNow();
+    public void stopExecutorService() {
+        executorService.shutdownNow();
     }
 
     /**
@@ -268,7 +245,7 @@ public class NeedforSpearGame {
      *
      * @return Logged in player.
      */
-    public static Player getPlayer() {
+    public Player getPlayer() {
         return player;
     }
 
@@ -277,10 +254,9 @@ public class NeedforSpearGame {
      * This method is used by converting null into new object. It is not being used to
      * set player multiple times.
      *
-     * @return Logged in player.
      */
-    public static void setPlayer(Player player) {
-        NeedforSpearGame.player = player;
+    public void setPlayer(Player player) {
+       this.player = player;
     }
 
     /**
@@ -288,7 +264,7 @@ public class NeedforSpearGame {
      *
      * @return Main frame of the game.
      */
-    public static JFrame getMainFrame() {
+    public JFrame getMainFrame() {
         return mainFrame;
     }
 
@@ -297,7 +273,7 @@ public class NeedforSpearGame {
      *
      * @return Gamedatabase to access its database call methods.
      */
-    public static GameDatabase getGameDatabase() {
+    public GameDatabase getGameDatabase() {
         return gameDatabase;
     }
 
@@ -306,15 +282,15 @@ public class NeedforSpearGame {
      *
      * @return Gamemap to be played on.
      */
-    public static GameMap getGameMap() {
+    public GameMap getGameMap() {
         return gameMap;
     }
 
     /**
      * To set a game map to be played on.
      */
-    public static void setGameMap(GameMap gameMap) {
-        NeedforSpearGame.gameMap = gameMap;
+    public void setGameMap(GameMap gameMap) {
+        this.gameMap = gameMap;
     }
 
     /**
@@ -322,7 +298,7 @@ public class NeedforSpearGame {
      *
      * @return Boolean indicating if the game is paused.
      */
-    public static boolean getIsPaused() {
+    public boolean getIsPaused() {
         return isPaused;
     }
 
@@ -331,15 +307,15 @@ public class NeedforSpearGame {
      *
      * @param isPaused Boolean indicating if the game is paused.
      */
-    public static void setIsPaused(boolean isPaused) {
-        NeedforSpearGame.isPaused = isPaused;
+    public void setIsPaused(boolean isPaused) {
+        this.isPaused = isPaused;
     }
 
     /**
      * To set a game mode to be played on.
      */
-    public static void setGameMode(GameMode gameMode) {
-        NeedforSpearGame.gameMode = gameMode;
+    public void setGameMode(GameMode gameMode) {
+        this.gameMode = gameMode;
     }
 
     /**
@@ -347,7 +323,7 @@ public class NeedforSpearGame {
      *
      * @return Long value of the time the running mode starts in milliseconds.
      */
-    public static long getStartMillis() {
+    public long getStartMillis() {
         return startMillis;
     }
 
@@ -356,7 +332,51 @@ public class NeedforSpearGame {
      *
      * @return Long value of the current time in milliseconds.
      */
-    public static long getCurrentMillis() {
+    public long getCurrentMillis() {
         return System.currentTimeMillis();
+    }
+
+    public GameView getGameView() {
+        return gameView;
+    }
+
+    public void setMainMenuView(MainMenuView mainMenuView) {
+        this.mainMenuView = mainMenuView;
+    }
+
+    public ViewState getCurrentState() {
+        return currentState;
+    }
+
+    public void setCurrentState(ViewState currentState) {
+        this.currentState = currentState;
+    }
+
+    public boolean isGameLoaded() {
+        return isGameLoaded;
+    }
+
+    public void setGameLoaded(boolean gameLoaded) {
+        isGameLoaded = gameLoaded;
+    }
+
+    public void setGameView(GameView gameView) {
+        this.gameView = gameView;
+    }
+
+    public void setValidateAndChangePasswordView(ValidateAndChangePasswordView validateAndChangePasswordView) {
+        this.validateAndChangePasswordView = validateAndChangePasswordView;
+    }
+
+    public void setSendVerificationView(SendVerificationView sendVerificationView) {
+        this.sendVerificationView = sendVerificationView;
+    }
+
+    public void setLoginView(LoginView loginView) {
+        this.loginView = loginView;
+    }
+
+    public void setActivationView(ActivationView activationView) {
+        this.activationView = activationView;
     }
 }

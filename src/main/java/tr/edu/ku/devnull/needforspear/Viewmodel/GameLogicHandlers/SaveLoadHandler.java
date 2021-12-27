@@ -13,6 +13,8 @@ import tr.edu.ku.devnull.needforspear.NeedforSpearGame;
 import tr.edu.ku.devnull.needforspear.View.PlayViews.GamePanel;
 import tr.edu.ku.devnull.needforspear.View.PlayViews.GameView;
 import tr.edu.ku.devnull.needforspear.View.PlayViews.MainMenuView;
+import tr.edu.ku.devnull.needforspear.Viewmodel.State.GameViewState;
+import tr.edu.ku.devnull.needforspear.Viewmodel.State.MainMenuViewState;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -28,7 +30,6 @@ import java.util.List;
  */
 public class SaveLoadHandler implements DatabaseSaveLoadSubscriber {
     private static SaveLoadHandler onlyInstance = null;
-    private static GameDatabase gAuth = NeedforSpearGame.getGameDatabase();
     private int previousScore = 0;
     private int previousLives = 3;
     private List<Spell> previousSpells;
@@ -37,7 +38,7 @@ public class SaveLoadHandler implements DatabaseSaveLoadSubscriber {
      * Private Constructor for the SaveLoadHandler.
      */
     private SaveLoadHandler() {
-        gAuth.subscribeToLoadSave(this);
+        NeedforSpearGame.getInstance().getGameDatabase().subscribeToLoadSave(this);
     }
 
     /**
@@ -57,7 +58,7 @@ public class SaveLoadHandler implements DatabaseSaveLoadSubscriber {
      * @param player Takes valid Player instance to read their map from the database.
      */
     public void loadGame(Player player) {
-        gAuth.loadGame(player);
+        NeedforSpearGame.getInstance().getGameDatabase().loadGame(player);
     }
 
     /**
@@ -67,7 +68,7 @@ public class SaveLoadHandler implements DatabaseSaveLoadSubscriber {
      * @param gameMap Take's valid GameMap instance to assign with their player with that instance while writing to the database.
      */
     public void saveGame(Player player, GameMap gameMap) {
-        gAuth.saveGame(player, gameMap);
+        NeedforSpearGame.getInstance().getGameDatabase().saveGame(player, gameMap);
     }
 
     /**
@@ -79,24 +80,24 @@ public class SaveLoadHandler implements DatabaseSaveLoadSubscriber {
     @Override
     public void gameMapResponseArrived(Integer databaseResponse, GameMap gameMap) {
         // Todo Send this request to GUI to create map.
-        if (GameView.getIsGameViewOpened() && !MainMenuView.isGameViewOpened()) {
+        if (NeedforSpearGame.getInstance().getCurrentState() instanceof GameViewState && !(NeedforSpearGame.getInstance().getCurrentState() instanceof MainMenuViewState)) {
             if (databaseResponse.equals(DatabaseCredentials.DATABASE_SUCCESS)) {
                 if (gameMap != null) {
                     System.out.println("GameMap Response Arrived!");
                     System.out.println(gameMap.toString());
-                    if (NeedforSpearGame.getGameMap() != null) {
-                        GameView.removeGamePanel();
+                    if (NeedforSpearGame.getInstance().getGameMap() != null) {
+                        NeedforSpearGame.getInstance().getGameView().removeGamePanel();
                     }
-                    NeedforSpearGame.setGameMap(gameMap);
-                    BuildModeHandler.getInstance().setObstacleList(NeedforSpearGame.getGameMap().getListofObstacles());
-                    GamePanel.setIsGameLoaded(true);
-                    GameView.adjustOverlayPanelForBuildingMode();
-                    GameView.loadAMap();
+                    NeedforSpearGame.getInstance().setGameMap(gameMap);
+                    BuildModeHandler.getInstance().setObstacleList(NeedforSpearGame.getInstance().getGameMap().getListofObstacles());
+                    NeedforSpearGame.getInstance().setGameLoaded(true);
+                    NeedforSpearGame.getInstance().getGameView().adjustOverlayPanelForBuildingMode();
+                    NeedforSpearGame.getInstance().getGameView().loadAMap();
                 } else {
-                    JOptionPane.showMessageDialog(NeedforSpearGame.getMainFrame(), "You have lost in previous game.", Constants.UIConstants.ALERT_TEXT, JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(NeedforSpearGame.getInstance().getMainFrame(), "You have lost in previous game.", Constants.UIConstants.ALERT_TEXT, JOptionPane.WARNING_MESSAGE);
                 }
             } else {
-                JOptionPane.showMessageDialog(NeedforSpearGame.getMainFrame(), "There isn't a previously saved map", Constants.UIConstants.ALERT_TEXT, JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(NeedforSpearGame.getInstance().getMainFrame(), "There isn't a previously saved map", Constants.UIConstants.ALERT_TEXT, JOptionPane.WARNING_MESSAGE);
                 System.out.println("Failed while loading map. User did not have any map on db.");
             }
         }

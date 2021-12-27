@@ -18,8 +18,6 @@ import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.util.List;
 
-import static java.lang.Math.abs;
-
 /**
  * This class does the location calculations for movements of sphere, obstacles and NoblePhantasm.
  *
@@ -29,7 +27,6 @@ public class MovementHandler {
     double x, y;
     double dx, dy;
     int radius = Constants.ProportionConstants.RADIUS_OF_THE_SPHERE;
-    private PlayerLivesHandler playerLivesHandler = new PlayerLivesHandler(NeedforSpearGame.getPlayer(), Sphere.getInstance(), NoblePhantasm.getInstance());
     NoblePhantasm noblePhantasm;
 
     double currentX;
@@ -155,7 +152,7 @@ public class MovementHandler {
         double y = obstacle.getLocation().getYCoordinates();
 
 
-        double downSpeed = abs(obstacle.getSpeed());
+        double downSpeed = Math.abs(obstacle.getSpeed());
         return new Location(obstacle.getLocation().getXCoordinates(), y +  downSpeed);
     }
 
@@ -174,12 +171,12 @@ public class MovementHandler {
         if (collisionHandler.collision(NoblePhantasm.getInstance(), spell)) {
             if(spell.getSpellType().equals(Constants.SpellNameConstants.CHANCE)) {
                 SpellAnimator.listOfMovingSpells.remove(spell);
-                PlayerLivesHandler.increasePlayerLives(NeedforSpearGame.getPlayer());
+                PlayerLivesHandler.getInstance().increasePlayerLives(NeedforSpearGame.getInstance().getPlayer());
             }
             else {
-                NeedforSpearGame.getPlayer().getListofSpells().add(spell);
+                NeedforSpearGame.getInstance().getPlayer().getListofSpells().add(spell);
                 SpellAnimator.listOfMovingSpells.remove(spell);
-                GameView.updateSpellNumbers();
+                NeedforSpearGame.getInstance().getGameView().updateSpellNumbers();
                 System.out.println(spell);
             }
         }else if(y + dy + length > Constants.UIConstants.INITIAL_SCREEN_HEIGHT){
@@ -241,7 +238,7 @@ public class MovementHandler {
         NoblePhantasm noblePhantasm = NoblePhantasm.getInstance();
         if (y > noblePhantasm.getLocation().getYCoordinates()) {
             Sphere.getInstance().setMoving(false);
-            playerLivesHandler.notifyPlayerSphereFall(Sphere.getInstance());
+            PlayerLivesHandler.getInstance().notifyPlayerSphereFall(Sphere.getInstance());
 
         }
 

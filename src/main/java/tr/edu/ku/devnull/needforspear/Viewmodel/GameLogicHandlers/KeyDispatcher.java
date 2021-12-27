@@ -99,7 +99,7 @@ public class KeyDispatcher implements KeyEventDispatcher {
                 //noblePhantasm.setDoubleSize(false);
             }
 
-            if(!NeedforSpearGame.getIsPaused()){
+            if(!NeedforSpearGame.getInstance().getIsPaused()){
 
                 if(e.getKeyCode() == KeyEvent.VK_C){
                     SpellHandler.getInstance().activateSpell(SpellHandler.getInstance().getAvailableSpell(Constants.SpellNameConstants.CHANCE));

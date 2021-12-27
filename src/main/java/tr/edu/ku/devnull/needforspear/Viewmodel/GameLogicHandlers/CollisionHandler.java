@@ -8,6 +8,7 @@ import tr.edu.ku.devnull.needforspear.Model.Obstacle.ExplosiveObstacle;
 
 import tr.edu.ku.devnull.needforspear.Model.Obstacle.GiftObstacle;
 import tr.edu.ku.devnull.needforspear.Model.Obstacle.Obstacle;
+import tr.edu.ku.devnull.needforspear.Model.Player.Player;
 import tr.edu.ku.devnull.needforspear.Model.Spell.Spell;
 import tr.edu.ku.devnull.needforspear.Model.UIModels.Bullet;
 import tr.edu.ku.devnull.needforspear.Model.UIModels.NoblePhantasm;
@@ -145,10 +146,6 @@ public class CollisionHandler {
         Rectangle obstacleRect = new Rectangle(x_obs, y_obs, diameter, diameter);
         return orbit.intersects(obstacleRect);
     }
-    /**
-     * Initializes the score handler
-     */
-    PlayerScoreHandler playerScoreHandler = new PlayerScoreHandler();
 
     /**
      * removes obstacle if enough collisions occurred and updates score by expert principle
@@ -175,7 +172,7 @@ public class CollisionHandler {
     }
 
     public void removeObstacle(Obstacle obstacle,  List<Obstacle> listofObstacles){
-        playerScoreHandler.updateScore(NeedforSpearGame.getPlayer());
+        PlayerScoreHandler.getInstance().updateScore(NeedforSpearGame.getInstance().getPlayer());
         listofObstacles.remove(obstacle);
     }
 

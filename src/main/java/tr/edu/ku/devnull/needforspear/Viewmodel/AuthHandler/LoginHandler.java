@@ -21,13 +21,12 @@ import java.util.regex.Pattern;
 public class LoginHandler implements DatabaseAuthSubscriber {
     private static LoginHandler onlyInstance = null;
     private Player player;
-    private static GameDatabase gAuth = NeedforSpearGame.getGameDatabase();
 
     /**
      * Private Constructor for the LoginHandler.
      */
     private LoginHandler() {
-        gAuth.subscribeToAuth(this);
+        NeedforSpearGame.getInstance().getGameDatabase().subscribeToAuth(this);
     }
 
     /**
@@ -36,7 +35,7 @@ public class LoginHandler implements DatabaseAuthSubscriber {
     public static synchronized LoginHandler getInstance() {
         if (onlyInstance == null) {
             onlyInstance = new LoginHandler();
-            gAuth.initialize();
+            NeedforSpearGame.getInstance().getGameDatabase().initialize();
         }
 
         return onlyInstance;
@@ -50,12 +49,12 @@ public class LoginHandler implements DatabaseAuthSubscriber {
      * @param password Password of the player.
      */
     public void register(String username, String email, String password) {
-        Thread t = new Thread(() -> gAuth.register(new Player(new Account(username, email, password))));
+        Thread t = new Thread(() -> NeedforSpearGame.getInstance().getGameDatabase().register(new Player(new Account(username, email, password))));
         t.start();
     }
 
     public void updateP(Player p) {
-        Thread t = new Thread(() -> gAuth.updatePlayer(p));
+        Thread t = new Thread(() -> NeedforSpearGame.getInstance().getGameDatabase().updatePlayer(p));
         t.start();
     }
 
@@ -67,7 +66,7 @@ public class LoginHandler implements DatabaseAuthSubscriber {
      * @param password Password of the player.
      */
     public void login(String username, String email, String password) {
-        Thread t = new Thread(() -> gAuth.login(new Player(new Account(username, email, password))));
+        Thread t = new Thread(() -> NeedforSpearGame.getInstance().getGameDatabase().login(new Player(new Account(username, email, password))));
         t.start();
     }
 
@@ -77,7 +76,7 @@ public class LoginHandler implements DatabaseAuthSubscriber {
      * @param email Email address of the player.
      */
     public void forgotPassword(String email) {
-        Thread t = new Thread(() -> gAuth.forgotPassword(email));
+        Thread t = new Thread(() -> NeedforSpearGame.getInstance().getGameDatabase().forgotPassword(email));
         t.start();
     }
 
@@ -88,7 +87,7 @@ public class LoginHandler implements DatabaseAuthSubscriber {
      * @param verificationCode Verification code of the player.
      */
     public void confirmUser(String email, String verificationCode) {
-        Thread t = new Thread(() -> gAuth.confirmPlayer(email, verificationCode));
+        Thread t = new Thread(() -> NeedforSpearGame.getInstance().getGameDatabase().confirmPlayer(email, verificationCode));
         t.start();
     }
 
@@ -100,7 +99,7 @@ public class LoginHandler implements DatabaseAuthSubscriber {
      * @param newPassword      New password of the user.
      */
     public void resetPassword(String email, String verificationCode, String newPassword) {
-        Thread t = new Thread(() -> gAuth.resetPassword(email, verificationCode, newPassword));
+        Thread t = new Thread(() -> NeedforSpearGame.getInstance().getGameDatabase().resetPassword(email, verificationCode, newPassword));
         t.start();
     }
 
@@ -135,16 +134,18 @@ public class LoginHandler implements DatabaseAuthSubscriber {
         System.out.println(player.getLives());
 
         if (databaseResponse.equals(DatabaseCredentials.DATABASE_SUCCESS)) {
-            NeedforSpearGame.getMainFrame().getContentPane().removeAll();
-            NeedforSpearGame.getMainFrame().getContentPane().repaint();
+            NeedforSpearGame.getInstance().getMainFrame().getContentPane().removeAll();
+            NeedforSpearGame.getInstance().getMainFrame().getContentPane().repaint();
+            NeedforSpearGame.getInstance().getMainFrame().getContentPane().revalidate();
+            NeedforSpearGame.getInstance().getMainFrame().getContentPane().repaint();
             if(player.getListofSpells() == null){
                 player.setListofSpells(new ArrayList<>());
             }
-            NeedforSpearGame.setPlayer(player);
+            NeedforSpearGame.getInstance().setPlayer(player);
             SaveLoadHandler.getInstance().setPreviousLives(player.getLives());
             SaveLoadHandler.getInstance().setPreviousScore(player.getScore());
             SaveLoadHandler.getInstance().initializePreviousSpells(player.getListofSpells());
-            NeedforSpearGame.startMainMenu();
+            NeedforSpearGame.getInstance().startMainMenu();
         } else if (databaseResponse.equals(DatabaseCredentials.DATABASE_FAIL)) {
             System.out.println("Failed");
         }

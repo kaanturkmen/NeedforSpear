@@ -32,7 +32,7 @@ public class GamePanel extends JPanel implements ActionListener, MouseMotionList
     BulletAnimator bulletAnimator;
 
     boolean rotatingRight = false, rotatingLeft = false;
-    private static boolean isGameStarted = false, isGameLoaded = false, isHexActivated=false;
+    private boolean isGameStarted = false, isHexActivated=false;
     private Location phantasmLocation;
 
 
@@ -40,7 +40,7 @@ public class GamePanel extends JPanel implements ActionListener, MouseMotionList
     double x_pos_NoblePhantasm;
     double y_pos_NoblePhantasm;
     private int delay;
-    protected static Timer timer;
+    protected Timer timer;
     long magicalHexStartTime;
 
 
@@ -93,17 +93,17 @@ public class GamePanel extends JPanel implements ActionListener, MouseMotionList
 
 
 
-        if(NeedforSpearGame.getPlayer().getLives() <= 0 ){
+        if(NeedforSpearGame.getInstance().getPlayer().getLives() <= 0 ){
             System.out.println("ups i know u died");
             timer.stop();
-            endGame(NeedforSpearGame.getPlayer());
+            endGame(NeedforSpearGame.getInstance().getPlayer());
         }
 
     }
 
     @Override
     public void mouseDragged(MouseEvent e) {
-        if (isGameLoaded) {
+        if (NeedforSpearGame.getInstance().isGameLoaded()) {
             int x = e.getX();
             int y = e.getY();
 
@@ -112,12 +112,12 @@ public class GamePanel extends JPanel implements ActionListener, MouseMotionList
             }
         }
 
-        if (NeedforSpearGame.getPlayer().getLives() <= 0) endGame(NeedforSpearGame.getPlayer());
+        if (NeedforSpearGame.getInstance().getPlayer().getLives() <= 0) endGame(NeedforSpearGame.getInstance().getPlayer());
     }
 
     @Override
     public void mouseMoved(MouseEvent e) {
-        if (isGameLoaded) {
+        if (NeedforSpearGame.getInstance().isGameLoaded()) {
             int x = e.getX();
             int y = e.getY();
             if (!isGameStarted) {
@@ -130,11 +130,11 @@ public class GamePanel extends JPanel implements ActionListener, MouseMotionList
         }
     }
 
-    public static void resume() {
+    public void resume() {
         timer.start();
     }
 
-    public static void pause() {
+    public void pause() {
         timer.stop();
     }
 
@@ -143,7 +143,7 @@ public class GamePanel extends JPanel implements ActionListener, MouseMotionList
 
             @Override
             public void mousePressed(MouseEvent e) {
-                if (isGameLoaded) {
+                if (NeedforSpearGame.getInstance().isGameLoaded()) {
                     int x = e.getX();
                     int y = e.getY();
 
@@ -161,7 +161,7 @@ public class GamePanel extends JPanel implements ActionListener, MouseMotionList
             @Override
             //adding or removing obstacles via mouse click
             public void mouseClicked(MouseEvent e) {
-                if (isGameLoaded) {
+                if (NeedforSpearGame.getInstance().isGameLoaded()) {
                     int x = e.getX();
                     int y = e.getY();
                     if (!isGameStarted) {
@@ -173,22 +173,22 @@ public class GamePanel extends JPanel implements ActionListener, MouseMotionList
                                 BuildModeHandler.getInstance().createNewObstacle(x, y, BuildModeHandler.getInstance().getAddedObstacleType(), getGraphics(), obstacleAnimator);
                                 Obstacle obstacle = BuildModeHandler.getInstance().getObstacleByLocation(x, y);
                                 if (!(obstacle.getObstacleType().equals(Constants.ObstacleNameConstants.SIMPLE) &&
-                                        BuildModeHandler.getInstance().checkSimpleObstacleNum(NeedforSpearGame.getGameMap().retrieveSimpleObstacleNumber())  ||
+                                        BuildModeHandler.getInstance().checkSimpleObstacleNum(NeedforSpearGame.getInstance().getGameMap().retrieveSimpleObstacleNumber())  ||
                                         (obstacle.getObstacleType().equals(Constants.ObstacleNameConstants.FIRM) &&
-                                        BuildModeHandler.getInstance().checkFirmObstacleNum(NeedforSpearGame.getGameMap().retrieveFirmObstacleNumber()))  ||
+                                        BuildModeHandler.getInstance().checkFirmObstacleNum(NeedforSpearGame.getInstance().getGameMap().retrieveFirmObstacleNumber()))  ||
                                         (obstacle.getObstacleType().equals(Constants.ObstacleNameConstants.EXP) &&
-                                        BuildModeHandler.getInstance().checkExplosiveObstacleNum(NeedforSpearGame.getGameMap().retrieveExplosiveObstacleNumber()))  ||
+                                        BuildModeHandler.getInstance().checkExplosiveObstacleNum(NeedforSpearGame.getInstance().getGameMap().retrieveExplosiveObstacleNumber()))  ||
                                         (obstacle.getObstacleType().equals(Constants.ObstacleNameConstants.GIFT) &&
-                                        BuildModeHandler.getInstance().checkGiftObstacleNum(NeedforSpearGame.getGameMap().retrieveGiftObstacleNumber())))) {
+                                        BuildModeHandler.getInstance().checkGiftObstacleNum(NeedforSpearGame.getInstance().getGameMap().retrieveGiftObstacleNumber())))) {
 
                                     BuildModeHandler.getInstance().removeObstacle(x, y, getGraphics(), BuildModeHandler.getInstance().getObstacleByLocation(x, y));
-                                    JOptionPane.showMessageDialog(NeedforSpearGame.getMainFrame(), "Maximum number for that obstacle type is reached", "Alert", JOptionPane.WARNING_MESSAGE);
+                                    JOptionPane.showMessageDialog(NeedforSpearGame.getInstance().getMainFrame(), "Maximum number for that obstacle type is reached", "Alert", JOptionPane.WARNING_MESSAGE);
 
                                 } else if(BuildModeHandler.getInstance().doesObstacleCollide(obstacle)){
                                     BuildModeHandler.getInstance().removeObstacle(x, y, getGraphics(), BuildModeHandler.getInstance().getObstacleByLocation(x, y));
                                 } else if(!BuildModeHandler.getInstance().checkObstacleLocation(obstacle)){
                                     BuildModeHandler.getInstance().removeObstacle(x, y, getGraphics(), BuildModeHandler.getInstance().getObstacleByLocation(x, y));
-                                    JOptionPane.showMessageDialog(NeedforSpearGame.getMainFrame(), "Obstacle is too close to the phantasm!", "Alert", JOptionPane.WARNING_MESSAGE);
+                                    JOptionPane.showMessageDialog(NeedforSpearGame.getInstance().getMainFrame(), "Obstacle is too close to the phantasm!", "Alert", JOptionPane.WARNING_MESSAGE);
                                 }
                             }
                         }
@@ -197,17 +197,17 @@ public class GamePanel extends JPanel implements ActionListener, MouseMotionList
                             if (BuildModeHandler.getInstance().getObstacleByLocation(x, y) != null) {
                                 Obstacle obstacle = BuildModeHandler.getInstance().getObstacleByLocation(x, y);
                                 if (obstacle.getObstacleType().equals(Constants.ObstacleNameConstants.SIMPLE) &&
-                                        BuildModeHandler.getInstance().checkSimpleObstacleNum(NeedforSpearGame.getGameMap().retrieveSimpleObstacleNumber() -1)  ||
+                                        BuildModeHandler.getInstance().checkSimpleObstacleNum(NeedforSpearGame.getInstance().getGameMap().retrieveSimpleObstacleNumber() -1)  ||
                                         (obstacle.getObstacleType().equals(Constants.ObstacleNameConstants.FIRM) &&
-                                                BuildModeHandler.getInstance().checkFirmObstacleNum(NeedforSpearGame.getGameMap().retrieveFirmObstacleNumber() -1))  ||
+                                                BuildModeHandler.getInstance().checkFirmObstacleNum(NeedforSpearGame.getInstance().getGameMap().retrieveFirmObstacleNumber() -1))  ||
                                         (obstacle.getObstacleType().equals(Constants.ObstacleNameConstants.EXP) &&
-                                                BuildModeHandler.getInstance().checkExplosiveObstacleNum(NeedforSpearGame.getGameMap().retrieveExplosiveObstacleNumber() -1))  ||
+                                                BuildModeHandler.getInstance().checkExplosiveObstacleNum(NeedforSpearGame.getInstance().getGameMap().retrieveExplosiveObstacleNumber() -1))  ||
                                         (obstacle.getObstacleType().equals(Constants.ObstacleNameConstants.GIFT) &&
-                                                BuildModeHandler.getInstance().checkGiftObstacleNum(NeedforSpearGame.getGameMap().retrieveGiftObstacleNumber() -1))) {
+                                                BuildModeHandler.getInstance().checkGiftObstacleNum(NeedforSpearGame.getInstance().getGameMap().retrieveGiftObstacleNumber() -1))) {
 
                                     BuildModeHandler.getInstance().removeObstacle(x, y, getGraphics(), BuildModeHandler.getInstance().getObstacleByLocation(x, y));
                                 }else{
-                                    JOptionPane.showMessageDialog(NeedforSpearGame.getMainFrame(), "Minimum number for that obstacle type is reached", "Alert", JOptionPane.WARNING_MESSAGE);
+                                    JOptionPane.showMessageDialog(NeedforSpearGame.getInstance().getMainFrame(), "Minimum number for that obstacle type is reached", "Alert", JOptionPane.WARNING_MESSAGE);
                                 }
                             }
                         }
@@ -216,7 +216,7 @@ public class GamePanel extends JPanel implements ActionListener, MouseMotionList
             }
 
             public void mouseReleased(MouseEvent e) {
-                if (isGameLoaded) {
+                if (NeedforSpearGame.getInstance().isGameLoaded()) {
                     int x = e.getX();
                     int y = e.getY();
                     if (!isGameStarted && BuildModeHandler.getInstance().getObstacleByLocation(x, y) != null) {
@@ -235,19 +235,11 @@ public class GamePanel extends JPanel implements ActionListener, MouseMotionList
         addMouseMotionListener(this);
     }
 
-    public static void setIsGameLoaded(boolean b) {
-        isGameLoaded = b;
-    }
-
-    public static boolean getIsGameLoaded() {
-        return isGameLoaded;
-    }
-
-    public static boolean getIsGameStarted() {
+    public boolean getIsGameStarted() {
         return isGameStarted;
     }
 
-    public static void setIsGameStarted(boolean b) {
+    public void setIsGameStarted(boolean b) {
         isGameStarted = b;
     }
 
@@ -258,7 +250,7 @@ public class GamePanel extends JPanel implements ActionListener, MouseMotionList
     }
 
 
-    public static void setIsHexActivated(boolean b) {
+    public void setIsHexActivated(boolean b) {
         isHexActivated = b;
     }
 
@@ -269,15 +261,15 @@ public class GamePanel extends JPanel implements ActionListener, MouseMotionList
     }
 
     public void endGame(Player player) {
-        JOptionPane.showMessageDialog(NeedforSpearGame.getMainFrame(), "You have lost", "Alert", JOptionPane.WARNING_MESSAGE);
+        JOptionPane.showMessageDialog(NeedforSpearGame.getInstance().getMainFrame(), "You have lost", "Alert", JOptionPane.WARNING_MESSAGE);
         player.setLives(3);
-        GamePanel.setIsGameLoaded(false);
-        GamePanel.setIsGameStarted(false);
-        NeedforSpearGame.setGameMode(GameMode.BUILDING_MODE);
-        NeedforSpearGame.setIsPaused(false);
-        NeedforSpearGame.getMainFrame().getContentPane().removeAll();
-        NeedforSpearGame.getMainFrame().repaint();
-        NeedforSpearGame.startMainMenu();
+        NeedforSpearGame.getInstance().setGameLoaded(false);
+        NeedforSpearGame.getInstance().getGameView().getGamePanel().setIsGameStarted(false);
+        NeedforSpearGame.getInstance().setGameMode(GameMode.BUILDING_MODE);
+        NeedforSpearGame.getInstance().setIsPaused(false);
+        NeedforSpearGame.getInstance().getMainFrame().getContentPane().removeAll();
+        NeedforSpearGame.getInstance().getMainFrame().repaint();
+        NeedforSpearGame.getInstance().startMainMenu();
     }
 }
 

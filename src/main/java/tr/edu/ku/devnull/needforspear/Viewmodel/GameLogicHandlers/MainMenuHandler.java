@@ -9,6 +9,8 @@ import tr.edu.ku.devnull.needforspear.View.PlayViews.GamePanel;
 import tr.edu.ku.devnull.needforspear.View.PlayViews.GameView;
 import tr.edu.ku.devnull.needforspear.NeedforSpearGame;
 import tr.edu.ku.devnull.needforspear.View.PlayViews.MainMenuView;
+import tr.edu.ku.devnull.needforspear.Viewmodel.State.GameViewState;
+import tr.edu.ku.devnull.needforspear.Viewmodel.State.MainMenuViewState;
 
 import javax.swing.*;
 
@@ -20,13 +22,12 @@ import javax.swing.*;
  */
 public class MainMenuHandler implements DatabaseSaveLoadSubscriber {
     private static MainMenuHandler onlyInstance = null;
-    private static GameDatabase gAuth = NeedforSpearGame.getGameDatabase();
 
     /**
      * Private Constructor for the MainMenuHandler.
      */
     private MainMenuHandler() {
-        gAuth.subscribeToLoadSave(this);
+        NeedforSpearGame.getInstance().getGameDatabase().subscribeToLoadSave(this);
     }
 
     /**
@@ -46,7 +47,7 @@ public class MainMenuHandler implements DatabaseSaveLoadSubscriber {
      * @param player Takes valid Player instance to read their map from the database.
      */
     public void loadGame(Player player) {
-        gAuth.loadGame(player);
+        NeedforSpearGame.getInstance().getGameDatabase().loadGame(player);
     }
 
     /**
@@ -57,30 +58,21 @@ public class MainMenuHandler implements DatabaseSaveLoadSubscriber {
      */
     @Override
     public void gameMapResponseArrived(Integer databaseResponse, GameMap gameMap) {
-        if (!GameView.getIsGameViewOpened() && MainMenuView.isGameViewOpened()) {
+        if (!(NeedforSpearGame.getInstance().getCurrentState() instanceof GameViewState) && NeedforSpearGame.getInstance().getCurrentState() instanceof MainMenuViewState) {
             if (databaseResponse.equals(DatabaseCredentials.DATABASE_SUCCESS)) {
                 if (gameMap != null) {
-                    NeedforSpearGame.setGameMap(gameMap);
-                    NeedforSpearGame.getMainFrame().getContentPane().removeAll();
-                    NeedforSpearGame.getMainFrame().repaint();
-                    NeedforSpearGame.startGameView();
-                    BuildModeHandler.getInstance().setObstacleList(NeedforSpearGame.getGameMap().getListofObstacles());
-                    GameView.adjustOverlayPanelForBuildingMode();
-                    GamePanel.setIsGameLoaded(true);
-                    GameView.loadAMap();
+                    NeedforSpearGame.getInstance().setGameMap(gameMap);
+                    NeedforSpearGame.getInstance().getMainFrame().getContentPane().removeAll();
+                    NeedforSpearGame.getInstance().getMainFrame().repaint();
+                    NeedforSpearGame.getInstance().startGameView();
+                    BuildModeHandler.getInstance().setObstacleList(NeedforSpearGame.getInstance().getGameMap().getListofObstacles());
+                    NeedforSpearGame.getInstance().getGameView().adjustOverlayPanelForBuildingMode();
+                    NeedforSpearGame.getInstance().getGameView().loadAMap();
+                    NeedforSpearGame.getInstance().setGameLoaded(true);
                 } else {
-                    JOptionPane.showMessageDialog(NeedforSpearGame.getMainFrame(), "You have lost in previous game", "Alert", JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(NeedforSpearGame.getInstance().getMainFrame(), "You have lost in previous game", "Alert", JOptionPane.WARNING_MESSAGE);
                 }
             }
         }
-    }
-
-    /**
-     * To set a game database to access its methods via database calls.
-     *
-     * @param gameDatabase Database to be set.
-     */
-    public void setGameDatabase(GameDatabase gameDatabase) {
-        this.gAuth = gameDatabase;
     }
 }

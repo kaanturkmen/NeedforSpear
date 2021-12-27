@@ -15,25 +15,25 @@ import javax.swing.*;
  * @author Kaan Turkmen
  */
 public class SendVerificationView {
-    private static FocusableJTextField emailField;
-    private static JButton resetPasswordButton, backButton;
+    private FocusableJTextField emailField;
+    private JButton resetPasswordButton, backButton;
 
     /**
      * A method for starting creation of the SendVerificationView.java
      */
-    public static void createView() {
+    public void createView() {
         createUIElements();
         determineUIElementsSizes();
         createActionListenerForLoginButton();
         obtainVisibility();
-        NeedforSpearGame.getMainFrame().setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        NeedforSpearGame.getInstance().getMainFrame().setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     /**
      * A method for assigning components to the class variables.
      */
-    private static void createUIElements() {
-        NeedforSpearGame.getMainFrame().setTitle(Constants.UIConstants.GAME_NAME);
+    private void createUIElements() {
+        NeedforSpearGame.getInstance().getMainFrame().setTitle(Constants.UIConstants.GAME_NAME);
         emailField = new FocusableJTextField(Constants.UIConstants.EMAIL_TEXT_FIELD_PLACEHOLDER);
         resetPasswordButton = new JButton(Constants.UIConstants.RESET_PASSWORD_PLACEHOLDER);
         backButton = new JButton(Constants.UIConstants.BACK_BUTTON_PLACEHOLDER);
@@ -42,7 +42,7 @@ public class SendVerificationView {
     /**
      * A method for determining the sizes of the elements.
      */
-    private static void determineUIElementsSizes() {
+    private void determineUIElementsSizes() {
         int x_coordinates_loc = (int) Constants.UIConstants.AUTH_VIEW_EXCEPT_LOGIN_LOCATION.getXCoordinates().doubleValue();
         int y_coordinates_loc = (int) Constants.UIConstants.AUTH_VIEW_EXCEPT_LOGIN_LOCATION.getYCoordinates().doubleValue();
         emailField.setBounds(x_coordinates_loc, y_coordinates_loc  + 2 * Constants.UIConstants.PADDING_BETWEEN_TEXT_FIELDS, Constants.UIConstants.MENU_AND_AUTH_VIEW_COMPONENT_SIZE.getWidth(), Constants.UIConstants.MENU_AND_AUTH_VIEW_COMPONENT_SIZE.getLength());
@@ -53,30 +53,30 @@ public class SendVerificationView {
     /**
      * A method for creating listeners for the buttons.
      */
-    private static void createActionListenerForLoginButton() {
+    private void createActionListenerForLoginButton() {
         resetPasswordButton.addActionListener(e -> {
             LoginHandler.getInstance().forgotPassword(emailField.getText());
-            NeedforSpearGame.getMainFrame().getContentPane().removeAll();
-            NeedforSpearGame.getMainFrame().repaint();
-            NeedforSpearGame.startResetPasswordView();
+            NeedforSpearGame.getInstance().getMainFrame().getContentPane().removeAll();
+            NeedforSpearGame.getInstance().getMainFrame().repaint();
+            NeedforSpearGame.getInstance().startResetPasswordView();
         });
 
         backButton.addActionListener(e -> {
-            NeedforSpearGame.getMainFrame().getContentPane().removeAll();
-            NeedforSpearGame.getMainFrame().repaint();
-            NeedforSpearGame.startLoginView();
+            NeedforSpearGame.getInstance().getMainFrame().getContentPane().removeAll();
+            NeedforSpearGame.getInstance().getMainFrame().repaint();
+            NeedforSpearGame.getInstance().startLoginView();
         });
     }
 
     /**
      * A method for creating visibility to the components.
      */
-    private static void obtainVisibility() {
-        NeedforSpearGame.getMainFrame().setContentPane(new BackgroundHandler().getBackgroundedJPanel(Constants.UIConstants.VALIDATE_AND_CHANGE_PASSWORD_VIEW_BACKGROUND_IMAGE));
-        NeedforSpearGame.getMainFrame().add(emailField);
-        NeedforSpearGame.getMainFrame().add(resetPasswordButton);
-        NeedforSpearGame.getMainFrame().add(backButton);
-        NeedforSpearGame.getMainFrame().setLayout(null);
-        NeedforSpearGame.getMainFrame().setVisible(true);
+    private void obtainVisibility() {
+        NeedforSpearGame.getInstance().getMainFrame().setContentPane(new BackgroundHandler().getBackgroundedJPanel(Constants.UIConstants.VALIDATE_AND_CHANGE_PASSWORD_VIEW_BACKGROUND_IMAGE));
+        NeedforSpearGame.getInstance().getMainFrame().add(emailField);
+        NeedforSpearGame.getInstance().getMainFrame().add(resetPasswordButton);
+        NeedforSpearGame.getInstance().getMainFrame().add(backButton);
+        NeedforSpearGame.getInstance().getMainFrame().setLayout(null);
+        NeedforSpearGame.getInstance().getMainFrame().setVisible(true);
     }
 }
