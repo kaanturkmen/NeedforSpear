@@ -45,7 +45,7 @@ public class SpellHandler{
      */
     public List<Obstacle> getGiftObstacleList(){
         List<Obstacle> giftObstacleList= new ArrayList<>();
-        for(Obstacle obstacle : NeedforSpearGame.getGameMap().getListofObstacles()){
+        for(Obstacle obstacle : NeedforSpearGame.getInstance().getGameMap().getListofObstacles()){
             if(obstacle.getObstacleType().equals(Constants.ObstacleNameConstants.GIFT)){
                 giftObstacleList.add(obstacle);
             }
@@ -105,8 +105,8 @@ public class SpellHandler{
      * @return List of spells
      */
     public Spell getAvailableSpell(String spellType){
-        if(NeedforSpearGame.getPlayer().getListofSpells().size() > 0){
-            for(Spell spell: NeedforSpearGame.getPlayer().getListofSpells()){
+        if(NeedforSpearGame.getInstance().getPlayer().getListofSpells().size() > 0){
+            for(Spell spell: NeedforSpearGame.getInstance().getPlayer().getListofSpells()){
                 System.out.println(spell.getSpellType());
                 if(spell.getSpellType().equals(spellType)){
                     return spell;
@@ -136,13 +136,13 @@ public class SpellHandler{
                     unstoppableSpell.triggerEffect();
 
             }
-            NeedforSpearGame.getPlayer().getListofSpells().remove(spell);
-            GameView.updateSpellNumbers();
+            NeedforSpearGame.getInstance().getPlayer().getListofSpells().remove(spell);
+            NeedforSpearGame.getInstance().getGameView().updateSpellNumbers();
         }
     }
     public int getSpellNumber(String spellType){
         int x = 0;
-        for(Spell spell: NeedforSpearGame.getPlayer().getListofSpells()){
+        for(Spell spell: NeedforSpearGame.getInstance().getPlayer().getListofSpells()){
             if(spell != null) {
                 if (spell.getSpellType().equals(spellType)) {
                     x+=1;

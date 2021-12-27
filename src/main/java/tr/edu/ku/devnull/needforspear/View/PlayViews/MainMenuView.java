@@ -15,13 +15,12 @@ import javax.swing.*;
  * @author Kaan Turkmen
  */
 public class MainMenuView {
-    private static JButton newGameButton, loadGameButton, helpScreenButton, exitGameButton;
-    private static boolean gameViewOpened = false;
+    private JButton newGameButton, loadGameButton, helpScreenButton, exitGameButton;
 
     /**
      * A method for starting creation of the MainMenuView.java
      */
-    public static void createView() {
+    public void createView() {
         createUIElements();
         determineUIElementsSizes();
         createActionListeners();
@@ -31,7 +30,7 @@ public class MainMenuView {
     /**
      * A method for assigning components to the class variables.
      */
-    private static void createUIElements() {
+    private void createUIElements() {
         newGameButton = new JButton(Constants.UIConstants.NEW_GAME_TEXT);
         loadGameButton = new JButton(Constants.UIConstants.LOAD_GAME_TEXT);
         helpScreenButton = new JButton(Constants.UIConstants.HELP_SCREEN_TEXT);
@@ -41,7 +40,7 @@ public class MainMenuView {
     /**
      * A method for determining the sizes of the elements.
      */
-    private static void determineUIElementsSizes() {
+    private void determineUIElementsSizes() {
         int x_coordinates_loc = (int) Constants.UIConstants.MAIN_MENU_VIEW_LOCATION.getXCoordinates().doubleValue();
         int y_coordinates_loc = (int) Constants.UIConstants.MAIN_MENU_VIEW_LOCATION.getYCoordinates().doubleValue();
         newGameButton.setBounds(x_coordinates_loc, y_coordinates_loc + Constants.UIConstants.PADDING_MAIN_MENU, Constants.UIConstants.MENU_AND_AUTH_VIEW_COMPONENT_SIZE.getWidth(), Constants.UIConstants.MENU_AND_AUTH_VIEW_COMPONENT_SIZE.getLength());
@@ -53,25 +52,25 @@ public class MainMenuView {
     /**
      * A method for creating listeners for the buttons.
      */
-    private static void createActionListeners() {
+    private void createActionListeners() {
         newGameButton.addActionListener(e -> {
             NoblePhantasm npa = NoblePhantasm.getInstance();
             npa.resetLocation();
-            NeedforSpearGame.getMainFrame().getContentPane().removeAll();
-            NeedforSpearGame.getMainFrame().repaint();
-            NeedforSpearGame.startGameView();
+            NeedforSpearGame.getInstance().getMainFrame().getContentPane().removeAll();
+            NeedforSpearGame.getInstance().getMainFrame().repaint();
+            NeedforSpearGame.getInstance().startGameView();
         });
 
         loadGameButton.addActionListener(e -> {
-            GamePanel.setIsGameLoaded(false);
-            MainMenuHandler.getInstance().loadGame(NeedforSpearGame.getPlayer());
+            MainMenuHandler.getInstance().loadGame(NeedforSpearGame.getInstance().getPlayer());
+            NeedforSpearGame.getInstance().setGameLoaded(false);
         });
 
         helpScreenButton.addActionListener(e -> System.out.println("Opened up help screen!"));
 
         exitGameButton.addActionListener(e -> {
             String[] options = new String[] {"Yes", "No"};
-            int response = JOptionPane.showOptionDialog(NeedforSpearGame.getMainFrame(), "Are you sure?", "Exit",
+            int response = JOptionPane.showOptionDialog(NeedforSpearGame.getInstance().getMainFrame(), "Are you sure?", "Exit",
                     JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE,
                     null, options, options[0]);
             if(response == 0){
@@ -83,22 +82,14 @@ public class MainMenuView {
     /**
      * A method for creating visibility to the components.
      */
-    private static void obtainVisibility() {
-        NeedforSpearGame.getMainFrame().setContentPane(new BackgroundHandler().getBackgroundedJPanel(Constants.UIConstants.MAIN_MENU_BACKGROUND_IMAGE));
-        NeedforSpearGame.getMainFrame().getContentPane().add(newGameButton);
-        NeedforSpearGame.getMainFrame().getContentPane().add(loadGameButton);
-        NeedforSpearGame.getMainFrame().getContentPane().add(helpScreenButton);
-        NeedforSpearGame.getMainFrame().getContentPane().add(exitGameButton);
-        NeedforSpearGame.getMainFrame().setLayout(null);
-        NeedforSpearGame.getMainFrame().setVisible(true);
-    }
-
-    public static boolean isGameViewOpened() {
-        return gameViewOpened;
-    }
-
-    public static void setGameViewOpened(boolean gameViewOpened) {
-        MainMenuView.gameViewOpened = gameViewOpened;
+    private void obtainVisibility() {
+        NeedforSpearGame.getInstance().getMainFrame().setContentPane(new BackgroundHandler().getBackgroundedJPanel(Constants.UIConstants.MAIN_MENU_BACKGROUND_IMAGE));
+        NeedforSpearGame.getInstance().getMainFrame().getContentPane().add(newGameButton);
+        NeedforSpearGame.getInstance().getMainFrame().getContentPane().add(loadGameButton);
+        NeedforSpearGame.getInstance().getMainFrame().getContentPane().add(helpScreenButton);
+        NeedforSpearGame.getInstance().getMainFrame().getContentPane().add(exitGameButton);
+        NeedforSpearGame.getInstance().getMainFrame().setLayout(null);
+        NeedforSpearGame.getInstance().getMainFrame().setVisible(true);
     }
 }
 

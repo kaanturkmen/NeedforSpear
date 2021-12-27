@@ -27,6 +27,7 @@ public class PlayerLivesHandler {
     private List<Player> playerList = new ArrayList<>();
     private List<NoblePhantasm> noblePhantasmList = new ArrayList<>();
     private List<Sphere> sphereList = new ArrayList<>();
+    private static PlayerLivesHandler onlyInstance;
 
     /**
      * Constructor adds the new player and sphere pair to
@@ -35,11 +36,18 @@ public class PlayerLivesHandler {
      * @param player
      * @param sphere
      */
-    public PlayerLivesHandler(Player player, Sphere sphere, NoblePhantasm noblePhantasm) {
+    private PlayerLivesHandler(Player player, Sphere sphere, NoblePhantasm noblePhantasm) {
         playerList.add(player);
         sphereList.add(sphere);
         noblePhantasmList.add(noblePhantasm);
     }
+
+    public static PlayerLivesHandler getInstance() {
+        if (onlyInstance == null) onlyInstance = new PlayerLivesHandler(NeedforSpearGame.getInstance().getPlayer(), Sphere.getInstance(), NoblePhantasm.getInstance());
+
+        return onlyInstance;
+    }
+
 
     /**
      * Notify player on sphere's fall
@@ -50,7 +58,7 @@ public class PlayerLivesHandler {
         int index = sphereList.indexOf(sphere);
         Player currrentPlayer = playerList.get(index);
         currrentPlayer.decreaseLives();
-        GameView.updatePlayerLives(currrentPlayer.getLives());
+        NeedforSpearGame.getInstance().getGameView().updatePlayerLives(currrentPlayer.getLives());
         //if (currrentPlayer.getLives() <= 0) endGame(currrentPlayer);
     }
 
@@ -58,7 +66,7 @@ public class PlayerLivesHandler {
         int index = noblePhantasmList.indexOf(noblePhantasm);
         Player currentPlayer = playerList.get(index);
         currentPlayer.decreaseLives();
-        GameView.updatePlayerLives(currentPlayer.getLives());
+        NeedforSpearGame.getInstance().getGameView().updatePlayerLives(currentPlayer.getLives());
         //if (currentPlayer.getLives() <= 0) endGame(currentPlayer);
     }
 
@@ -67,9 +75,9 @@ public class PlayerLivesHandler {
      *
      * @param player Player whose lives will be increased
      */
-    public static void increasePlayerLives(Player player) {
+    public void increasePlayerLives(Player player) {
         player.increaseLives();
-        GameView.updatePlayerLives(player.getLives());
+        NeedforSpearGame.getInstance().getGameView().updatePlayerLives(player.getLives());
     }
 
     public int getPlayerHealth(){

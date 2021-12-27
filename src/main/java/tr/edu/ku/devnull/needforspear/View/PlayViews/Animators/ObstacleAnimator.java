@@ -48,7 +48,7 @@ public class ObstacleAnimator implements AnimatorStrategy {
             Location loc = obs.getLocation();
             int width = obs.getSize().getWidth();
             int length = obs.getSize().getLength();
-            g2.setColor(NeedforSpearGame.getColorEquivalent(obs.getColor()));
+            g2.setColor(obs.retrieveColorEquivalent(obs.getColor()));
             int x_coordinates_loc = loc.getXCoordinates().intValue();
             int y_coordinates_loc = loc.getYCoordinates().intValue();
             if (obs.getObstacleType().equals(Constants.ObstacleNameConstants.EXP)) {
@@ -85,7 +85,7 @@ public class ObstacleAnimator implements AnimatorStrategy {
         Location loc = obstacle.getLocation();
         int width = obstacle.getSize().getWidth();
         int length = obstacle.getSize().getLength();
-        g2.setColor(NeedforSpearGame.getColorEquivalent(obstacle.getColor()));
+        g2.setColor(obstacle.retrieveColorEquivalent(obstacle.getColor()));
         int x_coordinates_loc = loc.getXCoordinates().intValue();
         int y_coordinates_loc = loc.getYCoordinates().intValue();
         if (obstacle.getObstacleType().equals(Constants.ObstacleNameConstants.EXP)) {
@@ -105,7 +105,7 @@ public class ObstacleAnimator implements AnimatorStrategy {
      */
     public void movementOfObstacles(Graphics2D g2) {
 
-        if (NeedforSpearGame.getGameMode() != GameMode.BUILDING_MODE) {
+        if (NeedforSpearGame.getInstance().getGameMode() != GameMode.BUILDING_MODE) {
             for (int i = 0; i < listofObstacles.size(); i++) {
                 Obstacle explosiveObstacle = listofObstacles.get(i);
 
@@ -113,7 +113,7 @@ public class ObstacleAnimator implements AnimatorStrategy {
                     explosiveAnimation(g2, explosiveObstacle);
                 }
 
-                g2.setColor(NeedforSpearGame.getColorEquivalent(explosiveObstacle.getColor()));
+                g2.setColor(explosiveObstacle.retrieveColorEquivalent(explosiveObstacle.getColor()));
                 //TODO these could be removed from here
                 if (explosiveObstacle.getSpeed() != 0 && (explosiveObstacle.getObstacleType().equals(Constants.ObstacleNameConstants.FIRM)||explosiveObstacle.getObstacleType().equals(Constants.ObstacleNameConstants.SIMPLE) )) {
                     Location newLoc = movementHandler.moveObstacleHorizontally(explosiveObstacle, listofObstacles);
@@ -158,7 +158,7 @@ public class ObstacleAnimator implements AnimatorStrategy {
         int y = explosiveObstacle.getLocation().getYCoordinates().intValue();
         int width = explosiveObstacle.getSize().getWidth();
         int length = explosiveObstacle.getSize().getLength();
-        g2.setColor(NeedforSpearGame.getColorEquivalent(explosiveObstacle.getColor()));
+        g2.setColor(explosiveObstacle.retrieveColorEquivalent(explosiveObstacle.getColor()));
         g2.fillOval(x, y, width, length);
 
     }
@@ -196,14 +196,13 @@ public class ObstacleAnimator implements AnimatorStrategy {
 
     private void removingObstacles(Obstacle obstacle){
         double y_bottom = obstacle.getLocation().getYCoordinates() + obstacle.getSize().getLength();
-        PlayerLivesHandler playerLivesHandler = new PlayerLivesHandler(NeedforSpearGame.getPlayer(),Sphere.getInstance(),NoblePhantasm.getInstance());
         //TODO carry all removals here EXPLOSIVE REMOVAL
         if (collisionHandler.isRemovedObstacle(obstacle) && obstacle.getObstacleType().equals(Constants.ObstacleNameConstants.EXP) &&
                 (collisionHandler.collisionWithExplosive(obstacle,NoblePhantasm.getInstance()) ||
                         y_bottom > Constants.UIConstants.INITIAL_SCREEN_HEIGHT )){
 
             if (collisionHandler.collisionWithExplosive(obstacle,NoblePhantasm.getInstance())){
-                playerLivesHandler.notifyPlayerExplosiveFall(NoblePhantasm.getInstance());
+                PlayerLivesHandler.getInstance().notifyPlayerExplosiveFall(NoblePhantasm.getInstance());
                 System.out.println("player hit by explosive");
             }
 

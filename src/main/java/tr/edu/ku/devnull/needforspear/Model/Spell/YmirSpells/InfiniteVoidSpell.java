@@ -26,7 +26,7 @@ public class InfiniteVoidSpell implements YmirPower {
 
     public List<Obstacle> selectRandomObstacles(){
         List<Integer> randomIndices = new ArrayList<>();
-        List<Obstacle> obstacleList =  NeedforSpearGame.getGameMap().getListofObstacles();
+        List<Obstacle> obstacleList =  NeedforSpearGame.getInstance().getGameMap().getListofObstacles();
         List<Obstacle> randomObstacleList = new ArrayList<>();
 
         int randNum = r.nextInt(obstacleList.size());

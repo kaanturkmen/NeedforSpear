@@ -243,6 +243,36 @@ public class Obstacle {
         return new Rectangle((int) rect_x, (int) rect_y, (int) (1 * Constants.ProportionConstants.EXPLOSIVE_ORBIT_RADIUS), (int) (1 * Constants.ProportionConstants.EXPLOSIVE_ORBIT_RADIUS));
     }
 
+    /**
+     * Gets the color equivalent of the given string.
+     *
+     * @param color String name of the color.
+     * @return Color class equivalent of the given string.
+     */
+    public Color retrieveColorEquivalent(String color) {
+
+        Color colorSelection = Color.BLACK;
+
+        switch (color) {
+            case Constants.UIConstants.RED_COLOR_STRING:
+                colorSelection = Color.RED;
+                break;
+            case Constants.UIConstants.BLUE_COLOR_STRING:
+                colorSelection = Color.BLUE;
+                break;
+            case Constants.UIConstants.ORANGE_COLOR_STRING:
+                colorSelection = Color.ORANGE;
+                break;
+            case Constants.UIConstants.GREEN_COLOR_STRING:
+                colorSelection = Color.GREEN;
+                break;
+            default:
+                break;
+        }
+
+        return colorSelection;
+    }
+
 
     public void freeze() {
         if (!this.isInfiniteVoidActivated) {

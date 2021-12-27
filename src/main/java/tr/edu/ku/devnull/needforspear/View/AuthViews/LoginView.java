@@ -15,14 +15,14 @@ import javax.swing.*;
  * @author Kaan Turkmen
  */
 public class LoginView {
-    private static FocusableJTextField dummyField, usernameField, emailField;
-    private static JPasswordField passwordField;
-    private static JButton loginButton, registerButton, forgotScreenButton, activationButton;
+    private FocusableJTextField dummyField, usernameField, emailField;
+    private JPasswordField passwordField;
+    private JButton loginButton, registerButton, forgotScreenButton, activationButton;
 
     /**
      * A method for starting creation of the LoginView.java
      */
-    public static void createView() {
+    public void createView() {
         createUIElements();
         determineUIElementsSizes();
         createActionListenersForLoginView();
@@ -32,8 +32,8 @@ public class LoginView {
     /**
      * A method for assigning components to the class variables.
      */
-    private static void createUIElements() {
-        NeedforSpearGame.getMainFrame().setTitle(Constants.UIConstants.GAME_NAME);
+    private void createUIElements() {
+        NeedforSpearGame.getInstance().getMainFrame().setTitle(Constants.UIConstants.GAME_NAME);
         dummyField = new FocusableJTextField(Constants.UIConstants.USERNAME_TEXT_FIELD_PLACEHOLDER);
         usernameField = new FocusableJTextField(Constants.UIConstants.USERNAME_TEXT_FIELD_PLACEHOLDER);
         emailField = new FocusableJTextField(Constants.UIConstants.EMAIL_TEXT_FIELD_PLACEHOLDER);
@@ -47,7 +47,7 @@ public class LoginView {
     /**
      * A method for determining the sizes of the elements.
      */
-    private static void determineUIElementsSizes() {
+    private void determineUIElementsSizes() {
         int x_coordinates_loc = (int) Constants.UIConstants.LOGIN_VIEW_COMPONENT_LOCATION.getXCoordinates().doubleValue();
         int y_coordinates_loc = (int) Constants.UIConstants.LOGIN_VIEW_COMPONENT_LOCATION.getYCoordinates().doubleValue();
         usernameField.setBounds(x_coordinates_loc, y_coordinates_loc, Constants.UIConstants.MENU_AND_AUTH_VIEW_COMPONENT_SIZE.getWidth(), Constants.UIConstants.MENU_AND_AUTH_VIEW_COMPONENT_SIZE.getLength());
@@ -62,7 +62,7 @@ public class LoginView {
     /**
      * A method for creating listeners for the buttons.
      */
-    private static void createActionListenersForLoginView() {
+    private void createActionListenersForLoginView() {
         loginButton.addActionListener(e -> {
             char[] encryptedPassword = passwordField.getPassword();
 
@@ -86,32 +86,32 @@ public class LoginView {
         });
 
         activationButton.addActionListener(e -> {
-            NeedforSpearGame.getMainFrame().getContentPane().removeAll();
-            NeedforSpearGame.getMainFrame().repaint();
-            NeedforSpearGame.startActivationView();
+            NeedforSpearGame.getInstance().getMainFrame().getContentPane().removeAll();
+            NeedforSpearGame.getInstance().getMainFrame().repaint();
+            NeedforSpearGame.getInstance().startActivationView();
         });
 
         forgotScreenButton.addActionListener(e -> {
-            NeedforSpearGame.getMainFrame().getContentPane().removeAll();
-            NeedforSpearGame.getMainFrame().repaint();
-            NeedforSpearGame.startVerificationView();
+            NeedforSpearGame.getInstance().getMainFrame().getContentPane().removeAll();
+            NeedforSpearGame.getInstance().getMainFrame().repaint();
+            NeedforSpearGame.getInstance().startVerificationView();
         });
     }
 
     /**
      * A method for creating visibility to the components.
      */
-    private static void obtainVisibility() {
-        NeedforSpearGame.getMainFrame().setContentPane(new BackgroundHandler().getBackgroundedJPanel(Constants.UIConstants.TITLE_SCREEN_BACKGROUND_IMAGE));
-        NeedforSpearGame.getMainFrame().getContentPane().add(dummyField);
-        NeedforSpearGame.getMainFrame().getContentPane().add(usernameField);
-        NeedforSpearGame.getMainFrame().getContentPane().add(emailField);
-        NeedforSpearGame.getMainFrame().getContentPane().add(passwordField);
-        NeedforSpearGame.getMainFrame().getContentPane().add(loginButton);
-        NeedforSpearGame.getMainFrame().getContentPane().add(registerButton);
-        NeedforSpearGame.getMainFrame().getContentPane().add(forgotScreenButton);
-        NeedforSpearGame.getMainFrame().getContentPane().add(activationButton);
-        NeedforSpearGame.getMainFrame().setLayout(null);
-        NeedforSpearGame.getMainFrame().setVisible(true);
+    private void obtainVisibility() {
+        NeedforSpearGame.getInstance().getMainFrame().setContentPane(new BackgroundHandler().getBackgroundedJPanel(Constants.UIConstants.TITLE_SCREEN_BACKGROUND_IMAGE));
+        NeedforSpearGame.getInstance().getMainFrame().getContentPane().add(dummyField);
+        NeedforSpearGame.getInstance().getMainFrame().getContentPane().add(usernameField);
+        NeedforSpearGame.getInstance().getMainFrame().getContentPane().add(emailField);
+        NeedforSpearGame.getInstance().getMainFrame().getContentPane().add(passwordField);
+        NeedforSpearGame.getInstance().getMainFrame().getContentPane().add(loginButton);
+        NeedforSpearGame.getInstance().getMainFrame().getContentPane().add(registerButton);
+        NeedforSpearGame.getInstance().getMainFrame().getContentPane().add(forgotScreenButton);
+        NeedforSpearGame.getInstance().getMainFrame().getContentPane().add(activationButton);
+        NeedforSpearGame.getInstance().getMainFrame().setLayout(null);
+        NeedforSpearGame.getInstance().getMainFrame().setVisible(true);
     }
 }
