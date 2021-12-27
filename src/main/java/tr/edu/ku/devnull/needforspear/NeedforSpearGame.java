@@ -42,7 +42,9 @@ public class NeedforSpearGame {
     private static GameMap gameMap;
     private static GameDatabase gameDatabase;
     private static Thread backgroundMusicThread, soundEffectThread;
+    private static boolean muteModeActivated = false;
     private static final ScheduledExecutorService executorService = Executors.newScheduledThreadPool(1);
+    static Clip clip;
 
     private static long startMillis;
 
@@ -52,9 +54,9 @@ public class NeedforSpearGame {
      * @param args Args given when program is started.
      */
     public static void main(String[] args) {
+        playBackgroundMusic();
         init();
         startLoginView();
-//        startExecutorService();
     }
 
     /**
@@ -179,18 +181,16 @@ public class NeedforSpearGame {
 
     /**
      * Plays a music (.wav extension is required) on background.
-     *
-     * @param path Path of the name of the file which is located in Resources directory.
      */
-    public static void playBackgroundMusic(String path) {
+    public static void playBackgroundMusic() {
         if (backgroundMusicThread != null) {
-            backgroundMusicThread.stop();
+            backgroundMusicThread.interrupt();
         }
 
         backgroundMusicThread = new Thread(() -> {
             try {
-                Clip clip = AudioSystem.getClip();
-                AudioInputStream inputStream = AudioSystem.getAudioInputStream(new File(findResourceFolder(path)));
+                clip = AudioSystem.getClip();
+                AudioInputStream inputStream = AudioSystem.getAudioInputStream(new File(findResourceFolder("backgroundMusic.wav")));
                 clip.open(inputStream);
                 clip.loop(0);
                 clip.start();
@@ -200,6 +200,15 @@ public class NeedforSpearGame {
         });
 
         backgroundMusicThread.start();
+    }
+
+    /**
+     * Stops the background music.
+     */
+    public static void stopBackgroundMusic() {
+        clip.stop();
+        backgroundMusicThread.stop();
+        backgroundMusicThread = null;
     }
 
     /**
@@ -253,7 +262,6 @@ public class NeedforSpearGame {
         Ymir y = new Ymir();
         //TODO to try infinite void we should wait until game starts so 0 delay makes it not work
         NeedforSpearGame.executorService.scheduleAtFixedRate(y, 0, 30, TimeUnit.SECONDS);
-
     }
 
     /**
@@ -277,7 +285,6 @@ public class NeedforSpearGame {
      * This method is used by converting null into new object. It is not being used to
      * set player multiple times.
      *
-     * @return Logged in player.
      */
     public static void setPlayer(Player player) {
         NeedforSpearGame.player = player;
@@ -358,5 +365,21 @@ public class NeedforSpearGame {
      */
     public static long getCurrentMillis() {
         return System.currentTimeMillis();
+    }
+
+    /**
+     * Check if game is in mute mode where no sound effect or background music is being played.
+     *
+     * @return Boolean value of the mute mode.
+     */
+    public static boolean isMuteModeActivated() {
+        return muteModeActivated;
+    }
+
+    /**
+     * Sets the game's mute mode.
+     */
+    public static void setMuteModeActivated(boolean muteModeActivated) {
+        NeedforSpearGame.muteModeActivated = muteModeActivated;
     }
 }
