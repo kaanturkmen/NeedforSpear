@@ -1,0 +1,55 @@
+buildscript {
+
+    repositories {
+        google()
+    }
+
+    dependencies {
+        classpath 'com.google.gms:google-services:4.3.10'
+    }
+}
+
+plugins {
+    id 'java'
+}
+
+allprojects {
+
+    repositories {
+        google()
+    }
+}
+
+group 'tr.edu.ku.devnull'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+dependencies {
+    implementation 'org.junit.jupiter:junit-jupiter:5.7.0'
+    implementation platform('com.google.firebase:firebase-bom:29.0.0')
+
+
+    implementation 'com.google.firebase:firebase-analytics'
+
+    implementation 'com.google.firebase:firebase-auth'
+    implementation 'com.google.firebase:firebase-firestore'
+    compile 'com.google.firebase:firebase-admin:8.1.0'
+    compile "org.slf4j:slf4j-simple:1.7.9"
+
+    compile group: 'javax.mail', name: 'mail', version: '1.4.5'
+    compile group: 'javax.activation', name: 'activation', version: '1.1.1'
+}
+
+apply plugin: 'com.google.gms.google-services'

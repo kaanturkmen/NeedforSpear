@@ -1,0 +1,3 @@
+rootProject.name = '2021_302_devnull'
+include 'test'
+
