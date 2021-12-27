@@ -44,7 +44,7 @@ public class NeedforSpearGame {
     private static Thread backgroundMusicThread, soundEffectThread;
     private static boolean muteModeActivated = false;
     private static final ScheduledExecutorService executorService = Executors.newScheduledThreadPool(1);
-    static Clip clip;
+    private static Clip clip;
 
     private static long startMillis;
 
