@@ -31,6 +31,7 @@ public class GamePanel extends JPanel implements ActionListener, MouseMotionList
     NoblePhantasmAnimator npa;
     SpellAnimator spellAnimator;
     BulletAnimator bulletAnimator;
+    NoblePhantasm noblePhantasm = NoblePhantasm.getInstance();
 
     boolean rotatingRight = false, rotatingLeft = false;
     private boolean isGameStarted = false, isHexActivated=false;
@@ -38,6 +39,7 @@ public class GamePanel extends JPanel implements ActionListener, MouseMotionList
 
 
     Image background = new BackgroundHandler().getBackgroundImage(Constants.UIConstants.GAME_BACKGROUND_IMAGE);
+    Image phantasm = new NoblePhantasmAnimator().getNoblePhantasmImage(Constants.UIConstants.PHANTASM_IMAGE);
     double x_pos_NoblePhantasm;
     double y_pos_NoblePhantasm;
     private int delay;
@@ -62,7 +64,6 @@ public class GamePanel extends JPanel implements ActionListener, MouseMotionList
         setFocusTraversalKeysEnabled(false);
 
     }
-
     public void actionPerformed(ActionEvent e)
     // will run when the timer fires
     {
@@ -73,6 +74,9 @@ public class GamePanel extends JPanel implements ActionListener, MouseMotionList
         super.paintComponent(g);
 
         g.drawImage(background, 0, 0, this.getWidth(), this.getHeight(), this);
+        int x_location = noblePhantasm.getLocation().getXCoordinates().intValue();
+        int y_location = noblePhantasm.getLocation().getYCoordinates().intValue();
+        g.drawImage(phantasm, x_location, y_location,noblePhantasm.getSize().getWidth(), noblePhantasm.getSize().getLength(), this);
 
         if (isGameStarted) {
             sphereAnimator.draw(g);
