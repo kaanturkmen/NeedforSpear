@@ -6,6 +6,7 @@ import tr.edu.ku.devnull.needforspear.Model.GameData.Speed;
 import tr.edu.ku.devnull.needforspear.Model.Obstacle.Obstacle;
 import tr.edu.ku.devnull.needforspear.Model.UIModels.NoblePhantasm;
 import tr.edu.ku.devnull.needforspear.Model.UIModels.Sphere;
+import tr.edu.ku.devnull.needforspear.NeedforSpearGame;
 import tr.edu.ku.devnull.needforspear.View.PlayViews.AnimatorStrategy;
 import tr.edu.ku.devnull.needforspear.Viewmodel.GameLogicHandlers.MovementHandler;
 import tr.edu.ku.devnull.needforspear.Viewmodel.GameLogicHandlers.CollisionHandler;
@@ -30,7 +31,9 @@ public class SphereAnimator implements AnimatorStrategy {
      * @param listofObstacles
      */
     public SphereAnimator(List<Obstacle> listofObstacles) {
-        Sphere.getInstance().setSpeed(new Speed(2, 2));
+        if(NeedforSpearGame.getInstance().getGameInfo().getNormalDifficulty()){
+            Sphere.getInstance().setSpeed(new Speed(2, 2));
+        } else Sphere.getInstance().setSpeed(new Speed(4, 4));
         this.listofObstacles = listofObstacles;
 
     }

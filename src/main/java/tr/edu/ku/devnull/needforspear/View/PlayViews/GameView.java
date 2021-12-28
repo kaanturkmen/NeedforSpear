@@ -22,13 +22,14 @@ import java.util.List;
  */
 public class GameView {
 
-    private JButton switchRunningModeButton, createNewMapButton, saveMapButton, loadMapButton, pauseButton, resumeButton, chanceGivingSpellButton, expansionSpellButton, magicalHexButton, unstoppableSpellButton, muteButton, unmuteButton;
+    private JButton switchRunningModeButton, createNewMapButton, saveMapButton, loadMapButton, pauseButton, resumeButton, chanceGivingSpellButton, expansionSpellButton, magicalHexButton, unstoppableSpellButton, muteButton, unmuteButton, changeDifficultyButton;
     private JPanel overlayPanel, backgroundPanel;
     private GamePanel gamePanel;
     private JLabel score, lives;
     private JComboBox<String> addObstacleChoice;
 
     private boolean areKeysLoaded = false;
+    private String difficulty;
 
     /**
      * This method constructs GameView.java
@@ -60,6 +61,7 @@ public class GameView {
         lives = new JLabel(Constants.UIConstants.LIVES_TEXT + Constants.UIConstants.INIT_LIVES);
         muteButton = new JButton(Constants.UIConstants.MUTE_TEXT);
         unmuteButton = new JButton(Constants.UIConstants.UNMUTE_TEXT);
+        changeDifficultyButton = new JButton(Constants.UIConstants.CHANGE_DIFFICULTY_TEXT);
     }
 
     /**
@@ -151,6 +153,15 @@ public class GameView {
             NeedforSpearGame.getInstance().getGameInfo().setMuteModeActivated(false);
             SoundHandler.getInstance().playBackgroundMusic();
         });
+
+        changeDifficultyButton.addActionListener(e -> {
+            if(NeedforSpearGame.getInstance().getGameInfo().getNormalDifficulty()){
+                difficulty = "normal!";
+            } else { difficulty = "hard!"; }
+            System.out.println("Difficulty:" + difficulty);
+            NeedforSpearGame.getInstance().getGameInfo().changeDifficulty();
+            JOptionPane.showMessageDialog(null, "Difficulty changed to " + difficulty);
+        });
     }
     private void createActionListenerForSpellButtons(){
 
@@ -191,6 +202,7 @@ public class GameView {
         unstoppableSpellButton.setVisible(true);
         expansionSpellButton.setVisible(true);
         resumeButton.setVisible(false);
+        changeDifficultyButton.setVisible(false);
     }
     /**
      * This method adjusts the spell buttons for spells and draws them onto overlayPanel
@@ -225,6 +237,7 @@ public class GameView {
     public void adjustOverlayPanelForBuildingMode() {
         switchRunningModeButton.setVisible(true);
         addObstacleChoice.setVisible(true);
+        changeDifficultyButton.setVisible(true);
         createNewMapButton.setVisible(false);
         saveMapButton.setVisible(true);
         chanceGivingSpellButton.setVisible(false);
@@ -249,6 +262,7 @@ public class GameView {
         overlayPanel.add(addObstacleChoice);
         overlayPanel.add(muteButton);
         overlayPanel.add(unmuteButton);
+        overlayPanel.add(changeDifficultyButton);
 
         lives.setVisible(false);
         score.setVisible(false);
@@ -258,6 +272,7 @@ public class GameView {
         addObstacleChoice.setVisible(false);
         saveMapButton.setVisible(false);
         unmuteButton.setVisible(false);
+        changeDifficultyButton.setVisible(false);
 
         backgroundPanel = new BackgroundHandler().getBackgroundedJPanel(Constants.UIConstants.GAME_BACKGROUND_IMAGE);
 
