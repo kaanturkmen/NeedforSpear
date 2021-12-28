@@ -64,7 +64,7 @@ public class GameView {
         muteButton = new JButton(Constants.UIConstants.MUTE_TEXT);
         unmuteButton = new JButton(Constants.UIConstants.UNMUTE_TEXT);
         changeDifficultyButton = new JButton(Constants.UIConstants.CHANGE_DIFFICULTY_TEXT);
-        difficultyField = new JTextField(6);
+        difficultyField = new JTextField(25);
     }
 
     /**
@@ -160,7 +160,7 @@ public class GameView {
         changeDifficultyButton.addActionListener(e -> {
             System.out.println("Difficulty:" + NeedforSpearGame.getInstance().getGameInfo().getDifficultyHandler().getCurrentDifficulty());
             NeedforSpearGame.getInstance().getGameInfo().getDifficultyHandler().changeDifficulty();
-            difficultyField.setText(NeedforSpearGame.getInstance().getGameInfo().getDifficultyHandler().getCurrentDifficulty().toString());
+            changeDifficultyButton.setText(NeedforSpearGame.getInstance().getGameInfo().getDifficultyHandler().getCurrentDifficulty().toString());
         });
     }
     private void createActionListenerForSpellButtons(){
@@ -170,11 +170,13 @@ public class GameView {
                     SpellHandler.getInstance().activateSpell(SpellHandler.getInstance().getAvailableSpell(Constants.SpellNameConstants.CHANCE));
                 }
             });
+
             expansionSpellButton.addActionListener(e -> {
                 if(!NeedforSpearGame.getInstance().getGameInfo().isPaused()) {
                     SpellHandler.getInstance().activateSpell(SpellHandler.getInstance().getAvailableSpell(Constants.SpellNameConstants.EXPANSION));
                 }
             });
+
             magicalHexButton.addActionListener(e -> {
                 if(!NeedforSpearGame.getInstance().getGameInfo().isPaused()) {
                     SpellHandler.getInstance().activateSpell(SpellHandler.getInstance().getAvailableSpell(Constants.SpellNameConstants.HEX));
@@ -277,9 +279,6 @@ public class GameView {
         unmuteButton.setVisible(false);
         changeDifficultyButton.setVisible(false);
         difficultyField.setVisible(false);
-        difficultyField.setEditable(false);
-        difficultyField.setHorizontalAlignment(JTextField.CENTER);
-        difficultyField.setText(NeedforSpearGame.getInstance().getGameInfo().getDifficultyHandler().getCurrentDifficulty().toString());
 
 
         backgroundPanel = new BackgroundHandler().getBackgroundedJPanel(Constants.UIConstants.GAME_BACKGROUND_IMAGE);

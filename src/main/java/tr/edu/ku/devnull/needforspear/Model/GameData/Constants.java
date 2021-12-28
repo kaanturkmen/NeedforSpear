@@ -1,11 +1,6 @@
 package tr.edu.ku.devnull.needforspear.Model.GameData;
 
-import tr.edu.ku.devnull.needforspear.NeedforSpearGame;
-
 import java.awt.*;
-import java.io.File;
-import java.io.InputStream;
-
 
 /**
  * Constants interface is used to store all the necessary constants for the game.
@@ -15,7 +10,6 @@ public interface Constants {
     interface ProportionConstants {
         Integer HEIGHT_OF_NOBLE_PHANTASM = 20;
         Integer WIDTH_OF_NOBLE_PHANTASM = Constants.UIConstants.INITIAL_SCREEN_WIDTH / 10;
-        Integer X_CENTER_OF_NOBLE_PHANTASM = Constants.ProportionConstants.WIDTH_OF_NOBLE_PHANTASM / 2;
         Integer Y_CENTER_OF_NOBLE_PHANTASM = Constants.ProportionConstants.HEIGHT_OF_NOBLE_PHANTASM / 2;
         Integer HEIGHT_OF_THE_OBSTACLE = 20;
         Integer RADIUS_OF_THE_SPHERE = 16;

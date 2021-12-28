@@ -14,7 +14,7 @@ import java.util.Random;
  * @author Melis Oktayoğlu and Gökçe Sevimli
  */
 public class ObstacleFactory {
-    private GameMap gameMap = new GameMap(new Size(1280, 720));
+    private final GameMap gameMap = new GameMap(new Size(1280, 720));
     private static ObstacleFactory factory;
 
     /**

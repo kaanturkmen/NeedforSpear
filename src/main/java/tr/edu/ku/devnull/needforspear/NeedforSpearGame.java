@@ -13,7 +13,6 @@ import tr.edu.ku.devnull.needforspear.Viewmodel.State.InitialState;
 import tr.edu.ku.devnull.needforspear.Viewmodel.State.ViewState;
 
 import javax.swing.*;
-import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -42,8 +41,16 @@ public class NeedforSpearGame {
         getInstance().startLoginView();
     }
 
+    /**
+     * Private constructor for NeedforSpear game.
+     */
     private NeedforSpearGame() {}
 
+    /**
+     * Singleton pattern for the NeedforSpear object.
+     *
+     * @return Only instance of NeedforSpear.
+     */
     public static NeedforSpearGame getInstance() {
         if (onlyInstance == null) onlyInstance = new NeedforSpearGame();
 
@@ -62,6 +69,9 @@ public class NeedforSpearGame {
         SoundHandler.getInstance().playBackgroundMusic();
     }
 
+    /**
+     * Init method for main frame.
+     */
     private void initializeMainFrame() {
         gameInfo.getMainFrame().setResizable(false);
         gameInfo.getMainFrame().setSize(Constants.UIConstants.INITIAL_SCREEN_WIDTH, Constants.UIConstants.INITIAL_SCREEN_HEIGHT);
@@ -138,23 +148,35 @@ public class NeedforSpearGame {
         executorOfYmir = null;
     }
 
+    /**
+     * Gets current state.
+     * @return Current ViewState.
+     */
     public ViewState getCurrentState() {
         return currentState;
     }
 
+    /**
+     * Sets current state to given state.
+     * @param currentState State to be set.
+     */
     public void setCurrentState(ViewState currentState) {
         this.currentState = currentState;
     }
 
+    /**
+     * Gets ViewData for the further use.
+     * @return ViewData to operate on.
+     */
     public ViewData getViewData() {
         return viewData;
     }
 
+    /**
+     * Gets GameInfo for the further use.
+     * @return GameInfo to operate on.
+     */
     public GameInfo getGameInfo() {
         return gameInfo;
-    }
-
-    public ScheduledExecutorService getExecutorOfYmir() {
-        return executorOfYmir;
     }
 }

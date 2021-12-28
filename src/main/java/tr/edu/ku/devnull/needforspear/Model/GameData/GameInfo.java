@@ -70,10 +70,6 @@ public class GameInfo {
         this.gameDatabase = gameDatabase;
     }
 
-    public boolean isMuteModeActivated() {
-        return muteModeActivated;
-    }
-
     public void setMuteModeActivated(boolean muteModeActivated) {
         this.muteModeActivated = muteModeActivated;
     }

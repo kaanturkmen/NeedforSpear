@@ -1,12 +1,9 @@
 package tr.edu.ku.devnull.needforspear.Model.Util;
 
-import javafx.fxml.LoadException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import sun.rmi.transport.ObjectTable;
 import tr.edu.ku.devnull.needforspear.Model.GameData.Location;
 import tr.edu.ku.devnull.needforspear.Model.GameData.Size;
-import tr.edu.ku.devnull.needforspear.Model.Obstacle.ExplosiveObstacle;
 import tr.edu.ku.devnull.needforspear.Model.Obstacle.Obstacle;
 import tr.edu.ku.devnull.needforspear.Model.Obstacle.ObstacleFactory;
 import tr.edu.ku.devnull.needforspear.Model.Spell.ExpansionSpell;
@@ -15,10 +12,6 @@ import tr.edu.ku.devnull.needforspear.Model.Spell.Spell;
 import tr.edu.ku.devnull.needforspear.Model.UIModels.NoblePhantasm;
 import tr.edu.ku.devnull.needforspear.Model.UIModels.Sphere;
 import tr.edu.ku.devnull.needforspear.Viewmodel.GameLogicHandlers.CollisionHandler;
-
-import java.awt.*;
-import java.util.ArrayList;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -33,8 +26,6 @@ public class CollisionHandlerTest {
         sampleObstacle = ObstacleFactory.getInstance().getObstacle("SimpleObstacle");
         noblePhantasm = NoblePhantasm.getInstance();
     }
-
-
 
     @Test
     public void obstacleSphereCollisionTest() {
