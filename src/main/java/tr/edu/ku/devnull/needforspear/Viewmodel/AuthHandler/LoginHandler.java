@@ -137,13 +137,19 @@ public class LoginHandler implements DatabaseAuthSubscriber {
             NeedforSpearGame.getInstance().getGameInfo().getMainFrame().getContentPane().repaint();
             NeedforSpearGame.getInstance().getGameInfo().getMainFrame().getContentPane().revalidate();
             NeedforSpearGame.getInstance().getGameInfo().getMainFrame().getContentPane().repaint();
-            if(player.getListofSpells() == null){
+            if (player.getListofSpells() == null) {
                 player.setListofSpells(new ArrayList<>());
             }
             NeedforSpearGame.getInstance().getGameInfo().setPlayer(player);
             SaveLoadHandler.getInstance().setPreviousLives(player.getLives());
             SaveLoadHandler.getInstance().setPreviousScore(player.getScore());
-            SaveLoadHandler.getInstance().initializePreviousSpells(player.getListofSpells());
+
+            if (player.getListofSpells() == null) {
+                SaveLoadHandler.getInstance().setPreviousSpells(new ArrayList<>());
+            } else {
+                SaveLoadHandler.getInstance().initializePreviousSpells(player.getListofSpells());
+            }
+
             NeedforSpearGame.getInstance().startMainMenu();
         } else if (databaseResponse.equals(DatabaseCredentials.DATABASE_FAIL)) {
             System.out.println("Failed");

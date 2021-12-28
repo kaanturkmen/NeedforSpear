@@ -155,8 +155,10 @@ public class SaveLoadHandler implements DatabaseSaveLoadSubscriber {
      */
     public List<Spell> copyPreviousSpells(){
         List<Spell> copy = new ArrayList<>();
-        for (Spell item : previousSpells) {
-            copy.add(new Spell(item.getSize(), item.getLocation(), item.getSpellColor(), item.getSpellType()));
+        if(previousSpells != null) {
+            for (Spell item : previousSpells) {
+                copy.add(new Spell(item.getSize(), item.getLocation(), item.getSpellColor(), item.getSpellType()));
+            }
         }
         return copy;
     }
