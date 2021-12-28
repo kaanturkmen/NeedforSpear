@@ -45,7 +45,7 @@ public class SpellAnimator implements AnimatorStrategy {
      * @param g2
      */
     public void movementOfSpells(Graphics2D g2) {
-        if (NeedforSpearGame.getInstance().getGameMode() != GameMode.BUILDING_MODE) {
+        if (NeedforSpearGame.getInstance().getGameData().getGameMode() != GameMode.BUILDING_MODE) {
             for (int i = 0; i < listOfMovingSpells.size(); i++) {
                 Spell spell = listOfMovingSpells.get(i);
                 if (spell!=null) {

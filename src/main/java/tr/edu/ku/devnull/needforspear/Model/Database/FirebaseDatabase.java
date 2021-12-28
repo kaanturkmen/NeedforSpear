@@ -357,7 +357,7 @@ public class FirebaseDatabase implements GameDatabase {
                 user.put(currentPlayer.getAccount().getUid() + "/account/verificationCode", a.getVerificationCode());
                 getReferenceOfChild(DatabaseCredentials.DATABASE_USERS_PATH, DatabaseCredentials.DATABASE_USERS_CHILD_PATH).updateChildrenAsync(user);
 
-                JOptionPane.showMessageDialog(NeedforSpearGame.getInstance().getMainFrame(), Constants.UIConstants.NEW_VERIFICATION_TEXT, "Alert", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(NeedforSpearGame.getInstance().getGameData().getMainFrame(), Constants.UIConstants.NEW_VERIFICATION_TEXT, "Alert", JOptionPane.WARNING_MESSAGE);
 
                 System.out.println("New verification is sent.");
             }
@@ -375,7 +375,7 @@ public class FirebaseDatabase implements GameDatabase {
         if (p1 == null || p2 == null) return DatabaseCredentials.DATABASE_FAIL;
 
         if (!p2.getAccount().isVerified()) {
-            JOptionPane.showMessageDialog(NeedforSpearGame.getInstance().getMainFrame(), Constants.UIConstants.VERIFY_BEFORE_LOGIN_TEXT, Constants.UIConstants.ALERT_TEXT, JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(NeedforSpearGame.getInstance().getGameData().getMainFrame(), Constants.UIConstants.VERIFY_BEFORE_LOGIN_TEXT, Constants.UIConstants.ALERT_TEXT, JOptionPane.WARNING_MESSAGE);
             System.out.println("USER IS NOT VERIFIED!");
             return DatabaseCredentials.DATABASE_FAIL;
         }
@@ -383,7 +383,7 @@ public class FirebaseDatabase implements GameDatabase {
         if (p1.getAccount().getPassword().equals(p2.getAccount().getPassword())) {
             return DatabaseCredentials.DATABASE_SUCCESS;
         } else {
-            JOptionPane.showMessageDialog(NeedforSpearGame.getInstance().getMainFrame(), Constants.UIConstants.INCORRECT_PASSWORD_TEXT, Constants.UIConstants.ALERT_TEXT, JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(NeedforSpearGame.getInstance().getGameData().getMainFrame(), Constants.UIConstants.INCORRECT_PASSWORD_TEXT, Constants.UIConstants.ALERT_TEXT, JOptionPane.WARNING_MESSAGE);
             return DatabaseCredentials.DATABASE_FAIL;
         }
     }
@@ -467,7 +467,7 @@ public class FirebaseDatabase implements GameDatabase {
         for (DataSnapshot unit : dataSnapshot.getChildren()) {
             currentPlayer = unit.getValue(Player.class);
             if (currentPlayer.getAccount().getEmail().equals(player.getAccount().getEmail()) || currentPlayer.getAccount().getUsername().equals(player.getAccount().getUsername())) {
-                JOptionPane.showMessageDialog(NeedforSpearGame.getInstance().getMainFrame(), Constants.UIConstants.USER_EXISTS_TEXT, Constants.UIConstants.ALERT_TEXT, JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(NeedforSpearGame.getInstance().getGameData().getMainFrame(), Constants.UIConstants.USER_EXISTS_TEXT, Constants.UIConstants.ALERT_TEXT, JOptionPane.WARNING_MESSAGE);
                 System.out.println("Player already exists. Returning.");
                 return;
             }

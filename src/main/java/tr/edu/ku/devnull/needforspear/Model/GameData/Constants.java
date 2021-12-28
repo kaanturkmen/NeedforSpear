@@ -41,9 +41,7 @@ public interface Constants {
         String GAME_BACKGROUND_IMAGE = "GameBackground.png";
 
         String USER_DIRECTORY_KEYWORD = "user.dir";
-        String USER_DIRECTORY_TO_RESOURCE_FOLDER = File.separator + "src" + File.separator + "main" + File.separator
-                + "java" + File.separator + "tr" + File.separator + "edu" + File.separator + "ku" + File.separator +
-                "devnull" + File.separator + "needforspear" + File.separator + "Resources" + File.separator;
+        String USER_DIRECTORY_TO_RESOURCE_FOLDER = "src/main/java/tr/edu/ku/devnull/needforspear/Resources/";
 
         String GAME_NAME = "Need for Spear!";
         String USERNAME_TEXT_FIELD_PLACEHOLDER = "Username";

@@ -43,7 +43,7 @@ public class PlayerLivesHandler {
     }
 
     public static PlayerLivesHandler getInstance() {
-        if (onlyInstance == null) onlyInstance = new PlayerLivesHandler(NeedforSpearGame.getInstance().getPlayer(), Sphere.getInstance(), NoblePhantasm.getInstance());
+        if (onlyInstance == null) onlyInstance = new PlayerLivesHandler(NeedforSpearGame.getInstance().getGameData().getPlayer(), Sphere.getInstance(), NoblePhantasm.getInstance());
 
         return onlyInstance;
     }

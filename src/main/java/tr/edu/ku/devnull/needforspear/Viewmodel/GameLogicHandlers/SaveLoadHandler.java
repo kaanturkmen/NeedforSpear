@@ -38,7 +38,7 @@ public class SaveLoadHandler implements DatabaseSaveLoadSubscriber {
      * Private Constructor for the SaveLoadHandler.
      */
     private SaveLoadHandler() {
-        NeedforSpearGame.getInstance().getGameDatabase().subscribeToLoadSave(this);
+        NeedforSpearGame.getInstance().getGameData().getGameDatabase().subscribeToLoadSave(this);
     }
 
     /**
@@ -58,7 +58,7 @@ public class SaveLoadHandler implements DatabaseSaveLoadSubscriber {
      * @param player Takes valid Player instance to read their map from the database.
      */
     public void loadGame(Player player) {
-        NeedforSpearGame.getInstance().getGameDatabase().loadGame(player);
+        NeedforSpearGame.getInstance().getGameData().getGameDatabase().loadGame(player);
     }
 
     /**
@@ -68,7 +68,7 @@ public class SaveLoadHandler implements DatabaseSaveLoadSubscriber {
      * @param gameMap Take's valid GameMap instance to assign with their player with that instance while writing to the database.
      */
     public void saveGame(Player player, GameMap gameMap) {
-        NeedforSpearGame.getInstance().getGameDatabase().saveGame(player, gameMap);
+        NeedforSpearGame.getInstance().getGameData().getGameDatabase().saveGame(player, gameMap);
     }
 
     /**
@@ -85,19 +85,19 @@ public class SaveLoadHandler implements DatabaseSaveLoadSubscriber {
                 if (gameMap != null) {
                     System.out.println("GameMap Response Arrived!");
                     System.out.println(gameMap.toString());
-                    if (NeedforSpearGame.getInstance().getGameMap() != null) {
+                    if (NeedforSpearGame.getInstance().getGameData().getGameMap() != null) {
                         NeedforSpearGame.getInstance().getViewData().getGameView().removeGamePanel();
                     }
-                    NeedforSpearGame.getInstance().setGameMap(gameMap);
-                    BuildModeHandler.getInstance().setObstacleList(NeedforSpearGame.getInstance().getGameMap().getListofObstacles());
+                    NeedforSpearGame.getInstance().getGameData().setGameMap(gameMap);
+                    BuildModeHandler.getInstance().setObstacleList(NeedforSpearGame.getInstance().getGameData().getGameMap().getListofObstacles());
                     NeedforSpearGame.getInstance().setGameLoaded(true);
                     NeedforSpearGame.getInstance().getViewData().getGameView().adjustOverlayPanelForBuildingMode();
                     NeedforSpearGame.getInstance().getViewData().getGameView().loadAMap();
                 } else {
-                    JOptionPane.showMessageDialog(NeedforSpearGame.getInstance().getMainFrame(), "You have lost in previous game.", Constants.UIConstants.ALERT_TEXT, JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(NeedforSpearGame.getInstance().getGameData().getMainFrame(), "You have lost in previous game.", Constants.UIConstants.ALERT_TEXT, JOptionPane.WARNING_MESSAGE);
                 }
             } else {
-                JOptionPane.showMessageDialog(NeedforSpearGame.getInstance().getMainFrame(), "There isn't a previously saved map", Constants.UIConstants.ALERT_TEXT, JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(NeedforSpearGame.getInstance().getGameData().getMainFrame(), "There isn't a previously saved map", Constants.UIConstants.ALERT_TEXT, JOptionPane.WARNING_MESSAGE);
                 System.out.println("Failed while loading map. User did not have any map on db.");
             }
         }
