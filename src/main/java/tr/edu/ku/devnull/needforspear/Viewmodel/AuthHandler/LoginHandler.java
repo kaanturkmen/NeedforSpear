@@ -1,7 +1,7 @@
 package tr.edu.ku.devnull.needforspear.Viewmodel.AuthHandler;
 
-import tr.edu.ku.devnull.needforspear.Model.Database.DatabaseAuthSubscriber;
-import tr.edu.ku.devnull.needforspear.Model.Database.DatabaseCredentials;
+import tr.edu.ku.devnull.needforspear.Viewmodel.Database.DatabaseAuthSubscriber;
+import tr.edu.ku.devnull.needforspear.Viewmodel.Database.DatabaseCredentials;
 import tr.edu.ku.devnull.needforspear.Model.Player.Account;
 import tr.edu.ku.devnull.needforspear.Model.Player.Player;
 import tr.edu.ku.devnull.needforspear.NeedforSpearGame;

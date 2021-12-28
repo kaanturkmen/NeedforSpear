@@ -1,8 +1,6 @@
 package tr.edu.ku.devnull.needforspear.Model.GameData;
 
-import tr.edu.ku.devnull.needforspear.Model.Database.GameDatabase;
-import tr.edu.ku.devnull.needforspear.Model.GameData.GameMap;
-import tr.edu.ku.devnull.needforspear.Model.GameData.GameMode;
+import tr.edu.ku.devnull.needforspear.Viewmodel.Database.GameDatabase;
 import tr.edu.ku.devnull.needforspear.Model.Player.Player;
 
 import javax.swing.*;

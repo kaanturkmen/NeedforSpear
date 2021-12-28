@@ -1,4 +1,4 @@
-package tr.edu.ku.devnull.needforspear.Model.MailVerification;
+package tr.edu.ku.devnull.needforspear.Viewmodel.MailVerification;
 
 import java.io.UnsupportedEncodingException;
 import java.util.Properties;

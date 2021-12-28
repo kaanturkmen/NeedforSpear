@@ -1,7 +1,7 @@
 package tr.edu.ku.devnull.needforspear.Viewmodel.GameLogicHandlers;
 
-import tr.edu.ku.devnull.needforspear.Model.Database.DatabaseCredentials;
-import tr.edu.ku.devnull.needforspear.Model.Database.DatabaseSaveLoadSubscriber;
+import tr.edu.ku.devnull.needforspear.Viewmodel.Database.DatabaseCredentials;
+import tr.edu.ku.devnull.needforspear.Viewmodel.Database.DatabaseSaveLoadSubscriber;
 import tr.edu.ku.devnull.needforspear.Model.GameData.Constants;
 import tr.edu.ku.devnull.needforspear.Model.GameData.GameMap;
 import tr.edu.ku.devnull.needforspear.Model.Player.Player;

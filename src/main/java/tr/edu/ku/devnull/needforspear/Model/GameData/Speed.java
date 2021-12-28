@@ -7,6 +7,8 @@ import tr.edu.ku.devnull.needforspear.Model.UIModels.Sphere;
  * axis of an object.
  */
 
+// This method shows how to create tests for the Class. Thus, we are not creating Handler for it.
+
 // The abstraction function is
 // AF(x) = {x.speedOnXAxis & x.speedOnYAxis | Double.MIN_VALUE <= x.speedOnXAxis, x.speedOnYAxis <= Double.MAX_VALUE}
 

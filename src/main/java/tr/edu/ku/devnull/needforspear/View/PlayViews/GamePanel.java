@@ -13,6 +13,7 @@ import tr.edu.ku.devnull.needforspear.NeedforSpearGame;
 import tr.edu.ku.devnull.needforspear.View.PlayViews.Animators.*;
 import tr.edu.ku.devnull.needforspear.Viewmodel.GameLogicHandlers.BackgroundHandler;
 import tr.edu.ku.devnull.needforspear.Viewmodel.GameLogicHandlers.BuildModeHandler;
+import tr.edu.ku.devnull.needforspear.Viewmodel.GameLogicHandlers.MapHandler;
 
 import javax.swing.*;
 import java.awt.*;
@@ -173,13 +174,13 @@ public class GamePanel extends JPanel implements ActionListener, MouseMotionList
                                 BuildModeHandler.getInstance().createNewObstacle(x, y, BuildModeHandler.getInstance().getAddedObstacleType(), getGraphics(), obstacleAnimator);
                                 Obstacle obstacle = BuildModeHandler.getInstance().getObstacleByLocation(x, y);
                                 if (!(obstacle.getObstacleType().equals(Constants.ObstacleNameConstants.SIMPLE) &&
-                                        BuildModeHandler.getInstance().checkSimpleObstacleNum(NeedforSpearGame.getInstance().getGameInfo().getGameMap().retrieveSimpleObstacleNumber())  ||
+                                        BuildModeHandler.getInstance().checkSimpleObstacleNum(new MapHandler().retrieveSimpleObstacleNumber())  ||
                                         (obstacle.getObstacleType().equals(Constants.ObstacleNameConstants.FIRM) &&
-                                        BuildModeHandler.getInstance().checkFirmObstacleNum(NeedforSpearGame.getInstance().getGameInfo().getGameMap().retrieveFirmObstacleNumber()))  ||
+                                        BuildModeHandler.getInstance().checkFirmObstacleNum(new MapHandler().retrieveFirmObstacleNumber()))  ||
                                         (obstacle.getObstacleType().equals(Constants.ObstacleNameConstants.EXP) &&
-                                        BuildModeHandler.getInstance().checkExplosiveObstacleNum(NeedforSpearGame.getInstance().getGameInfo().getGameMap().retrieveExplosiveObstacleNumber()))  ||
+                                        BuildModeHandler.getInstance().checkExplosiveObstacleNum(new MapHandler().retrieveExplosiveObstacleNumber()))  ||
                                         (obstacle.getObstacleType().equals(Constants.ObstacleNameConstants.GIFT) &&
-                                        BuildModeHandler.getInstance().checkGiftObstacleNum(NeedforSpearGame.getInstance().getGameInfo().getGameMap().retrieveGiftObstacleNumber())))) {
+                                        BuildModeHandler.getInstance().checkGiftObstacleNum(new MapHandler().retrieveGiftObstacleNumber())))) {
 
                                     BuildModeHandler.getInstance().removeObstacle(x, y, getGraphics(), BuildModeHandler.getInstance().getObstacleByLocation(x, y));
                                     JOptionPane.showMessageDialog(NeedforSpearGame.getInstance().getGameInfo().getMainFrame(), "Maximum number for that obstacle type is reached", "Alert", JOptionPane.WARNING_MESSAGE);
@@ -197,13 +198,13 @@ public class GamePanel extends JPanel implements ActionListener, MouseMotionList
                             if (BuildModeHandler.getInstance().getObstacleByLocation(x, y) != null) {
                                 Obstacle obstacle = BuildModeHandler.getInstance().getObstacleByLocation(x, y);
                                 if (obstacle.getObstacleType().equals(Constants.ObstacleNameConstants.SIMPLE) &&
-                                        BuildModeHandler.getInstance().checkSimpleObstacleNum(NeedforSpearGame.getInstance().getGameInfo().getGameMap().retrieveSimpleObstacleNumber() -1)  ||
+                                        BuildModeHandler.getInstance().checkSimpleObstacleNum(new MapHandler().retrieveSimpleObstacleNumber() -1)  ||
                                         (obstacle.getObstacleType().equals(Constants.ObstacleNameConstants.FIRM) &&
-                                                BuildModeHandler.getInstance().checkFirmObstacleNum(NeedforSpearGame.getInstance().getGameInfo().getGameMap().retrieveFirmObstacleNumber() -1))  ||
+                                                BuildModeHandler.getInstance().checkFirmObstacleNum(new MapHandler().retrieveFirmObstacleNumber() -1))  ||
                                         (obstacle.getObstacleType().equals(Constants.ObstacleNameConstants.EXP) &&
-                                                BuildModeHandler.getInstance().checkExplosiveObstacleNum(NeedforSpearGame.getInstance().getGameInfo().getGameMap().retrieveExplosiveObstacleNumber() -1))  ||
+                                                BuildModeHandler.getInstance().checkExplosiveObstacleNum(new MapHandler().retrieveExplosiveObstacleNumber() -1))  ||
                                         (obstacle.getObstacleType().equals(Constants.ObstacleNameConstants.GIFT) &&
-                                                BuildModeHandler.getInstance().checkGiftObstacleNum(NeedforSpearGame.getInstance().getGameInfo().getGameMap().retrieveGiftObstacleNumber() -1))) {
+                                                BuildModeHandler.getInstance().checkGiftObstacleNum(new MapHandler().retrieveGiftObstacleNumber() -1))) {
 
                                     BuildModeHandler.getInstance().removeObstacle(x, y, getGraphics(), BuildModeHandler.getInstance().getObstacleByLocation(x, y));
                                 }else{

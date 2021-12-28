@@ -41,6 +41,7 @@ public class ExplosiveObstacle extends Obstacle {
         orbitCenter = new Location(this.location.getXCoordinates() + Constants.ProportionConstants.RADIUS_OF_EXPLOSIVE_OBSTACLE,
                 this.location.getYCoordinates() + Constants.ProportionConstants.RADIUS_OF_EXPLOSIVE_OBSTACLE);
     }
+
     @Override
     public Location getOrbitCenter(){
         return orbitCenter;

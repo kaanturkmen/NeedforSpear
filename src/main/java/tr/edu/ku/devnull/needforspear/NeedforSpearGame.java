@@ -1,7 +1,7 @@
 package tr.edu.ku.devnull.needforspear;
 
 
-import tr.edu.ku.devnull.needforspear.Model.Database.FirebaseDatabase;
+import tr.edu.ku.devnull.needforspear.Viewmodel.Database.FirebaseDatabase;
 import tr.edu.ku.devnull.needforspear.Model.GameData.Constants;
 import tr.edu.ku.devnull.needforspear.Model.GameData.GameMode;
 import tr.edu.ku.devnull.needforspear.Model.GameData.GameInfo;

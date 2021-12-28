@@ -1,4 +1,4 @@
-package tr.edu.ku.devnull.needforspear.Model.Database;
+package tr.edu.ku.devnull.needforspear.Viewmodel.Database;
 
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.firebase.FirebaseApp;

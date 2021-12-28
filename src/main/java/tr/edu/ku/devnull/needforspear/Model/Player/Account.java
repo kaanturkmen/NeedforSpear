@@ -1,6 +1,6 @@
 package tr.edu.ku.devnull.needforspear.Model.Player;
 
-import tr.edu.ku.devnull.needforspear.Model.MailVerification.MailSender;
+import tr.edu.ku.devnull.needforspear.Viewmodel.MailVerification.MailSender;
 
 /**
  * Account is a class which contains information regarding the account

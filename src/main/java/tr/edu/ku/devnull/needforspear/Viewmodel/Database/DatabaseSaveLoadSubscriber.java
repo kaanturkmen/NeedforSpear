@@ -1,4 +1,4 @@
-package tr.edu.ku.devnull.needforspear.Model.Database;
+package tr.edu.ku.devnull.needforspear.Viewmodel.Database;
 
 import tr.edu.ku.devnull.needforspear.Model.GameData.GameMap;
 
