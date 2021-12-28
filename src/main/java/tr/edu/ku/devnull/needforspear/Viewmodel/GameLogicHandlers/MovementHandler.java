@@ -176,7 +176,7 @@ public class MovementHandler {
             else {
                 NeedforSpearGame.getInstance().getPlayer().getListofSpells().add(spell);
                 SpellAnimator.listOfMovingSpells.remove(spell);
-                NeedforSpearGame.getInstance().getGameView().updateSpellNumbers();
+                NeedforSpearGame.getInstance().getViewData().getGameView().updateSpellNumbers();
                 System.out.println(spell);
             }
         }else if(y + dy + length > Constants.UIConstants.INITIAL_SCREEN_HEIGHT){

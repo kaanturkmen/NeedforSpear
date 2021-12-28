@@ -39,7 +39,7 @@ public class MainMenuViewState extends ViewState {
         needforSpearGame.setCurrentState(new GameViewState(needforSpearGame));
 
         GameView gameView = new GameView();
-        NeedforSpearGame.getInstance().setGameView(gameView);
+        NeedforSpearGame.getInstance().getViewData().setGameView(gameView);
         gameView.createView();
     }
 }

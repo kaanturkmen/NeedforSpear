@@ -7,13 +7,8 @@ import tr.edu.ku.devnull.needforspear.Model.GameData.Constants;
 import tr.edu.ku.devnull.needforspear.Model.GameData.GameMap;
 import tr.edu.ku.devnull.needforspear.Model.GameData.GameMode;
 import tr.edu.ku.devnull.needforspear.Model.Player.Player;
+import tr.edu.ku.devnull.needforspear.Model.UIModels.ViewData;
 import tr.edu.ku.devnull.needforspear.Model.Ymir.Ymir;
-import tr.edu.ku.devnull.needforspear.View.AuthViews.ActivationView;
-import tr.edu.ku.devnull.needforspear.View.AuthViews.SendVerificationView;
-import tr.edu.ku.devnull.needforspear.View.AuthViews.ValidateAndChangePasswordView;
-import tr.edu.ku.devnull.needforspear.View.PlayViews.GameView;
-import tr.edu.ku.devnull.needforspear.View.AuthViews.LoginView;
-import tr.edu.ku.devnull.needforspear.View.PlayViews.MainMenuView;
 import tr.edu.ku.devnull.needforspear.Viewmodel.State.InitialState;
 import tr.edu.ku.devnull.needforspear.Viewmodel.State.ViewState;
 
@@ -35,7 +30,7 @@ import java.util.concurrent.TimeUnit;
  * @author Kaan Turkmen
  */
 public class NeedforSpearGame {
-    private JFrame mainFrame = new JFrame();
+    private final JFrame mainFrame = new JFrame();
     private GameMode gameMode = GameMode.BUILDING_MODE;
     private boolean isPaused = true;
     private Player player;
@@ -46,12 +41,7 @@ public class NeedforSpearGame {
     private final ScheduledExecutorService executorService = Executors.newScheduledThreadPool(1);
     private Clip clip;
     private static NeedforSpearGame onlyInstance;
-    private GameView gameView;
-    private MainMenuView mainMenuView;
-    private ValidateAndChangePasswordView validateAndChangePasswordView;
-    private SendVerificationView sendVerificationView;
-    private LoginView loginView;
-    private ActivationView activationView;
+    private ViewData viewData;
     private ViewState currentState;
     private boolean isGameLoaded = false;
 
@@ -81,6 +71,7 @@ public class NeedforSpearGame {
      * Init method to do assignments and checks.
      */
     private void init() {
+        viewData = new ViewData();
         gameDatabase = new FirebaseDatabase();
         mainFrame.setResizable(false);
         mainFrame.setSize(Constants.UIConstants.INITIAL_SCREEN_WIDTH, Constants.UIConstants.INITIAL_SCREEN_HEIGHT);
@@ -346,14 +337,6 @@ public class NeedforSpearGame {
         return System.currentTimeMillis();
     }
 
-    public GameView getGameView() {
-        return gameView;
-    }
-
-    public void setMainMenuView(MainMenuView mainMenuView) {
-        this.mainMenuView = mainMenuView;
-    }
-
     public ViewState getCurrentState() {
         return currentState;
     }
@@ -370,26 +353,6 @@ public class NeedforSpearGame {
         isGameLoaded = gameLoaded;
     }
 
-    public void setGameView(GameView gameView) {
-        this.gameView = gameView;
-    }
-
-    public void setValidateAndChangePasswordView(ValidateAndChangePasswordView validateAndChangePasswordView) {
-        this.validateAndChangePasswordView = validateAndChangePasswordView;
-    }
-
-    public void setSendVerificationView(SendVerificationView sendVerificationView) {
-        this.sendVerificationView = sendVerificationView;
-    }
-
-    public void setLoginView(LoginView loginView) {
-        this.loginView = loginView;
-    }
-
-    public void setActivationView(ActivationView activationView) {
-        this.activationView = activationView;
-    }
-
      /**
      * Check if game is in mute mode where no sound effect or background music is being played.
      *
@@ -404,5 +367,9 @@ public class NeedforSpearGame {
      */
     public void setMuteModeActivated(boolean muteModeActivated) {
         this.muteModeActivated = muteModeActivated;
+    }
+
+    public ViewData getViewData() {
+        return viewData;
     }
 }

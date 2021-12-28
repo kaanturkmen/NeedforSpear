@@ -117,14 +117,14 @@ public class GameView {
             pauseButton.setVisible(false);
             NeedforSpearGame.getInstance().setIsPaused(true);
             resumeButton.setVisible(true);
-            NeedforSpearGame.getInstance().getGameView().getGamePanel().pause();
+            NeedforSpearGame.getInstance().getViewData().getGameView().getGamePanel().pause();
         });
 
         resumeButton.addActionListener(e -> {
             pauseButton.setVisible(true);
             NeedforSpearGame.getInstance().setIsPaused(false);
             resumeButton.setVisible(false);
-            NeedforSpearGame.getInstance().getGameView().getGamePanel().resume();
+            NeedforSpearGame.getInstance().getViewData().getGameView().getGamePanel().resume();
         });
 
         addObstacleChoice.addActionListener(e -> {
@@ -401,7 +401,7 @@ public class GameView {
         gamePanel.repaint();
         gamePanel.revalidate();
         NeedforSpearGame.getInstance().setGameLoaded(false);
-        NeedforSpearGame.getInstance().getGameView().getGamePanel().setIsGameStarted(false);
+        NeedforSpearGame.getInstance().getViewData().getGameView().getGamePanel().setIsGameStarted(false);
         SwitchModeHandler.getInstance().unSubscribe(gamePanel);
         MagicalHexHandler.getInstance().unSubscribe(gamePanel);
         NeedforSpearGame.getInstance().getMainFrame().getContentPane().remove(gamePanel);

@@ -18,7 +18,7 @@ public class LoginViewState extends ViewState {
         needforSpearGame.setCurrentState(new ActivationViewState(needforSpearGame));
 
         ActivationView activationView = new ActivationView();
-        NeedforSpearGame.getInstance().setActivationView(activationView);
+        NeedforSpearGame.getInstance().getViewData().setActivationView(activationView);
         activationView.createView();
     }
 
@@ -32,7 +32,7 @@ public class LoginViewState extends ViewState {
         needforSpearGame.setCurrentState(new SendVerificationViewState(needforSpearGame));
 
         SendVerificationView sendVerificationView = new SendVerificationView();
-        NeedforSpearGame.getInstance().setSendVerificationView(sendVerificationView);
+        NeedforSpearGame.getInstance().getViewData().setSendVerificationView(sendVerificationView);
         sendVerificationView.createView();
     }
 
@@ -46,7 +46,7 @@ public class LoginViewState extends ViewState {
         needforSpearGame.setCurrentState(new MainMenuViewState(needforSpearGame));
 
         MainMenuView mainMenuView = new MainMenuView();
-        NeedforSpearGame.getInstance().setMainMenuView(mainMenuView);
+        NeedforSpearGame.getInstance().getViewData().setMainMenuView(mainMenuView);
 
 //        GameView gameView = new GameView();
 //        NeedforSpearGame.getInstance().setGameView(gameView);

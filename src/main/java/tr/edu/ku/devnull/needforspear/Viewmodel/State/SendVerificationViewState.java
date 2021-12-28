@@ -20,7 +20,7 @@ public class SendVerificationViewState extends ViewState {
         needforSpearGame.setCurrentState(new LoginViewState(needforSpearGame));
 
         LoginView loginView = new LoginView();
-        NeedforSpearGame.getInstance().setLoginView(loginView);
+        NeedforSpearGame.getInstance().getViewData().setLoginView(loginView);
         loginView.createView();
     }
 
@@ -34,7 +34,7 @@ public class SendVerificationViewState extends ViewState {
         needforSpearGame.setCurrentState(new ValidateAndChangePasswordViewState(needforSpearGame));
 
         ValidateAndChangePasswordView validateAndChangePasswordView = new ValidateAndChangePasswordView();
-        NeedforSpearGame.getInstance().setValidateAndChangePasswordView(validateAndChangePasswordView);
+        NeedforSpearGame.getInstance().getViewData().setValidateAndChangePasswordView(validateAndChangePasswordView);
         validateAndChangePasswordView.createView();
     }
 
