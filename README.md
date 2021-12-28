@@ -12,13 +12,13 @@ See the LICENSE file for detailed info.
 
 Devnull worked as a team while developing Need for Spear, however, each team member had specialized part in the project. Below you can find these parts.
 
-| Flags        | Purpose        |
-| ------------- |:-------------:|
-| Kaan Turkmen (kaanturkmen)      | Database Implementation, Authentication Logic and Views. |
-| Can Usluel (canusluel)     | Obstacle algorithms and GameView GUI.|
-| Melis Oktayoglu (moktayoglu) | Physics Engine, Sphere movement and interaction.|
-| Doruk Yildirim (dorkyhog) | Assets, Magical Hex Spell.|
-| Gokce Sevimli (gokcesevimli) | Paddle (Noble Phantasm).|
+| Flags                        |                                      Purpose                                       |
+|------------------------------|:----------------------------------------------------------------------------------:|
+| Kaan Turkmen (kaanturkmen)   |   Threading Concepts, Database Implementation, Authentication System and Views.    |
+| Can Usluel (canusluel)       |        Obstacle Placement Algorithms, GameView GUI and Hollow Purple Spell.        |
+| Melis Oktayoglu (moktayoglu) | Physics Engine, Sphere movement & Interaction, Infinite Void & Double Accel Spell. |
+| Doruk Yildirim (dorkyhog)    |                          Game Assets, Magical Hex Spell.                           |
+| Gokce Sevimli (gokcesevimli) |                     Noble Phantasm (Paddle), Expansion Spell.                      |
 
 # Bonus
 
