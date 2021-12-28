@@ -33,7 +33,7 @@ public class LoginView {
      * A method for assigning components to the class variables.
      */
     private void createUIElements() {
-        NeedforSpearGame.getInstance().getGameData().getMainFrame().setTitle(Constants.UIConstants.GAME_NAME);
+        NeedforSpearGame.getInstance().getGameInfo().getMainFrame().setTitle(Constants.UIConstants.GAME_NAME);
         dummyField = new FocusableJTextField(Constants.UIConstants.USERNAME_TEXT_FIELD_PLACEHOLDER);
         usernameField = new FocusableJTextField(Constants.UIConstants.USERNAME_TEXT_FIELD_PLACEHOLDER);
         emailField = new FocusableJTextField(Constants.UIConstants.EMAIL_TEXT_FIELD_PLACEHOLDER);
@@ -86,14 +86,14 @@ public class LoginView {
         });
 
         activationButton.addActionListener(e -> {
-            NeedforSpearGame.getInstance().getGameData().getMainFrame().getContentPane().removeAll();
-            NeedforSpearGame.getInstance().getGameData().getMainFrame().repaint();
+            NeedforSpearGame.getInstance().getGameInfo().getMainFrame().getContentPane().removeAll();
+            NeedforSpearGame.getInstance().getGameInfo().getMainFrame().repaint();
             NeedforSpearGame.getInstance().startActivationView();
         });
 
         forgotScreenButton.addActionListener(e -> {
-            NeedforSpearGame.getInstance().getGameData().getMainFrame().getContentPane().removeAll();
-            NeedforSpearGame.getInstance().getGameData().getMainFrame().repaint();
+            NeedforSpearGame.getInstance().getGameInfo().getMainFrame().getContentPane().removeAll();
+            NeedforSpearGame.getInstance().getGameInfo().getMainFrame().repaint();
             NeedforSpearGame.getInstance().startVerificationView();
         });
     }
@@ -102,16 +102,16 @@ public class LoginView {
      * A method for creating visibility to the components.
      */
     private void obtainVisibility() {
-        NeedforSpearGame.getInstance().getGameData().getMainFrame().setContentPane(new BackgroundHandler().getBackgroundedJPanel(Constants.UIConstants.TITLE_SCREEN_BACKGROUND_IMAGE));
-        NeedforSpearGame.getInstance().getGameData().getMainFrame().getContentPane().add(dummyField);
-        NeedforSpearGame.getInstance().getGameData().getMainFrame().getContentPane().add(usernameField);
-        NeedforSpearGame.getInstance().getGameData().getMainFrame().getContentPane().add(emailField);
-        NeedforSpearGame.getInstance().getGameData().getMainFrame().getContentPane().add(passwordField);
-        NeedforSpearGame.getInstance().getGameData().getMainFrame().getContentPane().add(loginButton);
-        NeedforSpearGame.getInstance().getGameData().getMainFrame().getContentPane().add(registerButton);
-        NeedforSpearGame.getInstance().getGameData().getMainFrame().getContentPane().add(forgotScreenButton);
-        NeedforSpearGame.getInstance().getGameData().getMainFrame().getContentPane().add(activationButton);
-        NeedforSpearGame.getInstance().getGameData().getMainFrame().setLayout(null);
-        NeedforSpearGame.getInstance().getGameData().getMainFrame().setVisible(true);
+        NeedforSpearGame.getInstance().getGameInfo().getMainFrame().setContentPane(new BackgroundHandler().getBackgroundedJPanel(Constants.UIConstants.TITLE_SCREEN_BACKGROUND_IMAGE));
+        NeedforSpearGame.getInstance().getGameInfo().getMainFrame().getContentPane().add(dummyField);
+        NeedforSpearGame.getInstance().getGameInfo().getMainFrame().getContentPane().add(usernameField);
+        NeedforSpearGame.getInstance().getGameInfo().getMainFrame().getContentPane().add(emailField);
+        NeedforSpearGame.getInstance().getGameInfo().getMainFrame().getContentPane().add(passwordField);
+        NeedforSpearGame.getInstance().getGameInfo().getMainFrame().getContentPane().add(loginButton);
+        NeedforSpearGame.getInstance().getGameInfo().getMainFrame().getContentPane().add(registerButton);
+        NeedforSpearGame.getInstance().getGameInfo().getMainFrame().getContentPane().add(forgotScreenButton);
+        NeedforSpearGame.getInstance().getGameInfo().getMainFrame().getContentPane().add(activationButton);
+        NeedforSpearGame.getInstance().getGameInfo().getMainFrame().setLayout(null);
+        NeedforSpearGame.getInstance().getGameInfo().getMainFrame().setVisible(true);
     }
 }

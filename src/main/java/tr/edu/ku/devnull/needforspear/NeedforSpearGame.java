@@ -24,15 +24,11 @@ import java.util.concurrent.TimeUnit;
  * @author Kaan Turkmen
  */
 public class NeedforSpearGame {
-    private boolean isPaused = true;
     private final ScheduledExecutorService executorService = Executors.newScheduledThreadPool(1);
     private static NeedforSpearGame onlyInstance;
     private ViewData viewData;
     private ViewState currentState;
     private GameInfo gameInfo;
-    private boolean isGameLoaded = false;
-
-    private long startMillis;
 
     /**
      * Main method of the game.
@@ -120,7 +116,7 @@ public class NeedforSpearGame {
      * Switches building mode to the running mode.
      */
     public void switchToRunningMode() {
-        startMillis = System.currentTimeMillis();
+        gameInfo.setStartMillis(System.currentTimeMillis());
         gameInfo.setGameMode(GameMode.RUNNING_MODE);
     }
 
@@ -140,42 +136,6 @@ public class NeedforSpearGame {
         executorService.shutdownNow();
     }
 
-    /**
-     * Check if the game is paused.
-     *
-     * @return Boolean indicating if the game is paused.
-     */
-    public boolean getIsPaused() {
-        return isPaused;
-    }
-
-    /**
-     * To set if the game is paused.
-     *
-     * @param isPaused Boolean indicating if the game is paused.
-     */
-    public void setIsPaused(boolean isPaused) {
-        this.isPaused = isPaused;
-    }
-
-    /**
-     * To get the start time of the game.
-     *
-     * @return Long value of the time the running mode starts in milliseconds.
-     */
-    public long getStartMillis() {
-        return startMillis;
-    }
-
-    /**
-     * To get the current time of the game.
-     *
-     * @return Long value of the current time in milliseconds.
-     */
-    public long getCurrentMillis() {
-        return System.currentTimeMillis();
-    }
-
     public ViewState getCurrentState() {
         return currentState;
     }
@@ -184,19 +144,11 @@ public class NeedforSpearGame {
         this.currentState = currentState;
     }
 
-    public boolean isGameLoaded() {
-        return isGameLoaded;
-    }
-
-    public void setGameLoaded(boolean gameLoaded) {
-        isGameLoaded = gameLoaded;
-    }
-
     public ViewData getViewData() {
         return viewData;
     }
 
-    public GameInfo getGameData() {
+    public GameInfo getGameInfo() {
         return gameInfo;
     }
 }

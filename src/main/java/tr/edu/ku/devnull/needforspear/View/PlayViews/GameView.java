@@ -46,7 +46,7 @@ public class GameView {
      * This method builds the UI elements that are used in gameView
      */
     private void createUIElements() {
-        NeedforSpearGame.getInstance().getGameData().getMainFrame().getContentPane().setLayout(new BorderLayout());
+        NeedforSpearGame.getInstance().getGameInfo().getMainFrame().getContentPane().setLayout(new BorderLayout());
         switchRunningModeButton = new JButton(Constants.UIConstants.SWITCH_TO_RUNNING_MODE_TEXT);
         createNewMapButton = new JButton(Constants.UIConstants.CREATE_A_NEW_MAP_TEXT);
         saveMapButton = new JButton(Constants.UIConstants.SAVE_A_MAP_TEXT);
@@ -78,24 +78,24 @@ public class GameView {
         switchRunningModeButton.addActionListener(e -> {
             adjustOverlayPanelForRunningMode();
             SwitchModeHandler.getInstance().notifySubscribers();
-            NeedforSpearGame.getInstance().setIsPaused(false);
+            NeedforSpearGame.getInstance().getGameInfo().setPaused(false);
             NeedforSpearGame.getInstance().switchToRunningMode();
         });
 
         loadMapButton.addActionListener(e -> {
-            if (NeedforSpearGame.getInstance().getIsPaused()) {
-                if (NeedforSpearGame.getInstance().getGameData().getGameMap() == null && !NeedforSpearGame.getInstance().isGameLoaded()) {
+            if (NeedforSpearGame.getInstance().getGameInfo().isPaused()) {
+                if (NeedforSpearGame.getInstance().getGameInfo().getGameMap() == null && !NeedforSpearGame.getInstance().getGameInfo().isGameLoaded()) {
 
                     // If the user loads a map for the first time from building mode panel, and if the map exists in database.
-                    SaveLoadHandler.getInstance().loadGame(NeedforSpearGame.getInstance().getGameData().getPlayer());
-                } else if (NeedforSpearGame.getInstance().getGameData().getGameMap() != null && NeedforSpearGame.getInstance().isGameLoaded()) {
+                    SaveLoadHandler.getInstance().loadGame(NeedforSpearGame.getInstance().getGameInfo().getPlayer());
+                } else if (NeedforSpearGame.getInstance().getGameInfo().getGameMap() != null && NeedforSpearGame.getInstance().getGameInfo().isGameLoaded()) {
 
                     // If used has loaded a map already
                     // deletes the current gamePanel and constructs a new one according to the data retrieved from database.
                     // If user loaded a map before, then delete it and replace it with the map in the database
-                    SaveLoadHandler.getInstance().loadGame(NeedforSpearGame.getInstance().getGameData().getPlayer());
+                    SaveLoadHandler.getInstance().loadGame(NeedforSpearGame.getInstance().getGameInfo().getPlayer());
                 } else {
-                    JOptionPane.showMessageDialog(NeedforSpearGame.getInstance().getGameData().getMainFrame(), Constants.UIConstants.NON_EXISTING_MAP_ERROR_TEXT, Constants.UIConstants.ALERT_TEXT, JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(NeedforSpearGame.getInstance().getGameInfo().getMainFrame(), Constants.UIConstants.NON_EXISTING_MAP_ERROR_TEXT, Constants.UIConstants.ALERT_TEXT, JOptionPane.WARNING_MESSAGE);
                 }
             }
         });
@@ -105,25 +105,25 @@ public class GameView {
         });
 
         saveMapButton.addActionListener(e -> {
-            if (NeedforSpearGame.getInstance().getIsPaused()) {
-                SaveLoadHandler.getInstance().saveGame(NeedforSpearGame.getInstance().getGameData().getPlayer(), NeedforSpearGame.getInstance().getGameData().getGameMap());
-                LoginHandler.getInstance().updateP(NeedforSpearGame.getInstance().getGameData().getPlayer());
-                SaveLoadHandler.getInstance().setPreviousLives(NeedforSpearGame.getInstance().getGameData().getPlayer().getLives());
-                SaveLoadHandler.getInstance().setPreviousScore(NeedforSpearGame.getInstance().getGameData().getPlayer().getScore());
-                SaveLoadHandler.getInstance().setPreviousSpells(NeedforSpearGame.getInstance().getGameData().getPlayer().getListofSpells());
+            if (NeedforSpearGame.getInstance().getGameInfo().isPaused()) {
+                SaveLoadHandler.getInstance().saveGame(NeedforSpearGame.getInstance().getGameInfo().getPlayer(), NeedforSpearGame.getInstance().getGameInfo().getGameMap());
+                LoginHandler.getInstance().updateP(NeedforSpearGame.getInstance().getGameInfo().getPlayer());
+                SaveLoadHandler.getInstance().setPreviousLives(NeedforSpearGame.getInstance().getGameInfo().getPlayer().getLives());
+                SaveLoadHandler.getInstance().setPreviousScore(NeedforSpearGame.getInstance().getGameInfo().getPlayer().getScore());
+                SaveLoadHandler.getInstance().setPreviousSpells(NeedforSpearGame.getInstance().getGameInfo().getPlayer().getListofSpells());
             }
         });
 
         pauseButton.addActionListener(e -> {
             pauseButton.setVisible(false);
-            NeedforSpearGame.getInstance().setIsPaused(true);
+            NeedforSpearGame.getInstance().getGameInfo().setPaused(true);
             resumeButton.setVisible(true);
             NeedforSpearGame.getInstance().getViewData().getGameView().getGamePanel().pause();
         });
 
         resumeButton.addActionListener(e -> {
             pauseButton.setVisible(true);
-            NeedforSpearGame.getInstance().setIsPaused(false);
+            NeedforSpearGame.getInstance().getGameInfo().setPaused(false);
             resumeButton.setVisible(false);
             NeedforSpearGame.getInstance().getViewData().getGameView().getGamePanel().resume();
         });
@@ -137,7 +137,7 @@ public class GameView {
             unmuteButton.setVisible(true);
             muteButton.setVisible(false);
             System.out.println("Game muted");
-            NeedforSpearGame.getInstance().getGameData().setMuteModeActivated(true);
+            NeedforSpearGame.getInstance().getGameInfo().setMuteModeActivated(true);
             SoundHandler.getInstance().stopBackgroundMusic();
         });
 
@@ -145,29 +145,29 @@ public class GameView {
             unmuteButton.setVisible(false);
             muteButton.setVisible(true);
             System.out.println("Game unmuted");
-            NeedforSpearGame.getInstance().getGameData().setMuteModeActivated(false);
+            NeedforSpearGame.getInstance().getGameInfo().setMuteModeActivated(false);
             SoundHandler.getInstance().playBackgroundMusic();
         });
     }
     private void createActionListenerForSpellButtons(){
 
             chanceGivingSpellButton.addActionListener(e -> {
-                if(!NeedforSpearGame.getInstance().getIsPaused()){
+                if(!NeedforSpearGame.getInstance().getGameInfo().isPaused()){
                     SpellHandler.getInstance().activateSpell(SpellHandler.getInstance().getAvailableSpell(Constants.SpellNameConstants.CHANCE));
                 }
             });
             expansionSpellButton.addActionListener(e -> {
-                if(!NeedforSpearGame.getInstance().getIsPaused()) {
+                if(!NeedforSpearGame.getInstance().getGameInfo().isPaused()) {
                     SpellHandler.getInstance().activateSpell(SpellHandler.getInstance().getAvailableSpell(Constants.SpellNameConstants.EXPANSION));
                 }
             });
             magicalHexButton.addActionListener(e -> {
-                if(!NeedforSpearGame.getInstance().getIsPaused()) {
+                if(!NeedforSpearGame.getInstance().getGameInfo().isPaused()) {
                     SpellHandler.getInstance().activateSpell(SpellHandler.getInstance().getAvailableSpell(Constants.SpellNameConstants.HEX));
                 }
             });
             unstoppableSpellButton.addActionListener(e -> {
-                if(!NeedforSpearGame.getInstance().getIsPaused()) {
+                if(!NeedforSpearGame.getInstance().getGameInfo().isPaused()) {
                     SpellHandler.getInstance().activateSpell(SpellHandler.getInstance().getAvailableSpell(Constants.SpellNameConstants.UNSTOPPABLE));
                 }
             });
@@ -258,9 +258,9 @@ public class GameView {
 
         backgroundPanel = new BackgroundHandler().getBackgroundedJPanel(Constants.UIConstants.GAME_BACKGROUND_IMAGE);
 
-        NeedforSpearGame.getInstance().getGameData().getMainFrame().getContentPane().add(backgroundPanel, BorderLayout.CENTER);
-        NeedforSpearGame.getInstance().getGameData().getMainFrame().getContentPane().add(overlayPanel, BorderLayout.NORTH);
-        NeedforSpearGame.getInstance().getGameData().getMainFrame().revalidate();
+        NeedforSpearGame.getInstance().getGameInfo().getMainFrame().getContentPane().add(backgroundPanel, BorderLayout.CENTER);
+        NeedforSpearGame.getInstance().getGameInfo().getMainFrame().getContentPane().add(overlayPanel, BorderLayout.NORTH);
+        NeedforSpearGame.getInstance().getGameInfo().getMainFrame().revalidate();
     }
 
     /**
@@ -315,13 +315,13 @@ public class GameView {
             prepObstacles(BuildModeHandler.getInstance(), simpObstacleNum, firmObstacleNum, explosiveObstacleNum, giftObstacleNum);
             obstacleNumberCheckFrame.dispose();
             adjustOverlayPanelForBuildingMode();
-            NeedforSpearGame.getInstance().setGameLoaded(true);
+            NeedforSpearGame.getInstance().getGameInfo().setGameLoaded(true);
             SpellHandler.getInstance().determineGiftObstaclesSpells();
             //setting player's values to their initials
             PlayerScoreHandler.getInstance().setNewMapCreated(0);
-            NeedforSpearGame.getInstance().getGameData().getPlayer().setListofSpells(new ArrayList<>());
-            NeedforSpearGame.getInstance().getGameData().getPlayer().setLives(Constants.UIConstants.INIT_LIVES);
-            NeedforSpearGame.getInstance().getGameData().getPlayer().setScore(Constants.UIConstants.INIT_SCORE);
+            NeedforSpearGame.getInstance().getGameInfo().getPlayer().setListofSpells(new ArrayList<>());
+            NeedforSpearGame.getInstance().getGameInfo().getPlayer().setLives(Constants.UIConstants.INIT_LIVES);
+            NeedforSpearGame.getInstance().getGameInfo().getPlayer().setScore(Constants.UIConstants.INIT_SCORE);
         } else {
             JOptionPane.showMessageDialog(obstacleNumberCheckFrame, Constants.UIConstants.ENTER_BETWEEN_GIVEN_VALUES_TEXT, Constants.UIConstants.ALERT_TEXT, JOptionPane.WARNING_MESSAGE);
 
@@ -332,18 +332,18 @@ public class GameView {
      * This method loads a map from database and switches into running mode
      */
     public void loadAMap() {
-        prepGamePanel(NeedforSpearGame.getInstance().getGameData().getGameMap().getListofObstacles());
+        prepGamePanel(NeedforSpearGame.getInstance().getGameInfo().getGameMap().getListofObstacles());
         adjustOverlayPanelForRunningMode();
         SwitchModeHandler.getInstance().notifySubscribers();
-        NeedforSpearGame.getInstance().setGameLoaded(true);
-        NeedforSpearGame.getInstance().setIsPaused(false);
+        NeedforSpearGame.getInstance().getGameInfo().setGameLoaded(true);
+        NeedforSpearGame.getInstance().getGameInfo().setPaused(false);
         NeedforSpearGame.getInstance().switchToRunningMode();
         PlayerScoreHandler.getInstance().setNewMapCreated(1);
-        NeedforSpearGame.getInstance().getGameData().getPlayer().setScore(SaveLoadHandler.getInstance().getPreviousScore());
-        NeedforSpearGame.getInstance().getGameData().getPlayer().setLives(SaveLoadHandler.getInstance().getPreviousLives());
+        NeedforSpearGame.getInstance().getGameInfo().getPlayer().setScore(SaveLoadHandler.getInstance().getPreviousScore());
+        NeedforSpearGame.getInstance().getGameInfo().getPlayer().setLives(SaveLoadHandler.getInstance().getPreviousLives());
         updatePlayerLives(SaveLoadHandler.getInstance().getPreviousLives());
         updatePlayerScore(SaveLoadHandler.getInstance().getPreviousScore());
-        NeedforSpearGame.getInstance().getGameData().getPlayer().setListofSpells(SaveLoadHandler.getInstance().copyPreviousSpells());
+        NeedforSpearGame.getInstance().getGameInfo().getPlayer().setListofSpells(SaveLoadHandler.getInstance().copyPreviousSpells());
         PlayerScoreHandler.getInstance().setScore(Constants.UIConstants.INIT_SCORE);
         updateSpellNumbers();
     }
@@ -353,14 +353,14 @@ public class GameView {
      */
     private void prepGamePanel(List<Obstacle> obstacleList) {
         gamePanel = new GamePanel(new SphereAnimator(obstacleList), new ObstacleAnimator(obstacleList), new NoblePhantasmAnimator(), new SpellAnimator(), new BulletAnimator(obstacleList));
-        gamePanel.setSize(NeedforSpearGame.getInstance().getGameData().getMainFrame().getWidth(), NeedforSpearGame.getInstance().getGameData().getMainFrame().getHeight() - overlayPanel.getHeight());
+        gamePanel.setSize(NeedforSpearGame.getInstance().getGameInfo().getMainFrame().getWidth(), NeedforSpearGame.getInstance().getGameInfo().getMainFrame().getHeight() - overlayPanel.getHeight());
         gamePanel.setLocation(0, overlayPanel.getHeight());
         SwitchModeHandler.getInstance().subscribe(gamePanel);
         MagicalHexHandler.getInstance().subscribe2(gamePanel);
       
         HollowPurpleHandler.getInstance().subscribe(gamePanel);
-        NeedforSpearGame.getInstance().getGameData().getMainFrame().getContentPane().remove(backgroundPanel);
-        NeedforSpearGame.getInstance().getGameData().getMainFrame().getContentPane().add(gamePanel, BorderLayout.CENTER);
+        NeedforSpearGame.getInstance().getGameInfo().getMainFrame().getContentPane().remove(backgroundPanel);
+        NeedforSpearGame.getInstance().getGameInfo().getMainFrame().getContentPane().add(gamePanel, BorderLayout.CENTER);
 
         gamePanel.setVisible(true);
         if (!areKeysLoaded()) {
@@ -377,7 +377,7 @@ public class GameView {
         buildModeHandler.prepGameMap();
         buildModeHandler.createObstacles(simpObstacleNum, firmObstacleNum, explosiveObstacleNum, giftObstacleNum);
         buildModeHandler.setObstacleLocation(Constants.UIConstants.OBSTACLE_VGAP / 2, overlayPanel.getWidth());
-        List<Obstacle> obstacleList = NeedforSpearGame.getInstance().getGameData().getGameMap().getListofObstacles();
+        List<Obstacle> obstacleList = NeedforSpearGame.getInstance().getGameInfo().getGameMap().getListofObstacles();
         prepGamePanel(obstacleList);
     }
 
@@ -403,15 +403,15 @@ public class GameView {
         gamePanel.removeAll();
         gamePanel.repaint();
         gamePanel.revalidate();
-        NeedforSpearGame.getInstance().setGameLoaded(false);
+        NeedforSpearGame.getInstance().getGameInfo().setGameLoaded(false);
         NeedforSpearGame.getInstance().getViewData().getGameView().getGamePanel().setIsGameStarted(false);
         SwitchModeHandler.getInstance().unSubscribe(gamePanel);
         MagicalHexHandler.getInstance().unSubscribe(gamePanel);
 
         HollowPurpleHandler.getInstance().unSubscribe(gamePanel);
-        NeedforSpearGame.getInstance().getGameData().getMainFrame().getContentPane().remove(gamePanel);
-        NeedforSpearGame.getInstance().getGameData().getMainFrame().repaint();
-        NeedforSpearGame.getInstance().getGameData().getMainFrame().revalidate();
+        NeedforSpearGame.getInstance().getGameInfo().getMainFrame().getContentPane().remove(gamePanel);
+        NeedforSpearGame.getInstance().getGameInfo().getMainFrame().repaint();
+        NeedforSpearGame.getInstance().getGameInfo().getMainFrame().revalidate();
 
         gamePanel = null;
         BuildModeHandler.getInstance().resetPhantasmAndSphereLocation();
@@ -446,8 +446,8 @@ public class GameView {
     public void removeOverlayPanel() {
         overlayPanel.removeAll();
         overlayPanel.repaint();
-        NeedforSpearGame.getInstance().getGameData().getMainFrame().getContentPane().remove(overlayPanel);
-        NeedforSpearGame.getInstance().getGameData().getMainFrame().repaint();
+        NeedforSpearGame.getInstance().getGameInfo().getMainFrame().getContentPane().remove(overlayPanel);
+        NeedforSpearGame.getInstance().getGameInfo().getMainFrame().repaint();
         overlayPanel = null;
     }
 

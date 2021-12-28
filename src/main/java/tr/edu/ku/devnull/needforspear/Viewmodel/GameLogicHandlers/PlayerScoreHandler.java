@@ -36,8 +36,8 @@ public class PlayerScoreHandler {
      * @param player Player whose score will be updated
      */
     public void updateScore(Player player) {
-     long currSec= TimeUnit.MILLISECONDS.toSeconds(NeedforSpearGame.getInstance().getCurrentMillis());
-     long startSec= TimeUnit.MILLISECONDS.toSeconds(NeedforSpearGame.getInstance().getStartMillis());
+     long currSec= TimeUnit.MILLISECONDS.toSeconds(NeedforSpearGame.getInstance().getGameInfo().getCurrentMillis());
+     long startSec= TimeUnit.MILLISECONDS.toSeconds(NeedforSpearGame.getInstance().getGameInfo().getStartMillis());
      long division = currSec-startSec;
      if(division != 0){
          score+= 300/division;

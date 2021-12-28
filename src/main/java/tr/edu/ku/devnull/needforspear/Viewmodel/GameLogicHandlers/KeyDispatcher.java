@@ -100,7 +100,7 @@ public class KeyDispatcher implements KeyEventDispatcher {
                 //noblePhantasm.setDoubleSize(false);
             }
 
-            if(!NeedforSpearGame.getInstance().getIsPaused()){
+            if(!NeedforSpearGame.getInstance().getGameInfo().isPaused()){
 
                 if(e.getKeyCode() == KeyEvent.VK_C){
                     //for testing

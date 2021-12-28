@@ -5,7 +5,6 @@ import tr.edu.ku.devnull.needforspear.Model.GameData.GameMode;
 import tr.edu.ku.devnull.needforspear.Model.GameData.Location;
 import tr.edu.ku.devnull.needforspear.Model.Obstacle.Obstacle;
 import tr.edu.ku.devnull.needforspear.Model.UIModels.Bullet;
-import tr.edu.ku.devnull.needforspear.Model.UIModels.NoblePhantasm;
 import tr.edu.ku.devnull.needforspear.NeedforSpearGame;
 import tr.edu.ku.devnull.needforspear.View.PlayViews.AnimatorStrategy;
 import tr.edu.ku.devnull.needforspear.Viewmodel.GameLogicHandlers.MovementHandler;
@@ -43,7 +42,7 @@ public class BulletAnimator implements AnimatorStrategy {
 
     private void bulletMovement(Graphics2D g2) {
 
-        if (NeedforSpearGame.getInstance().getGameData().getGameMode() != GameMode.BUILDING_MODE) {
+        if (NeedforSpearGame.getInstance().getGameInfo().getGameMode() != GameMode.BUILDING_MODE) {
             for (int i = 0; i < listOfBullets.size(); i++) {
                 Bullet bullet = listOfBullets.get(i);
                 if (bullet != null) {

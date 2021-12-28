@@ -26,14 +26,14 @@ public class SendVerificationView {
         determineUIElementsSizes();
         createActionListenerForLoginButton();
         obtainVisibility();
-        NeedforSpearGame.getInstance().getGameData().getMainFrame().setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        NeedforSpearGame.getInstance().getGameInfo().getMainFrame().setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     /**
      * A method for assigning components to the class variables.
      */
     private void createUIElements() {
-        NeedforSpearGame.getInstance().getGameData().getMainFrame().setTitle(Constants.UIConstants.GAME_NAME);
+        NeedforSpearGame.getInstance().getGameInfo().getMainFrame().setTitle(Constants.UIConstants.GAME_NAME);
         emailField = new FocusableJTextField(Constants.UIConstants.EMAIL_TEXT_FIELD_PLACEHOLDER);
         resetPasswordButton = new JButton(Constants.UIConstants.RESET_PASSWORD_PLACEHOLDER);
         backButton = new JButton(Constants.UIConstants.BACK_BUTTON_PLACEHOLDER);
@@ -56,14 +56,14 @@ public class SendVerificationView {
     private void createActionListenerForLoginButton() {
         resetPasswordButton.addActionListener(e -> {
             LoginHandler.getInstance().forgotPassword(emailField.getText());
-            NeedforSpearGame.getInstance().getGameData().getMainFrame().getContentPane().removeAll();
-            NeedforSpearGame.getInstance().getGameData().getMainFrame().repaint();
+            NeedforSpearGame.getInstance().getGameInfo().getMainFrame().getContentPane().removeAll();
+            NeedforSpearGame.getInstance().getGameInfo().getMainFrame().repaint();
             NeedforSpearGame.getInstance().startResetPasswordView();
         });
 
         backButton.addActionListener(e -> {
-            NeedforSpearGame.getInstance().getGameData().getMainFrame().getContentPane().removeAll();
-            NeedforSpearGame.getInstance().getGameData().getMainFrame().repaint();
+            NeedforSpearGame.getInstance().getGameInfo().getMainFrame().getContentPane().removeAll();
+            NeedforSpearGame.getInstance().getGameInfo().getMainFrame().repaint();
             NeedforSpearGame.getInstance().startLoginView();
         });
     }
@@ -72,11 +72,11 @@ public class SendVerificationView {
      * A method for creating visibility to the components.
      */
     private void obtainVisibility() {
-        NeedforSpearGame.getInstance().getGameData().getMainFrame().setContentPane(new BackgroundHandler().getBackgroundedJPanel(Constants.UIConstants.VALIDATE_AND_CHANGE_PASSWORD_VIEW_BACKGROUND_IMAGE));
-        NeedforSpearGame.getInstance().getGameData().getMainFrame().add(emailField);
-        NeedforSpearGame.getInstance().getGameData().getMainFrame().add(resetPasswordButton);
-        NeedforSpearGame.getInstance().getGameData().getMainFrame().add(backButton);
-        NeedforSpearGame.getInstance().getGameData().getMainFrame().setLayout(null);
-        NeedforSpearGame.getInstance().getGameData().getMainFrame().setVisible(true);
+        NeedforSpearGame.getInstance().getGameInfo().getMainFrame().setContentPane(new BackgroundHandler().getBackgroundedJPanel(Constants.UIConstants.VALIDATE_AND_CHANGE_PASSWORD_VIEW_BACKGROUND_IMAGE));
+        NeedforSpearGame.getInstance().getGameInfo().getMainFrame().add(emailField);
+        NeedforSpearGame.getInstance().getGameInfo().getMainFrame().add(resetPasswordButton);
+        NeedforSpearGame.getInstance().getGameInfo().getMainFrame().add(backButton);
+        NeedforSpearGame.getInstance().getGameInfo().getMainFrame().setLayout(null);
+        NeedforSpearGame.getInstance().getGameInfo().getMainFrame().setVisible(true);
     }
 }

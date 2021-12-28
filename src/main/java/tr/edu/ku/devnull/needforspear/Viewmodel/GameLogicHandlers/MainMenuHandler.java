@@ -2,13 +2,9 @@ package tr.edu.ku.devnull.needforspear.Viewmodel.GameLogicHandlers;
 
 import tr.edu.ku.devnull.needforspear.Model.Database.DatabaseCredentials;
 import tr.edu.ku.devnull.needforspear.Model.Database.DatabaseSaveLoadSubscriber;
-import tr.edu.ku.devnull.needforspear.Model.Database.GameDatabase;
 import tr.edu.ku.devnull.needforspear.Model.GameData.GameMap;
 import tr.edu.ku.devnull.needforspear.Model.Player.Player;
-import tr.edu.ku.devnull.needforspear.View.PlayViews.GamePanel;
-import tr.edu.ku.devnull.needforspear.View.PlayViews.GameView;
 import tr.edu.ku.devnull.needforspear.NeedforSpearGame;
-import tr.edu.ku.devnull.needforspear.View.PlayViews.MainMenuView;
 import tr.edu.ku.devnull.needforspear.Viewmodel.State.GameViewState;
 import tr.edu.ku.devnull.needforspear.Viewmodel.State.MainMenuViewState;
 
@@ -27,7 +23,7 @@ public class MainMenuHandler implements DatabaseSaveLoadSubscriber {
      * Private Constructor for the MainMenuHandler.
      */
     private MainMenuHandler() {
-        NeedforSpearGame.getInstance().getGameData().getGameDatabase().subscribeToLoadSave(this);
+        NeedforSpearGame.getInstance().getGameInfo().getGameDatabase().subscribeToLoadSave(this);
     }
 
     /**
@@ -47,7 +43,7 @@ public class MainMenuHandler implements DatabaseSaveLoadSubscriber {
      * @param player Takes valid Player instance to read their map from the database.
      */
     public void loadGame(Player player) {
-        NeedforSpearGame.getInstance().getGameData().getGameDatabase().loadGame(player);
+        NeedforSpearGame.getInstance().getGameInfo().getGameDatabase().loadGame(player);
     }
 
     /**
@@ -61,16 +57,16 @@ public class MainMenuHandler implements DatabaseSaveLoadSubscriber {
         if (!(NeedforSpearGame.getInstance().getCurrentState() instanceof GameViewState) && NeedforSpearGame.getInstance().getCurrentState() instanceof MainMenuViewState) {
             if (databaseResponse.equals(DatabaseCredentials.DATABASE_SUCCESS)) {
                 if (gameMap != null) {
-                    NeedforSpearGame.getInstance().getGameData().setGameMap(gameMap);
-                    NeedforSpearGame.getInstance().getGameData().getMainFrame().getContentPane().removeAll();
-                    NeedforSpearGame.getInstance().getGameData().getMainFrame().repaint();
+                    NeedforSpearGame.getInstance().getGameInfo().setGameMap(gameMap);
+                    NeedforSpearGame.getInstance().getGameInfo().getMainFrame().getContentPane().removeAll();
+                    NeedforSpearGame.getInstance().getGameInfo().getMainFrame().repaint();
                     NeedforSpearGame.getInstance().startGameView();
-                    BuildModeHandler.getInstance().setObstacleList(NeedforSpearGame.getInstance().getGameData().getGameMap().getListofObstacles());
+                    BuildModeHandler.getInstance().setObstacleList(NeedforSpearGame.getInstance().getGameInfo().getGameMap().getListofObstacles());
                     NeedforSpearGame.getInstance().getViewData().getGameView().adjustOverlayPanelForBuildingMode();
                     NeedforSpearGame.getInstance().getViewData().getGameView().loadAMap();
-                    NeedforSpearGame.getInstance().setGameLoaded(true);
+                    NeedforSpearGame.getInstance().getGameInfo().setGameLoaded(true);
                 } else {
-                    JOptionPane.showMessageDialog(NeedforSpearGame.getInstance().getGameData().getMainFrame(), "You have lost in previous game", "Alert", JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(NeedforSpearGame.getInstance().getGameInfo().getMainFrame(), "You have lost in previous game", "Alert", JOptionPane.WARNING_MESSAGE);
                 }
             }
         }

@@ -4,12 +4,9 @@ package tr.edu.ku.devnull.needforspear.Viewmodel.GameLogicHandlers;
 import tr.edu.ku.devnull.needforspear.Model.GameData.Constants;
 import tr.edu.ku.devnull.needforspear.Model.GameData.Location;
 import tr.edu.ku.devnull.needforspear.Model.GameData.Size;
-import tr.edu.ku.devnull.needforspear.Model.Obstacle.GiftObstacle;
 import tr.edu.ku.devnull.needforspear.Model.Obstacle.Obstacle;
 import tr.edu.ku.devnull.needforspear.Model.Spell.*;
 import tr.edu.ku.devnull.needforspear.NeedforSpearGame;
-import tr.edu.ku.devnull.needforspear.View.PlayViews.GameView;
-import tr.edu.ku.devnull.needforspear.Viewmodel.AuthHandler.LoginHandler;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,7 +42,7 @@ public class SpellHandler{
      */
     public List<Obstacle> getGiftObstacleList(){
         List<Obstacle> giftObstacleList= new ArrayList<>();
-        for(Obstacle obstacle : NeedforSpearGame.getInstance().getGameData().getGameMap().getListofObstacles()){
+        for(Obstacle obstacle : NeedforSpearGame.getInstance().getGameInfo().getGameMap().getListofObstacles()){
             if(obstacle.getObstacleType().equals(Constants.ObstacleNameConstants.GIFT)){
                 giftObstacleList.add(obstacle);
             }
@@ -105,8 +102,8 @@ public class SpellHandler{
      * @return List of spells
      */
     public Spell getAvailableSpell(String spellType){
-        if(NeedforSpearGame.getInstance().getGameData().getPlayer().getListofSpells().size() > 0){
-            for(Spell spell: NeedforSpearGame.getInstance().getGameData().getPlayer().getListofSpells()){
+        if(NeedforSpearGame.getInstance().getGameInfo().getPlayer().getListofSpells().size() > 0){
+            for(Spell spell: NeedforSpearGame.getInstance().getGameInfo().getPlayer().getListofSpells()){
                 System.out.println(spell.getSpellType());
                 if(spell.getSpellType().equals(spellType)){
                     return spell;
@@ -138,7 +135,7 @@ public class SpellHandler{
                     unstoppableSpell.triggerEffect();
 
             }
-            NeedforSpearGame.getInstance().getGameData().getPlayer().getListofSpells().remove(spell);
+            NeedforSpearGame.getInstance().getGameInfo().getPlayer().getListofSpells().remove(spell);
             NeedforSpearGame.getInstance().getViewData().getGameView().updateSpellNumbers();
         }
     }
@@ -150,7 +147,7 @@ public class SpellHandler{
      */
     public int getSpellNumber(String spellType){
         int x = 0;
-        for(Spell spell: NeedforSpearGame.getInstance().getGameData().getPlayer().getListofSpells()){
+        for(Spell spell: NeedforSpearGame.getInstance().getGameInfo().getPlayer().getListofSpells()){
             if(spell != null) {
                 if (spell.getSpellType().equals(spellType)) {
                     x+=1;

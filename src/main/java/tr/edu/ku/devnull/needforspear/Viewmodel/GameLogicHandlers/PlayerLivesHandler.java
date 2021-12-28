@@ -1,18 +1,12 @@
 package tr.edu.ku.devnull.needforspear.Viewmodel.GameLogicHandlers;
 
-import tr.edu.ku.devnull.needforspear.Model.GameData.GameMode;
 import tr.edu.ku.devnull.needforspear.Model.UIModels.NoblePhantasm;
 import tr.edu.ku.devnull.needforspear.Model.UIModels.Sphere;
 import tr.edu.ku.devnull.needforspear.Model.Player.Player;
 import tr.edu.ku.devnull.needforspear.NeedforSpearGame;
-import tr.edu.ku.devnull.needforspear.View.PlayViews.GamePanel;
-import tr.edu.ku.devnull.needforspear.View.PlayViews.GameView;
 
-import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
-
-import static java.lang.Thread.currentThread;
 
 /**
  * This class does the computations to calculate lives of the player
@@ -43,7 +37,7 @@ public class PlayerLivesHandler {
     }
 
     public static PlayerLivesHandler getInstance() {
-        if (onlyInstance == null) onlyInstance = new PlayerLivesHandler(NeedforSpearGame.getInstance().getGameData().getPlayer(), Sphere.getInstance(), NoblePhantasm.getInstance());
+        if (onlyInstance == null) onlyInstance = new PlayerLivesHandler(NeedforSpearGame.getInstance().getGameInfo().getPlayer(), Sphere.getInstance(), NoblePhantasm.getInstance());
 
         return onlyInstance;
     }

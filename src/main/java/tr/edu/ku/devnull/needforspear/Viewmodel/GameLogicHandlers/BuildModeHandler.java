@@ -96,23 +96,23 @@ public class BuildModeHandler {
      * This method sets game map to a new one and sets obstacleList to its list of obstacles
      */
     public void prepGameMap() {
-        NeedforSpearGame.getInstance().getGameData().setGameMap(new GameMap(new Size(Constants.UIConstants.INITIAL_SCREEN_WIDTH, Constants.UIConstants.INITIAL_SCREEN_HEIGHT)));
-        obstacleList = NeedforSpearGame.getInstance().getGameData().getGameMap().getListofObstacles();
+        NeedforSpearGame.getInstance().getGameInfo().setGameMap(new GameMap(new Size(Constants.UIConstants.INITIAL_SCREEN_WIDTH, Constants.UIConstants.INITIAL_SCREEN_HEIGHT)));
+        obstacleList = NeedforSpearGame.getInstance().getGameInfo().getGameMap().getListofObstacles();
     }
 
     /**
      * This method sets obstacle locations by starting from an initial location and placing gap between each other
      */
     public void setObstacleLocation(int startLocationY, int mapWidth) {
-        Obstacle firstObstacle = NeedforSpearGame.getInstance().getGameData().getGameMap().getListofObstacles().get(0);
+        Obstacle firstObstacle = NeedforSpearGame.getInstance().getGameInfo().getGameMap().getListofObstacles().get(0);
         firstObstacle.setLocation(new Location(2.0 * Constants.UIConstants.OBSTACLE_HGAP, 1.0*(startLocationY + Constants.UIConstants.OBSTACLE_VGAP)));
         setExplosiveOrbit(firstObstacle);
         double k;
         int j = 0;
         int m = 1;
-        for (int i = 1; i < NeedforSpearGame.getInstance().getGameData().getGameMap().getListofObstacles().size(); i++) {
+        for (int i = 1; i < NeedforSpearGame.getInstance().getGameInfo().getGameMap().getListofObstacles().size(); i++) {
             k = (Constants.UIConstants.OBSTACLE_HGAP + firstObstacle.getSize().getWidth()) * m + firstObstacle.getLocation().getXCoordinates();
-            Obstacle nextObstacle = NeedforSpearGame.getInstance().getGameData().getGameMap().getListofObstacles().get(i);
+            Obstacle nextObstacle = NeedforSpearGame.getInstance().getGameInfo().getGameMap().getListofObstacles().get(i);
             if (k + nextObstacle.getSize().getWidth() + Constants.UIConstants.OBSTACLE_HGAP > mapWidth) {
                 m = 1;
                 j += Constants.UIConstants.OBSTACLE_VGAP + Constants.ProportionConstants.HEIGHT_OF_THE_OBSTACLE;
@@ -135,22 +135,22 @@ public class BuildModeHandler {
         int i;
         for (i = 0; i < simpNum; i++) {
             Obstacle obstacle = obstacleFactory.getObstacle(Constants.ObstacleNameConstants.SIMPLE);
-            NeedforSpearGame.getInstance().getGameData().getGameMap().getListofObstacles().add(obstacle);
+            NeedforSpearGame.getInstance().getGameInfo().getGameMap().getListofObstacles().add(obstacle);
         }
         for (i = 0; i < firmNum; i++) {
             Obstacle obstacle = obstacleFactory.getObstacle(Constants.ObstacleNameConstants.FIRM);
-            NeedforSpearGame.getInstance().getGameData().getGameMap().getListofObstacles().add(obstacle);
+            NeedforSpearGame.getInstance().getGameInfo().getGameMap().getListofObstacles().add(obstacle);
         }
         for (i = 0; i < expNum; i++) {
             Obstacle obstacle = obstacleFactory.getObstacle(Constants.ObstacleNameConstants.EXP);
-            NeedforSpearGame.getInstance().getGameData().getGameMap().getListofObstacles().add(obstacle);
+            NeedforSpearGame.getInstance().getGameInfo().getGameMap().getListofObstacles().add(obstacle);
         }
         for (i = 0; i < giftNum; i++) {
             Obstacle obstacle = obstacleFactory.getObstacle(Constants.ObstacleNameConstants.GIFT);
-            NeedforSpearGame.getInstance().getGameData().getGameMap().getListofObstacles().add(obstacle);
+            NeedforSpearGame.getInstance().getGameInfo().getGameMap().getListofObstacles().add(obstacle);
         }
         //shuffling obstacle list for random placement
-        Collections.shuffle(NeedforSpearGame.getInstance().getGameData().getGameMap().getListofObstacles());
+        Collections.shuffle(NeedforSpearGame.getInstance().getGameInfo().getGameMap().getListofObstacles());
     }
 
     /**
@@ -288,7 +288,7 @@ public class BuildModeHandler {
      */
     public void createNewObstacle(double x, double y, String obstacleType, Graphics graphics, ObstacleAnimator obstacleAnimator) {
         Obstacle obstacle = obstacleFactory.getObstacle(obstacleType);
-        NeedforSpearGame.getInstance().getGameData().getGameMap().getListofObstacles().add(obstacle);
+        NeedforSpearGame.getInstance().getGameInfo().getGameMap().getListofObstacles().add(obstacle);
         Location loc = new Location(x, y);
         obstacle.setLocation(loc);
         setExplosiveOrbit( getSelectedObstacle());
@@ -307,7 +307,7 @@ public class BuildModeHandler {
      */
     public void removeObstacle(int x, int y, Graphics graphics, Obstacle obstacle) {
         graphics.clearRect(x, y, obstacle.getSize().getWidth(), obstacle.getSize().getLength());
-        NeedforSpearGame.getInstance().getGameData().getGameMap().getListofObstacles().remove(obstacle);
+        NeedforSpearGame.getInstance().getGameInfo().getGameMap().getListofObstacles().remove(obstacle);
     }
 
     /**

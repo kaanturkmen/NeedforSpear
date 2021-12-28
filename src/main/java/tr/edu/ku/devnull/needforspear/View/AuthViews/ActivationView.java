@@ -26,14 +26,14 @@ public class ActivationView {
         determineUIElementsSizes();
         createActionListenerForLoginButton();
         obtainVisibility();
-        NeedforSpearGame.getInstance().getGameData().getMainFrame().setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        NeedforSpearGame.getInstance().getGameInfo().getMainFrame().setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     /**
      * A method for assigning components to the class variables.
      */
     private void createUIElements() {
-        NeedforSpearGame.getInstance().getGameData().getMainFrame().setTitle(Constants.UIConstants.GAME_NAME);
+        NeedforSpearGame.getInstance().getGameInfo().getMainFrame().setTitle(Constants.UIConstants.GAME_NAME);
         emailField = new FocusableJTextField(Constants.UIConstants.EMAIL_TEXT_FIELD_PLACEHOLDER);
         codeField = new FocusableJTextField(Constants.UIConstants.VERIFICATION_CODE_PLACEHOLDER);
         activateButton = new JButton(Constants.UIConstants.ACTIVATE_MY_ACCOUNT_BUTTON_PLACEHOLDER);
@@ -58,14 +58,14 @@ public class ActivationView {
     private void createActionListenerForLoginButton() {
         activateButton.addActionListener(e -> {
             LoginHandler.getInstance().confirmUser(emailField.getText(), codeField.getText());
-            NeedforSpearGame.getInstance().getGameData().getMainFrame().getContentPane().removeAll();
-            NeedforSpearGame.getInstance().getGameData().getMainFrame().repaint();
+            NeedforSpearGame.getInstance().getGameInfo().getMainFrame().getContentPane().removeAll();
+            NeedforSpearGame.getInstance().getGameInfo().getMainFrame().repaint();
             NeedforSpearGame.getInstance().startLoginView();
         });
 
         backButton.addActionListener(e -> {
-            NeedforSpearGame.getInstance().getGameData().getMainFrame().getContentPane().removeAll();
-            NeedforSpearGame.getInstance().getGameData().getMainFrame().repaint();
+            NeedforSpearGame.getInstance().getGameInfo().getMainFrame().getContentPane().removeAll();
+            NeedforSpearGame.getInstance().getGameInfo().getMainFrame().repaint();
             NeedforSpearGame.getInstance().startLoginView();
         });
     }
@@ -74,12 +74,12 @@ public class ActivationView {
      * A method for creating visibility to the components.
      */
     private void obtainVisibility() {
-        NeedforSpearGame.getInstance().getGameData().getMainFrame().setContentPane(new BackgroundHandler().getBackgroundedJPanel(Constants.UIConstants.ACTIVATION_VIEW_BACKGROUND_IMAGE));
-        NeedforSpearGame.getInstance().getGameData().getMainFrame().add(emailField);
-        NeedforSpearGame.getInstance().getGameData().getMainFrame().add(codeField);
-        NeedforSpearGame.getInstance().getGameData().getMainFrame().add(activateButton);
-        NeedforSpearGame.getInstance().getGameData().getMainFrame().add(backButton);
-        NeedforSpearGame.getInstance().getGameData().getMainFrame().setLayout(null);
-        NeedforSpearGame.getInstance().getGameData().getMainFrame().setVisible(true);
+        NeedforSpearGame.getInstance().getGameInfo().getMainFrame().setContentPane(new BackgroundHandler().getBackgroundedJPanel(Constants.UIConstants.ACTIVATION_VIEW_BACKGROUND_IMAGE));
+        NeedforSpearGame.getInstance().getGameInfo().getMainFrame().add(emailField);
+        NeedforSpearGame.getInstance().getGameInfo().getMainFrame().add(codeField);
+        NeedforSpearGame.getInstance().getGameInfo().getMainFrame().add(activateButton);
+        NeedforSpearGame.getInstance().getGameInfo().getMainFrame().add(backButton);
+        NeedforSpearGame.getInstance().getGameInfo().getMainFrame().setLayout(null);
+        NeedforSpearGame.getInstance().getGameInfo().getMainFrame().setVisible(true);
     }
 }
