@@ -76,6 +76,9 @@ public class ObstacleFactory {
             case Constants.ObstacleNameConstants.GIFT:
                 return new GiftObstacle(gameMap, 0.0, initialLocation);
 
+            case Constants.ObstacleNameConstants.HOLLOW:
+                return new HollowPurpleObstacle(gameMap, 0.0, initialLocation);
+
             default:
                 return null;
         }

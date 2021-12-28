@@ -94,6 +94,7 @@ public interface Constants {
         String BLUE_COLOR_STRING = "BLUE";
         String ORANGE_COLOR_STRING = "ORANGE";
         String GREEN_COLOR_STRING = "GREEN";
+        String PURPLE_COLOR_STRING = "PURPLE";
 
         String DARK_CYAN_COLOR_STRING = "DARKRED";
         String DARK_YELLOW_COLOR_STRING = "DARKBLUE";
@@ -143,6 +144,7 @@ public interface Constants {
         String FIRM = "FirmObstacle";
         String EXP = "ExplosiveObstacle";
         String GIFT = "GiftObstacle";
+        String HOLLOW = "HollowPurpleObstacle";
     }
 
     interface ObstacleNumberConstants {
@@ -155,6 +157,8 @@ public interface Constants {
         Integer MAX_FIRM_OBSTACLE_NUM = 20;
         Integer MAX_EXPLOSIVE_OBSTACLE_NUM = 10;
         Integer MAX_GIFT_OBSTACLE_NUM = 20;
+
+        Integer HOLLOW_OBSTACLE_NUM = 8;
     }
 
     interface ArrayConstants {

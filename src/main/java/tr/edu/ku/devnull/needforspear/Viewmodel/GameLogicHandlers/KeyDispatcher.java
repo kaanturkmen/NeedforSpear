@@ -1,5 +1,6 @@
 package tr.edu.ku.devnull.needforspear.Viewmodel.GameLogicHandlers;
 import tr.edu.ku.devnull.needforspear.Model.GameData.Constants;
+import tr.edu.ku.devnull.needforspear.Model.Spell.YmirSpells.HollowPurpleSpell;
 import tr.edu.ku.devnull.needforspear.Model.UIModels.NoblePhantasm;
 import tr.edu.ku.devnull.needforspear.Model.UIModels.Sphere;
 import tr.edu.ku.devnull.needforspear.NeedforSpearGame;
@@ -102,6 +103,9 @@ public class KeyDispatcher implements KeyEventDispatcher {
             if(!NeedforSpearGame.getInstance().getIsPaused()){
 
                 if(e.getKeyCode() == KeyEvent.VK_C){
+                    //for testing
+                    HollowPurpleSpell hollowPurpleSpell = new HollowPurpleSpell();
+                    hollowPurpleSpell.triggerYmirEffect();
                     SpellHandler.getInstance().activateSpell(SpellHandler.getInstance().getAvailableSpell(Constants.SpellNameConstants.CHANCE));
                 }
 
