@@ -22,7 +22,10 @@ import java.util.List;
  */
 public class GameView {
 
-    private JButton switchRunningModeButton, createNewMapButton, saveMapButton, loadMapButton, pauseButton, resumeButton, chanceGivingSpellButton, expansionSpellButton, magicalHexButton, unstoppableSpellButton, muteButton, unmuteButton, changeDifficultyButton;
+    private JButton switchRunningModeButton, createNewMapButton, saveMapButton, loadMapButton, pauseButton,
+            resumeButton, chanceGivingSpellButton, expansionSpellButton, magicalHexButton, unstoppableSpellButton,
+            muteButton, unmuteButton, changeDifficultyButton;
+    private JTextField difficultyField;
     private JPanel overlayPanel, backgroundPanel;
     private GamePanel gamePanel;
     private JLabel score, lives;
@@ -61,6 +64,7 @@ public class GameView {
         muteButton = new JButton(Constants.UIConstants.MUTE_TEXT);
         unmuteButton = new JButton(Constants.UIConstants.UNMUTE_TEXT);
         changeDifficultyButton = new JButton(Constants.UIConstants.CHANGE_DIFFICULTY_TEXT);
+        difficultyField = new JTextField(6);
     }
 
     /**
@@ -154,9 +158,9 @@ public class GameView {
         });
 
         changeDifficultyButton.addActionListener(e -> {
-            System.out.println("Difficulty:" + NeedforSpearGame.getInstance().getGameInfo().getDifficulty());
-            NeedforSpearGame.getInstance().getGameInfo().changeDifficulty();
-            JOptionPane.showMessageDialog(null, "Difficulty changed to " + NeedforSpearGame.getInstance().getGameInfo().getDifficulty());
+            System.out.println("Difficulty:" + NeedforSpearGame.getInstance().getGameInfo().getDifficultyHandler().getCurrentDifficulty());
+            NeedforSpearGame.getInstance().getGameInfo().getDifficultyHandler().changeDifficulty();
+            difficultyField.setText(NeedforSpearGame.getInstance().getGameInfo().getDifficultyHandler().getCurrentDifficulty().toString());
         });
     }
     private void createActionListenerForSpellButtons(){
@@ -199,6 +203,7 @@ public class GameView {
         expansionSpellButton.setVisible(true);
         resumeButton.setVisible(false);
         changeDifficultyButton.setVisible(false);
+        difficultyField.setVisible(false);
     }
     /**
      * This method adjusts the spell buttons for spells and draws them onto overlayPanel
@@ -234,6 +239,7 @@ public class GameView {
         switchRunningModeButton.setVisible(true);
         addObstacleChoice.setVisible(true);
         changeDifficultyButton.setVisible(true);
+        difficultyField.setVisible(true);
         createNewMapButton.setVisible(false);
         saveMapButton.setVisible(true);
         chanceGivingSpellButton.setVisible(false);
@@ -259,6 +265,7 @@ public class GameView {
         overlayPanel.add(muteButton);
         overlayPanel.add(unmuteButton);
         overlayPanel.add(changeDifficultyButton);
+        overlayPanel.add(difficultyField);
 
         lives.setVisible(false);
         score.setVisible(false);
@@ -269,6 +276,11 @@ public class GameView {
         saveMapButton.setVisible(false);
         unmuteButton.setVisible(false);
         changeDifficultyButton.setVisible(false);
+        difficultyField.setVisible(false);
+        difficultyField.setEditable(false);
+        difficultyField.setHorizontalAlignment(JTextField.CENTER);
+        difficultyField.setText(NeedforSpearGame.getInstance().getGameInfo().getDifficultyHandler().getCurrentDifficulty().toString());
+
 
         backgroundPanel = new BackgroundHandler().getBackgroundedJPanel(Constants.UIConstants.GAME_BACKGROUND_IMAGE);
 

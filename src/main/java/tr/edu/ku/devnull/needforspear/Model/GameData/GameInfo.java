@@ -2,6 +2,7 @@ package tr.edu.ku.devnull.needforspear.Model.GameData;
 
 import tr.edu.ku.devnull.needforspear.Viewmodel.Database.GameDatabase;
 import tr.edu.ku.devnull.needforspear.Model.Player.Player;
+import tr.edu.ku.devnull.needforspear.Viewmodel.GameHandlers.DifficultyHandler;
 
 import javax.swing.*;
 
@@ -15,9 +16,10 @@ public class GameInfo {
     private boolean isPaused = true;
     private boolean isGameLoaded = false;
     private long startMillis;
-    private boolean normalDifficulty=true;
+    private DifficultyHandler difficultyHandler;
 
-    public GameInfo(GameMode gameMode, Player player, GameMap gameMap, GameDatabase gameDatabase, boolean muteModeActivated, boolean isPaused, boolean isGameLoaded, long startMillis, boolean normalDifficulty) {
+    public GameInfo(GameMode gameMode, Player player, GameMap gameMap, GameDatabase gameDatabase, boolean muteModeActivated, boolean isPaused, boolean isGameLoaded, long startMillis) {
+        difficultyHandler = new DifficultyHandler();
         this.gameMode = gameMode;
         this.player = player;
         this.gameMap = gameMap;
@@ -26,10 +28,11 @@ public class GameInfo {
         this.isPaused = isPaused;
         this.isGameLoaded = isGameLoaded;
         this.startMillis = startMillis;
-        this.normalDifficulty = normalDifficulty;
     }
 
-    public GameInfo() {}
+    public GameInfo() {
+        difficultyHandler = new DifficultyHandler();
+    }
 
     public JFrame getMainFrame() {
         return mainFrame;
@@ -75,19 +78,6 @@ public class GameInfo {
         this.muteModeActivated = muteModeActivated;
     }
 
-    public boolean getNormalDifficulty() {return normalDifficulty; }
-
-    public void changeDifficulty() { if (this.normalDifficulty){
-    normalDifficulty=false; }
-        else {normalDifficulty=true;}
-    }
-
-    public String getDifficulty() {
-        if(normalDifficulty){
-            return "normal!";
-        } else { return "hard!"; }
-    }
-
     public boolean isPaused() {
         return isPaused;
     }
@@ -119,5 +109,9 @@ public class GameInfo {
      */
     public long getCurrentMillis() {
         return System.currentTimeMillis();
+    }
+
+    public DifficultyHandler getDifficultyHandler() {
+        return difficultyHandler;
     }
 }

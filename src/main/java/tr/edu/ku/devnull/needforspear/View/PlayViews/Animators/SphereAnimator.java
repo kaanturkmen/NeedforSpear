@@ -1,6 +1,7 @@
 package tr.edu.ku.devnull.needforspear.View.PlayViews.Animators;
 
 import tr.edu.ku.devnull.needforspear.Model.GameData.Constants;
+import tr.edu.ku.devnull.needforspear.Model.GameData.Difficulty;
 import tr.edu.ku.devnull.needforspear.Model.GameData.Location;
 import tr.edu.ku.devnull.needforspear.Model.GameData.Speed;
 import tr.edu.ku.devnull.needforspear.Model.Obstacle.Obstacle;
@@ -25,13 +26,14 @@ public class SphereAnimator implements AnimatorStrategy {
     int radius = Constants.ProportionConstants.RADIUS_OF_THE_SPHERE;
     private List<Obstacle> listofObstacles;
     Image sphereImage;
+
     /**
      * Constructor
      *
      * @param listofObstacles
      */
     public SphereAnimator(List<Obstacle> listofObstacles) {
-        if(NeedforSpearGame.getInstance().getGameInfo().getNormalDifficulty()){
+        if (NeedforSpearGame.getInstance().getGameInfo().getDifficultyHandler().getCurrentDifficulty() == Difficulty.NORMAL) {
             Sphere.getInstance().setSpeed(new Speed(2, 2));
         } else Sphere.getInstance().setSpeed(new Speed(4, 4));
         this.listofObstacles = listofObstacles;
@@ -103,28 +105,29 @@ public class SphereAnimator implements AnimatorStrategy {
             if (collisionHandler.collision(obs, Sphere.getInstance())) {
 
                 //UNSTOPPABLE
-                if (Sphere.getInstance().isUnstoppable() ){
+                if (Sphere.getInstance().isUnstoppable()) {
                     long current_time = System.currentTimeMillis();
                     long start_time = Sphere.getInstance().getUnstoppableStartTime();
 
                     int current_health = obs.getHealth();
-                    for (int k = 0; k<current_health; k++){
+                    for (int k = 0; k < current_health; k++) {
                         obs.damageObstacle();
                     }
 
-                    if ((current_time-start_time)/1000 >=30){ Sphere.getInstance().deactivateUnstoppable();}
-                }else{
+                    if ((current_time - start_time) / 1000 >= 30) {
+                        Sphere.getInstance().deactivateUnstoppable();
+                    }
+                } else {
                     obs.damageObstacle();
                     bounceHandler.bounceSphereFromObstacle(obs);
                 }
 
 
-
                 //TODO HANDLING OBSTACLE REMOVALS should be removed from here for better cohesion and less coupling
                 if (!collisionHandler.isRemovedObstacle(obs)) {
                     bounceHandler.bounceSphereFromObstacle(obs);
-                }else{
-                    if(!obs.getObstacleType().equals(Constants.ObstacleNameConstants.EXP)){
+                } else {
+                    if (!obs.getObstacleType().equals(Constants.ObstacleNameConstants.EXP)) {
                         collisionHandler.removeObstacle(obs, listofObstacles);
                     }
 
@@ -132,8 +135,6 @@ public class SphereAnimator implements AnimatorStrategy {
             }
 
         }
-
-
 
 
         //collision with Noble Phantasm - Sphere
@@ -145,8 +146,7 @@ public class SphereAnimator implements AnimatorStrategy {
     }
 
 
-
-    public void unstoppableAnimation(){
+    public void unstoppableAnimation() {
 
 
     }
