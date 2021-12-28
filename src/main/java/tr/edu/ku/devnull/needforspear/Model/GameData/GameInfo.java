@@ -15,8 +15,9 @@ public class GameInfo {
     private boolean isPaused = true;
     private boolean isGameLoaded = false;
     private long startMillis;
+    private boolean normalDifficulty=true;
 
-    public GameInfo(GameMode gameMode, Player player, GameMap gameMap, GameDatabase gameDatabase, boolean muteModeActivated, boolean isPaused, boolean isGameLoaded, long startMillis) {
+    public GameInfo(GameMode gameMode, Player player, GameMap gameMap, GameDatabase gameDatabase, boolean muteModeActivated, boolean isPaused, boolean isGameLoaded, long startMillis, boolean normalDifficulty) {
         this.gameMode = gameMode;
         this.player = player;
         this.gameMap = gameMap;
@@ -25,6 +26,7 @@ public class GameInfo {
         this.isPaused = isPaused;
         this.isGameLoaded = isGameLoaded;
         this.startMillis = startMillis;
+        this.normalDifficulty = normalDifficulty;
     }
 
     public GameInfo() {}
@@ -71,6 +73,13 @@ public class GameInfo {
 
     public void setMuteModeActivated(boolean muteModeActivated) {
         this.muteModeActivated = muteModeActivated;
+    }
+
+    public boolean getNormalDifficulty() {return normalDifficulty; }
+
+    public void changeDifficulty() { if (this.normalDifficulty){
+    normalDifficulty=false; }
+        else {normalDifficulty=true;}
     }
 
     public boolean isPaused() {

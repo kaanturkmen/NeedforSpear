@@ -59,6 +59,7 @@ public interface Constants {
         String NEW_GAME_TEXT = "New Game";
         String LOAD_GAME_TEXT = "Load Game";
         String HELP_SCREEN_TEXT = "Help!";
+        String CHANGE_DIFFICULTY_TEXT = "Change Difficulty";
         String EXIT_GAME_TEXT = "Quit";
 
         String RESET_PASSWORD_PLACEHOLDER = "Reset Password";
@@ -136,6 +137,7 @@ public interface Constants {
         Location MAIN_MENU_VIEW_LOCATION = new Location(543.0, 361.0);
 
         Color OVERLAY_BACKGROUND_COLOR = new Color(0.21f, 0.22f, 0.28f);
+
     }
 
     interface ObstacleNameConstants {
