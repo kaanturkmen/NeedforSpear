@@ -15,8 +15,9 @@ public class Ymir extends Thread {
 
     @Override
     public void run() {
+        System.out.println("Ymir is calculating!");
+
         if(r.nextFloat() <= 0.5) return;
-        System.out.println("Hello!");
         currentPower = determineRandomSpell(ThreadLocalRandom.current().nextInt(0, 3));
 
         if(currentPower == null) {
@@ -29,9 +30,18 @@ public class Ymir extends Thread {
 
     private YmirPower determineRandomSpell(Integer index) {
         switch (index) {
-            case 0: return new DoubleAccelSpell();
-            case 1: return new HollowPurpleSpell();
-            case 2: return new InfiniteVoidSpell();
+            case 0: {
+                System.out.println("Double Accel is activated by Ymir.");
+                return new DoubleAccelSpell();
+            }
+            case 1: {
+                System.out.println("Hollow Purple is activated by Ymir.");
+                return new HollowPurpleSpell();
+            }
+            case 2: {
+                System.out.println("Infinite Void is activated by Ymir.");
+                return new InfiniteVoidSpell();
+            }
             default: return null;
         }
     }

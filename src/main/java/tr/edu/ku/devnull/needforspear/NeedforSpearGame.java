@@ -24,7 +24,7 @@ import java.util.concurrent.TimeUnit;
  * @author Kaan Turkmen
  */
 public class NeedforSpearGame {
-    private final ScheduledExecutorService executorService = Executors.newScheduledThreadPool(1);
+    private final ScheduledExecutorService executorOfYmir = Executors.newScheduledThreadPool(1);
     private static NeedforSpearGame onlyInstance;
     private ViewData viewData;
     private ViewState currentState;
@@ -123,17 +123,16 @@ public class NeedforSpearGame {
     /**
      * Starts executing Ymir powers by executing threads in given time.
      */
-    public void startExecutorService() {
+    public void startYmirAction() {
         Ymir y = new Ymir();
-        //TODO to try infinite void we should wait until game starts so 0 delay makes it not work
-       executorService.scheduleAtFixedRate(y, 0, 30, TimeUnit.SECONDS);
+        executorOfYmir.scheduleAtFixedRate(y, 0, 30, TimeUnit.SECONDS);
     }
 
     /**
      * Stops Ymir powers by executing threads in given time.
      */
-    public void stopExecutorService() {
-        executorService.shutdownNow();
+    public void stopYmirAction() {
+        executorOfYmir.shutdownNow();
     }
 
     public ViewState getCurrentState() {
@@ -150,5 +149,9 @@ public class NeedforSpearGame {
 
     public GameInfo getGameInfo() {
         return gameInfo;
+    }
+
+    public ScheduledExecutorService getExecutorOfYmir() {
+        return executorOfYmir;
     }
 }

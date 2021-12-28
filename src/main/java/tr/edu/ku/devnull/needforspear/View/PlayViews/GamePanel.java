@@ -262,6 +262,7 @@ public class GamePanel extends JPanel implements ActionListener, MouseMotionList
     }
 
     public void endGame(Player player) {
+        NeedforSpearGame.getInstance().stopYmirAction();
         JOptionPane.showMessageDialog(NeedforSpearGame.getInstance().getGameInfo().getMainFrame(), "You have lost", "Alert", JOptionPane.WARNING_MESSAGE);
         player.setLives(3);
         NeedforSpearGame.getInstance().getGameInfo().setGameLoaded(false);
