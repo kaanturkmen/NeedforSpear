@@ -8,13 +8,11 @@ import tr.edu.ku.devnull.needforspear.Model.Spell.Spell;
 import tr.edu.ku.devnull.needforspear.Model.UIModels.Bullet;
 import tr.edu.ku.devnull.needforspear.Model.UIModels.NoblePhantasm;
 import tr.edu.ku.devnull.needforspear.Model.UIModels.Sphere;
-import tr.edu.ku.devnull.needforspear.Model.Util.CollisionData;
-import tr.edu.ku.devnull.needforspear.Model.Util.PhysicsEngine;
+import tr.edu.ku.devnull.needforspear.Viewmodel.Util.CollisionData;
+import tr.edu.ku.devnull.needforspear.Viewmodel.Util.PhysicsEngine;
 import tr.edu.ku.devnull.needforspear.NeedforSpearGame;
 import tr.edu.ku.devnull.needforspear.View.PlayViews.Animators.SpellAnimator;
 
-import java.awt.*;
-import java.awt.geom.AffineTransform;
 import java.util.List;
 
 /**

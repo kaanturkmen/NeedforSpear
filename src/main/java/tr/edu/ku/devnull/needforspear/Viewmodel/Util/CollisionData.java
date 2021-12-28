@@ -1,4 +1,4 @@
-package tr.edu.ku.devnull.needforspear.Model.Util;
+package tr.edu.ku.devnull.needforspear.Viewmodel.Util;
 
 import tr.edu.ku.devnull.needforspear.Model.GameData.Location;
 import tr.edu.ku.devnull.needforspear.Model.GameData.Speed;
