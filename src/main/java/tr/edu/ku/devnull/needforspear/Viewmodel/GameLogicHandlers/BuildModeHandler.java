@@ -359,6 +359,9 @@ public class BuildModeHandler {
             for(int x = 0; x<Constants.UIConstants.INITIAL_SCREEN_WIDTH-dummyObstacle.getSize().getWidth(); x++){
                 if(checkIfPointAvailable(x,y)){
                     availableLocations.add(new Location(x,y));
+                    if(!(x+dummyObstacle.getSize().getWidth() > Constants.UIConstants.INITIAL_SCREEN_WIDTH)){
+                        x+=dummyObstacle.getSize().getWidth();
+                    }
                 }
             }
         }
