@@ -13,6 +13,7 @@ import tr.edu.ku.devnull.needforspear.Viewmodel.State.InitialState;
 import tr.edu.ku.devnull.needforspear.Viewmodel.State.ViewState;
 
 import javax.swing.*;
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -24,7 +25,7 @@ import java.util.concurrent.TimeUnit;
  * @author Kaan Turkmen
  */
 public class NeedforSpearGame {
-    private final ScheduledExecutorService executorOfYmir = Executors.newScheduledThreadPool(1);
+    private ScheduledExecutorService executorOfYmir;
     private static NeedforSpearGame onlyInstance;
     private ViewData viewData;
     private ViewState currentState;
@@ -125,6 +126,7 @@ public class NeedforSpearGame {
      */
     public void startYmirAction() {
         Ymir y = new Ymir();
+        executorOfYmir = Executors.newScheduledThreadPool(1);
         executorOfYmir.scheduleAtFixedRate(y, 0, 30, TimeUnit.SECONDS);
     }
 
@@ -133,6 +135,7 @@ public class NeedforSpearGame {
      */
     public void stopYmirAction() {
         executorOfYmir.shutdownNow();
+        executorOfYmir = null;
     }
 
     public ViewState getCurrentState() {
