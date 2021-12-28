@@ -80,6 +80,7 @@ public class GameView {
             SwitchModeHandler.getInstance().notifySubscribers();
             NeedforSpearGame.getInstance().getGameInfo().setPaused(false);
             NeedforSpearGame.getInstance().switchToRunningMode();
+            NeedforSpearGame.getInstance().startYmirAction();
         });
 
         loadMapButton.addActionListener(e -> {
@@ -119,6 +120,7 @@ public class GameView {
             NeedforSpearGame.getInstance().getGameInfo().setPaused(true);
             resumeButton.setVisible(true);
             NeedforSpearGame.getInstance().getViewData().getGameView().getGamePanel().pause();
+            NeedforSpearGame.getInstance().stopYmirAction();
         });
 
         resumeButton.addActionListener(e -> {
@@ -126,6 +128,7 @@ public class GameView {
             NeedforSpearGame.getInstance().getGameInfo().setPaused(false);
             resumeButton.setVisible(false);
             NeedforSpearGame.getInstance().getViewData().getGameView().getGamePanel().resume();
+            NeedforSpearGame.getInstance().startYmirAction();
         });
 
         addObstacleChoice.addActionListener(e -> {
@@ -346,6 +349,7 @@ public class GameView {
         NeedforSpearGame.getInstance().getGameInfo().getPlayer().setListofSpells(SaveLoadHandler.getInstance().copyPreviousSpells());
         PlayerScoreHandler.getInstance().setScore(Constants.UIConstants.INIT_SCORE);
         updateSpellNumbers();
+        NeedforSpearGame.getInstance().startYmirAction();
     }
 
     /**
@@ -439,16 +443,6 @@ public class GameView {
         magicalHexButton.setText(String.valueOf(SpellHandler.getInstance().getSpellNumber(Constants.SpellNameConstants.HEX)));
         unstoppableSpellButton.setText(String.valueOf(SpellHandler.getInstance().getSpellNumber(Constants.SpellNameConstants.UNSTOPPABLE)));
         expansionSpellButton.setText(String.valueOf(SpellHandler.getInstance().getSpellNumber(Constants.SpellNameConstants.EXPANSION)));
-    }
-    /**
-     * This method removes all the components from the overlayPanel and removes overlayPanel from mainFrame.
-     */
-    public void removeOverlayPanel() {
-        overlayPanel.removeAll();
-        overlayPanel.repaint();
-        NeedforSpearGame.getInstance().getGameInfo().getMainFrame().getContentPane().remove(overlayPanel);
-        NeedforSpearGame.getInstance().getGameInfo().getMainFrame().repaint();
-        overlayPanel = null;
     }
 
     public GamePanel getGamePanel() {
