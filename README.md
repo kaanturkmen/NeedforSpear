@@ -17,7 +17,7 @@ Devnull worked as a team while developing Need for Spear, however, each team mem
 | Kaan Turkmen (kaanturkmen)   |   Threading Concepts, Database Implementation, Authentication System and Views.    |
 | Can Usluel (canusluel)       |        Obstacle Placement Algorithms, GameView GUI and Hollow Purple Spell.        |
 | Melis Oktayoglu (moktayoglu) | Physics Engine, Sphere movement & Interaction, Infinite Void & Double Accel Spell. |
-| Doruk Yildirim (dorkyhog)    |                          Game Assets, Magical Hex Spell.                           |
+| Doruk Yildirim (dorkyhog)    |     Game Assets, Magical Hex Spell, Chance Giving Spell & Score Calculation.       |
 | Gokce Sevimli (gokcesevimli) |                     Noble Phantasm (Paddle), Expansion Spell.                      |
 
 # Additional Info

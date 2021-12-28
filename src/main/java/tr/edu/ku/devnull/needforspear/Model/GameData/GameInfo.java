@@ -82,6 +82,12 @@ public class GameInfo {
         else {normalDifficulty=true;}
     }
 
+    public String getDifficulty() {
+        if(normalDifficulty){
+            return "normal!";
+        } else { return "hard!"; }
+    }
+
     public boolean isPaused() {
         return isPaused;
     }
