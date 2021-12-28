@@ -115,7 +115,9 @@ public class SpellHandler{
         }
         return null;
     }
-
+    /** Activates the given spell by calling its triggerEffect()
+     * @param spell
+     */
     public void activateSpell(Spell spell){
         if(spell != null){
             switch (spell.getSpellType()) {
@@ -140,6 +142,12 @@ public class SpellHandler{
             NeedforSpearGame.getInstance().getViewData().getGameView().updateSpellNumbers();
         }
     }
+
+    /**
+     * returns the number of spells that player have from given type
+     * @param spellType
+     * @return number of spells that is given spellType
+     */
     public int getSpellNumber(String spellType){
         int x = 0;
         for(Spell spell: NeedforSpearGame.getInstance().getPlayer().getListofSpells()){

@@ -357,6 +357,7 @@ public class GameView {
         gamePanel.setLocation(0, overlayPanel.getHeight());
         SwitchModeHandler.getInstance().subscribe(gamePanel);
         MagicalHexHandler.getInstance().subscribe2(gamePanel);
+        HollowPurpleHandler.getInstance().subscribe(gamePanel);
         NeedforSpearGame.getInstance().getMainFrame().getContentPane().remove(backgroundPanel);
         NeedforSpearGame.getInstance().getMainFrame().getContentPane().add(gamePanel, BorderLayout.CENTER);
 
@@ -405,6 +406,7 @@ public class GameView {
         NeedforSpearGame.getInstance().getViewData().getGameView().getGamePanel().setIsGameStarted(false);
         SwitchModeHandler.getInstance().unSubscribe(gamePanel);
         MagicalHexHandler.getInstance().unSubscribe(gamePanel);
+        HollowPurpleHandler.getInstance().unSubscribe(gamePanel);
         NeedforSpearGame.getInstance().getMainFrame().getContentPane().remove(gamePanel);
         NeedforSpearGame.getInstance().getMainFrame().repaint();
         NeedforSpearGame.getInstance().getMainFrame().revalidate();

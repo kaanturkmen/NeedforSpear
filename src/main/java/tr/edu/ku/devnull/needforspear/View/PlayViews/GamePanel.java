@@ -5,6 +5,7 @@ import tr.edu.ku.devnull.needforspear.Model.GameData.GameMode;
 import tr.edu.ku.devnull.needforspear.Model.GameData.Location;
 import tr.edu.ku.devnull.needforspear.Model.Obstacle.Obstacle;
 import tr.edu.ku.devnull.needforspear.Model.Player.Player;
+import tr.edu.ku.devnull.needforspear.Model.Spell.YmirSpells.HollowPurpleSubscriber;
 import tr.edu.ku.devnull.needforspear.Model.UIModels.Bullet;
 import tr.edu.ku.devnull.needforspear.Model.UIModels.NoblePhantasm;
 import tr.edu.ku.devnull.needforspear.Model.UIModels.Sphere;
@@ -12,7 +13,6 @@ import tr.edu.ku.devnull.needforspear.NeedforSpearGame;
 import tr.edu.ku.devnull.needforspear.View.PlayViews.Animators.*;
 import tr.edu.ku.devnull.needforspear.Viewmodel.GameLogicHandlers.BackgroundHandler;
 import tr.edu.ku.devnull.needforspear.Viewmodel.GameLogicHandlers.BuildModeHandler;
-import tr.edu.ku.devnull.needforspear.Viewmodel.GameLogicHandlers.PlayerLivesHandler;
 
 import javax.swing.*;
 import java.awt.*;
@@ -23,7 +23,7 @@ import java.awt.event.*;
  *
  * @author Can Usluel, Melis Oktayoğlu
  */
-public class GamePanel extends JPanel implements ActionListener, MouseMotionListener, SwitchModeSubscriber, MagicalHexSubscriber {
+public class GamePanel extends JPanel implements ActionListener, MouseMotionListener, SwitchModeSubscriber, MagicalHexSubscriber, HollowPurpleSubscriber {
 
     SphereAnimator sphereAnimator;
     ObstacleAnimator obstacleAnimator;
@@ -186,7 +186,7 @@ public class GamePanel extends JPanel implements ActionListener, MouseMotionList
 
                                 } else if(BuildModeHandler.getInstance().doesObstacleCollide(obstacle)){
                                     BuildModeHandler.getInstance().removeObstacle(x, y, getGraphics(), BuildModeHandler.getInstance().getObstacleByLocation(x, y));
-                                } else if(!BuildModeHandler.getInstance().checkObstacleLocation(obstacle)){
+                                } else if(BuildModeHandler.getInstance().checkObstacleLocation(obstacle)){
                                     BuildModeHandler.getInstance().removeObstacle(x, y, getGraphics(), BuildModeHandler.getInstance().getObstacleByLocation(x, y));
                                     JOptionPane.showMessageDialog(NeedforSpearGame.getInstance().getMainFrame(), "Obstacle is too close to the phantasm!", "Alert", JOptionPane.WARNING_MESSAGE);
                                 }
@@ -221,7 +221,7 @@ public class GamePanel extends JPanel implements ActionListener, MouseMotionList
                     int y = e.getY();
                     if (!isGameStarted && BuildModeHandler.getInstance().getObstacleByLocation(x, y) != null) {
                         if (BuildModeHandler.getInstance().doesObstacleCollide(BuildModeHandler.getInstance().getObstacleByLocation(x, y)) ||
-                                !BuildModeHandler.getInstance().checkObstacleLocation(BuildModeHandler.getInstance().getObstacleByLocation(x, y))){
+                                BuildModeHandler.getInstance().checkObstacleLocation(BuildModeHandler.getInstance().getObstacleByLocation(x, y))){
                             BuildModeHandler.getInstance().relocateObstacle(0, 0, getGraphics(), obstacleAnimator, false);
                         }
                     } else {
@@ -270,6 +270,11 @@ public class GamePanel extends JPanel implements ActionListener, MouseMotionList
         NeedforSpearGame.getInstance().getMainFrame().getContentPane().removeAll();
         NeedforSpearGame.getInstance().getMainFrame().repaint();
         NeedforSpearGame.getInstance().startMainMenu();
+    }
+
+    @Override
+    public void updateHollow() {
+        BuildModeHandler.getInstance().createHollowObstacles(getGraphics(), obstacleAnimator);
     }
 }
 
