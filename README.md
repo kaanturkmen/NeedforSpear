@@ -20,8 +20,8 @@ Devnull worked as a team while developing Need for Spear, however, each team mem
 | Doruk Yildirim (dorkyhog)    |                          Game Assets, Magical Hex Spell.                           |
 | Gokce Sevimli (gokcesevimli) |                     Noble Phantasm (Paddle), Expansion Spell.                      |
 
-# Bonus
+# Additional Info
 
-I was the the team lead on this project. We have used private Git server of our university for developing Need for Spear game. Most of the version control data is located in private git server.
+I was the team lead on this project. We have used private Git server of our university for developing Need for Spear game. Most of the version control data is located in private git server.
 
 Special thanks to all my team members for their commitment on this project.
