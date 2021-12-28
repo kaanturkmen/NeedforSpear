@@ -172,7 +172,9 @@ public class CollisionHandler {
     }
 
     public void removeObstacle(Obstacle obstacle,  List<Obstacle> listofObstacles){
-        PlayerScoreHandler.getInstance().updateScore(NeedforSpearGame.getInstance().getGameData().getPlayer());
+        if(!obstacle.getObstacleType().equals(Constants.ObstacleNameConstants.HOLLOW)) {
+            PlayerScoreHandler.getInstance().updateScore(NeedforSpearGame.getInstance().getPlayer());
+        }
         listofObstacles.remove(obstacle);
     }
 

@@ -14,6 +14,7 @@ import tr.edu.ku.devnull.needforspear.View.PlayViews.Animators.ObstacleAnimator;
 import tr.edu.ku.devnull.needforspear.NeedforSpearGame;
 
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -165,11 +166,11 @@ public class BuildModeHandler {
     }
     /**
      * This method checks if the given obstacle is far enough from noble phantasm
-     *
+     * returns true if the obstacle is too close to phantasm, otherwise returns false
      * @return boolean
      */
     public boolean checkObstacleLocation(Obstacle obstacle){
-        return obstacle.getLocation().getYCoordinates() <= NoblePhantasm.getInstance().getLocation().getYCoordinates() - Constants.UIConstants.OBSTACLE_DISTANCE_FROM_PHANTASM;
+        return !(obstacle.getLocation().getYCoordinates() <= NoblePhantasm.getInstance().getLocation().getYCoordinates() - Constants.UIConstants.OBSTACLE_DISTANCE_FROM_PHANTASM);
     }
     /**
      * This method checks if the given numbers satisfy the minimum obstacle number condition
@@ -330,5 +331,55 @@ public class BuildModeHandler {
                 explosive.alterOrbitCenter();
             }
         }
+    }
+
+    /**
+     * creates hollow obstacles and places them
+     * @param graphics
+     * @param obstacleAnimator
+     */
+    public void createHollowObstacles(Graphics graphics, ObstacleAnimator obstacleAnimator){
+        List<Location> availableLocations = getAvailableLocations();
+        Collections.shuffle(availableLocations);
+        for(int i = 0; i<Constants.ObstacleNumberConstants.HOLLOW_OBSTACLE_NUM; i++){
+            System.out.println(availableLocations.get(i).getXCoordinates() + " " + availableLocations.get(i).getYCoordinates());
+            createNewObstacle(availableLocations.get(i).getXCoordinates(), availableLocations.get(i).getYCoordinates(),
+                    Constants.ObstacleNameConstants.HOLLOW, graphics,obstacleAnimator);
+        }
+    }
+
+    /**
+     * returns a list of available locations for placing obstacles
+     * @return
+     */
+    private List<Location> getAvailableLocations(){
+        Obstacle dummyObstacle = ObstacleFactory.getInstance().getObstacle(Constants.ObstacleNameConstants.SIMPLE);
+        List<Location> availableLocations = new ArrayList<>();
+        for(int y = 0; y<NoblePhantasm.getInstance().getLocation().getYCoordinates() - Constants.UIConstants.OBSTACLE_DISTANCE_FROM_PHANTASM; y++){
+            for(int x = 0; x<Constants.UIConstants.INITIAL_SCREEN_WIDTH-dummyObstacle.getSize().getWidth(); x++){
+                if(checkIfPointAvailable(x,y)){
+                    availableLocations.add(new Location(x,y));
+                }
+            }
+        }
+        return availableLocations;
+    }
+
+    /**
+     * returns true if the given point is available for putting obstacle
+     * @param x
+     * @param y
+     * @return boolean
+     */
+    private boolean checkIfPointAvailable(int x, int y){
+        for (int i = 0; i < obstacleList.size(); i++) {
+            if (obstacleList.get(i).getLocation().getXCoordinates() - obstacleList.get(i).getSize().getWidth() <= x &&
+                    obstacleList.get(i).getLocation().getXCoordinates() + obstacleList.get(i).getSize().getWidth() >= x &&
+                    obstacleList.get(i).getLocation().getYCoordinates() - obstacleList.get(i).getSize().getLength()<= y &&
+                    obstacleList.get(i).getLocation().getYCoordinates() + obstacleList.get(i).getSize().getLength() >= y){
+                return false;
+            }
+        }
+        return true;
     }
 }

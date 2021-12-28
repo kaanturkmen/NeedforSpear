@@ -357,6 +357,8 @@ public class GameView {
         gamePanel.setLocation(0, overlayPanel.getHeight());
         SwitchModeHandler.getInstance().subscribe(gamePanel);
         MagicalHexHandler.getInstance().subscribe2(gamePanel);
+      
+        HollowPurpleHandler.getInstance().subscribe(gamePanel);
         NeedforSpearGame.getInstance().getGameData().getMainFrame().getContentPane().remove(backgroundPanel);
         NeedforSpearGame.getInstance().getGameData().getMainFrame().getContentPane().add(gamePanel, BorderLayout.CENTER);
 
@@ -405,9 +407,12 @@ public class GameView {
         NeedforSpearGame.getInstance().getViewData().getGameView().getGamePanel().setIsGameStarted(false);
         SwitchModeHandler.getInstance().unSubscribe(gamePanel);
         MagicalHexHandler.getInstance().unSubscribe(gamePanel);
+
+        HollowPurpleHandler.getInstance().unSubscribe(gamePanel);
         NeedforSpearGame.getInstance().getGameData().getMainFrame().getContentPane().remove(gamePanel);
         NeedforSpearGame.getInstance().getGameData().getMainFrame().repaint();
         NeedforSpearGame.getInstance().getGameData().getMainFrame().revalidate();
+
         gamePanel = null;
         BuildModeHandler.getInstance().resetPhantasmAndSphereLocation();
     }

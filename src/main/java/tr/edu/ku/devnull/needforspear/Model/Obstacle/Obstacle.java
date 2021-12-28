@@ -266,6 +266,9 @@ public class Obstacle {
             case Constants.UIConstants.GREEN_COLOR_STRING:
                 colorSelection = Color.GREEN;
                 break;
+            case Constants.UIConstants.PURPLE_COLOR_STRING:
+                colorSelection = new Color(102, 0, 153);
+                break;
             default:
                 break;
         }
