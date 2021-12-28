@@ -6,6 +6,7 @@ import tr.edu.ku.devnull.needforspear.Model.UIModels.FocusableJTextField;
 import tr.edu.ku.devnull.needforspear.NeedforSpearGame;
 import tr.edu.ku.devnull.needforspear.View.PlayViews.Animators.*;
 import tr.edu.ku.devnull.needforspear.Viewmodel.AuthHandler.LoginHandler;
+import tr.edu.ku.devnull.needforspear.Viewmodel.GameHandlers.SoundHandler;
 import tr.edu.ku.devnull.needforspear.Viewmodel.GameLogicHandlers.*;
 
 
@@ -137,7 +138,7 @@ public class GameView {
             muteButton.setVisible(false);
             System.out.println("Game muted");
             NeedforSpearGame.getInstance().setMuteModeActivated(true);
-            NeedforSpearGame.getInstance().stopBackgroundMusic();
+            SoundHandler.getInstance().stopBackgroundMusic();
         });
 
         unmuteButton.addActionListener(e -> {
@@ -145,7 +146,7 @@ public class GameView {
             muteButton.setVisible(true);
             System.out.println("Game unmuted");
             NeedforSpearGame.getInstance().setMuteModeActivated(false);
-            NeedforSpearGame.getInstance().playBackgroundMusic();
+            SoundHandler.getInstance().playBackgroundMusic();
         });
     }
     private void createActionListenerForSpellButtons(){

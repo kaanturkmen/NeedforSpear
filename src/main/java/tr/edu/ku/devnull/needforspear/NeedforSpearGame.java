@@ -9,16 +9,12 @@ import tr.edu.ku.devnull.needforspear.Model.GameData.GameMode;
 import tr.edu.ku.devnull.needforspear.Model.Player.Player;
 import tr.edu.ku.devnull.needforspear.Model.UIModels.ViewData;
 import tr.edu.ku.devnull.needforspear.Model.Ymir.Ymir;
+import tr.edu.ku.devnull.needforspear.Viewmodel.GameHandlers.InternetHandler;
+import tr.edu.ku.devnull.needforspear.Viewmodel.GameHandlers.SoundHandler;
 import tr.edu.ku.devnull.needforspear.Viewmodel.State.InitialState;
 import tr.edu.ku.devnull.needforspear.Viewmodel.State.ViewState;
 
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
 import javax.swing.*;
-import java.io.File;
-import java.net.URL;
-import java.net.URLConnection;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -36,10 +32,8 @@ public class NeedforSpearGame {
     private Player player;
     private GameMap gameMap;
     private GameDatabase gameDatabase;
-    private Thread backgroundMusicThread, soundEffectThread;
     private boolean muteModeActivated = false;
     private final ScheduledExecutorService executorService = Executors.newScheduledThreadPool(1);
-    private Clip clip;
     private static NeedforSpearGame onlyInstance;
     private ViewData viewData;
     private ViewState currentState;
@@ -54,7 +48,6 @@ public class NeedforSpearGame {
      */
     public static void main(String[] args) {
         getInstance().setCurrentState(new InitialState(getInstance()));
-        getInstance().playBackgroundMusic();
         getInstance().init();
         getInstance().startLoginView();
     }
@@ -76,7 +69,8 @@ public class NeedforSpearGame {
         mainFrame.setResizable(false);
         mainFrame.setSize(Constants.UIConstants.INITIAL_SCREEN_WIDTH, Constants.UIConstants.INITIAL_SCREEN_HEIGHT);
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        if (!checkInternetConnection()) System.exit(0);
+        if (!new InternetHandler().checkInternetConnection()) System.exit(0);
+        SoundHandler.getInstance().playBackgroundMusic();
     }
 
     /**
@@ -130,79 +124,6 @@ public class NeedforSpearGame {
      */
     public void startGameView() {
         currentState.switchToGameView();
-    }
-
-    /**
-     * Checks if the player has an active internet connection.
-     *
-     * @return Boolean indicating if user has an internet connection.
-     */
-    private boolean checkInternetConnection() {
-        try {
-            URL url = new URL(Constants.UIConstants.WEBSITE_TO_BE_PINGED);
-            URLConnection connection = url.openConnection();
-            connection.connect();
-            return true;
-        } catch (Exception e) {
-            System.err.println("You do not have an internet connection! This game requires an internet connection to play!");
-            return false;
-        }
-    }
-
-    /**
-     * Plays a music (.wav extension is required) on background.
-     */
-    public void playBackgroundMusic() {
-        if (backgroundMusicThread != null) {
-            backgroundMusicThread.interrupt();
-        }
-
-        backgroundMusicThread = new Thread(() -> {
-            try {
-                clip = AudioSystem.getClip();
-                AudioInputStream inputStream = AudioSystem.getAudioInputStream(new File(findResourceFolder("backgroundMusic.wav")));
-                clip.open(inputStream);
-                clip.loop(0);
-                clip.start();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
-
-        backgroundMusicThread.start();
-    }
-
-    /**
-     * Stops the background music.
-     */
-    public void stopBackgroundMusic() {
-        clip.stop();
-        backgroundMusicThread.stop();
-        backgroundMusicThread = null;
-    }
-
-    /**
-     * Plays a given sound (.wav extension is required) once.
-     *
-     * @param path Path of the name of the file which is located in Resources directory.
-     */
-    public void playSound(String path) {
-        if (soundEffectThread != null) {
-            soundEffectThread.stop();
-        }
-
-        soundEffectThread = new Thread(() -> {
-            try {
-                Clip clip = AudioSystem.getClip();
-                AudioInputStream inputStream = AudioSystem.getAudioInputStream(new File(findResourceFolder(path)));
-                clip.open(inputStream);
-                clip.start();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
-
-        soundEffectThread.start();
     }
 
     /**
