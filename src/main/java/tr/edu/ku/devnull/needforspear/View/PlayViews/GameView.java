@@ -29,7 +29,6 @@ public class GameView {
     private JComboBox<String> addObstacleChoice;
 
     private boolean areKeysLoaded = false;
-    private String difficulty;
 
     /**
      * This method constructs GameView.java
@@ -155,12 +154,9 @@ public class GameView {
         });
 
         changeDifficultyButton.addActionListener(e -> {
-            if(NeedforSpearGame.getInstance().getGameInfo().getNormalDifficulty()){
-                difficulty = "normal!";
-            } else { difficulty = "hard!"; }
-            System.out.println("Difficulty:" + difficulty);
+            System.out.println("Difficulty:" + NeedforSpearGame.getInstance().getGameInfo().getDifficulty());
             NeedforSpearGame.getInstance().getGameInfo().changeDifficulty();
-            JOptionPane.showMessageDialog(null, "Difficulty changed to " + difficulty);
+            JOptionPane.showMessageDialog(null, "Difficulty changed to " + NeedforSpearGame.getInstance().getGameInfo().getDifficulty());
         });
     }
     private void createActionListenerForSpellButtons(){
