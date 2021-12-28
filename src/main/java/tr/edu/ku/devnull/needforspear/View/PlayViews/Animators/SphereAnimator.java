@@ -24,7 +24,7 @@ public class SphereAnimator implements AnimatorStrategy {
 
     int radius = Constants.ProportionConstants.RADIUS_OF_THE_SPHERE;
     private List<Obstacle> listofObstacles;
-
+    Image sphereImage;
     /**
      * Constructor
      *
@@ -35,6 +35,13 @@ public class SphereAnimator implements AnimatorStrategy {
             Sphere.getInstance().setSpeed(new Speed(2, 2));
         } else Sphere.getInstance().setSpeed(new Speed(4, 4));
         this.listofObstacles = listofObstacles;
+        sphereImage = getSphereImage(Constants.UIConstants.SPHERE_IMAGE);
+
+    }
+
+    public Image getSphereImage(String path) {
+        return Toolkit.getDefaultToolkit().getImage(Constants.UIConstants.USER_DIRECTORY_TO_RESOURCE_FOLDER + path)
+                .getScaledInstance(NoblePhantasm.getInstance().getSize().getWidth(), Constants.ProportionConstants.HEIGHT_OF_NOBLE_PHANTASM, Image.SCALE_SMOOTH);
 
     }
 
@@ -46,7 +53,7 @@ public class SphereAnimator implements AnimatorStrategy {
      */
     @Override
     public void draw(Graphics g) {
-        g.setColor(Color.red);
+
 
         if (Sphere.getInstance().isMoving()) {
             sphereMovement(g);
@@ -56,7 +63,7 @@ public class SphereAnimator implements AnimatorStrategy {
             Sphere.getInstance().setLocation(followNoblePhantasm);
             int x_coordinates_loc = (int) followNoblePhantasm.getXCoordinates().doubleValue();
             int y_coordinates_loc = (int) followNoblePhantasm.getYCoordinates().doubleValue();
-            g.fillOval(x_coordinates_loc, y_coordinates_loc, radius * 2, radius * 2);
+            g.drawImage(sphereImage, x_coordinates_loc, y_coordinates_loc, radius * 2, radius * 2, null);
         }
     }
 
@@ -76,7 +83,7 @@ public class SphereAnimator implements AnimatorStrategy {
         int x_coordinates_loc = (int) Sphere.getInstance().getLocation().getXCoordinates().doubleValue();
         int y_coordinates_loc = (int) Sphere.getInstance().getLocation().getYCoordinates().doubleValue();
         g.setColor(Color.red);
-        g.fillOval(x_coordinates_loc, y_coordinates_loc, radius * 2, radius * 2);
+        g.drawImage(sphereImage, x_coordinates_loc, y_coordinates_loc, radius * 2, radius * 2, null);
     }
 
     /**
@@ -145,5 +152,3 @@ public class SphereAnimator implements AnimatorStrategy {
     }
 
 }
-
-
