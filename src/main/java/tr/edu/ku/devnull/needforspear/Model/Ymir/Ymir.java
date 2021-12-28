@@ -1,24 +1,35 @@
 package tr.edu.ku.devnull.needforspear.Model.Ymir;
 
+import tr.edu.ku.devnull.needforspear.Model.GameData.Difficulty;
 import tr.edu.ku.devnull.needforspear.Model.Spell.YmirSpells.DoubleAccelSpell;
 import tr.edu.ku.devnull.needforspear.Model.Spell.YmirSpells.HollowPurpleSpell;
 import tr.edu.ku.devnull.needforspear.Model.Spell.YmirSpells.InfiniteVoidSpell;
 import tr.edu.ku.devnull.needforspear.Model.Spell.YmirSpells.YmirPower;
+import tr.edu.ku.devnull.needforspear.NeedforSpearGame;
 
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Ymir extends Thread {
 
-    Random r = new Random();
-    YmirPower currentPower;
+    private final Random r = new Random();
+    private double activationProbability;
+
+    public Ymir() {
+        if(NeedforSpearGame.getInstance().getGameInfo().getDifficultyHandler().getCurrentDifficulty() == Difficulty.NORMAL) {
+            activationProbability = 0.5;
+        } else {
+            System.out.println("Activation probability is set to 0.75");
+            activationProbability = 0.75;
+        }
+    }
 
     @Override
     public void run() {
         System.out.println("Ymir is calculating!");
 
-        if(r.nextFloat() <= 0.5) return;
-        currentPower = determineRandomSpell(ThreadLocalRandom.current().nextInt(0, 3));
+        if(r.nextFloat() <= activationProbability) return;
+        YmirPower currentPower = determineRandomSpell(ThreadLocalRandom.current().nextInt(0, 3));
 
         if(currentPower == null) {
             System.err.println("EXCEPTION: YMIR Spell Method returned as a null.");
