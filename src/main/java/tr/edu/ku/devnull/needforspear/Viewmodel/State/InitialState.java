@@ -19,7 +19,7 @@ public class InitialState extends ViewState {
         needforSpearGame.setCurrentState(new LoginViewState(needforSpearGame));
 
         LoginView loginView = new LoginView();
-        NeedforSpearGame.getInstance().setLoginView(loginView);
+        NeedforSpearGame.getInstance().getViewData().setLoginView(loginView);
         loginView.createView();
     }
 

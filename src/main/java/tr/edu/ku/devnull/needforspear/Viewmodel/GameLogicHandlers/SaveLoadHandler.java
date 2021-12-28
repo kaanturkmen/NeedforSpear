@@ -86,13 +86,13 @@ public class SaveLoadHandler implements DatabaseSaveLoadSubscriber {
                     System.out.println("GameMap Response Arrived!");
                     System.out.println(gameMap.toString());
                     if (NeedforSpearGame.getInstance().getGameMap() != null) {
-                        NeedforSpearGame.getInstance().getGameView().removeGamePanel();
+                        NeedforSpearGame.getInstance().getViewData().getGameView().removeGamePanel();
                     }
                     NeedforSpearGame.getInstance().setGameMap(gameMap);
                     BuildModeHandler.getInstance().setObstacleList(NeedforSpearGame.getInstance().getGameMap().getListofObstacles());
                     NeedforSpearGame.getInstance().setGameLoaded(true);
-                    NeedforSpearGame.getInstance().getGameView().adjustOverlayPanelForBuildingMode();
-                    NeedforSpearGame.getInstance().getGameView().loadAMap();
+                    NeedforSpearGame.getInstance().getViewData().getGameView().adjustOverlayPanelForBuildingMode();
+                    NeedforSpearGame.getInstance().getViewData().getGameView().loadAMap();
                 } else {
                     JOptionPane.showMessageDialog(NeedforSpearGame.getInstance().getMainFrame(), "You have lost in previous game.", Constants.UIConstants.ALERT_TEXT, JOptionPane.WARNING_MESSAGE);
                 }

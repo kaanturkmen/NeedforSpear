@@ -44,7 +44,7 @@ public class PlayerScoreHandler {
      }
         System.out.println(SaveLoadHandler.getInstance().getPreviousScore());
      player.setScore(SaveLoadHandler.getInstance().getPreviousScore() * newMapCreated + score);
-     NeedforSpearGame.getInstance().getGameView().updatePlayerScore(player.getScore());
+     NeedforSpearGame.getInstance().getViewData().getGameView().updatePlayerScore(player.getScore());
     }
 
     public void setScore(int score) {

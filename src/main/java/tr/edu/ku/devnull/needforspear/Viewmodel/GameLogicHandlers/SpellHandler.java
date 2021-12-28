@@ -137,7 +137,7 @@ public class SpellHandler{
 
             }
             NeedforSpearGame.getInstance().getPlayer().getListofSpells().remove(spell);
-            NeedforSpearGame.getInstance().getGameView().updateSpellNumbers();
+            NeedforSpearGame.getInstance().getViewData().getGameView().updateSpellNumbers();
         }
     }
     public int getSpellNumber(String spellType){

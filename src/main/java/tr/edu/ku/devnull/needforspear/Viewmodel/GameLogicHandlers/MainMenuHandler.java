@@ -66,8 +66,8 @@ public class MainMenuHandler implements DatabaseSaveLoadSubscriber {
                     NeedforSpearGame.getInstance().getMainFrame().repaint();
                     NeedforSpearGame.getInstance().startGameView();
                     BuildModeHandler.getInstance().setObstacleList(NeedforSpearGame.getInstance().getGameMap().getListofObstacles());
-                    NeedforSpearGame.getInstance().getGameView().adjustOverlayPanelForBuildingMode();
-                    NeedforSpearGame.getInstance().getGameView().loadAMap();
+                    NeedforSpearGame.getInstance().getViewData().getGameView().adjustOverlayPanelForBuildingMode();
+                    NeedforSpearGame.getInstance().getViewData().getGameView().loadAMap();
                     NeedforSpearGame.getInstance().setGameLoaded(true);
                 } else {
                     JOptionPane.showMessageDialog(NeedforSpearGame.getInstance().getMainFrame(), "You have lost in previous game", "Alert", JOptionPane.WARNING_MESSAGE);

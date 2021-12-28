@@ -58,7 +58,7 @@ public class PlayerLivesHandler {
         int index = sphereList.indexOf(sphere);
         Player currrentPlayer = playerList.get(index);
         currrentPlayer.decreaseLives();
-        NeedforSpearGame.getInstance().getGameView().updatePlayerLives(currrentPlayer.getLives());
+        NeedforSpearGame.getInstance().getViewData().getGameView().updatePlayerLives(currrentPlayer.getLives());
         //if (currrentPlayer.getLives() <= 0) endGame(currrentPlayer);
     }
 
@@ -66,7 +66,7 @@ public class PlayerLivesHandler {
         int index = noblePhantasmList.indexOf(noblePhantasm);
         Player currentPlayer = playerList.get(index);
         currentPlayer.decreaseLives();
-        NeedforSpearGame.getInstance().getGameView().updatePlayerLives(currentPlayer.getLives());
+        NeedforSpearGame.getInstance().getViewData().getGameView().updatePlayerLives(currentPlayer.getLives());
         //if (currentPlayer.getLives() <= 0) endGame(currentPlayer);
     }
 
@@ -77,7 +77,7 @@ public class PlayerLivesHandler {
      */
     public void increasePlayerLives(Player player) {
         player.increaseLives();
-        NeedforSpearGame.getInstance().getGameView().updatePlayerLives(player.getLives());
+        NeedforSpearGame.getInstance().getViewData().getGameView().updatePlayerLives(player.getLives());
     }
 
     public int getPlayerHealth(){
