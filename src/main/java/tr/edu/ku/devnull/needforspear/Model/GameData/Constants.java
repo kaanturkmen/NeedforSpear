@@ -39,6 +39,7 @@ public interface Constants {
         String VALIDATE_AND_CHANGE_PASSWORD_VIEW_BACKGROUND_IMAGE = "ValidateAndResetBackground.png";
         String MAIN_MENU_BACKGROUND_IMAGE = "MainMenuBackground.png";
         String GAME_BACKGROUND_IMAGE = "GameBackground.png";
+        String PHANTASM_IMAGE = "Phantasm1.png";
 
         String USER_DIRECTORY_KEYWORD = "user.dir";
         String USER_DIRECTORY_TO_RESOURCE_FOLDER = "src/main/java/tr/edu/ku/devnull/needforspear/Resources/";

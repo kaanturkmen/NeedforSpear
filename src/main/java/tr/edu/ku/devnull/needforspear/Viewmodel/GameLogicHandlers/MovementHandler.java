@@ -244,12 +244,12 @@ public class MovementHandler {
     }
 
     /**
-     * @return new Location of NoblePhantasm.
+     * @return double x location of NoblePhantasm.
      * This method moves the NoblePhantasm by multiplying time passed with a proper speed, which is L/seconds, according to its direction and the location is updated accordingly.
      * If the NoblePhantasm is speeding, it goes with a 2L/seconds.
      */
 
-    public Location movementOfNoblePhantasm(){
+    public double movementOfNoblePhantasm(){
         noblePhantasm = NoblePhantasm.getInstance();
         Long currentTime = System.currentTimeMillis();
         Long lastUpdateTime = noblePhantasm.getLastUpdateTime();
@@ -280,32 +280,20 @@ public class MovementHandler {
 
         }
 
-        return new Location(currentX, noblePhantasm.getLocation().getYCoordinates());
+        return currentX;
     }
 
-
     /**
-     * @return Shape after transformation.
-     * This method rotates the NoblePhantasm by creating a newAngle, which is calculated by converting radians to milliseconds,and multiplying it with the time passed.
-     * After finding the newAngle, AffineTransform is used to rotate based on direction.
+     * NoblePhantasm rotation is handled here.
      */
 
-    public Shape rotateOfNoblePhantasm() {
-
-        noblePhantasm = NoblePhantasm.getInstance();
+    public void rotationOfNoblePhantasm(){
         Long currentTime = System.currentTimeMillis();
         Long lastUpdateTime = noblePhantasm.getLastUpdateTime();
-        Long moveTimeDiff = currentTime - lastUpdateTime;
-        currentX = noblePhantasm.getLocation().getXCoordinates();
-        currentY = noblePhantasm.getLocation().getYCoordinates();
-        AffineTransform tx = new AffineTransform();
-
-        lastUpdateTime = noblePhantasm.getLastUpdateTime();
-        currentTime = System.currentTimeMillis();
 
         double angle;
         double newAngle = 0;
-        Shape newShape;
+
         if (noblePhantasm.isRightRotate()) {
             angle = noblePhantasm.getRotationDegree();
             if (lastUpdateTime == 0L) {
@@ -317,11 +305,6 @@ public class MovementHandler {
                 newAngle = 0.78;
 
 
-            tx.rotate(newAngle, currentX + noblePhantasm.getSize().getWidth() / 2, currentY + Constants.ProportionConstants.Y_CENTER_OF_NOBLE_PHANTASM);
-            Rectangle shape = new Rectangle((int) currentX, (int) currentY, noblePhantasm.getSize().getWidth(), Constants.ProportionConstants.HEIGHT_OF_NOBLE_PHANTASM);
-            newShape = tx.createTransformedShape(shape);
-
-
         } else if (NoblePhantasm.getInstance().isLeftRotate()) {
             angle = noblePhantasm.getRotationDegree();
             if (lastUpdateTime == 0L) {
@@ -331,10 +314,6 @@ public class MovementHandler {
             }
             if (newAngle < -0.78)
                 newAngle = -0.78;
-
-            tx.rotate(newAngle, currentX + noblePhantasm.getSize().getWidth() / 2, currentY + Constants.ProportionConstants.Y_CENTER_OF_NOBLE_PHANTASM);
-            Rectangle shape = new Rectangle((int) currentX, (int) currentY, noblePhantasm.getSize().getWidth(), Constants.ProportionConstants.HEIGHT_OF_NOBLE_PHANTASM);
-            newShape = tx.createTransformedShape(shape);
 
         } else {
             angle = noblePhantasm.getRotationDegree();
@@ -353,19 +332,8 @@ public class MovementHandler {
                     newAngle = 0;
                 }
             }
-
-            tx.rotate(noblePhantasm.getRotationDegree(), currentX + noblePhantasm.getSize().getWidth() / 2, currentY + Constants.ProportionConstants.Y_CENTER_OF_NOBLE_PHANTASM);
-            Rectangle shape = new Rectangle((int) currentX, (int) currentY, noblePhantasm.getSize().getWidth(), Constants.ProportionConstants.HEIGHT_OF_NOBLE_PHANTASM);
-            newShape = tx.createTransformedShape(shape);
         }
-
         noblePhantasm.setRotationDegree(newAngle);
         noblePhantasm.setLastUpdateTime(currentTime);
-        noblePhantasm.setLastUpdateTime(currentTime);
-
-        return newShape;
     }
 }
-
-
-
