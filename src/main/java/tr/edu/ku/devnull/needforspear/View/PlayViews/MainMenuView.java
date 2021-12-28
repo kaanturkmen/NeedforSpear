@@ -56,13 +56,13 @@ public class MainMenuView {
         newGameButton.addActionListener(e -> {
             NoblePhantasm npa = NoblePhantasm.getInstance();
             npa.resetLocation();
-            NeedforSpearGame.getInstance().getMainFrame().getContentPane().removeAll();
-            NeedforSpearGame.getInstance().getMainFrame().repaint();
+            NeedforSpearGame.getInstance().getGameData().getMainFrame().getContentPane().removeAll();
+            NeedforSpearGame.getInstance().getGameData().getMainFrame().repaint();
             NeedforSpearGame.getInstance().startGameView();
         });
 
         loadGameButton.addActionListener(e -> {
-            MainMenuHandler.getInstance().loadGame(NeedforSpearGame.getInstance().getPlayer());
+            MainMenuHandler.getInstance().loadGame(NeedforSpearGame.getInstance().getGameData().getPlayer());
             NeedforSpearGame.getInstance().setGameLoaded(false);
         });
 
@@ -70,7 +70,7 @@ public class MainMenuView {
 
         exitGameButton.addActionListener(e -> {
             String[] options = new String[] {"Yes", "No"};
-            int response = JOptionPane.showOptionDialog(NeedforSpearGame.getInstance().getMainFrame(), "Are you sure?", "Exit",
+            int response = JOptionPane.showOptionDialog(NeedforSpearGame.getInstance().getGameData().getMainFrame(), "Are you sure?", "Exit",
                     JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE,
                     null, options, options[0]);
             if(response == 0){
@@ -83,13 +83,13 @@ public class MainMenuView {
      * A method for creating visibility to the components.
      */
     private void obtainVisibility() {
-        NeedforSpearGame.getInstance().getMainFrame().setContentPane(new BackgroundHandler().getBackgroundedJPanel(Constants.UIConstants.MAIN_MENU_BACKGROUND_IMAGE));
-        NeedforSpearGame.getInstance().getMainFrame().getContentPane().add(newGameButton);
-        NeedforSpearGame.getInstance().getMainFrame().getContentPane().add(loadGameButton);
-        NeedforSpearGame.getInstance().getMainFrame().getContentPane().add(helpScreenButton);
-        NeedforSpearGame.getInstance().getMainFrame().getContentPane().add(exitGameButton);
-        NeedforSpearGame.getInstance().getMainFrame().setLayout(null);
-        NeedforSpearGame.getInstance().getMainFrame().setVisible(true);
+        NeedforSpearGame.getInstance().getGameData().getMainFrame().setContentPane(new BackgroundHandler().getBackgroundedJPanel(Constants.UIConstants.MAIN_MENU_BACKGROUND_IMAGE));
+        NeedforSpearGame.getInstance().getGameData().getMainFrame().getContentPane().add(newGameButton);
+        NeedforSpearGame.getInstance().getGameData().getMainFrame().getContentPane().add(loadGameButton);
+        NeedforSpearGame.getInstance().getGameData().getMainFrame().getContentPane().add(helpScreenButton);
+        NeedforSpearGame.getInstance().getGameData().getMainFrame().getContentPane().add(exitGameButton);
+        NeedforSpearGame.getInstance().getGameData().getMainFrame().setLayout(null);
+        NeedforSpearGame.getInstance().getGameData().getMainFrame().setVisible(true);
     }
 }
 

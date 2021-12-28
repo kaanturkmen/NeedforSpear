@@ -105,7 +105,7 @@ public class ObstacleAnimator implements AnimatorStrategy {
      */
     public void movementOfObstacles(Graphics2D g2) {
 
-        if (NeedforSpearGame.getInstance().getGameMode() != GameMode.BUILDING_MODE) {
+        if (NeedforSpearGame.getInstance().getGameData().getGameMode() != GameMode.BUILDING_MODE) {
             for (int i = 0; i < listofObstacles.size(); i++) {
                 Obstacle explosiveObstacle = listofObstacles.get(i);
 

@@ -27,7 +27,7 @@ public class MainMenuHandler implements DatabaseSaveLoadSubscriber {
      * Private Constructor for the MainMenuHandler.
      */
     private MainMenuHandler() {
-        NeedforSpearGame.getInstance().getGameDatabase().subscribeToLoadSave(this);
+        NeedforSpearGame.getInstance().getGameData().getGameDatabase().subscribeToLoadSave(this);
     }
 
     /**
@@ -47,7 +47,7 @@ public class MainMenuHandler implements DatabaseSaveLoadSubscriber {
      * @param player Takes valid Player instance to read their map from the database.
      */
     public void loadGame(Player player) {
-        NeedforSpearGame.getInstance().getGameDatabase().loadGame(player);
+        NeedforSpearGame.getInstance().getGameData().getGameDatabase().loadGame(player);
     }
 
     /**
@@ -61,16 +61,16 @@ public class MainMenuHandler implements DatabaseSaveLoadSubscriber {
         if (!(NeedforSpearGame.getInstance().getCurrentState() instanceof GameViewState) && NeedforSpearGame.getInstance().getCurrentState() instanceof MainMenuViewState) {
             if (databaseResponse.equals(DatabaseCredentials.DATABASE_SUCCESS)) {
                 if (gameMap != null) {
-                    NeedforSpearGame.getInstance().setGameMap(gameMap);
-                    NeedforSpearGame.getInstance().getMainFrame().getContentPane().removeAll();
-                    NeedforSpearGame.getInstance().getMainFrame().repaint();
+                    NeedforSpearGame.getInstance().getGameData().setGameMap(gameMap);
+                    NeedforSpearGame.getInstance().getGameData().getMainFrame().getContentPane().removeAll();
+                    NeedforSpearGame.getInstance().getGameData().getMainFrame().repaint();
                     NeedforSpearGame.getInstance().startGameView();
-                    BuildModeHandler.getInstance().setObstacleList(NeedforSpearGame.getInstance().getGameMap().getListofObstacles());
+                    BuildModeHandler.getInstance().setObstacleList(NeedforSpearGame.getInstance().getGameData().getGameMap().getListofObstacles());
                     NeedforSpearGame.getInstance().getViewData().getGameView().adjustOverlayPanelForBuildingMode();
                     NeedforSpearGame.getInstance().getViewData().getGameView().loadAMap();
                     NeedforSpearGame.getInstance().setGameLoaded(true);
                 } else {
-                    JOptionPane.showMessageDialog(NeedforSpearGame.getInstance().getMainFrame(), "You have lost in previous game", "Alert", JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(NeedforSpearGame.getInstance().getGameData().getMainFrame(), "You have lost in previous game", "Alert", JOptionPane.WARNING_MESSAGE);
                 }
             }
         }

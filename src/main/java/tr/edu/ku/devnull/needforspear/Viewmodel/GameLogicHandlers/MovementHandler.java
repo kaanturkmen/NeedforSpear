@@ -171,10 +171,10 @@ public class MovementHandler {
         if (collisionHandler.collision(NoblePhantasm.getInstance(), spell)) {
             if(spell.getSpellType().equals(Constants.SpellNameConstants.CHANCE)) {
                 SpellAnimator.listOfMovingSpells.remove(spell);
-                PlayerLivesHandler.getInstance().increasePlayerLives(NeedforSpearGame.getInstance().getPlayer());
+                PlayerLivesHandler.getInstance().increasePlayerLives(NeedforSpearGame.getInstance().getGameData().getPlayer());
             }
             else {
-                NeedforSpearGame.getInstance().getPlayer().getListofSpells().add(spell);
+                NeedforSpearGame.getInstance().getGameData().getPlayer().getListofSpells().add(spell);
                 SpellAnimator.listOfMovingSpells.remove(spell);
                 NeedforSpearGame.getInstance().getViewData().getGameView().updateSpellNumbers();
                 System.out.println(spell);
