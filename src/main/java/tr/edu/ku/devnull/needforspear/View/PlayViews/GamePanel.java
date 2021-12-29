@@ -14,10 +14,12 @@ import tr.edu.ku.devnull.needforspear.View.PlayViews.Animators.*;
 import tr.edu.ku.devnull.needforspear.Viewmodel.GameLogicHandlers.BackgroundHandler;
 import tr.edu.ku.devnull.needforspear.Viewmodel.GameLogicHandlers.BuildModeHandler;
 import tr.edu.ku.devnull.needforspear.Viewmodel.GameLogicHandlers.MapHandler;
+import tr.edu.ku.devnull.needforspear.Viewmodel.GameLogicHandlers.MovementHandler;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.geom.AffineTransform;
 
 /**
  * GamePanel for incorporating animations of game objects, and key and mouse events
@@ -32,7 +34,7 @@ public class GamePanel extends JPanel implements ActionListener, MouseMotionList
     SpellAnimator spellAnimator;
     BulletAnimator bulletAnimator;
     NoblePhantasm noblePhantasm = NoblePhantasm.getInstance();
-
+    private MovementHandler movementHandler = new MovementHandler();
     boolean rotatingRight = false, rotatingLeft = false;
     private boolean isGameStarted = false, isHexActivated=false;
     private Location phantasmLocation;
@@ -75,10 +77,13 @@ public class GamePanel extends JPanel implements ActionListener, MouseMotionList
         super.paintComponent(g);
 
         g.drawImage(background, 0, 0, this.getWidth(), this.getHeight(), this);
+
+
         int x_location = noblePhantasm.getLocation().getXCoordinates().intValue();
         int y_location = noblePhantasm.getLocation().getYCoordinates().intValue();
-        if(noblePhantasm.isMagicActivated()){ g.drawImage(phantasmSpell, x_location, y_location,noblePhantasm.getSize().getWidth(), noblePhantasm.getSize().getLength(), this); }
-        else { g.drawImage(phantasm, x_location, y_location,noblePhantasm.getSize().getWidth(), noblePhantasm.getSize().getLength(), this); }
+        //if(noblePhantasm.isMagicActivated()){ g.drawImage(phantasmSpell, x_location, y_location,noblePhantasm.getSize().getWidth(), noblePhantasm.getSize().getLength(), this); }
+        //else { g.drawImage(phantasm, x_location, y_location,noblePhantasm.getSize().getWidth(), noblePhantasm.getSize().getLength(), this); }
+
 
         if (isGameStarted) {
             sphereAnimator.draw(g);
@@ -94,6 +99,7 @@ public class GamePanel extends JPanel implements ActionListener, MouseMotionList
                 }
             }
         }
+
         spellAnimator.draw(g);
         obstacleAnimator.draw(g);
 
