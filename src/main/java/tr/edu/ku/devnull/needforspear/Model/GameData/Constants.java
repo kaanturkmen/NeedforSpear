@@ -37,6 +37,13 @@ public interface Constants {
         String PHANTASM_IMAGE_EXPANSION = "Phantasm4.png";
         String SPHERE_IMAGE = "Sphere.png";
         String BULLET_IMAGE = "Bullet.png";
+        String EXPLOSIVE_OBSTACLE = "ExplosiveObstacle.png";
+        String FIRM_OBSTACLE = "FirmObstacle.png";
+        String SIMPLE_OBSTACLE = "SimpleObstacle.png";
+        String GIFT_OBSTACLE = "GiftObstacle.png";
+        String HOLLOW_OBSTACLE = "HollowObstacle.png";
+
+
 
         String USER_DIRECTORY_KEYWORD = "user.dir";
         String USER_DIRECTORY_TO_RESOURCE_FOLDER = "src/main/java/tr/edu/ku/devnull/needforspear/Resources/";
