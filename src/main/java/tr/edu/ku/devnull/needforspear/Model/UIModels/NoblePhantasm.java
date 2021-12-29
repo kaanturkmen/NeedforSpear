@@ -1,7 +1,6 @@
 package tr.edu.ku.devnull.needforspear.Model.UIModels;
 
 import tr.edu.ku.devnull.needforspear.Model.GameData.*;
-import tr.edu.ku.devnull.needforspear.Model.Spell.Spell;
 
 import java.util.List;
 import java.util.Timer;
@@ -33,8 +32,6 @@ public class NoblePhantasm {
     private boolean isExpansionSpell =false;
     private long expansionStartTime;
     private boolean isMagicalHex = false;
-    private long magicalHexStartTime;
-    private List<Bullet> listOfBullets;
 
 
     /**
@@ -186,8 +183,6 @@ public class NoblePhantasm {
     }
 
     public void activateExpansionSpell(){
-        //long current_time = System.currentTimeMillis();
-        //long start_time = noblePhantasm.getExpansionStartTime();
         if (!this.isMagicActivated) {
             int stopDelay = 30 * 1000; //milliseconds
             TimerTask stopTask = new TimerTask() {

@@ -41,6 +41,14 @@ public class SphereAnimator implements AnimatorStrategy {
 
     }
 
+    /**
+     * Creates a sphere image and scaling it.
+     *
+     * @param path Path of the sphere image.
+     * @return Image of the sphere.
+     */
+
+
     public Image getSphereImage(String path) {
         return Toolkit.getDefaultToolkit().getImage(Constants.UIConstants.USER_DIRECTORY_TO_RESOURCE_FOLDER + path)
                 .getScaledInstance(NoblePhantasm.getInstance().getSize().getWidth(), Constants.ProportionConstants.HEIGHT_OF_NOBLE_PHANTASM, Image.SCALE_SMOOTH);
@@ -55,7 +63,6 @@ public class SphereAnimator implements AnimatorStrategy {
      */
     @Override
     public void draw(Graphics g) {
-
 
         if (Sphere.getInstance().isMoving()) {
             sphereMovement(g);

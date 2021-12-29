@@ -94,12 +94,6 @@ public class KeyDispatcher implements KeyEventDispatcher {
                 NoblePhantasm noblePhantasm = NoblePhantasm.getInstance();
                 noblePhantasm.setSpeeding(false);
             }
-
-            if(e.getKeyCode() == KeyEvent.VK_T){
-                //NoblePhantasm noblePhantasm = NoblePhantasm.getInstance();
-                //noblePhantasm.setDoubleSize(false);
-            }
-
             if(!NeedforSpearGame.getInstance().getGameInfo().isPaused()){
 
                 if(e.getKeyCode() == KeyEvent.VK_C){

@@ -2,7 +2,6 @@ package tr.edu.ku.devnull.needforspear.View.PlayViews.Animators;
 import tr.edu.ku.devnull.needforspear.Model.GameData.Constants;
 import tr.edu.ku.devnull.needforspear.Model.GameData.Location;
 import tr.edu.ku.devnull.needforspear.Model.UIModels.NoblePhantasm;
-import tr.edu.ku.devnull.needforspear.NeedforSpearGame;
 import tr.edu.ku.devnull.needforspear.Viewmodel.GameLogicHandlers.MovementHandler;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
@@ -39,6 +38,12 @@ public class NoblePhantasmAnimator {
 
     }
 
+    /**
+     * Creates a noble phantasm image and scaling it.
+     *
+     * @param path Path of the noble phantasm image.
+     * @return Image of the noble phantasm.
+     */
 
     public Image getNoblePhantasmImage(String path) {
         return Toolkit.getDefaultToolkit().getImage(Constants.UIConstants.USER_DIRECTORY_TO_RESOURCE_FOLDER + path)
@@ -52,10 +57,7 @@ public class NoblePhantasmAnimator {
 
     public void draw(Graphics g) {
 
-        NoblePhantasm noblePhantasm = NoblePhantasm.getInstance();;
-        //if(noblePhantasm.isMagicActivated()){
-        //    paddleImage1 = getNoblePhantasmImage(Constants.UIConstants.PHANTASM_IMAGE_EXPANSION); }
-        //    else { paddleImage1 = getNoblePhantasmImage(Constants.UIConstants.PHANTASM_IMAGE); }
+        NoblePhantasm noblePhantasm = NoblePhantasm.getInstance();
 
         int x_location =  noblePhantasm.getLocation().getXCoordinates().intValue();
         int y_location =  noblePhantasm.getLocation().getYCoordinates().intValue();
