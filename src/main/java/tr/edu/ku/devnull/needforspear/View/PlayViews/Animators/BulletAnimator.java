@@ -44,7 +44,7 @@ public class BulletAnimator implements AnimatorStrategy {
 
     public Image getBulletImage(String path) {
         return Toolkit.getDefaultToolkit().getImage(Constants.UIConstants.USER_DIRECTORY_TO_RESOURCE_FOLDER + path)
-                .getScaledInstance(NoblePhantasm.getInstance().getSize().getWidth(), Constants.ProportionConstants.HEIGHT_OF_NOBLE_PHANTASM, Image.SCALE_SMOOTH);
+                .getScaledInstance(radius*2, radius*2, Image.SCALE_SMOOTH);
 
     }
 
