@@ -47,8 +47,11 @@ public class NoblePhantasmAnimator {
      */
 
     public void draw(Graphics g) {
-        paddleImage1 = getNoblePhantasmImage(Constants.UIConstants.PHANTASM_IMAGE);
+
         NoblePhantasm noblePhantasm = NoblePhantasm.getInstance();;
+        if(noblePhantasm.isMagicActivated()){
+            paddleImage1 = getNoblePhantasmImage(Constants.UIConstants.PHANTASM_IMAGE_EXPANSION); }
+            else { paddleImage1 = getNoblePhantasmImage(Constants.UIConstants.PHANTASM_IMAGE); }
         Graphics2D g2d = (Graphics2D) g;
         int x_location = phantasmLocation.getXCoordinates().intValue();
         int y_location = phantasmLocation.getYCoordinates().intValue();
