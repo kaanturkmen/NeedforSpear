@@ -23,7 +23,8 @@ public class NoblePhantasmAnimator {
     double currentY;
     private boolean isGameStarted = false; //when game starts it should not play without user action.
     private MovementHandler movementHandler = new MovementHandler();
-    Image paddleImage1;
+    Image phantasmSpell;
+    Image phantasm;
 
 
     /**
@@ -33,6 +34,9 @@ public class NoblePhantasmAnimator {
         phantasmLocation = NoblePhantasm.getInstance().getLocation();
         x_pos_NoblePhantasm = phantasmLocation.getXCoordinates();
         y_pos_NoblePhantasm = phantasmLocation.getYCoordinates();
+        phantasmSpell  = getNoblePhantasmImage(Constants.UIConstants.PHANTASM_IMAGE_EXPANSION);
+        phantasm = getNoblePhantasmImage(Constants.UIConstants.PHANTASM_IMAGE);
+
     }
 
 
@@ -49,13 +53,13 @@ public class NoblePhantasmAnimator {
     public void draw(Graphics g) {
 
         NoblePhantasm noblePhantasm = NoblePhantasm.getInstance();;
-        if(noblePhantasm.isMagicActivated()){
-            paddleImage1 = getNoblePhantasmImage(Constants.UIConstants.PHANTASM_IMAGE_EXPANSION); }
-            else { paddleImage1 = getNoblePhantasmImage(Constants.UIConstants.PHANTASM_IMAGE); }
-        Graphics2D g2d = (Graphics2D) g;
-        int x_location = phantasmLocation.getXCoordinates().intValue();
-        int y_location = phantasmLocation.getYCoordinates().intValue();
+        //if(noblePhantasm.isMagicActivated()){
+        //    paddleImage1 = getNoblePhantasmImage(Constants.UIConstants.PHANTASM_IMAGE_EXPANSION); }
+        //    else { paddleImage1 = getNoblePhantasmImage(Constants.UIConstants.PHANTASM_IMAGE); }
 
+        int x_location =  noblePhantasm.getLocation().getXCoordinates().intValue();
+        int y_location =  noblePhantasm.getLocation().getYCoordinates().intValue();
+        Graphics2D g2d = (Graphics2D) g;
         noblePhantasm.getLocation().setXCoordinates(movementHandler.movementOfNoblePhantasm());
 
         currentX = noblePhantasm.getLocation().getXCoordinates();
@@ -63,9 +67,14 @@ public class NoblePhantasmAnimator {
         AffineTransform tx = g2d.getTransform();
 
         movementHandler.rotationOfNoblePhantasm();
-
+        System.out.println("rot "+ noblePhantasm.getRotationDegree());
         g2d.rotate(noblePhantasm.getRotationDegree(), currentX + noblePhantasm.getSize().getWidth() / 2, currentY + Constants.ProportionConstants.Y_CENTER_OF_NOBLE_PHANTASM);
-        g2d.drawImage(paddleImage1, x_location, y_location, noblePhantasm.getSize().getWidth(), noblePhantasm.getSize().getLength(), null);
+        if(noblePhantasm.isMagicActivated()){
+            g2d.drawImage(phantasmSpell, x_location, y_location, noblePhantasm.getSize().getWidth(), noblePhantasm.getSize().getLength(), null);
+
+        }else {
+            g2d.drawImage(phantasm, x_location, y_location, noblePhantasm.getSize().getWidth(), noblePhantasm.getSize().getLength(), null);
+        }
 
         g2d.setTransform(tx);
     }
