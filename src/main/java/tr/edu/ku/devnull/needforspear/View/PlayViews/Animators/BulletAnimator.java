@@ -5,6 +5,7 @@ import tr.edu.ku.devnull.needforspear.Model.GameData.GameMode;
 import tr.edu.ku.devnull.needforspear.Model.GameData.Location;
 import tr.edu.ku.devnull.needforspear.Model.Obstacle.Obstacle;
 import tr.edu.ku.devnull.needforspear.Model.UIModels.Bullet;
+import tr.edu.ku.devnull.needforspear.Model.UIModels.NoblePhantasm;
 import tr.edu.ku.devnull.needforspear.NeedforSpearGame;
 import tr.edu.ku.devnull.needforspear.View.PlayViews.AnimatorStrategy;
 import tr.edu.ku.devnull.needforspear.Viewmodel.GameLogicHandlers.MovementHandler;
@@ -21,6 +22,7 @@ public class BulletAnimator implements AnimatorStrategy {
     public static List<Bullet> listOfBullets;
     private MovementHandler movementHandler = new MovementHandler();
     private CollisionHandler collisionHandler = new CollisionHandler();
+    Image bulletImage;
 
     /**
      * Constructor
@@ -30,13 +32,27 @@ public class BulletAnimator implements AnimatorStrategy {
     public BulletAnimator(List<Obstacle> listOfObstacles) {
         this.listOfObstacles = listOfObstacles;
         listOfBullets = new ArrayList<>();
+        bulletImage = getBulletImage(Constants.UIConstants.BULLET_IMAGE);
+    }
+
+    /**
+     * Creates a bullet image and scaling it.
+     *
+     * @param path Path of the bullet image.
+     * @return Image of the bullet.
+     */
+
+    public Image getBulletImage(String path) {
+        return Toolkit.getDefaultToolkit().getImage(Constants.UIConstants.USER_DIRECTORY_TO_RESOURCE_FOLDER + path)
+                .getScaledInstance(NoblePhantasm.getInstance().getSize().getWidth(), Constants.ProportionConstants.HEIGHT_OF_NOBLE_PHANTASM, Image.SCALE_SMOOTH);
+
     }
 
     @Override
     public void draw(Graphics g) {
 
         Graphics2D g2 = (Graphics2D) g;
-        g2.setColor(Color.BLUE);
+        //g2.setColor(Color.BLUE);
         bulletMovement(g2);
     }
 
@@ -49,7 +65,8 @@ public class BulletAnimator implements AnimatorStrategy {
                     g2.setColor(Color.BLUE);
                     Location newLocBullet = movementHandler.updateBulletMovement(bullet);
                     bullet.setLocation(newLocBullet);
-                    g2.fillOval(newLocBullet.getXCoordinates().intValue(), newLocBullet.getYCoordinates().intValue(), radius * 2, radius * 2);
+                    g2.drawImage(bulletImage, newLocBullet.getXCoordinates().intValue(), newLocBullet.getYCoordinates().intValue(), radius * 2, radius * 2, null);
+                    //g2.fillOval(newLocBullet.getXCoordinates().intValue(), newLocBullet.getYCoordinates().intValue(), radius * 2, radius * 2);
                     checkForCollisions(listOfObstacles, bullet);
                 }
             }
