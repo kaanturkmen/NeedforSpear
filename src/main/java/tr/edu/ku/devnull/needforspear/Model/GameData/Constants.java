@@ -34,7 +34,9 @@ public interface Constants {
         String MAIN_MENU_BACKGROUND_IMAGE = "MainMenuBackground.png";
         String GAME_BACKGROUND_IMAGE = "GameBackground.png";
         String PHANTASM_IMAGE = "Phantasm3.png";
+        String PHANTASM_IMAGE_EXPANSION = "Phantasm4.png";
         String SPHERE_IMAGE = "Sphere.png";
+        String BULLET_IMAGE = "Bullet.png";
 
         String USER_DIRECTORY_KEYWORD = "user.dir";
         String USER_DIRECTORY_TO_RESOURCE_FOLDER = "src/main/java/tr/edu/ku/devnull/needforspear/Resources/";

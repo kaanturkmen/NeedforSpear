@@ -28,7 +28,7 @@ public class GamePanel extends JPanel implements ActionListener, MouseMotionList
 
     SphereAnimator sphereAnimator;
     ObstacleAnimator obstacleAnimator;
-    NoblePhantasmAnimator npa;
+    NoblePhantasmAnimator npa = new NoblePhantasmAnimator();
     SpellAnimator spellAnimator;
     BulletAnimator bulletAnimator;
     NoblePhantasm noblePhantasm = NoblePhantasm.getInstance();
@@ -39,7 +39,8 @@ public class GamePanel extends JPanel implements ActionListener, MouseMotionList
 
 
     Image background = new BackgroundHandler().getBackgroundImage(Constants.UIConstants.GAME_BACKGROUND_IMAGE);
-    Image phantasm = new NoblePhantasmAnimator().getNoblePhantasmImage(Constants.UIConstants.PHANTASM_IMAGE);
+    Image phantasm = npa.getNoblePhantasmImage(Constants.UIConstants.PHANTASM_IMAGE);
+    Image phantasmSpell= npa.getNoblePhantasmImage(Constants.UIConstants.PHANTASM_IMAGE_EXPANSION);
     double x_pos_NoblePhantasm;
     double y_pos_NoblePhantasm;
     private int delay;
@@ -76,7 +77,8 @@ public class GamePanel extends JPanel implements ActionListener, MouseMotionList
         g.drawImage(background, 0, 0, this.getWidth(), this.getHeight(), this);
         int x_location = noblePhantasm.getLocation().getXCoordinates().intValue();
         int y_location = noblePhantasm.getLocation().getYCoordinates().intValue();
-        g.drawImage(phantasm, x_location, y_location,noblePhantasm.getSize().getWidth(), noblePhantasm.getSize().getLength(), this);
+        if(noblePhantasm.isMagicActivated()){ g.drawImage(phantasmSpell, x_location, y_location,noblePhantasm.getSize().getWidth(), noblePhantasm.getSize().getLength(), this); }
+        else { g.drawImage(phantasm, x_location, y_location,noblePhantasm.getSize().getWidth(), noblePhantasm.getSize().getLength(), this); }
 
         if (isGameStarted) {
             sphereAnimator.draw(g);
