@@ -3,9 +3,11 @@ package tr.edu.ku.devnull.needforspear.Model.Obstacle;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import tr.edu.ku.devnull.needforspear.Model.GameData.GameInfo;
 import tr.edu.ku.devnull.needforspear.Model.GameData.GameMap;
 import tr.edu.ku.devnull.needforspear.Model.GameData.Location;
 import tr.edu.ku.devnull.needforspear.Model.GameData.Size;
+import tr.edu.ku.devnull.needforspear.NeedforSpearGame;
 import tr.edu.ku.devnull.needforspear.Viewmodel.GameLogicHandlers.CollisionHandler;
 
 import java.util.List;
@@ -29,6 +31,7 @@ class ObstacleTest {
 
     @BeforeEach
     void initEach() {
+        NeedforSpearGame.getInstance().setGameInfo(new GameInfo());
         testMap = new GameMap(new Size(1280, 720));
         firmObs = new FirmObstacle(testMap, 0.0, new Location(500.0,100.0));
         simpleObs = new SimpleObstacle(testMap, 0.0, new Location(700.0,100.0));

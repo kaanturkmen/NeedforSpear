@@ -2,13 +2,11 @@ package tr.edu.ku.devnull.needforspear.Model.Util;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import tr.edu.ku.devnull.needforspear.Model.GameData.GameMap;
-import tr.edu.ku.devnull.needforspear.Model.GameData.Location;
-import tr.edu.ku.devnull.needforspear.Model.GameData.Size;
-import tr.edu.ku.devnull.needforspear.Model.GameData.Speed;
+import tr.edu.ku.devnull.needforspear.Model.GameData.*;
 import tr.edu.ku.devnull.needforspear.Model.Obstacle.GiftObstacle;
 import tr.edu.ku.devnull.needforspear.Model.Obstacle.Obstacle;
 import tr.edu.ku.devnull.needforspear.Model.UIModels.NoblePhantasm;
+import tr.edu.ku.devnull.needforspear.NeedforSpearGame;
 import tr.edu.ku.devnull.needforspear.Viewmodel.Util.CollisionData;
 import tr.edu.ku.devnull.needforspear.Viewmodel.Util.PhysicsEngine;
 
@@ -23,6 +21,7 @@ class PhysicsEngineTest {
 
     @BeforeEach
     void init() {
+        NeedforSpearGame.getInstance().setGameInfo(new GameInfo());
         sampleMap = new GameMap(new Size(1280, 720));
         sampleCollisionData = new CollisionData(new Location(1020.0, 106.0), new Speed(Double.valueOf(2.0).longValue(), Double.valueOf(2.0).longValue()));
         sampleObstacle = new GiftObstacle(sampleMap, .0, new Location(1050.0, 110.0));
@@ -109,8 +108,8 @@ class PhysicsEngineTest {
 
         assertEquals(output.getCurrentLocation().getXCoordinates(), 1020.0);
         assertEquals(output.getCurrentLocation().getYCoordinates(), 106.0);
-        assertEquals(output.getCurrentSpeed().getSpeedOnXAxis(), -2.0);
-        assertEquals(output.getCurrentSpeed().getSpeedOnYAxis(), 2.0);
+        assertEquals(output.getCurrentSpeed().getSpeedOnXAxis(), 2.0);
+        assertEquals(output.getCurrentSpeed().getSpeedOnYAxis(), -2.0);
     }
 
     @Test
@@ -136,7 +135,7 @@ class PhysicsEngineTest {
 
         assertEquals(output.getCurrentLocation().getXCoordinates(), 1020.0);
         assertEquals(output.getCurrentLocation().getYCoordinates(), 106.0);
-        assertEquals(output.getCurrentSpeed().getSpeedOnXAxis(), -2.0);
-        assertEquals(output.getCurrentSpeed().getSpeedOnYAxis(), 2.0);
+        assertEquals(output.getCurrentSpeed().getSpeedOnXAxis(), 2.0);
+        assertEquals(output.getCurrentSpeed().getSpeedOnYAxis(), -2.0);
     }
 }
