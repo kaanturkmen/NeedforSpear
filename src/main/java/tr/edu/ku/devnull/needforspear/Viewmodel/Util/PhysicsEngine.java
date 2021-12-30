@@ -4,7 +4,7 @@ import tr.edu.ku.devnull.needforspear.Model.GameData.Constants;
 import tr.edu.ku.devnull.needforspear.Model.GameData.Speed;
 import tr.edu.ku.devnull.needforspear.Model.Obstacle.Obstacle;
 import tr.edu.ku.devnull.needforspear.Model.UIModels.NoblePhantasm;
-import tr.edu.ku.devnull.needforspear.NeedforSpearGame;
+import tr.edu.ku.devnull.needforspear.Viewmodel.GameHandlers.SoundHandler;
 
 public class PhysicsEngine {
 
@@ -25,10 +25,12 @@ public class PhysicsEngine {
 
         if (incident.getCurrentLocation().getXCoordinates() + incident.getCurrentSpeed().getSpeedOnXAxis() < 0
                 || incident.getCurrentLocation().getXCoordinates() + incident.getCurrentSpeed().getSpeedOnXAxis() > Constants.UIConstants.INITIAL_SCREEN_WIDTH - 2 * Constants.ProportionConstants.RADIUS_OF_THE_SPHERE){
+            SoundHandler.getInstance().playSound("frameHitEffect.wav");
             result.getCurrentSpeed().setSpeedOnXAxis(-1 * incident.getCurrentSpeed().getSpeedOnXAxis());
         }
         if (incident.getCurrentLocation().getYCoordinates() + incident.getCurrentSpeed().getSpeedOnYAxis() < 0
                 || incident.getCurrentLocation().getYCoordinates() + incident.getCurrentSpeed().getSpeedOnYAxis()> Constants.UIConstants.INITIAL_SCREEN_HEIGHT){
+            SoundHandler.getInstance().playSound("frameHitEffect.wav");
             result.getCurrentSpeed().setSpeedOnYAxis(-1 * incident.getCurrentSpeed().getSpeedOnYAxis());
         }
         return result;
@@ -61,6 +63,7 @@ public class PhysicsEngine {
                     incident.getCurrentLocation().getXCoordinates() + incident.getCurrentSpeed().getSpeedOnXAxis() < obstacle.getLocation().getXCoordinates() + obstacle.getSize().getWidth() &&
                     incident.getCurrentLocation().getYCoordinates() + 2 * Constants.ProportionConstants.RADIUS_OF_THE_SPHERE > obstacle.getLocation().getYCoordinates() &&
                     incident.getCurrentLocation().getYCoordinates() < obstacle.getLocation().getYCoordinates() + obstacle.getSize().getLength()) {
+                SoundHandler.getInstance().playSound("phantasmHitEffect.wav");
                 result.getCurrentSpeed().setSpeedOnXAxis(-1 * incident.getCurrentSpeed().getSpeedOnXAxis());
 
                 System.out.println("1st if");
@@ -70,6 +73,7 @@ public class PhysicsEngine {
                     incident.getCurrentLocation().getXCoordinates() < obstacle.getLocation().getXCoordinates() + obstacle.getSize().getWidth() &&
                     incident.getCurrentLocation().getYCoordinates() + Constants.ProportionConstants.RADIUS_OF_THE_SPHERE + incident.getCurrentSpeed().getSpeedOnYAxis() > obstacle.getLocation().getYCoordinates() &&
                     incident.getCurrentLocation().getYCoordinates() + incident.getCurrentSpeed().getSpeedOnYAxis() < obstacle.getLocation().getYCoordinates() + obstacle.getSize().getLength()) {
+                SoundHandler.getInstance().playSound("phantasmHitEffect.wav");
                 result.getCurrentSpeed().setSpeedOnYAxis(-1 * incident.getCurrentSpeed().getSpeedOnYAxis());
                 result.getCurrentSpeed().setSpeedOnXAxis(-1 * incident.getCurrentSpeed().getSpeedOnXAxis());
                 System.out.println("2nd if");
@@ -81,12 +85,14 @@ public class PhysicsEngine {
                     incident.getCurrentLocation().getXCoordinates() + incident.getCurrentSpeed().getSpeedOnXAxis() < obstacle.getLocation().getXCoordinates() + obstacle.getSize().getWidth() &&
                     incident.getCurrentLocation().getYCoordinates() + 2 * Constants.ProportionConstants.RADIUS_OF_THE_SPHERE > obstacle.getLocation().getYCoordinates() &&
                     incident.getCurrentLocation().getYCoordinates() < obstacle.getLocation().getYCoordinates() + obstacle.getSize().getLength()) {
+                SoundHandler.getInstance().playSound("phantasmHitEffect.wav");
                 result.getCurrentSpeed().setSpeedOnXAxis(-1 * incident.getCurrentSpeed().getSpeedOnXAxis());
                 result.getCurrentLocation().setXCoordinates(result.getCurrentLocation().getXCoordinates() + obstacle.getSpeed());
             } else if (incident.getCurrentLocation().getXCoordinates() + 2 * Constants.ProportionConstants.RADIUS_OF_THE_SPHERE > obstacle.getLocation().getXCoordinates() &&
                     incident.getCurrentLocation().getXCoordinates() < obstacle.getLocation().getXCoordinates() + obstacle.getSize().getWidth() &&
                     incident.getCurrentLocation().getYCoordinates() + Constants.ProportionConstants.RADIUS_OF_THE_SPHERE + incident.getCurrentSpeed().getSpeedOnYAxis() > obstacle.getLocation().getYCoordinates() &&
                     incident.getCurrentLocation().getYCoordinates() + incident.getCurrentSpeed().getSpeedOnYAxis() < obstacle.getLocation().getYCoordinates() + obstacle.getSize().getLength()) {
+                SoundHandler.getInstance().playSound("phantasmHitEffect.wav");
                 result.getCurrentSpeed().setSpeedOnYAxis(-1 * incident.getCurrentSpeed().getSpeedOnYAxis());
                 result.getCurrentSpeed().setSpeedOnXAxis(-1 * incident.getCurrentSpeed().getSpeedOnXAxis());
                 result.getCurrentLocation().setXCoordinates(result.getCurrentLocation().getXCoordinates() + obstacle.getSpeed());
@@ -208,7 +214,5 @@ public class PhysicsEngine {
     private Double getResultant(Double x, Double y) {
         return Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));
     }
-
-
 }
 

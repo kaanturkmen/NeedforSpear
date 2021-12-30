@@ -8,6 +8,7 @@ import tr.edu.ku.devnull.needforspear.Model.Spell.Spell;
 import tr.edu.ku.devnull.needforspear.Model.UIModels.Bullet;
 import tr.edu.ku.devnull.needforspear.Model.UIModels.NoblePhantasm;
 import tr.edu.ku.devnull.needforspear.Model.UIModels.Sphere;
+import tr.edu.ku.devnull.needforspear.Viewmodel.GameHandlers.SoundHandler;
 import tr.edu.ku.devnull.needforspear.Viewmodel.Util.CollisionData;
 import tr.edu.ku.devnull.needforspear.Viewmodel.Util.PhysicsEngine;
 import tr.edu.ku.devnull.needforspear.NeedforSpearGame;
@@ -39,7 +40,6 @@ public class MovementHandler {
         CollisionData collisionData = physicsEngine.reflect(new CollisionData(new Location(x,y), new Speed(new Double(dx).longValue(),new Double(dy).longValue())));
         checkIfObstacleBelowPhantasm();
         updateSphereMovement(collisionData);
-
     }
 
     /**
@@ -81,7 +81,11 @@ public class MovementHandler {
             System.out.println("Found an exception about obstacle placement.");
         }
 
-        if (collisionData!= null)  updateSphereMovement(collisionData);
+
+        if (collisionData!= null)  {
+            SoundHandler.getInstance().playSound("obstacleHitEffect.wav");
+            updateSphereMovement(collisionData);
+        }
 
     }
 
@@ -89,6 +93,8 @@ public class MovementHandler {
      * Sphere's bounce from phantasm
      */
     public void bounceSphereFromPhantasm() {
+        SoundHandler.getInstance().playSound("phantasmHitEffect.wav");
+
         getSphereCurrentPhysics();
         dy *= -1;
         y = y - 2 * radius;
@@ -208,8 +214,8 @@ public class MovementHandler {
     public void updateSphereMovement(CollisionData collisionData) {
         double x = collisionData.getCurrentLocation().getXCoordinates();
         double y = collisionData.getCurrentLocation().getYCoordinates();
-        x +=collisionData.getCurrentSpeed().getSpeedOnXAxis() ;
-        y += collisionData.getCurrentSpeed().getSpeedOnYAxis() ;
+        x +=collisionData.getCurrentSpeed().getSpeedOnXAxis();
+        y += collisionData.getCurrentSpeed().getSpeedOnYAxis();
 
         //update location and speed
         NeedforSpearGame.getInstance().getGameInfo().getSphere().setLocation(new Location(x, y));

@@ -119,4 +119,8 @@ public class GameInfo {
     public Sphere getSphere() {
         return sphere;
     }
+
+    public boolean isMuteModeActivated() {
+        return muteModeActivated;
+    }
 }
