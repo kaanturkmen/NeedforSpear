@@ -69,7 +69,7 @@ public class NoblePhantasmAnimator {
         AffineTransform tx = g2d.getTransform();
 
         movementHandler.rotationOfNoblePhantasm();
-        System.out.println("rot "+ noblePhantasm.getRotationDegree());
+        
         g2d.rotate(noblePhantasm.getRotationDegree(), currentX + noblePhantasm.getSize().getWidth() / 2, currentY + Constants.ProportionConstants.Y_CENTER_OF_NOBLE_PHANTASM);
         if(noblePhantasm.isMagicActivated()){
             g2d.drawImage(phantasmSpell, x_location, y_location, noblePhantasm.getSize().getWidth(), noblePhantasm.getSize().getLength(), null);
