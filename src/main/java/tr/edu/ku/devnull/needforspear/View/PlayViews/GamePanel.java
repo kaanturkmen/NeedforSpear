@@ -102,7 +102,7 @@ public class GamePanel extends JPanel implements ActionListener, MouseMotionList
         }else if(NeedforSpearGame.getInstance().getGameInfo().getGameMap().getListofObstacles().size() == 0){
             System.out.println("you have won");
             timer.stop();
-            finishGame(NeedforSpearGame.getInstance().getGameInfo().getPlayer(), Constants.UIConstants.WIN_GAME_TXT);
+            finishGame(NeedforSpearGame.getInstance().getGameInfo().getPlayer(), Constants.UIConstants.WIN_GAME_TXT + NeedforSpearGame.getInstance().getGameInfo().getPlayer().getScore());
         }
 
     }

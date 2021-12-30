@@ -91,7 +91,7 @@ public interface Constants {
         String ENTER_VALID_NUMBER_TEXT = "Please enter a valid number";
         String ENTER_BETWEEN_GIVEN_VALUES_TEXT = "Please enter number between given values";
         String LOSE_GAME_TXT = "You have lost";
-        String WIN_GAME_TXT = "You have won";
+        String WIN_GAME_TXT = "You have won!\n Score: ";
 
         String USER_EXISTS_TEXT = "This user already exists on the game, please try another credentials!";
         String INCORRECT_PASSWORD_TEXT = "Incorrect password.";
