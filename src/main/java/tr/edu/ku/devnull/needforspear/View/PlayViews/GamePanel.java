@@ -8,7 +8,6 @@ import tr.edu.ku.devnull.needforspear.Model.Player.Player;
 import tr.edu.ku.devnull.needforspear.Model.Spell.YmirSpells.HollowPurpleSubscriber;
 import tr.edu.ku.devnull.needforspear.Model.UIModels.Bullet;
 import tr.edu.ku.devnull.needforspear.Model.UIModels.NoblePhantasm;
-import tr.edu.ku.devnull.needforspear.Model.UIModels.Sphere;
 import tr.edu.ku.devnull.needforspear.NeedforSpearGame;
 import tr.edu.ku.devnull.needforspear.View.PlayViews.Animators.*;
 import tr.edu.ku.devnull.needforspear.Viewmodel.GameLogicHandlers.BackgroundHandler;
@@ -19,7 +18,6 @@ import tr.edu.ku.devnull.needforspear.Viewmodel.GameLogicHandlers.MovementHandle
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.awt.geom.AffineTransform;
 
 /**
  * GamePanel for incorporating animations of game objects, and key and mouse events
@@ -100,7 +98,11 @@ public class GamePanel extends JPanel implements ActionListener, MouseMotionList
         if(NeedforSpearGame.getInstance().getGameInfo().getPlayer().getLives() <= 0 ){
             System.out.println("ups i know u died");
             timer.stop();
-            endGame(NeedforSpearGame.getInstance().getGameInfo().getPlayer());
+            finishGame(NeedforSpearGame.getInstance().getGameInfo().getPlayer(), Constants.UIConstants.LOSE_GAME_TXT);
+        }else if(NeedforSpearGame.getInstance().getGameInfo().getGameMap().getListofObstacles().size() == 0){
+            System.out.println("you have won");
+            timer.stop();
+            finishGame(NeedforSpearGame.getInstance().getGameInfo().getPlayer(), Constants.UIConstants.WIN_GAME_TXT);
         }
 
     }
@@ -116,7 +118,7 @@ public class GamePanel extends JPanel implements ActionListener, MouseMotionList
             }
         }
 
-        if (NeedforSpearGame.getInstance().getGameInfo().getPlayer().getLives() <= 0) endGame(NeedforSpearGame.getInstance().getGameInfo().getPlayer());
+        if (NeedforSpearGame.getInstance().getGameInfo().getPlayer().getLives() <= 0) finishGame(NeedforSpearGame.getInstance().getGameInfo().getPlayer(), Constants.UIConstants.LOSE_GAME_TXT);
     }
 
     @Override
@@ -264,9 +266,9 @@ public class GamePanel extends JPanel implements ActionListener, MouseMotionList
         magicalHexStartTime = System.currentTimeMillis();
     }
 
-    public void endGame(Player player) {
+    public void finishGame(Player player, String finishGameTxt) {
         NeedforSpearGame.getInstance().stopYmirAction();
-        JOptionPane.showMessageDialog(NeedforSpearGame.getInstance().getGameInfo().getMainFrame(), "You have lost", "Alert", JOptionPane.WARNING_MESSAGE);
+        JOptionPane.showMessageDialog(NeedforSpearGame.getInstance().getGameInfo().getMainFrame(), finishGameTxt, "Alert", JOptionPane.WARNING_MESSAGE);
         player.setLives(3);
         NeedforSpearGame.getInstance().getGameInfo().setGameLoaded(false);
         NeedforSpearGame.getInstance().getViewData().getGameView().getGamePanel().setIsGameStarted(false);
