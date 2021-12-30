@@ -13,7 +13,7 @@ import java.util.TimerTask;
  * as initializing the noble phantasm itself.
  */
 public class NoblePhantasm {
-    private static NoblePhantasm onlyInstance = null;
+    private static NoblePhantasm onlyInstance;
     private GameMap gameMap;
     private Size size;
     private Location location;
@@ -47,13 +47,9 @@ public class NoblePhantasm {
         this.lastUpdateTime = 0L;
     }
 
-    /**
-     * Singleton design pattern for creation of NoblePhantasm.
-     *
-     * @return new NoblePhantasm if no previous instances present.
-     */
-    public static synchronized NoblePhantasm getInstance() {
-        if (onlyInstance == null) onlyInstance = new NoblePhantasm();
+    public static NoblePhantasm getInstance() {
+        if(onlyInstance == null) onlyInstance = new NoblePhantasm();
+
         return onlyInstance;
     }
 

@@ -58,7 +58,7 @@ public class KeyDispatcher implements KeyEventDispatcher {
             }
 
             if (e.getKeyCode() == KeyEvent.VK_W) {
-                Sphere.getInstance().setMoving(true);
+                NeedforSpearGame.getInstance().getGameInfo().getSphere().setMoving(true);
 
             }
 
@@ -80,19 +80,15 @@ public class KeyDispatcher implements KeyEventDispatcher {
             }
 
             if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-                NoblePhantasm noblePhantasm = NoblePhantasm.getInstance();
-                noblePhantasm.setMovingRight(false);
+                NoblePhantasm.getInstance().setMovingRight(false);
             }
 
             if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-                NoblePhantasm noblePhantasm = NoblePhantasm.getInstance();
-                noblePhantasm.setMovingLeft(false);
+                NoblePhantasm.getInstance().setMovingLeft(false);
             }
 
             if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-
-                NoblePhantasm noblePhantasm = NoblePhantasm.getInstance();
-                noblePhantasm.setSpeeding(false);
+                NoblePhantasm.getInstance().setSpeeding(false);
             }
             if(!NeedforSpearGame.getInstance().getGameInfo().isPaused()){
 

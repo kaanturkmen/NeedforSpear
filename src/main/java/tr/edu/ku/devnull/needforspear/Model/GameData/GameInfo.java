@@ -1,5 +1,7 @@
 package tr.edu.ku.devnull.needforspear.Model.GameData;
 
+import tr.edu.ku.devnull.needforspear.Model.UIModels.NoblePhantasm;
+import tr.edu.ku.devnull.needforspear.Model.UIModels.Sphere;
 import tr.edu.ku.devnull.needforspear.Viewmodel.Database.GameDatabase;
 import tr.edu.ku.devnull.needforspear.Model.Player.Player;
 import tr.edu.ku.devnull.needforspear.Viewmodel.GameHandlers.DifficultyHandler;
@@ -16,10 +18,12 @@ public class GameInfo {
     private boolean isPaused = true;
     private boolean isGameLoaded = false;
     private long startMillis;
+    private Sphere sphere;
     private DifficultyHandler difficultyHandler;
 
     public GameInfo(GameMode gameMode, Player player, GameMap gameMap, GameDatabase gameDatabase, boolean muteModeActivated, boolean isPaused, boolean isGameLoaded, long startMillis) {
         difficultyHandler = new DifficultyHandler();
+        sphere = new Sphere();
         this.gameMode = gameMode;
         this.player = player;
         this.gameMap = gameMap;
@@ -32,6 +36,7 @@ public class GameInfo {
 
     public GameInfo() {
         difficultyHandler = new DifficultyHandler();
+        sphere = new Sphere();
     }
 
     public JFrame getMainFrame() {
@@ -109,5 +114,9 @@ public class GameInfo {
 
     public DifficultyHandler getDifficultyHandler() {
         return difficultyHandler;
+    }
+
+    public Sphere getSphere() {
+        return sphere;
     }
 }

@@ -4,6 +4,7 @@ import tr.edu.ku.devnull.needforspear.Model.GameData.Constants;
 import tr.edu.ku.devnull.needforspear.Model.GameData.Location;
 import tr.edu.ku.devnull.needforspear.Model.GameData.Size;
 import tr.edu.ku.devnull.needforspear.Model.UIModels.Sphere;
+import tr.edu.ku.devnull.needforspear.NeedforSpearGame;
 
 /**
  * UnstoppableSpell is a spell type which extends from Spell class.
@@ -29,7 +30,7 @@ public class UnstoppableSpell extends Spell {
     @Override
     public void triggerEffect() {
         super.triggerEffect();
-        Sphere.getInstance().activateUnstoppable();
+        NeedforSpearGame.getInstance().getGameInfo().getSphere().activateUnstoppable();
     }
 
     @Override
