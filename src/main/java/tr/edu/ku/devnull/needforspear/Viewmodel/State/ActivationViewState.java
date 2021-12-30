@@ -41,4 +41,9 @@ public class ActivationViewState extends ViewState {
     public void switchToGameView() {
         System.out.println("Invalid access from the ActivationView. (GameView)");
     }
+
+    @Override
+    public void switchToHelpView() {
+        System.out.println("Invalid access from the ActivationView. (HelpView)");
+    }
 }

@@ -1,32 +1,31 @@
 package tr.edu.ku.devnull.needforspear.Viewmodel.State;
 
 import tr.edu.ku.devnull.needforspear.NeedforSpearGame;
-import tr.edu.ku.devnull.needforspear.View.PlayViews.GameView;
 import tr.edu.ku.devnull.needforspear.View.PlayViews.MainMenuView;
 
-public class GameViewState extends ViewState {
-    public GameViewState(NeedforSpearGame needforSpearGame) {
+public class HelpViewState extends ViewState {
+    public HelpViewState(NeedforSpearGame needforSpearGame) {
         super(needforSpearGame);
     }
 
     @Override
     public void switchToActivationView() {
-        System.out.println("Invalid access from the GameView. (ActivationView)");
+        System.out.println("Invalid access from the HelpView. (ActivationView)");
     }
 
     @Override
     public void switchToLoginView() {
-        System.out.println("Invalid access from the GameView. (LoginView)");
+        System.out.println("Invalid access from the HelpView. (LoginView)");
     }
 
     @Override
     public void switchToSendVerificationView() {
-        System.out.println("Invalid access from the GameView. (VerificationView)");
+        System.out.println("Invalid access from the HelpView. (SendVerificationView)");
     }
 
     @Override
     public void switchToValidateAndChangePasswordView() {
-        System.out.println("Invalid access from the GameView. (ValidateAndChangePasswordView)");
+        System.out.println("Invalid access from the HelpView. (ValidateAndChangePasswordView)");
     }
 
     @Override
@@ -41,11 +40,11 @@ public class GameViewState extends ViewState {
 
     @Override
     public void switchToGameView() {
-        System.out.println("Already in GameView.");
+        System.out.println("Invalid access from the HelpView. (GameView)");
     }
 
     @Override
     public void switchToHelpView() {
-        System.out.println("Invalid access from the GameView. (HelpView)");
+        System.out.println("Already in HelpView.");
     }
 }

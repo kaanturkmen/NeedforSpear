@@ -5,6 +5,7 @@ import tr.edu.ku.devnull.needforspear.View.AuthViews.LoginView;
 import tr.edu.ku.devnull.needforspear.View.AuthViews.SendVerificationView;
 import tr.edu.ku.devnull.needforspear.View.AuthViews.ValidateAndChangePasswordView;
 import tr.edu.ku.devnull.needforspear.View.PlayViews.GameView;
+import tr.edu.ku.devnull.needforspear.View.PlayViews.HelpView;
 import tr.edu.ku.devnull.needforspear.View.PlayViews.MainMenuView;
 
 public class ViewData {
@@ -14,15 +15,7 @@ public class ViewData {
     private SendVerificationView sendVerificationView;
     private LoginView loginView;
     private ActivationView activationView;
-
-    public ViewData(GameView gameView, MainMenuView mainMenuView, ValidateAndChangePasswordView validateAndChangePasswordView, SendVerificationView sendVerificationView, LoginView loginView, ActivationView activationView) {
-        this.gameView = gameView;
-        this.mainMenuView = mainMenuView;
-        this.validateAndChangePasswordView = validateAndChangePasswordView;
-        this.sendVerificationView = sendVerificationView;
-        this.loginView = loginView;
-        this.activationView = activationView;
-    }
+    private HelpView helpView;
 
     public ViewData() {}
 
@@ -72,5 +65,13 @@ public class ViewData {
 
     public void setActivationView(ActivationView activationView) {
         this.activationView = activationView;
+    }
+
+    public HelpView getHelpView() {
+        return helpView;
+    }
+
+    public void setHelpView(HelpView helpView) {
+        this.helpView = helpView;
     }
 }
