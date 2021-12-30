@@ -24,7 +24,7 @@ public class GameView {
 
     private JButton switchRunningModeButton, createNewMapButton, saveMapButton, loadMapButton, pauseButton,
             resumeButton, chanceGivingSpellButton, expansionSpellButton, magicalHexButton, unstoppableSpellButton,
-            muteButton, unmuteButton, changeDifficultyButton;
+            muteButton, unmuteButton, changeDifficultyButton, backToMenuButton;
     private JTextField difficultyField;
     private JPanel overlayPanel, backgroundPanel;
     private GamePanel gamePanel;
@@ -58,6 +58,7 @@ public class GameView {
         addObstacleChoice = new JComboBox<>(Constants.ArrayConstants.OBSTACLE_NAMES_ARR);
         addObstacleChoice.setSelectedItem(Constants.ObstacleNameConstants.SIMPLE);
         resumeButton = new JButton(Constants.UIConstants.RESUME_GAME_TEXT);
+        backToMenuButton = new JButton(Constants.UIConstants.BACK_TO_MENU_TEXT);
         overlayPanel = new JPanel();
         score = new JLabel(Constants.UIConstants.SCORE_TEXT + Constants.UIConstants.INIT_SCORE);
         lives = new JLabel(Constants.UIConstants.LIVES_TEXT + Constants.UIConstants.INIT_LIVES);
@@ -161,6 +162,10 @@ public class GameView {
             System.out.println("Difficulty:" + NeedforSpearGame.getInstance().getGameInfo().getDifficultyHandler().getCurrentDifficulty());
             NeedforSpearGame.getInstance().getGameInfo().getDifficultyHandler().changeDifficulty();
             difficultyField.setText(NeedforSpearGame.getInstance().getGameInfo().getDifficultyHandler().getCurrentDifficulty().toString());
+        });
+
+        backToMenuButton.addActionListener(e -> {
+            NeedforSpearGame.getInstance().startMainMenu();
         });
     }
     private void createActionListenerForSpellButtons(){
@@ -268,6 +273,7 @@ public class GameView {
         overlayPanel.add(unmuteButton);
         overlayPanel.add(changeDifficultyButton);
         overlayPanel.add(difficultyField);
+        overlayPanel.add(backToMenuButton);
 
         lives.setVisible(false);
         score.setVisible(false);

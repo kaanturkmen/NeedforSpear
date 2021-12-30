@@ -66,6 +66,7 @@ public interface Constants {
         String HELP_SCREEN_TEXT = "Help!";
         String CHANGE_DIFFICULTY_TEXT = "Change Difficulty";
         String EXIT_GAME_TEXT = "Quit";
+        String BACK_TO_MENU_TEXT = "Back to Menu";
 
         String RESET_PASSWORD_PLACEHOLDER = "Reset Password";
 
