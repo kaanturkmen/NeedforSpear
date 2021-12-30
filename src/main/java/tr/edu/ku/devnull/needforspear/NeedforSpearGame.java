@@ -180,6 +180,13 @@ public class NeedforSpearGame {
     }
 
     /**
+     * Sets GameInfo for the testing purposes.
+     */
+    public void setGameInfo(GameInfo gameInfo) {
+        this.gameInfo = gameInfo;
+    }
+
+    /**
      * Gets GameInfo for the further use.
      * @return GameInfo to operate on.
      */
