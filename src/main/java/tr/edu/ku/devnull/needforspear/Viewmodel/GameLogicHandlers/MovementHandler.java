@@ -190,8 +190,8 @@ public class MovementHandler {
         x = loc.getXCoordinates();
         y = loc.getYCoordinates();
 
-        dx = bullet.getSpeed()[0];
-        dy = -bullet.getSpeed()[1];
+        dx = bullet.getSpeed().getSpeedOnXAxis();
+        dy = -bullet.getSpeed().getSpeedOnYAxis();
 
         x += dx;
         y += dy;
