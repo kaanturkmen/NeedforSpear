@@ -355,14 +355,20 @@ public class BuildModeHandler {
     private List<Location> getAvailableLocations(){
         Obstacle dummyObstacle = ObstacleFactory.getInstance().getObstacle(Constants.ObstacleNameConstants.SIMPLE);
         List<Location> availableLocations = new ArrayList<>();
+        boolean placed = false;
         for(int y = 0; y<NoblePhantasm.getInstance().getLocation().getYCoordinates() - Constants.UIConstants.OBSTACLE_DISTANCE_FROM_PHANTASM; y++){
             for(int x = 0; x<Constants.UIConstants.INITIAL_SCREEN_WIDTH-dummyObstacle.getSize().getWidth(); x++){
                 if(checkIfPointAvailable(x,y)){
                     availableLocations.add(new Location(x,y));
                     if(!(x+dummyObstacle.getSize().getWidth() > Constants.UIConstants.INITIAL_SCREEN_WIDTH)){
                         x+=dummyObstacle.getSize().getWidth();
+                        placed = true;
                     }
                 }
+            }
+            if(placed) {
+                y+=dummyObstacle.getSize().getLength();
+                placed = false;
             }
         }
         return availableLocations;
