@@ -2,6 +2,7 @@ package tr.edu.ku.devnull.needforspear.Viewmodel.GameLogicHandlers;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import tr.edu.ku.devnull.needforspear.Model.GameData.GameInfo;
 import tr.edu.ku.devnull.needforspear.Model.GameData.Location;
 import tr.edu.ku.devnull.needforspear.Model.GameData.Size;
 import tr.edu.ku.devnull.needforspear.Model.Obstacle.Obstacle;
@@ -10,7 +11,7 @@ import tr.edu.ku.devnull.needforspear.Model.Spell.ExpansionSpell;
 import tr.edu.ku.devnull.needforspear.Model.Spell.Spell;
 
 import tr.edu.ku.devnull.needforspear.Model.UIModels.NoblePhantasm;
-import tr.edu.ku.devnull.needforspear.Model.UIModels.Sphere;
+import tr.edu.ku.devnull.needforspear.NeedforSpearGame;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -21,6 +22,7 @@ public class CollisionHandlerTest {
 
     @BeforeEach
     void init() {
+        NeedforSpearGame.getInstance().setGameInfo(new GameInfo());
         collisionHandler = new CollisionHandler();
         sampleObstacle = ObstacleFactory.getInstance().getObstacle("SimpleObstacle");
         noblePhantasm = NoblePhantasm.getInstance();
@@ -30,13 +32,13 @@ public class CollisionHandlerTest {
     public void obstacleSphereCollisionTest() {
         //BB testing
         sampleObstacle.setLocation(new Location(300, 300));
-        Sphere.getInstance().setLocation(new Location(300,300));
+        NeedforSpearGame.getInstance().getGameInfo().getSphere().setLocation(new Location(300,300));
         //True positive collision
-        assertTrue(collisionHandler.collision(sampleObstacle, Sphere.getInstance()));
+        assertTrue(collisionHandler.collision(sampleObstacle, NeedforSpearGame.getInstance().getGameInfo().getSphere()));
 
         sampleObstacle.setLocation(new Location(500,500));
         //False positive collision
-        assertFalse(collisionHandler.collision(sampleObstacle, Sphere.getInstance()));
+        assertFalse(collisionHandler.collision(sampleObstacle, NeedforSpearGame.getInstance().getGameInfo().getSphere()));
 
     }
 
@@ -93,4 +95,3 @@ public class CollisionHandlerTest {
 
 
 }
-
