@@ -47,7 +47,7 @@ public interface Constants {
 
 
         String USER_DIRECTORY_KEYWORD = "user.dir";
-        String USER_DIRECTORY_TO_RESOURCE_FOLDER = "src/main/java/tr/edu/ku/devnull/needforspear/Resources/";
+        String USER_DIRECTORY_TO_RESOURCE_FOLDER = "src/main/java/tr/edu/ku/devnull/needforspear/Resources/Images/";
 
         String GAME_NAME = "Need for Spear!";
         String USERNAME_TEXT_FIELD_PLACEHOLDER = "Username";

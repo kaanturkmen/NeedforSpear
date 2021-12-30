@@ -32,7 +32,7 @@ public class SoundHandler {
         backgroundMusicThread = new Thread(() -> {
             try {
                 backgroundMusicClip = AudioSystem.getClip();
-                AudioInputStream inputStream = AudioSystem.getAudioInputStream(new File("src/main/java/tr/edu/ku/devnull/needforspear/Resources/backgroundMusic.wav"));
+                AudioInputStream inputStream = AudioSystem.getAudioInputStream(new File("src/main/java/tr/edu/ku/devnull/needforspear/Resources/Sounds/backgroundMusic.wav"));
                 backgroundMusicClip.open(inputStream);
                 backgroundMusicClip.loop(0);
                 backgroundMusicClip.start();
@@ -64,7 +64,7 @@ public class SoundHandler {
         soundEffectThread = new Thread(() -> {
             try {
                 Clip soundEffectClip = AudioSystem.getClip();
-                AudioInputStream inputStream = AudioSystem.getAudioInputStream(new File("src/main/java/tr/edu/ku/devnull/needforspear/Resources/" + path));
+                AudioInputStream inputStream = AudioSystem.getAudioInputStream(new File("src/main/java/tr/edu/ku/devnull/needforspear/Resources/Sounds/" + path));
                 soundEffectClip.open(inputStream);
                 soundEffectClip.start();
             } catch (Exception e) {
