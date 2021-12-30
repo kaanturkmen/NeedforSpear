@@ -3,6 +3,7 @@ package tr.edu.ku.devnull.needforspear.Model.UIModels;
 import tr.edu.ku.devnull.needforspear.Model.GameData.Constants;
 import tr.edu.ku.devnull.needforspear.Model.GameData.Location;
 import tr.edu.ku.devnull.needforspear.Model.GameData.Size;
+import tr.edu.ku.devnull.needforspear.NeedforSpearGame;
 
 public class Bullet {
     private NoblePhantasm noblePhantasm;

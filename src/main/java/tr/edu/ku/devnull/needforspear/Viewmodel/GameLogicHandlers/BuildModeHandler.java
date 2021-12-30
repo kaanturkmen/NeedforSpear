@@ -46,7 +46,7 @@ public class BuildModeHandler {
      */
     public void resetPhantasmAndSphereLocation() {
         NoblePhantasm.getInstance().resetLocation();
-        Sphere.getInstance().resetLocation();
+        NeedforSpearGame.getInstance().getGameInfo().getSphere().resetLocation();
     }
 
     /**

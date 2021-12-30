@@ -16,7 +16,6 @@ import java.util.TimerTask;
  * well as initializing the sphere itself.
  */
 public class Sphere {
-    private static Sphere onlyInstance = null;
     private NoblePhantasm noblePhantasm;
     private Size size;
     private Location location;
@@ -29,23 +28,12 @@ public class Sphere {
     /**
      * Constructor for Sphere.
      */
-    private Sphere() {
+    public Sphere() {
         this.noblePhantasm = NoblePhantasm.getInstance();
         this.size = new Size(Constants.ProportionConstants.RADIUS_OF_THE_SPHERE, Constants.ProportionConstants.RADIUS_OF_THE_SPHERE);
         this.location = new Location((noblePhantasm.getLocation().getXCoordinates() + (noblePhantasm.getSize().getWidth() / 2) - (size.getWidth())), (noblePhantasm.getLocation().getYCoordinates() - 2 * size.getWidth()));
         this.speed = new Speed(0,0);
         this.isMoving = false;
-    }
-
-    /**
-     * Singleton design pattern for creation of Sphere.
-     *
-     * @return new Sphere if no previous instances present.
-     */
-    public static synchronized Sphere getInstance() {
-        if (onlyInstance == null) onlyInstance = new Sphere();
-
-        return onlyInstance;
     }
 
     public void resetLocation() {

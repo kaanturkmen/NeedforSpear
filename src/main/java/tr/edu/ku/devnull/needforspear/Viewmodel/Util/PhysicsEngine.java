@@ -4,6 +4,7 @@ import tr.edu.ku.devnull.needforspear.Model.GameData.Constants;
 import tr.edu.ku.devnull.needforspear.Model.GameData.Speed;
 import tr.edu.ku.devnull.needforspear.Model.Obstacle.Obstacle;
 import tr.edu.ku.devnull.needforspear.Model.UIModels.NoblePhantasm;
+import tr.edu.ku.devnull.needforspear.NeedforSpearGame;
 
 public class PhysicsEngine {
 
@@ -134,7 +135,7 @@ public class PhysicsEngine {
                 double rotatedLowerRightX = edgeDX * Math.cos(rotationDegree) + edgeDY* Math.sin(rotationDegree);
 
                 double ballX = incident.getCurrentLocation().getXCoordinates() + (double) 2* Constants.ProportionConstants.RADIUS_OF_THE_SPHERE / 2 - NoblePhantasm.getInstance().getLocation().getXCoordinates() - edgeDX;
-                double ballY = -incident.getCurrentLocation().getYCoordinates() - (double)2* Constants.ProportionConstants.RADIUS_OF_THE_SPHERE / 2 +NoblePhantasm.getInstance().getLocation().getYCoordinates() + edgeDY;
+                double ballY = -incident.getCurrentLocation().getYCoordinates() - (double)2* Constants.ProportionConstants.RADIUS_OF_THE_SPHERE / 2 + NoblePhantasm.getInstance().getLocation().getYCoordinates() + edgeDY;
 
                 double middleUpper = (rotatedUpperLeftY - rotatedUpperRightY) / (rotatedUpperLeftX - rotatedUpperRightX);
 

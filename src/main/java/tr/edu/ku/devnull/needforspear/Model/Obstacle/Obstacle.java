@@ -6,6 +6,7 @@ import tr.edu.ku.devnull.needforspear.Model.GameData.Location;
 import tr.edu.ku.devnull.needforspear.Model.GameData.Size;
 import tr.edu.ku.devnull.needforspear.Model.Spell.Spell;
 import tr.edu.ku.devnull.needforspear.Model.UIModels.Sphere;
+import tr.edu.ku.devnull.needforspear.NeedforSpearGame;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -41,7 +42,7 @@ public class Obstacle {
      * if obstacle is destroyed to update the game state accordingly.
      */
     public void damageObstacle() {
-        if (!isInfiniteVoidActivated || Sphere.getInstance().isUnstoppable()) {
+        if (!isInfiniteVoidActivated || NeedforSpearGame.getInstance().getGameInfo().getSphere().isUnstoppable()) {
             health -= 1;
             System.out.println("Damage registered on obstacle! \n");
         } else {

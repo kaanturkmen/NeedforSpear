@@ -212,20 +212,20 @@ public class MovementHandler {
         y += collisionData.getCurrentSpeed().getSpeedOnYAxis() ;
 
         //update location and speed
-        Sphere.getInstance().setLocation(new Location(x, y));
-        Sphere.getInstance().setSpeed(new Speed(new Double(collisionData.getCurrentSpeed().getSpeedOnXAxis()).longValue(),  new Double(collisionData.getCurrentSpeed().getSpeedOnYAxis()).longValue()));
+        NeedforSpearGame.getInstance().getGameInfo().getSphere().setLocation(new Location(x, y));
+        NeedforSpearGame.getInstance().getGameInfo().getSphere().setSpeed(new Speed(new Double(collisionData.getCurrentSpeed().getSpeedOnXAxis()).longValue(),  new Double(collisionData.getCurrentSpeed().getSpeedOnYAxis()).longValue()));
     }
 
     /**
      * Sets global variables to current movement values of sphere
      */
     public void getSphereCurrentPhysics() {
-        Location loc = Sphere.getInstance().getLocation();
+        Location loc = NeedforSpearGame.getInstance().getGameInfo().getSphere().getLocation();
         x = loc.getXCoordinates();
         y = loc.getYCoordinates();
 
-        dx = Sphere.getInstance().getSpeed().getSpeedOnXAxis();
-        dy = Sphere.getInstance().getSpeed().getSpeedOnYAxis();
+        dx = NeedforSpearGame.getInstance().getGameInfo().getSphere().getSpeed().getSpeedOnXAxis();
+        dy = NeedforSpearGame.getInstance().getGameInfo().getSphere().getSpeed().getSpeedOnYAxis();
     }
 
     /**
@@ -234,8 +234,8 @@ public class MovementHandler {
     public void checkIfObstacleBelowPhantasm() {
         NoblePhantasm noblePhantasm = NoblePhantasm.getInstance();
         if (y > noblePhantasm.getLocation().getYCoordinates()) {
-            Sphere.getInstance().setMoving(false);
-            PlayerLivesHandler.getInstance().notifyPlayerSphereFall(Sphere.getInstance());
+            NeedforSpearGame.getInstance().getGameInfo().getSphere().setMoving(false);
+            PlayerLivesHandler.getInstance().notifyPlayerSphereFall(NeedforSpearGame.getInstance().getGameInfo().getSphere());
 
         }
 
