@@ -66,7 +66,7 @@ public class MainMenuView {
             NeedforSpearGame.getInstance().getGameInfo().setGameLoaded(false);
         });
 
-        helpScreenButton.addActionListener(e -> System.out.println("Opened up help screen!"));
+        helpScreenButton.addActionListener(e -> NeedforSpearGame.getInstance().startHelpView());
 
         exitGameButton.addActionListener(e -> {
             String[] options = new String[] {"Yes", "No"};

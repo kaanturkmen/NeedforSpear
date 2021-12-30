@@ -46,4 +46,9 @@ public class ValidateAndChangePasswordViewState extends ViewState {
     public void switchToGameView() {
         System.out.println("Invalid access from the ValidateAndChangePassword. (GameView)");
     }
+
+    @Override
+    public void switchToHelpView() {
+        System.out.println("Invalid access from the ValidateAndChangePassword. (HelpView)");
+    }
 }

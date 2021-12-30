@@ -15,4 +15,5 @@ public abstract class ViewState {
     public abstract void switchToValidateAndChangePasswordView();
     public abstract void switchToMainMenuView();
     public abstract void switchToGameView();
+    public abstract void switchToHelpView();
 }

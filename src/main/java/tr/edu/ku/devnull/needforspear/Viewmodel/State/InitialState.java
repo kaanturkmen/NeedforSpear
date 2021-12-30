@@ -42,4 +42,9 @@ public class InitialState extends ViewState {
     public void switchToGameView() {
         System.out.println("Initial State Error.");
     }
+
+    @Override
+    public void switchToHelpView() {
+        System.out.println("Initial State Error.");
+    }
 }

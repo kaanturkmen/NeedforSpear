@@ -42,6 +42,7 @@ public interface Constants {
         String SIMPLE_OBSTACLE = "SimpleObstacle.png";
         String GIFT_OBSTACLE = "GiftObstacle.png";
         String HOLLOW_OBSTACLE = "HollowObstacle.png";
+        String HELP_VIEW_BACKGROUND_IMAGE = "HelpScreen.png";
 
 
 
@@ -115,6 +116,9 @@ public interface Constants {
 
         Integer BACK_BUTTON_X_COORDINATE = 70;
         Integer BACK_BUTTON_Y_COORDINATE = 600;
+
+        Integer HELP_SCREEN_BACK_BUTTON_X_COORDINATE = 70;
+        Integer HELP_SCREEN_BACK_BUTTON_Y_COORDINATE = 90;
 
         Integer OBSTACLE_TXT_X = 50;
         Integer OBSTACLE_TXT_Y = 50;

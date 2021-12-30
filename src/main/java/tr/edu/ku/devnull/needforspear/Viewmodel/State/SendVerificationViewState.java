@@ -47,4 +47,9 @@ public class SendVerificationViewState extends ViewState {
     public void switchToGameView() {
         System.out.println("Invalid access from the SendVerificationView. (GameView)");
     }
+
+    @Override
+    public void switchToHelpView() {
+        System.out.println("Invalid access from the SendVerificationView. (HelpView)");
+    }
 }

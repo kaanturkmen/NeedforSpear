@@ -48,14 +48,16 @@ public class LoginViewState extends ViewState {
         MainMenuView mainMenuView = new MainMenuView();
         NeedforSpearGame.getInstance().getViewData().setMainMenuView(mainMenuView);
 
-//        GameView gameView = new GameView();
-//        NeedforSpearGame.getInstance().setGameView(gameView);
-
         mainMenuView.createView();
     }
 
     @Override
     public void switchToGameView() {
         System.out.println("Invalid access from the LoginView. (GameView)");
+    }
+
+    @Override
+    public void switchToHelpView() {
+        System.out.println("Invalid access from the LoginView. (HelpView)");
     }
 }

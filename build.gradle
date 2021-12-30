@@ -28,7 +28,7 @@ repositories {
 }
 
 dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
 }
 
@@ -46,7 +46,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth'
     implementation 'com.google.firebase:firebase-firestore'
     compile 'com.google.firebase:firebase-admin:8.1.0'
-    compile "org.slf4j:slf4j-simple:1.7.9"
+    compile 'org.slf4j:slf4j-simple:1.7.32'
 
     compile group: 'javax.mail', name: 'mail', version: '1.4.5'
     compile group: 'javax.activation', name: 'activation', version: '1.1.1'

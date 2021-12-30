@@ -121,6 +121,13 @@ public class NeedforSpearGame {
     }
 
     /**
+     * A method to start the HelpView.
+     */
+    public void startHelpView() {
+        currentState.switchToHelpView();
+    }
+
+    /**
      * Starts measuring time the moment game switches to running mode
      *
      * /**
