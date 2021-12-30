@@ -1,4 +1,4 @@
-package tr.edu.ku.devnull.needforspear.Model.Util;
+package tr.edu.ku.devnull.needforspear.Viewmodel.GameLogicHandlers;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -11,7 +11,6 @@ import tr.edu.ku.devnull.needforspear.Model.Spell.Spell;
 
 import tr.edu.ku.devnull.needforspear.Model.UIModels.NoblePhantasm;
 import tr.edu.ku.devnull.needforspear.Model.UIModels.Sphere;
-import tr.edu.ku.devnull.needforspear.Viewmodel.GameLogicHandlers.CollisionHandler;
 
 import static org.junit.jupiter.api.Assertions.*;
 

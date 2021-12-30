@@ -1,5 +1,4 @@
-package tr.edu.ku.devnull.needforspear.Model.Util;
-
+package tr.edu.ku.devnull.needforspear.Model.UIModels;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

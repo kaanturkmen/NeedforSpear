@@ -24,7 +24,7 @@ class PhysicsEngineTest {
     @BeforeEach
     void init() {
         sampleMap = new GameMap(new Size(1280, 720));
-        sampleCollisionData = new CollisionData(new Location(1020.0, 106.0), new Speed(new Double(2.0).longValue(), new Double(2.0).longValue()));
+        sampleCollisionData = new CollisionData(new Location(1020.0, 106.0), new Speed(Double.valueOf(2.0).longValue(), Double.valueOf(2.0).longValue()));
         sampleObstacle = new GiftObstacle(sampleMap, .0, new Location(1050.0, 110.0));
         samplePhantasm = NoblePhantasm.getInstance();
     }
@@ -107,10 +107,10 @@ class PhysicsEngineTest {
 
         CollisionData output = pe.reflect(sampleCollisionData, sampleObstacle);
 
-        assertEquals(output.getCurrentLocation().getXCoordinates(), sampleCollisionData.getCurrentLocation().getXCoordinates());
-        assertEquals(output.getCurrentLocation().getYCoordinates(), sampleCollisionData.getCurrentLocation().getYCoordinates());
-        assertEquals(output.getCurrentSpeed().getSpeedOnXAxis(), sampleCollisionData.getCurrentSpeed().getSpeedOnXAxis());
-        assertEquals(output.getCurrentSpeed().getSpeedOnYAxis(), sampleCollisionData.getCurrentSpeed().getSpeedOnYAxis());
+        assertEquals(output.getCurrentLocation().getXCoordinates(), 1020.0);
+        assertEquals(output.getCurrentLocation().getYCoordinates(), 106.0);
+        assertEquals(output.getCurrentSpeed().getSpeedOnXAxis(), -2.0);
+        assertEquals(output.getCurrentSpeed().getSpeedOnYAxis(), 2.0);
     }
 
     @Test
@@ -134,9 +134,9 @@ class PhysicsEngineTest {
 
         CollisionData output = pe.reflect(sampleCollisionData, obstacle);
 
-        assertEquals(output.getCurrentLocation().getXCoordinates(), sampleCollisionData.getCurrentLocation().getXCoordinates());
-        assertEquals(output.getCurrentLocation().getYCoordinates(), sampleCollisionData.getCurrentLocation().getYCoordinates());
-        assertEquals(output.getCurrentSpeed().getSpeedOnXAxis(), sampleCollisionData.getCurrentSpeed().getSpeedOnXAxis());
-        assertEquals(output.getCurrentSpeed().getSpeedOnYAxis(), sampleCollisionData.getCurrentSpeed().getSpeedOnYAxis());
+        assertEquals(output.getCurrentLocation().getXCoordinates(), 1020.0);
+        assertEquals(output.getCurrentLocation().getYCoordinates(), 106.0);
+        assertEquals(output.getCurrentSpeed().getSpeedOnXAxis(), -2.0);
+        assertEquals(output.getCurrentSpeed().getSpeedOnYAxis(), 2.0);
     }
 }
