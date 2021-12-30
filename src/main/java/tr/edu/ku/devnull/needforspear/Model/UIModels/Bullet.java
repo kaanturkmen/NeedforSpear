@@ -3,6 +3,7 @@ package tr.edu.ku.devnull.needforspear.Model.UIModels;
 import tr.edu.ku.devnull.needforspear.Model.GameData.Constants;
 import tr.edu.ku.devnull.needforspear.Model.GameData.Location;
 import tr.edu.ku.devnull.needforspear.Model.GameData.Size;
+import tr.edu.ku.devnull.needforspear.Model.GameData.Speed;
 import tr.edu.ku.devnull.needforspear.NeedforSpearGame;
 
 public class Bullet {
@@ -10,7 +11,7 @@ public class Bullet {
     private Size size;
     private Location location;
     private double angle;
-    private int[] speed = new int[2];
+    private Speed speed;
 
 
     public Bullet() {
@@ -23,7 +24,7 @@ public class Bullet {
         System.out.println("left bullet created");
         Bullet bulletLeft = new Bullet();
         bulletLeft.setLocation(new Location((NoblePhantasm.getInstance().getLocation().getXCoordinates() + (NoblePhantasm.getInstance().getSize().getWidth() / 8) - (bulletLeft.getSize().getWidth())), (NoblePhantasm.getInstance().getLocation().getYCoordinates() - 2 * bulletLeft.getSize().getWidth())));
-        bulletLeft.setSpeed(0,Constants.ProportionConstants.SPEED_OF_THE_BULLET);
+        bulletLeft.setSpeed(new Speed(0,Constants.ProportionConstants.SPEED_OF_THE_BULLET));
         return bulletLeft;
     }
 
@@ -32,7 +33,7 @@ public class Bullet {
         System.out.println("right bullet created");
         Bullet bulletRight = new Bullet();
         bulletRight.setLocation(new Location((NoblePhantasm.getInstance().getLocation().getXCoordinates() + ( (NoblePhantasm.getInstance().getSize().getWidth() * 7)/ 8) - (bulletRight.getSize().getWidth())), (NoblePhantasm.getInstance().getLocation().getYCoordinates() - 2 * bulletRight.getSize().getWidth())));
-        bulletRight.setSpeed(0,Constants.ProportionConstants.SPEED_OF_THE_BULLET);
+        bulletRight.setSpeed(new Speed(0,Constants.ProportionConstants.SPEED_OF_THE_BULLET));
         return bulletRight;
     }
 
@@ -44,14 +45,11 @@ public class Bullet {
         this.location = location;
     }
 
-    public int[] getSpeed() {
+    public Speed getSpeed() {
         return speed;
     }
 
-    public void setSpeed(int speedX, int speedY) {
-        this.speed[0] = speedX;
-        this.speed[1] = speedY;
-    }
+    public void setSpeed(Speed speed) { this.speed=speed; }
 
     public NoblePhantasm getNoblePhantasm() {
         return noblePhantasm;
