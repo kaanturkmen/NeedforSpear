@@ -24,9 +24,8 @@ import java.util.List;
 
 public class ObstacleAnimator implements AnimatorStrategy {
 
-    private List<Obstacle> listofObstacles;
+    public static List<Obstacle> listofObstacles;
     private MovementHandler movementHandler = new MovementHandler();
-    CollisionHandler collisionHandler = new CollisionHandler();
 
     Image explosiveObstacleImage;
     Image firmObstacleImage;
@@ -51,7 +50,6 @@ public class ObstacleAnimator implements AnimatorStrategy {
      * @param path Path of the obstacle image.
      * @return Image of the obstacle.
      */
-
 
     public Image getObstacleImage(String path) {
         return Toolkit.getDefaultToolkit().getImage(Constants.UIConstants.USER_DIRECTORY_TO_RESOURCE_FOLDER + path)
@@ -115,7 +113,6 @@ public class ObstacleAnimator implements AnimatorStrategy {
         Location loc = obstacle.getLocation();
         int width = obstacle.getSize().getWidth();
         int length = obstacle.getSize().getLength();
-        //g2.setColor(obstacle.retrieveColorEquivalent(obstacle.getColor()));
         int x_coordinates_loc = loc.getXCoordinates().intValue();
         int y_coordinates_loc = loc.getYCoordinates().intValue();
         if (obstacle.getObstacleType().equals(Constants.ObstacleNameConstants.EXP)) {
@@ -147,7 +144,12 @@ public class ObstacleAnimator implements AnimatorStrategy {
                 Obstacle explosiveObstacle = listofObstacles.get(i);
 
                 if (explosiveObstacle.getObstacleType().equals(Constants.ObstacleNameConstants.EXP)){
-                    explosiveAnimation(g2, explosiveObstacle);
+                    int x = explosiveObstacle.getLocation().getXCoordinates().intValue();
+                    int y = explosiveObstacle.getLocation().getYCoordinates().intValue();
+                    int width = explosiveObstacle.getSize().getWidth();
+                    int length = explosiveObstacle.getSize().getLength();
+                    movementHandler.explosiveAnimation(g2, explosiveObstacle);
+                    g2.drawImage(explosiveObstacleImage, x, y, width, length, null);
                 }
 
                 //TODO these could be removed from here
@@ -169,46 +171,9 @@ public class ObstacleAnimator implements AnimatorStrategy {
                     }
 
                 }
-                removingObstacles(explosiveObstacle);
+                movementHandler.removingObstacles(explosiveObstacle);
             }
         }
-    }
-
-    /**
-     * animates only the explosive obstacles
-     *
-     * @param g2       2D graphics
-     * @param explosiveObstacle explosive obstacle
-     */
-    public void explosiveAnimation(Graphics2D g2, Obstacle explosiveObstacle){
-
-        if (collisionHandler.isRemovedObstacle(explosiveObstacle)){
-
-            Location newLoc = movementHandler.moveObstacleDown(explosiveObstacle);
-            explosiveObstacle.setLocation(newLoc);
-        }else{
-            if (!checkIfOrbitCollides(explosiveObstacle.retrieveOrbitBounds())) {
-                Location newLoc = movementHandler.circularMotion(explosiveObstacle);
-                explosiveObstacle.setLocation(newLoc);
-            }
-        }
-
-        int x = explosiveObstacle.getLocation().getXCoordinates().intValue();
-        int y = explosiveObstacle.getLocation().getYCoordinates().intValue();
-        int width = explosiveObstacle.getSize().getWidth();
-        int length = explosiveObstacle.getSize().getLength();
-        g2.drawImage(explosiveObstacleImage, x, y, width, length, null);
-    }
-
-    public boolean checkIfOrbitCollides(Rectangle orbit) {
-
-        for (int i = 0; i < listofObstacles.size(); i++) {
-            Obstacle obstacle = listofObstacles.get(i);
-            if (collisionHandler.collisionWithExplosiveOrbit(orbit, obstacle)) {
-                return true;
-            }
-        }
-        return false;
     }
 
     /**
@@ -231,22 +196,4 @@ public class ObstacleAnimator implements AnimatorStrategy {
         g2.drawString(text, sx, sy);
     }
 
-    private void removingObstacles(Obstacle obstacle){
-        double y_bottom = obstacle.getLocation().getYCoordinates() + obstacle.getSize().getLength();
-        //TODO carry all removals here EXPLOSIVE REMOVAL
-        if (collisionHandler.isRemovedObstacle(obstacle) && obstacle.getObstacleType().equals(Constants.ObstacleNameConstants.EXP) &&
-                (collisionHandler.collisionWithExplosive(obstacle,NoblePhantasm.getInstance()) ||
-                        y_bottom > Constants.UIConstants.INITIAL_SCREEN_HEIGHT )){
-
-            if (collisionHandler.collisionWithExplosive(obstacle,NoblePhantasm.getInstance())){
-                PlayerLivesHandler.getInstance().notifyPlayerExplosiveFall(NoblePhantasm.getInstance());
-                System.out.println("player hit by explosive");
-            }
-
-            collisionHandler.removeObstacle(obstacle, listofObstacles);
-
-
-
-        }
-    }
 }
