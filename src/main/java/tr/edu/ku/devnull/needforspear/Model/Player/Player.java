@@ -1,5 +1,6 @@
 package tr.edu.ku.devnull.needforspear.Model.Player;
 
+import tr.edu.ku.devnull.needforspear.Model.GameData.Constants;
 import tr.edu.ku.devnull.needforspear.Model.Spell.Spell;
 
 import java.util.ArrayList;
@@ -11,8 +12,8 @@ import java.util.List;
  */
 public class Player {
     private Account account;
-    private Integer score;
-    private Integer lives;
+    private int score;
+    private int lives;
     private List<Spell> listofSpells;
 
     /**
@@ -22,13 +23,13 @@ public class Player {
      */
     public Player(Account account) {
         this.account = account;
-        this.score = 0;
-        this.lives = 3;
+        this.score = Constants.UIConstants.INIT_SCORE;
+        this.lives = Constants.UIConstants.INIT_LIVES;
         this.listofSpells = new ArrayList<>();
     }
 
     /**
-     * Constructor for Player.
+     * Empty constructor for the Player.
      */
     public Player() {
     }
@@ -82,7 +83,7 @@ public class Player {
      */
     public void decreaseLives() {
         System.out.println("current lives: " + this.lives);
-        if (lives > 0) this.lives -= 1;
+        if (lives > 0) this.lives -= Constants.UIConstants.ONE_LIVES_GAIN_LOSE;
         System.out.println("player lives decreased! current lives: " + this.lives);
     }
 
@@ -91,11 +92,15 @@ public class Player {
      */
     public void increaseLives() {
         System.out.println("current lives: " + this.lives);
-        this.lives += 1;
+        this.lives += Constants.UIConstants.ONE_LIVES_GAIN_LOSE;
         System.out.println("player lives increased! current lives: " + this.lives);
     }
 
-
+    /**
+     * Sets the list of spells
+     *
+     * @param listofSpells List to be set.
+     */
     public void setListofSpells(List<Spell> listofSpells) {
         this.listofSpells = listofSpells;
     }
