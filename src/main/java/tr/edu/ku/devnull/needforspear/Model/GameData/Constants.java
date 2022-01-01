@@ -152,6 +152,8 @@ public interface Constants {
         double SPEED_DIVISION_CONSTANT = 400;
         double OBSTACLE_FAST_CONSTANT_OF_SPEED = 2.0;
         double SPELL_SIZE_DIVISION_CONSTANT = 2.0;
+        double YMIR_NORMAL_MODE_PROBABILITY = 0.5;
+        double YMIR_HARD_MODE_PROBABILITY = 0.75;
 
         Size MENU_AND_AUTH_VIEW_COMPONENT_SIZE = new Size(192, 50);
 
