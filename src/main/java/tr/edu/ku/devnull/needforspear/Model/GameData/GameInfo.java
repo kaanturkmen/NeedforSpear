@@ -55,6 +55,8 @@ public class GameInfo {
 
     /**
      * Sets the game mode of the game.
+     *
+     * @param gameMode GameMode to be set.
      */
     public void setGameMode(GameMode gameMode) {
         this.gameMode = gameMode;
@@ -71,6 +73,8 @@ public class GameInfo {
 
     /**
      * Sets the player of the game.
+     *
+     * @param player Player to be set.
      */
     public void setPlayer(Player player) {
         this.player = player;
@@ -87,6 +91,8 @@ public class GameInfo {
 
     /**
      * Sets the map of the game.
+     *
+     * @param gameMap GameMap to be set.
      */
     public void setGameMap(GameMap gameMap) {
         this.gameMap = gameMap;
@@ -103,6 +109,8 @@ public class GameInfo {
 
     /**
      * Sets the database of the game.
+     *
+     * @param gameDatabase Database to be set.
      */
     public void setGameDatabase(GameDatabase gameDatabase) {
         this.gameDatabase = gameDatabase;
@@ -119,6 +127,7 @@ public class GameInfo {
 
     /**
      * Sets the mute mode of the game.
+     * @param muteModeActivated Mute mode to be set.
      */
     public void setMuteModeActivated(boolean muteModeActivated) {
         this.muteModeActivated = muteModeActivated;
@@ -135,6 +144,8 @@ public class GameInfo {
 
     /**
      * Sets the pause mode of the game.
+     *
+     * @param paused Pause mode to be set.
      */
     public void setPaused(boolean paused) {
         isPaused = paused;
@@ -151,6 +162,8 @@ public class GameInfo {
 
     /**
      * Sets the game loaded mode of the game.
+     *
+     * @param gameLoaded Game load mode to be set.
      */
     public void setGameLoaded(boolean gameLoaded) {
         isGameLoaded = gameLoaded;
@@ -166,7 +179,9 @@ public class GameInfo {
     }
 
     /**
-     * Gets main frame of the game.
+     * Sets the start time in terms of milliseconds of the game.
+     *
+     * @param startMillis Milliseconds to be set.
      */
     public void setStartMillis(long startMillis) {
         this.startMillis = startMillis;

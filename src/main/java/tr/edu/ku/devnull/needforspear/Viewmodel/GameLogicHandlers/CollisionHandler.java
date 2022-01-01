@@ -4,11 +4,7 @@ import tr.edu.ku.devnull.needforspear.Model.GameData.Constants;
 import tr.edu.ku.devnull.needforspear.Model.GameData.Location;
 import tr.edu.ku.devnull.needforspear.Model.GameData.Size;
 
-import tr.edu.ku.devnull.needforspear.Model.Obstacle.ExplosiveObstacle;
-
-import tr.edu.ku.devnull.needforspear.Model.Obstacle.GiftObstacle;
 import tr.edu.ku.devnull.needforspear.Model.Obstacle.Obstacle;
-import tr.edu.ku.devnull.needforspear.Model.Player.Player;
 import tr.edu.ku.devnull.needforspear.Model.Spell.Spell;
 import tr.edu.ku.devnull.needforspear.Model.UIModels.Bullet;
 import tr.edu.ku.devnull.needforspear.Model.UIModels.NoblePhantasm;
@@ -162,7 +158,7 @@ public class CollisionHandler {
         if (isRemoved) {
 
 
-            if (obstacle.getObstacleType().equals(Constants.ObstacleNameConstants.GIFT)) {
+            if (obstacle.getObstacleType().equals(Constants.ObstacleNameConstants.GIFT_OBSTACLE)) {
                 SpellAnimator.listOfMovingSpells.add(obstacle.getSpell());
             }
             //listofObstacles.remove(obstacle);
@@ -173,7 +169,7 @@ public class CollisionHandler {
     }
 
     public void removeObstacle(Obstacle obstacle, List<Obstacle> listofObstacles) {
-        if (!obstacle.getObstacleType().equals(Constants.ObstacleNameConstants.HOLLOW)) {
+        if (!obstacle.getObstacleType().equals(Constants.ObstacleNameConstants.HOLLOW_PURPLE_OBSTACLE)) {
             PlayerScoreHandler.getInstance().updateScore(NeedforSpearGame.getInstance().getGameInfo().getPlayer());
         }
         listofObstacles.remove(obstacle);

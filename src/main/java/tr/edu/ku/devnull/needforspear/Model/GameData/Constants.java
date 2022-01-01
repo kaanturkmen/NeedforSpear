@@ -112,33 +112,44 @@ public interface Constants {
 
         String WEBSITE_TO_BE_PINGED = "https://www.google.com";
 
-        Integer PADDING_BETWEEN_TEXT_FIELDS = 50;
-        Integer PADDING_MAIN_MENU = 50;
+        int PADDING_BETWEEN_TEXT_FIELDS = 50;
+        int PADDING_MAIN_MENU = 50;
 
-        Integer INITIAL_SCREEN_WIDTH = 1280;
-        Integer INITIAL_SCREEN_HEIGHT = 720;
+        int INITIAL_SCREEN_WIDTH = 1280;
+        int INITIAL_SCREEN_HEIGHT = 720;
 
-        Integer BACK_BUTTON_X_COORDINATE = 70;
-        Integer BACK_BUTTON_Y_COORDINATE = 600;
+        int BACK_BUTTON_X_COORDINATE = 70;
+        int BACK_BUTTON_Y_COORDINATE = 600;
 
-        Integer HELP_SCREEN_BACK_BUTTON_X_COORDINATE = 70;
-        Integer HELP_SCREEN_BACK_BUTTON_Y_COORDINATE = 90;
+        int HELP_SCREEN_BACK_BUTTON_X_COORDINATE = 70;
+        int HELP_SCREEN_BACK_BUTTON_Y_COORDINATE = 90;
 
-        Integer OBSTACLE_TXT_X = 50;
-        Integer OBSTACLE_TXT_Y = 50;
-        Integer OBSTACLE_TXT_X_PADDING = 50;
-        Integer OBSTACLE_TXT_Y_PADDING = 30;
-        Integer OBSTACLE_TXT_WIDTH = 400;
-        Integer OBSTACLE_TXT_HEIGHT = 20;
-        Integer OBSTACLE_NUM_CHECK_FRAME_SIZE = 500;
-        Integer FLOWLAYOUT_HGAP = 30;
-        Integer FLOWLAYOUT_VGAP = 10;
-        Integer OBSTACLE_VGAP = 20;
-        Integer OBSTACLE_HGAP = 30;
-        Integer INIT_LIVES = 3;
-        Integer OVERLAY_PANEL_HEIGHT = 100;
-        Integer OBSTACLE_DISTANCE_FROM_PHANTASM = 150;
-        Integer INIT_SCORE = 0;
+        int OBSTACLE_TXT_X = 50;
+        int OBSTACLE_TXT_Y = 50;
+        int OBSTACLE_TXT_X_PADDING = 50;
+        int OBSTACLE_TXT_Y_PADDING = 30;
+        int OBSTACLE_TXT_WIDTH = 400;
+        int OBSTACLE_TXT_HEIGHT = 20;
+        int OBSTACLE_NUM_CHECK_FRAME_SIZE = 500;
+        int FLOWLAYOUT_HGAP = 30;
+        int FLOWLAYOUT_VGAP = 10;
+        int OBSTACLE_VGAP = 20;
+        int OBSTACLE_HGAP = 30;
+        int INIT_LIVES = 3;
+        int OVERLAY_PANEL_HEIGHT = 100;
+        int OBSTACLE_DISTANCE_FROM_PHANTASM = 150;
+        int INIT_SCORE = 0;
+        int OBSTACLE_SIMPLE_HIT_HEALTH = 1;
+        int OBSTACLE_MULTIPLE_HIT_MIN_HEALTH = 3;
+        int OBSTACLE_MULTIPLE_HIT_MAX_HEALTH = 10;
+        int OBSTACLE_SIZE_DIVISION_CONSTANT = 5;
+        int ONE_HIT_DAMAGE = 1;
+        int FREEZE_SPELL_DURATION_SECONDS = 15;
+        int MILISECONDS_TO_SECONDS = 1000;
+
+        double OBSTACLE_MOVE_PROBABILITY = 0.2;
+        double SPEED_DIVISION_CONSTANT = 400;
+        double OBSTACLE_FAST_CONSTANT_OF_SPEED = 2.0;
 
         Size MENU_AND_AUTH_VIEW_COMPONENT_SIZE = new Size(192, 50);
 
@@ -147,6 +158,7 @@ public interface Constants {
         Location MAIN_MENU_VIEW_LOCATION = new Location(543.0, 361.0);
 
         Color OVERLAY_BACKGROUND_COLOR = new Color(0.21f, 0.22f, 0.28f);
+        Color PURPLE_COLOR = new Color(102, 0, 153);
 
     }
 
@@ -154,11 +166,11 @@ public interface Constants {
      * Constants for the names of the obstacles.
      */
     interface ObstacleNameConstants {
-        String SIMPLE = "SimpleObstacle";
-        String FIRM = "FirmObstacle";
-        String EXP = "ExplosiveObstacle";
-        String GIFT = "GiftObstacle";
-        String HOLLOW = "HollowPurpleObstacle";
+        String SIMPLE_OBSTACLE = "SimpleObstacle";
+        String FIRM_OBSTACLE = "FirmObstacle";
+        String EXPLOSIVE_OBSTACLE = "ExplosiveObstacle";
+        String GIFT_OBSTACLE = "GiftObstacle";
+        String HOLLOW_PURPLE_OBSTACLE = "HollowPurpleObstacle";
     }
 
     /**
@@ -182,8 +194,8 @@ public interface Constants {
      * Array constants for the selections.
      */
     interface ArrayConstants {
-        String[] OBSTACLE_NAMES_ARR = {Constants.ObstacleNameConstants.SIMPLE, Constants.ObstacleNameConstants.FIRM,
-                Constants.ObstacleNameConstants.EXP, Constants.ObstacleNameConstants.GIFT};
+        String[] OBSTACLE_NAMES_ARR = {Constants.ObstacleNameConstants.SIMPLE_OBSTACLE, Constants.ObstacleNameConstants.FIRM_OBSTACLE,
+                Constants.ObstacleNameConstants.EXPLOSIVE_OBSTACLE, Constants.ObstacleNameConstants.GIFT_OBSTACLE};
     }
 
     /**

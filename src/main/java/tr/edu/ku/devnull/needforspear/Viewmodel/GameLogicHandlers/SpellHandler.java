@@ -43,7 +43,7 @@ public class SpellHandler{
     public List<Obstacle> getGiftObstacleList(){
         List<Obstacle> giftObstacleList= new ArrayList<>();
         for(Obstacle obstacle : NeedforSpearGame.getInstance().getGameInfo().getGameMap().getListofObstacles()){
-            if(obstacle.getObstacleType().equals(Constants.ObstacleNameConstants.GIFT)){
+            if(obstacle.getObstacleType().equals(Constants.ObstacleNameConstants.GIFT_OBSTACLE)){
                 giftObstacleList.add(obstacle);
             }
         }

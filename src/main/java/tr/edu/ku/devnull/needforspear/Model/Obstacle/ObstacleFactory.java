@@ -4,6 +4,7 @@ import tr.edu.ku.devnull.needforspear.Model.GameData.Constants;
 import tr.edu.ku.devnull.needforspear.Model.GameData.GameMap;
 import tr.edu.ku.devnull.needforspear.Model.GameData.Size;
 import tr.edu.ku.devnull.needforspear.Model.GameData.Location;
+import tr.edu.ku.devnull.needforspear.NeedforSpearGame;
 
 import java.util.Random;
 
@@ -14,7 +15,6 @@ import java.util.Random;
  * @author Melis Oktayoğlu and Gökçe Sevimli
  */
 public class ObstacleFactory {
-    private final GameMap gameMap = new GameMap(new Size(1280, 720));
     private static ObstacleFactory factory;
 
     /**
@@ -43,41 +43,40 @@ public class ObstacleFactory {
      */
     public Obstacle getObstacle(String obstacleType) {
         Location initialLocation = new Location(0, 0);
-        Random rand = new Random();
 
-        //obstacle moving back and forth with 0.2 probability
-        boolean is_moving = rand.nextInt(5) == 0;
+        // Obstacle moving back and forth with 0.2 probability
+        boolean is_moving = new Random().nextFloat() <= Constants.UIConstants.OBSTACLE_MOVE_PROBABILITY;
         double speed;
 
         switch (obstacleType) {
-            case Constants.ObstacleNameConstants.SIMPLE:
+            case Constants.ObstacleNameConstants.SIMPLE_OBSTACLE:
 
                 if (is_moving) {
-                    speed = (Constants.UIConstants.INITIAL_SCREEN_WIDTH*Constants.ProportionConstants.RATIO_OF_NOBLE_PHANTASM /400);
+                    speed = (Constants.UIConstants.INITIAL_SCREEN_WIDTH * Constants.ProportionConstants.RATIO_OF_NOBLE_PHANTASM / Constants.UIConstants.SPEED_DIVISION_CONSTANT);
                 } else {
                     speed = 0;
                 }
 
-                return new SimpleObstacle(gameMap, speed, initialLocation);
+                return new SimpleObstacle(NeedforSpearGame.getInstance().getGameInfo().getGameMap(), speed, initialLocation);
 
-            case Constants.ObstacleNameConstants.FIRM:
+            case Constants.ObstacleNameConstants.FIRM_OBSTACLE:
 
                 if (is_moving) {
-                    speed = (Constants.UIConstants.INITIAL_SCREEN_WIDTH*Constants.ProportionConstants.RATIO_OF_NOBLE_PHANTASM /400);
+                    speed = (Constants.UIConstants.INITIAL_SCREEN_WIDTH * Constants.ProportionConstants.RATIO_OF_NOBLE_PHANTASM / Constants.UIConstants.SPEED_DIVISION_CONSTANT);
                 } else {
                     speed = 0;
                 }
 
-                return new FirmObstacle(gameMap, speed, initialLocation);
+                return new FirmObstacle(NeedforSpearGame.getInstance().getGameInfo().getGameMap(), speed, initialLocation);
 
-            case Constants.ObstacleNameConstants.EXP:
-                return new ExplosiveObstacle(gameMap, 2.0, initialLocation);
+            case Constants.ObstacleNameConstants.EXPLOSIVE_OBSTACLE:
+                return new ExplosiveObstacle(NeedforSpearGame.getInstance().getGameInfo().getGameMap(), Constants.UIConstants.OBSTACLE_FAST_CONSTANT_OF_SPEED, initialLocation);
 
-            case Constants.ObstacleNameConstants.GIFT:
-                return new GiftObstacle(gameMap, 0.0, initialLocation);
+            case Constants.ObstacleNameConstants.GIFT_OBSTACLE:
+                return new GiftObstacle(NeedforSpearGame.getInstance().getGameInfo().getGameMap(), 0.0, initialLocation);
 
-            case Constants.ObstacleNameConstants.HOLLOW:
-                return new HollowPurpleObstacle(gameMap, 0.0, initialLocation);
+            case Constants.ObstacleNameConstants.HOLLOW_PURPLE_OBSTACLE:
+                return new HollowPurpleObstacle(NeedforSpearGame.getInstance().getGameInfo().getGameMap(), 0.0, initialLocation);
 
             default:
                 return null;

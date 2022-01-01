@@ -13,7 +13,7 @@ public class MapHandler {
     public int retrieveSimpleObstacleNumber() {
         int x = 0;
         for (Obstacle obs : NeedforSpearGame.getInstance().getGameInfo().getGameMap().getListofObstacles()) {
-            if (obs.getObstacleType().equals(Constants.ObstacleNameConstants.SIMPLE)) {
+            if (obs.getObstacleType().equals(Constants.ObstacleNameConstants.SIMPLE_OBSTACLE)) {
                 x++;
             }
         }
@@ -28,7 +28,7 @@ public class MapHandler {
     public int retrieveFirmObstacleNumber() {
         int x = 0;
         for (Obstacle obs : NeedforSpearGame.getInstance().getGameInfo().getGameMap().getListofObstacles()) {
-            if (obs.getObstacleType().equals(Constants.ObstacleNameConstants.FIRM)) {
+            if (obs.getObstacleType().equals(Constants.ObstacleNameConstants.FIRM_OBSTACLE)) {
                 x++;
             }
         }
@@ -43,7 +43,7 @@ public class MapHandler {
     public int retrieveExplosiveObstacleNumber() {
         int x = 0;
         for (Obstacle obs : NeedforSpearGame.getInstance().getGameInfo().getGameMap().getListofObstacles()) {
-            if (obs.getObstacleType().equals(Constants.ObstacleNameConstants.EXP)) {
+            if (obs.getObstacleType().equals(Constants.ObstacleNameConstants.EXPLOSIVE_OBSTACLE)) {
                 x++;
             }
         }
@@ -58,7 +58,7 @@ public class MapHandler {
     public int retrieveGiftObstacleNumber() {
         int x = 0;
         for (Obstacle obs : NeedforSpearGame.getInstance().getGameInfo().getGameMap().getListofObstacles()) {
-            if (obs.getObstacleType().equals(Constants.ObstacleNameConstants.GIFT)) {
+            if (obs.getObstacleType().equals(Constants.ObstacleNameConstants.GIFT_OBSTACLE)) {
                 x++;
             }
         }
