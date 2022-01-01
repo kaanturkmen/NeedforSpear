@@ -14,7 +14,6 @@ import tr.edu.ku.devnull.needforspear.NeedforSpearGame;
 
 import tr.edu.ku.devnull.needforspear.View.PlayViews.Animators.SpellAnimator;
 
-
 import java.awt.*;
 import java.util.List;
 
@@ -30,9 +29,9 @@ public class CollisionHandler {
     /**
      * Collision checker between an obstacle and the sphere
      *
-     * @param obstacle
-     * @param sphere
-     * @return true if there is collision between sphere and obstacle
+     * @param obstacle Obstacle to be checked.
+     * @param sphere Sphere to be checked.
+     * @return true if there is collision between sphere and obstacle.
      */
     public boolean collision(Obstacle obstacle, Sphere sphere) {
         Location obsLoc = obstacle.getLocation();
@@ -51,9 +50,9 @@ public class CollisionHandler {
     /**
      * Collision checker if two obstacles collide
      *
-     * @param obstacle
-     * @param obstacle2
-     * @return true if obstacle and obstacle2 collide
+     * @param obstacle Obstacle to be checked.
+     * @param obstacle2 Other obstacle to be checked.
+     * @return true if obstacle and obstacle2 collide.
      */
     public boolean collision(Obstacle obstacle, Obstacle obstacle2) {
         Location obsLoc = obstacle.getLocation();
@@ -72,9 +71,9 @@ public class CollisionHandler {
     /**
      * Collision checker if noble phantasm and sphere collide
      *
-     * @param noblePhantasm
-     * @param sphere
-     * @return true if there is collision
+     * @param noblePhantasm Noble phantasm to be checked.
+     * @param sphere Sphere to be checked.
+     * @return true if there is collision.
      */
 
     public boolean collision(NoblePhantasm noblePhantasm, Sphere sphere) {
@@ -91,6 +90,13 @@ public class CollisionHandler {
 
     }
 
+    /**
+     * Collision checker between spell and noble phantasm.
+     *
+     * @param noblePhantasm Noble phantasm to be checked.
+     * @param spell Spell to be checked.
+     * @return true if there is a collision.
+     */
     public boolean collision(NoblePhantasm noblePhantasm, Spell spell) {
         Location noblePhantasmLoc = noblePhantasm.getLocation();
         Size noblePhantasmSizeSize = noblePhantasm.getSize();
@@ -102,6 +108,13 @@ public class CollisionHandler {
                 (int) spellLoc.getYCoordinates(), spellSize.getWidth(), spellSize.getLength()));
     }
 
+    /**
+     * Collision checker between obstacle and bullet.
+     *
+     * @param obstacle Obstacle to be checked.
+     * @param bullet Bullet to be checked.
+     * @return true if there is a collision.
+     */
     public boolean collision(Obstacle obstacle, Bullet bullet) {
         Location obsLoc = obstacle.getLocation();
         Size obsSize = obstacle.getSize();
@@ -115,6 +128,13 @@ public class CollisionHandler {
         return obsRect.getBounds().intersects(new Rectangle(x_coordinates_bulletloc, y_coordinates_bulletloc, diameter, diameter));
     }
 
+    /**
+     * Collision checker between Explosive Obstacle and noble phantasm.
+     *
+     * @param obstacle Obstacle to be checked.
+     * @param noblePhantasm Noble phantasm to be checked.
+     * @return true if there is a collision.
+     */
     public boolean collisionWithExplosive(Obstacle obstacle, NoblePhantasm noblePhantasm) {
         Location noblePhantasmLoc = noblePhantasm.getLocation();
         Size noblePhantasmSize = noblePhantasm.getSize();
@@ -134,6 +154,13 @@ public class CollisionHandler {
 
     }
 
+    /**
+     * Checks collision with explosive orbit.
+     *
+     * @param orbit Orbit to be checked.
+     * @param obstacle Obstacle to be checked.
+     * @return true if there is a collision.
+     */
     public boolean collisionWithExplosiveOrbit(Rectangle orbit, Obstacle obstacle) {
         Location obstacleLocation = obstacle.getLocation();
         int x_obs = (int) obstacleLocation.getXCoordinates();
@@ -147,7 +174,7 @@ public class CollisionHandler {
     /**
      * removes obstacle if enough collisions occurred and updates score by expert principle
      *
-     * @param obstacle
+     * @param obstacle Obstacle to be checked if it is removed.
      * @return true if removed
      */
     public boolean isRemovedObstacle(Obstacle obstacle) {
@@ -168,6 +195,12 @@ public class CollisionHandler {
         return isRemoved;
     }
 
+    /**
+     * Removes obstacle from the list of obstacles.
+     *
+     * @param obstacle Obstacle to be removed.
+     * @param listofObstacles List of obstacle to be removed from.
+     */
     public void removeObstacle(Obstacle obstacle, List<Obstacle> listofObstacles) {
         if (!obstacle.getObstacleType().equals(Constants.ObstacleNameConstants.HOLLOW_PURPLE_OBSTACLE)) {
             PlayerScoreHandler.getInstance().updateScore(NeedforSpearGame.getInstance().getGameInfo().getPlayer());

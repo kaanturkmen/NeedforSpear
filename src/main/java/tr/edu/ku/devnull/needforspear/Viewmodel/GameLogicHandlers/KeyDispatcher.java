@@ -17,7 +17,7 @@ import java.awt.event.KeyEvent;
 public class KeyDispatcher implements KeyEventDispatcher {
 
     /**
-     * @param e
+     * @param e Event to be processed.
      * @return true if key event(A, D, W, T, Rightkey, Leftkey, DownKey) is pressed or released, false if not.
      */
     @Override

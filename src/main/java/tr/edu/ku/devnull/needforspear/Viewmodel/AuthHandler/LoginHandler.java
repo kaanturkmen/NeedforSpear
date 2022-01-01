@@ -128,7 +128,6 @@ public class LoginHandler implements DatabaseAuthSubscriber {
      */
     @Override
     public void loginResponseArrived(Player player, Integer databaseResponse) {
-        // TODO Pop up the messages.
         this.player = player;
         System.out.println(player.getLives());
 

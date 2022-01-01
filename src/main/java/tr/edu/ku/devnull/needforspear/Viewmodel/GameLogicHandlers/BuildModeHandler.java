@@ -219,12 +219,12 @@ public class BuildModeHandler {
      * @return Obstacle object from the given x y location
      */
     public Obstacle getObstacleByLocation(int x, int y) {
-        for (int i = 0; i < obstacleList.size(); i++) {
-            if (obstacleList.get(i).getLocation().getXCoordinates() <= x &&
-                    obstacleList.get(i).getLocation().getXCoordinates() + obstacleList.get(i).getSize().getWidth() >= x &&
-                    obstacleList.get(i).getLocation().getYCoordinates() <= y &&
-                    obstacleList.get(i).getLocation().getYCoordinates() + obstacleList.get(i).getSize().getLength() >= y) {
-                return obstacleList.get(i);
+        for (Obstacle obstacle : obstacleList) {
+            if (obstacle.getLocation().getXCoordinates() <= x &&
+                    obstacle.getLocation().getXCoordinates() + obstacle.getSize().getWidth() >= x &&
+                    obstacle.getLocation().getYCoordinates() <= y &&
+                    obstacle.getLocation().getYCoordinates() + obstacle.getSize().getLength() >= y) {
+                return obstacle;
             }
         }
         return null;
@@ -334,8 +334,8 @@ public class BuildModeHandler {
 
     /**
      * creates hollow obstacles and places them
-     * @param graphics
-     * @param obstacleAnimator
+     * @param graphics Graphics to be drawn.
+     * @param obstacleAnimator ObstacleAnimator to be used.
      */
     public void createHollowObstacles(Graphics graphics, ObstacleAnimator obstacleAnimator){
         List<Location> availableLocations = getAvailableLocations();
@@ -348,8 +348,9 @@ public class BuildModeHandler {
     }
 
     /**
-     * returns a list of available locations for placing obstacles
-     * @return
+     * Gets the available locations.
+     *
+     * @return a list of available locations for placing obstacles
      */
     private List<Location> getAvailableLocations(){
         Obstacle dummyObstacle = ObstacleFactory.getInstance().getObstacle(Constants.ObstacleNameConstants.SIMPLE_OBSTACLE);
@@ -374,17 +375,18 @@ public class BuildModeHandler {
     }
 
     /**
-     * returns true if the given point is available for putting obstacle
-     * @param x
-     * @param y
-     * @return boolean
+     * Checks if the given point is available.
+     *
+     * @param x X point to be checked.
+     * @param y Y point to be checked.
+     * @return true if the given point is available for putting obstacle
      */
     private boolean checkIfPointAvailable(int x, int y){
-        for (int i = 0; i < obstacleList.size(); i++) {
-            if (obstacleList.get(i).getLocation().getXCoordinates() - obstacleList.get(i).getSize().getWidth() <= x &&
-                    obstacleList.get(i).getLocation().getXCoordinates() + obstacleList.get(i).getSize().getWidth() >= x &&
-                    obstacleList.get(i).getLocation().getYCoordinates() - obstacleList.get(i).getSize().getLength()<= y &&
-                    obstacleList.get(i).getLocation().getYCoordinates() + obstacleList.get(i).getSize().getLength() >= y){
+        for (Obstacle obstacle : obstacleList) {
+            if (obstacle.getLocation().getXCoordinates() - obstacle.getSize().getWidth() <= x &&
+                    obstacle.getLocation().getXCoordinates() + obstacle.getSize().getWidth() >= x &&
+                    obstacle.getLocation().getYCoordinates() - obstacle.getSize().getLength() <= y &&
+                    obstacle.getLocation().getYCoordinates() + obstacle.getSize().getLength() >= y) {
                 return false;
             }
         }
