@@ -5,13 +5,17 @@ import tr.edu.ku.devnull.needforspear.Model.GameData.Constants;
 import java.net.URL;
 import java.net.URLConnection;
 
+/**
+ * InternetHandler is an Controller Design Pattern for the handling internet connection.
+ *
+ * @author Kaan Turkmen
+ */
 public class InternetHandler {
     private final String websiteURL;
 
-    public InternetHandler(String websiteURL) {
-        this.websiteURL = websiteURL;
-    }
-
+    /**
+     * Constructor of the InternetHandler.
+     */
     public InternetHandler() {
         this.websiteURL = Constants.UIConstants.WEBSITE_TO_BE_PINGED;
     }

@@ -50,6 +50,9 @@ public interface Constants {
         String USER_DIRECTORY_KEYWORD = "user.dir";
         String USER_DIRECTORY_TO_RESOURCE_FOLDER = "src/main/java/tr/edu/ku/devnull/needforspear/Resources/Images/";
 
+        String BACKGROUND_MUSIC = "backgroundMusic.wav";
+        String SOUNDS_FOLDER_PATH = "src/main/java/tr/edu/ku/devnull/needforspear/Resources/Sounds/";
+
         String GAME_NAME = "Need for Spear!";
         String USERNAME_TEXT_FIELD_PLACEHOLDER = "Username";
         String EMAIL_TEXT_FIELD_PLACEHOLDER = "Email address";
