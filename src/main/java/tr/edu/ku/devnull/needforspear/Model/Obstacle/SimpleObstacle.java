@@ -5,8 +5,6 @@ import tr.edu.ku.devnull.needforspear.Model.GameData.GameMap;
 import tr.edu.ku.devnull.needforspear.Model.GameData.Location;
 import tr.edu.ku.devnull.needforspear.Model.GameData.Size;
 
-import java.awt.*;
-
 /**
  * SimpleObstacle is a class that extends Obstacle
  * which contains the attributes of a simple obstacle.
@@ -23,12 +21,12 @@ public class SimpleObstacle extends Obstacle {
      * @param location Location of the simple obstacle.
      */
     public SimpleObstacle(GameMap gameMap, Double speed, Location location) {
-        this.obstacleType = "SimpleObstacle";
+        this.obstacleType = Constants.ObstacleNameConstants.SIMPLE_OBSTACLE;
         this.gameMap = gameMap;
-        this.health = 1;
+        this.health = Constants.UIConstants.OBSTACLE_SIMPLE_HIT_HEALTH;
         this.speed = speed;
-        this.size = new Size((int) ((Constants.UIConstants.INITIAL_SCREEN_WIDTH * Constants.ProportionConstants.RATIO_OF_NOBLE_PHANTASM) / 5), Constants.ProportionConstants.HEIGHT_OF_THE_OBSTACLE);
+        this.size = new Size((int) ((Constants.UIConstants.INITIAL_SCREEN_WIDTH * Constants.ProportionConstants.RATIO_OF_NOBLE_PHANTASM) / Constants.UIConstants.OBSTACLE_SIZE_DIVISION_CONSTANT), Constants.ProportionConstants.HEIGHT_OF_THE_OBSTACLE);
         this.location = location;
-        this.color = "BLUE";
+        this.color = Constants.UIConstants.BLUE_COLOR_STRING;
     }
 }

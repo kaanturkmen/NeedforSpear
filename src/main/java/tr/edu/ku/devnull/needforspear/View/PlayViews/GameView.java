@@ -56,7 +56,7 @@ public class GameView {
         loadMapButton = new JButton(Constants.UIConstants.LOAD_GAME_TEXT);
         pauseButton = new JButton(Constants.UIConstants.PAUSE_GAME_TEXT);
         addObstacleChoice = new JComboBox<>(Constants.ArrayConstants.OBSTACLE_NAMES_ARR);
-        addObstacleChoice.setSelectedItem(Constants.ObstacleNameConstants.SIMPLE);
+        addObstacleChoice.setSelectedItem(Constants.ObstacleNameConstants.SIMPLE_OBSTACLE);
         resumeButton = new JButton(Constants.UIConstants.RESUME_GAME_TEXT);
         backToMenuButton = new JButton(Constants.UIConstants.BACK_TO_MENU_TEXT);
         overlayPanel = new JPanel();

@@ -37,7 +37,7 @@ public class SpellFactory {
      * @return New Spell with spellType and unique attributes inserted into given giftObstacle.
      */
     public Spell getSpell(String spellType, Obstacle giftObstacle) {
-        if (giftObstacle != null && giftObstacle.getObstacleType().equals(Constants.ObstacleNameConstants.GIFT)) {
+        if (giftObstacle != null && giftObstacle.getObstacleType().equals(Constants.ObstacleNameConstants.GIFT_OBSTACLE)) {
             switch (spellType) {
                 case Constants.SpellNameConstants.CHANCE:
                     return new ChanceGivingSpell(new Size(Constants.ProportionConstants.SPELL_SIZE, Constants.ProportionConstants.SPELL_SIZE),

@@ -13,7 +13,7 @@ import java.util.concurrent.ThreadLocalRandom;
 public class Ymir extends Thread {
 
     private final Random r = new Random();
-    private double activationProbability;
+    private final double activationProbability;
 
     public Ymir() {
         if(NeedforSpearGame.getInstance().getGameInfo().getDifficultyHandler().getCurrentDifficulty() == Difficulty.NORMAL) {

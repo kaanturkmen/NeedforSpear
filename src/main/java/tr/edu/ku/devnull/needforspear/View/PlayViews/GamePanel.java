@@ -178,13 +178,13 @@ public class GamePanel extends JPanel implements ActionListener, MouseMotionList
                                 //but player may try to add an obstacle whose number limit is not max
                                 BuildModeHandler.getInstance().createNewObstacle(x, y, BuildModeHandler.getInstance().getAddedObstacleType(), getGraphics(), obstacleAnimator);
                                 Obstacle obstacle = BuildModeHandler.getInstance().getObstacleByLocation(x, y);
-                                if (!(obstacle.getObstacleType().equals(Constants.ObstacleNameConstants.SIMPLE) &&
+                                if (!(obstacle.getObstacleType().equals(Constants.ObstacleNameConstants.SIMPLE_OBSTACLE) &&
                                         BuildModeHandler.getInstance().checkSimpleObstacleNum(new MapHandler().retrieveSimpleObstacleNumber())  ||
-                                        (obstacle.getObstacleType().equals(Constants.ObstacleNameConstants.FIRM) &&
+                                        (obstacle.getObstacleType().equals(Constants.ObstacleNameConstants.FIRM_OBSTACLE) &&
                                         BuildModeHandler.getInstance().checkFirmObstacleNum(new MapHandler().retrieveFirmObstacleNumber()))  ||
-                                        (obstacle.getObstacleType().equals(Constants.ObstacleNameConstants.EXP) &&
+                                        (obstacle.getObstacleType().equals(Constants.ObstacleNameConstants.EXPLOSIVE_OBSTACLE) &&
                                         BuildModeHandler.getInstance().checkExplosiveObstacleNum(new MapHandler().retrieveExplosiveObstacleNumber()))  ||
-                                        (obstacle.getObstacleType().equals(Constants.ObstacleNameConstants.GIFT) &&
+                                        (obstacle.getObstacleType().equals(Constants.ObstacleNameConstants.GIFT_OBSTACLE) &&
                                         BuildModeHandler.getInstance().checkGiftObstacleNum(new MapHandler().retrieveGiftObstacleNumber())))) {
 
                                     BuildModeHandler.getInstance().removeObstacle(x, y, getGraphics(), BuildModeHandler.getInstance().getObstacleByLocation(x, y));
@@ -202,13 +202,13 @@ public class GamePanel extends JPanel implements ActionListener, MouseMotionList
                         else if (e.getButton() == MouseEvent.BUTTON3) {
                             if (BuildModeHandler.getInstance().getObstacleByLocation(x, y) != null) {
                                 Obstacle obstacle = BuildModeHandler.getInstance().getObstacleByLocation(x, y);
-                                if (obstacle.getObstacleType().equals(Constants.ObstacleNameConstants.SIMPLE) &&
+                                if (obstacle.getObstacleType().equals(Constants.ObstacleNameConstants.SIMPLE_OBSTACLE) &&
                                         BuildModeHandler.getInstance().checkSimpleObstacleNum(new MapHandler().retrieveSimpleObstacleNumber() -1)  ||
-                                        (obstacle.getObstacleType().equals(Constants.ObstacleNameConstants.FIRM) &&
+                                        (obstacle.getObstacleType().equals(Constants.ObstacleNameConstants.FIRM_OBSTACLE) &&
                                                 BuildModeHandler.getInstance().checkFirmObstacleNum(new MapHandler().retrieveFirmObstacleNumber() -1))  ||
-                                        (obstacle.getObstacleType().equals(Constants.ObstacleNameConstants.EXP) &&
+                                        (obstacle.getObstacleType().equals(Constants.ObstacleNameConstants.EXPLOSIVE_OBSTACLE) &&
                                                 BuildModeHandler.getInstance().checkExplosiveObstacleNum(new MapHandler().retrieveExplosiveObstacleNumber() -1))  ||
-                                        (obstacle.getObstacleType().equals(Constants.ObstacleNameConstants.GIFT) &&
+                                        (obstacle.getObstacleType().equals(Constants.ObstacleNameConstants.GIFT_OBSTACLE) &&
                                                 BuildModeHandler.getInstance().checkGiftObstacleNum(new MapHandler().retrieveGiftObstacleNumber() -1))) {
 
                                     BuildModeHandler.getInstance().removeObstacle(x, y, getGraphics(), BuildModeHandler.getInstance().getObstacleByLocation(x, y));

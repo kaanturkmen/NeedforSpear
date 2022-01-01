@@ -1,7 +1,6 @@
 package tr.edu.ku.devnull.needforspear.Viewmodel.GameLogicHandlers;
 
 import tr.edu.ku.devnull.needforspear.Model.GameData.Constants;
-import tr.edu.ku.devnull.needforspear.Model.GameData.GameMode;
 import tr.edu.ku.devnull.needforspear.Model.GameData.Location;
 import tr.edu.ku.devnull.needforspear.Model.GameData.Speed;
 import tr.edu.ku.devnull.needforspear.Model.Obstacle.Obstacle;
@@ -18,8 +17,6 @@ import tr.edu.ku.devnull.needforspear.NeedforSpearGame;
 import tr.edu.ku.devnull.needforspear.View.PlayViews.Animators.SpellAnimator;
 
 import java.awt.*;
-import java.awt.font.FontRenderContext;
-import java.awt.font.LineMetrics;
 import java.util.List;
 
 /**
@@ -272,7 +269,7 @@ public class MovementHandler {
                 System.out.println("bullet exit screen");
             }
             if (collisionHandler.isRemovedObstacle(obs)) {
-                if (!obs.getObstacleType().equals(Constants.ObstacleNameConstants.EXP)) {
+                if (!obs.getObstacleType().equals(Constants.ObstacleNameConstants.EXPLOSIVE_OBSTACLE)) {
                     collisionHandler.removeObstacle(obs, listOfObstacles);
                 }
             }
@@ -314,7 +311,7 @@ public class MovementHandler {
     public void removingObstacles(Obstacle obstacle){
         double y_bottom = obstacle.getLocation().getYCoordinates() + obstacle.getSize().getLength();
         //TODO carry all removals here EXPLOSIVE REMOVAL
-        if (collisionHandler.isRemovedObstacle(obstacle) && obstacle.getObstacleType().equals(Constants.ObstacleNameConstants.EXP) &&
+        if (collisionHandler.isRemovedObstacle(obstacle) && obstacle.getObstacleType().equals(Constants.ObstacleNameConstants.EXPLOSIVE_OBSTACLE) &&
                 (collisionHandler.collisionWithExplosive(obstacle,NoblePhantasm.getInstance()) ||
                         y_bottom > Constants.UIConstants.INITIAL_SCREEN_HEIGHT )){
 
@@ -383,7 +380,7 @@ public class MovementHandler {
                 if (!collisionHandler.isRemovedObstacle(obs)) {
                     bounceHandler.bounceSphereFromObstacle(obs);
                 } else {
-                    if (!obs.getObstacleType().equals(Constants.ObstacleNameConstants.EXP)) {
+                    if (!obs.getObstacleType().equals(Constants.ObstacleNameConstants.EXPLOSIVE_OBSTACLE)) {
                         collisionHandler.removeObstacle(obs, listofObstacles);
                     }
 

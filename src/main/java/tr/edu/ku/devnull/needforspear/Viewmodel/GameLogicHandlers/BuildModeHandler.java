@@ -9,7 +9,6 @@ import tr.edu.ku.devnull.needforspear.Model.Obstacle.GiftObstacle;
 import tr.edu.ku.devnull.needforspear.Model.Obstacle.Obstacle;
 import tr.edu.ku.devnull.needforspear.Model.Obstacle.ObstacleFactory;
 import tr.edu.ku.devnull.needforspear.Model.UIModels.NoblePhantasm;
-import tr.edu.ku.devnull.needforspear.Model.UIModels.Sphere;
 import tr.edu.ku.devnull.needforspear.View.PlayViews.Animators.ObstacleAnimator;
 import tr.edu.ku.devnull.needforspear.NeedforSpearGame;
 
@@ -37,7 +36,7 @@ public class BuildModeHandler {
      * Private Constructor for the BuildModeHandler.
      */
     private BuildModeHandler() {
-        addedObstacleType = Constants.ObstacleNameConstants.SIMPLE;
+        addedObstacleType = Constants.ObstacleNameConstants.SIMPLE_OBSTACLE;
         obstacleFactory = ObstacleFactory.getInstance();
     }
 
@@ -134,19 +133,19 @@ public class BuildModeHandler {
 
         int i;
         for (i = 0; i < simpNum; i++) {
-            Obstacle obstacle = obstacleFactory.getObstacle(Constants.ObstacleNameConstants.SIMPLE);
+            Obstacle obstacle = obstacleFactory.getObstacle(Constants.ObstacleNameConstants.SIMPLE_OBSTACLE);
             NeedforSpearGame.getInstance().getGameInfo().getGameMap().getListofObstacles().add(obstacle);
         }
         for (i = 0; i < firmNum; i++) {
-            Obstacle obstacle = obstacleFactory.getObstacle(Constants.ObstacleNameConstants.FIRM);
+            Obstacle obstacle = obstacleFactory.getObstacle(Constants.ObstacleNameConstants.FIRM_OBSTACLE);
             NeedforSpearGame.getInstance().getGameInfo().getGameMap().getListofObstacles().add(obstacle);
         }
         for (i = 0; i < expNum; i++) {
-            Obstacle obstacle = obstacleFactory.getObstacle(Constants.ObstacleNameConstants.EXP);
+            Obstacle obstacle = obstacleFactory.getObstacle(Constants.ObstacleNameConstants.EXPLOSIVE_OBSTACLE);
             NeedforSpearGame.getInstance().getGameInfo().getGameMap().getListofObstacles().add(obstacle);
         }
         for (i = 0; i < giftNum; i++) {
-            Obstacle obstacle = obstacleFactory.getObstacle(Constants.ObstacleNameConstants.GIFT);
+            Obstacle obstacle = obstacleFactory.getObstacle(Constants.ObstacleNameConstants.GIFT_OBSTACLE);
             NeedforSpearGame.getInstance().getGameInfo().getGameMap().getListofObstacles().add(obstacle);
         }
         //shuffling obstacle list for random placement
@@ -293,7 +292,7 @@ public class BuildModeHandler {
         obstacle.setLocation(loc);
         setExplosiveOrbit( getSelectedObstacle());
 
-        if(obstacle.getObstacleType().equals(Constants.ObstacleNameConstants.GIFT)){
+        if(obstacle.getObstacleType().equals(Constants.ObstacleNameConstants.GIFT_OBSTACLE)){
             GiftObstacle giftObstacle = (GiftObstacle) obstacle;
             giftObstacle.setSpell(SpellHandler.getInstance().setRandomSpell(giftObstacle));
         }
@@ -326,7 +325,7 @@ public class BuildModeHandler {
 
     public void setExplosiveOrbit(Obstacle obstacle){
         if(obstacle !=null){
-            if (obstacle.getObstacleType().equals(Constants.ObstacleNameConstants.EXP)) {
+            if (obstacle.getObstacleType().equals(Constants.ObstacleNameConstants.EXPLOSIVE_OBSTACLE)) {
                 ExplosiveObstacle explosive = (ExplosiveObstacle) obstacle;
                 explosive.alterOrbitCenter();
             }
@@ -344,7 +343,7 @@ public class BuildModeHandler {
         for(int i = 0; i<Constants.ObstacleNumberConstants.HOLLOW_OBSTACLE_NUM; i++){
             System.out.println(availableLocations.get(i).getXCoordinates() + " " + availableLocations.get(i).getYCoordinates());
             createNewObstacle(availableLocations.get(i).getXCoordinates(), availableLocations.get(i).getYCoordinates(),
-                    Constants.ObstacleNameConstants.HOLLOW, graphics,obstacleAnimator);
+                    Constants.ObstacleNameConstants.HOLLOW_PURPLE_OBSTACLE, graphics,obstacleAnimator);
         }
     }
 
@@ -353,7 +352,7 @@ public class BuildModeHandler {
      * @return
      */
     private List<Location> getAvailableLocations(){
-        Obstacle dummyObstacle = ObstacleFactory.getInstance().getObstacle(Constants.ObstacleNameConstants.SIMPLE);
+        Obstacle dummyObstacle = ObstacleFactory.getInstance().getObstacle(Constants.ObstacleNameConstants.SIMPLE_OBSTACLE);
         List<Location> availableLocations = new ArrayList<>();
         boolean placed = false;
         for(int y = 0; y<NoblePhantasm.getInstance().getLocation().getYCoordinates() - Constants.UIConstants.OBSTACLE_DISTANCE_FROM_PHANTASM; y++){
