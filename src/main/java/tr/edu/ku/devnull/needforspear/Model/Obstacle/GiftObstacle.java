@@ -22,7 +22,7 @@ public class GiftObstacle extends Obstacle {
      * @param location Location of the gift obstacle.
      */
     public GiftObstacle(GameMap gameMap, Double speed, Location location) {
-        this.obstacleType = Constants.UIConstants.GIFT_OBSTACLE;
+        this.obstacleType = Constants.ObstacleNameConstants.GIFT_OBSTACLE;
         this.gameMap = gameMap;
         this.health = Constants.UIConstants.OBSTACLE_SIMPLE_HIT_HEALTH;
         this.speed = speed;

@@ -23,7 +23,7 @@ public class FirmObstacle extends Obstacle {
      * @param location Location of the firm obstacle.
      */
     public FirmObstacle(GameMap gameMap, Double speed, Location location) {
-        this.obstacleType = Constants.UIConstants.FIRM_OBSTACLE;
+        this.obstacleType = Constants.ObstacleNameConstants.FIRM_OBSTACLE;
         this.gameMap = gameMap;
         this.health = determineHealth();
         this.speed = speed;

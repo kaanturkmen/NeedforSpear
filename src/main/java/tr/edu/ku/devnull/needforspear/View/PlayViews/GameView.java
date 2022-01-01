@@ -319,11 +319,7 @@ public class GameView {
         giftObstacleTxt.setBounds(Constants.UIConstants.OBSTACLE_TXT_X, Constants.UIConstants.OBSTACLE_TXT_Y + 3 * Constants.UIConstants.OBSTACLE_TXT_X_PADDING, Constants.UIConstants.OBSTACLE_TXT_WIDTH, Constants.UIConstants.OBSTACLE_TXT_HEIGHT);
         confirm.setBounds(Constants.UIConstants.OBSTACLE_TXT_X, Constants.UIConstants.OBSTACLE_TXT_Y + 4 * Constants.UIConstants.OBSTACLE_TXT_X_PADDING, Constants.UIConstants.OBSTACLE_TXT_WIDTH - 6 * Constants.UIConstants.OBSTACLE_TXT_X_PADDING, Constants.UIConstants.OBSTACLE_TXT_HEIGHT + Constants.UIConstants.OBSTACLE_TXT_Y_PADDING);
 
-        confirm.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                buildGameMap(obstacleNumberCheckFrame, simpObstacleTxt, firmObstacleTxt, explosiveObstacleTxt, giftObstacleTxt);
-            }});
+        confirm.addActionListener(e -> buildGameMap(obstacleNumberCheckFrame, simpObstacleTxt, firmObstacleTxt, explosiveObstacleTxt, giftObstacleTxt));
         obstacleNumberCheckFrame.add(dummyField);
         obstacleNumberCheckFrame.add(simpObstacleTxt);
         obstacleNumberCheckFrame.add(firmObstacleTxt);
