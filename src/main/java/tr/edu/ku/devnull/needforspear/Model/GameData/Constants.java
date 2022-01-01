@@ -15,18 +15,13 @@ public interface Constants {
         Integer RADIUS_OF_THE_SPHERE = 16;
         Double RATIO_OF_NOBLE_PHANTASM = 0.1;
         Double EXPLOSIVE_ORBIT_RADIUS = 1.5 * WIDTH_OF_NOBLE_PHANTASM;
-
         Integer RADIUS_OF_THE_BULLET = 9;
         Integer SPEED_OF_THE_BULLET = 4;
-
         Integer RADIUS_OF_EXPLOSIVE_OBSTACLE = 15;
-
         Integer SPELL_SIZE = 15;
-
     }
 
     interface UIConstants {
-
         String TITLE_SCREEN_BACKGROUND_IMAGE = "TitleScreen.png";
         String ACTIVATION_VIEW_BACKGROUND_IMAGE = "ActivateAccountBackground.png";
         String SEND_VERIFICATION_VIEW_BACKGROUND_IMAGE = "ForgotPasswordBackground.png";
@@ -43,8 +38,6 @@ public interface Constants {
         String GIFT_OBSTACLE = "GiftObstacle.png";
         String HOLLOW_OBSTACLE = "HollowObstacle.png";
         String HELP_VIEW_BACKGROUND_IMAGE = "HelpScreen.png";
-
-
 
         String USER_DIRECTORY_KEYWORD = "user.dir";
         String USER_DIRECTORY_TO_RESOURCE_FOLDER = "src/main/java/tr/edu/ku/devnull/needforspear/Resources/Images/";

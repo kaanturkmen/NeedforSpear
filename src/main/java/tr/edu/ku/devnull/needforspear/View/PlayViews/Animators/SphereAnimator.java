@@ -24,8 +24,9 @@ import java.util.List;
 public class SphereAnimator implements AnimatorStrategy {
 
     int radius = Constants.ProportionConstants.RADIUS_OF_THE_SPHERE;
-    private List<Obstacle> listofObstacles;
+    public static List<Obstacle> listofObstacles;
     Image sphereImage;
+    MovementHandler movementHandler = new MovementHandler();
 
     /**
      * Constructor
@@ -38,7 +39,6 @@ public class SphereAnimator implements AnimatorStrategy {
         } else NeedforSpearGame.getInstance().getGameInfo().getSphere().setSpeed(new Speed(4, 4));
         this.listofObstacles = listofObstacles;
         sphereImage = getSphereImage(Constants.UIConstants.SPHERE_IMAGE);
-
     }
 
     /**
@@ -65,7 +65,12 @@ public class SphereAnimator implements AnimatorStrategy {
     public void draw(Graphics g) {
 
         if (NeedforSpearGame.getInstance().getGameInfo().getSphere().isMoving()) {
-            sphereMovement(g);
+            movementHandler.sphereMovement(g);
+            g.setColor(Color.red);
+            //new image on the new location
+            int x_coordinates_loc = (int) NeedforSpearGame.getInstance().getGameInfo().getSphere().getLocation().getXCoordinates().doubleValue();
+            int y_coordinates_loc = (int) NeedforSpearGame.getInstance().getGameInfo().getSphere().getLocation().getYCoordinates().doubleValue();
+            g.drawImage(sphereImage, x_coordinates_loc, y_coordinates_loc, radius * 2, radius * 2, null);
         } else {
             NoblePhantasm noblePhantasm = NoblePhantasm.getInstance();
             Location followNoblePhantasm = new Location((noblePhantasm.getLocation().getXCoordinates() + (noblePhantasm.getSize().getWidth() / 2) - radius), (noblePhantasm.getLocation().getYCoordinates() - 2 * radius));
@@ -74,88 +79,6 @@ public class SphereAnimator implements AnimatorStrategy {
             int y_coordinates_loc = (int) followNoblePhantasm.getYCoordinates().doubleValue();
             g.drawImage(sphereImage, x_coordinates_loc, y_coordinates_loc, radius * 2, radius * 2, null);
         }
-    }
-
-    /**
-     * Animation of sphere movement
-     *
-     * @param g
-     */
-    private void sphereMovement(Graphics g) {
-        MovementHandler bounceHandler = new MovementHandler();
-
-        bounceHandler.bounceSphereFromFrame();
-
-        checkForCollisions(listofObstacles);
-
-        //new image on the new location
-        int x_coordinates_loc = (int) NeedforSpearGame.getInstance().getGameInfo().getSphere().getLocation().getXCoordinates().doubleValue();
-        int y_coordinates_loc = (int) NeedforSpearGame.getInstance().getGameInfo().getSphere().getLocation().getYCoordinates().doubleValue();
-        g.setColor(Color.red);
-        g.drawImage(sphereImage, x_coordinates_loc, y_coordinates_loc, radius * 2, radius * 2, null);
-    }
-
-    /**
-     * To appropriately animate sphere checks for collisions
-     * with different game objects
-     *
-     * @param listofObstacles
-     */
-    private void checkForCollisions(List<Obstacle> listofObstacles) {
-        CollisionHandler collisionHandler = new CollisionHandler();
-        MovementHandler bounceHandler = new MovementHandler();
-
-        //collision with Obstacles - Sphere
-        for (int i = 0; i < listofObstacles.size(); i++) {
-            Obstacle obs = listofObstacles.get(i);
-
-            if (collisionHandler.collision(obs, NeedforSpearGame.getInstance().getGameInfo().getSphere())) {
-
-                //UNSTOPPABLE
-                if (NeedforSpearGame.getInstance().getGameInfo().getSphere().isUnstoppable()) {
-                    long current_time = System.currentTimeMillis();
-                    long start_time = NeedforSpearGame.getInstance().getGameInfo().getSphere().getUnstoppableStartTime();
-
-                    int current_health = obs.getHealth();
-                    for (int k = 0; k < current_health; k++) {
-                        obs.damageObstacle();
-                    }
-
-                    if ((current_time - start_time) / 1000 >= 30) {
-                        NeedforSpearGame.getInstance().getGameInfo().getSphere().deactivateUnstoppable();
-                    }
-                } else {
-                    obs.damageObstacle();
-                    bounceHandler.bounceSphereFromObstacle(obs);
-                }
-
-
-                //TODO HANDLING OBSTACLE REMOVALS should be removed from here for better cohesion and less coupling
-                if (!collisionHandler.isRemovedObstacle(obs)) {
-                    bounceHandler.bounceSphereFromObstacle(obs);
-                } else {
-                    if (!obs.getObstacleType().equals(Constants.ObstacleNameConstants.EXP)) {
-                        collisionHandler.removeObstacle(obs, listofObstacles);
-                    }
-
-                }
-            }
-
-        }
-
-
-        //collision with Noble Phantasm - Sphere
-        if (collisionHandler.collision(NoblePhantasm.getInstance(), NeedforSpearGame.getInstance().getGameInfo().getSphere())) {
-            System.out.println("collision with noble phantasm!");
-            bounceHandler.bounceSphereFromPhantasm();
-        }
-
-    }
-
-
-    public void unstoppableAnimation() {
-
-
     }
 
 }

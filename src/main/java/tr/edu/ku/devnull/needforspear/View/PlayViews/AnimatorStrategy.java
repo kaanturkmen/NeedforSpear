@@ -10,5 +10,5 @@ import java.awt.*;
  */
 
 public interface AnimatorStrategy {
-    public abstract void draw(Graphics g);
+    void draw(Graphics g);
 }
