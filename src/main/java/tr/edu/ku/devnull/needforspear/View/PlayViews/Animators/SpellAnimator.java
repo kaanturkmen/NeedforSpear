@@ -13,6 +13,7 @@ import tr.edu.ku.devnull.needforspear.Viewmodel.GameLogicHandlers.SpellHandler;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
+
 /**
  * Class for animation of spells using java Swing graphics
  *
@@ -23,32 +24,34 @@ public class SpellAnimator implements AnimatorStrategy {
     public static List<Spell> listOfMovingSpells;
     private MovementHandler bounceHandler = new MovementHandler();
 
-    public SpellAnimator(){
+    public SpellAnimator() {
         listOfMovingSpells = new ArrayList<>();
         this.listOfGiftObstacles = SpellHandler.getInstance().getGiftObstacleList();
     }
+
     /**
      * Override on AnimatorStrategy to draw spell graphics
      * reinvoked in GamePanel
      *
-     * @param g
+     * @param g Graphics to be drawn.
      */
     @Override
     public void draw(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;
         movementOfSpells(g2);
     }
+
     /**
      * For displaying the movement of the spells after their giftObstacle
      * is destroyed
      *
-     * @param g2
+     * @param g2 Graphics2D to be rendered.
      */
     public void movementOfSpells(Graphics2D g2) {
         if (NeedforSpearGame.getInstance().getGameInfo().getGameMode() != GameMode.BUILDING_MODE) {
             for (int i = 0; i < listOfMovingSpells.size(); i++) {
                 Spell spell = listOfMovingSpells.get(i);
-                if (spell!=null) {
+                if (spell != null) {
                     int width = spell.getSize().getWidth();
                     int length = spell.getSize().getLength();
                     g2.setColor(getColorOfSpell(spell));
@@ -59,10 +62,13 @@ public class SpellAnimator implements AnimatorStrategy {
             }
         }
     }
+
     /**
+     * Gets the color of the spell.
+     *
      * @return Color that indicates the color of the spell from given color string.
      */
-    public Color getColorOfSpell(Spell spell){
+    public Color getColorOfSpell(Spell spell) {
         Color color;
         switch (spell.getSpellColor()) {
             case Constants.UIConstants.DARK_GREEN_COLOR_STRING:

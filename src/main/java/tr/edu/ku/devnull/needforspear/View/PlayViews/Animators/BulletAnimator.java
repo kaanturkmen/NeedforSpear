@@ -14,6 +14,9 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * BulletAnimator is created for the creating animations for the bullets.
+ */
 public class BulletAnimator implements AnimatorStrategy {
 
     int radius = Constants.ProportionConstants.RADIUS_OF_THE_BULLET;
@@ -24,12 +27,12 @@ public class BulletAnimator implements AnimatorStrategy {
     Image bulletImage;
 
     /**
-     * Constructor
+     * Constructor of the BulletAnimator.
      *
-     * @param listOfObstacles
+     * @param listOfObstacles List of obstacles to be set.
      */
     public BulletAnimator(List<Obstacle> listOfObstacles) {
-        this.listOfObstacles = listOfObstacles;
+        BulletAnimator.listOfObstacles = listOfObstacles;
         listOfBullets = new ArrayList<>();
         bulletImage = getBulletImage(Constants.UIConstants.BULLET_IMAGE);
     }
@@ -43,20 +46,29 @@ public class BulletAnimator implements AnimatorStrategy {
 
     public Image getBulletImage(String path) {
         return Toolkit.getDefaultToolkit().getImage(Constants.UIConstants.USER_DIRECTORY_TO_RESOURCE_FOLDER + path)
-                .getScaledInstance(radius*2, radius*2, Image.SCALE_SMOOTH);
+                .getScaledInstance(radius * 2, radius * 2, Image.SCALE_SMOOTH);
 
     }
 
+    /**
+     * Draw method of swing library.
+     *
+     * @param g Graphics to be drawn.
+     */
     @Override
     public void draw(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;
         bulletMovement(g2);
     }
 
+    /**
+     * Determines the bullet movement.
+     *
+     * @param g2 2D Graphics to be rendered.
+     */
     private void bulletMovement(Graphics2D g2) {
         if (NeedforSpearGame.getInstance().getGameInfo().getGameMode() != GameMode.BUILDING_MODE) {
-            for (int i = 0; i < listOfBullets.size(); i++) {
-                Bullet bullet = listOfBullets.get(i);
+            for (Bullet bullet : listOfBullets) {
                 if (bullet != null) {
                     Location newLocBullet = movementHandler.updateBulletMovement(bullet);
                     bullet.setLocation(newLocBullet);

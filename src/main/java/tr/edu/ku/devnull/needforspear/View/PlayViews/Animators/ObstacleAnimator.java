@@ -18,7 +18,6 @@ import java.util.List;
  *
  * @author Melis Oktayoğlu
  */
-
 public class ObstacleAnimator implements AnimatorStrategy {
 
     public static List<Obstacle> listofObstacles;
@@ -31,9 +30,14 @@ public class ObstacleAnimator implements AnimatorStrategy {
     Image hollowObstacleImage;
 
 
+    /**
+     * Constructor of ObstacleAnimator.
+     *
+     * @param listofObstacles List of obstacles to be set.
+     */
     public ObstacleAnimator(List<Obstacle> listofObstacles) {
 
-        this.listofObstacles = listofObstacles;
+        ObstacleAnimator.listofObstacles = listofObstacles;
         explosiveObstacleImage = getObstacleImage(Constants.UIConstants.EXPLOSIVE_OBSTACLE);
         firmObstacleImage = getObstacleImage(Constants.UIConstants.FIRM_OBSTACLE);
         giftObstacleImage = getObstacleImage(Constants.UIConstants.GIFT_OBSTACLE);
@@ -47,7 +51,6 @@ public class ObstacleAnimator implements AnimatorStrategy {
      * @param path Path of the obstacle image.
      * @return Image of the obstacle.
      */
-
     public Image getObstacleImage(String path) {
         return Toolkit.getDefaultToolkit().getImage(Constants.UIConstants.USER_DIRECTORY_TO_RESOURCE_FOLDER + path)
                 .getScaledInstance(Constants.ProportionConstants.RADIUS_OF_EXPLOSIVE_OBSTACLE * 2, Constants.ProportionConstants.RADIUS_OF_EXPLOSIVE_OBSTACLE * 2, Image.SCALE_SMOOTH);
@@ -59,14 +62,13 @@ public class ObstacleAnimator implements AnimatorStrategy {
      * Override on AnimatorStrategy to draw obstacle graphics
      * reinvoked in GamePanel
      *
-     * @param g
+     * @param g Graphics to be drawn.
      */
     @Override
     public void draw(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;
 
-        for (int i = 0; i < listofObstacles.size(); i++) {
-            Obstacle obs = listofObstacles.get(i);
+        for (Obstacle obs : listofObstacles) {
             Location loc = obs.getLocation();
             int width = obs.getSize().getWidth();
             int length = obs.getSize().getLength();
@@ -102,8 +104,8 @@ public class ObstacleAnimator implements AnimatorStrategy {
     /**
      * To draw single obstacles during build mode
      *
-     * @param g
-     * @param obstacle (desired obstacle type)
+     * @param g Graphics to be drawn.
+     * @param obstacle Obstacle to be drawn.
      */
     public void drawSingleObstacle(Graphics g, Obstacle obstacle) {
         Graphics2D g2 = (Graphics2D) g;
@@ -132,7 +134,7 @@ public class ObstacleAnimator implements AnimatorStrategy {
      * uses BounceHandler to get new locations of
      * horizontal movement if moves
      *
-     * @param g2
+     * @param g2 Graphics2D to be rendered.
      */
     public void movementOfObstacles(Graphics2D g2) {
 
@@ -149,7 +151,6 @@ public class ObstacleAnimator implements AnimatorStrategy {
                     g2.drawImage(explosiveObstacleImage, x, y, width, length, null);
                 }
 
-                //TODO these could be removed from here
                 if (explosiveObstacle.getSpeed() != 0 && (explosiveObstacle.getObstacleType().equals(Constants.ObstacleNameConstants.FIRM_OBSTACLE) || explosiveObstacle.getObstacleType().equals(Constants.ObstacleNameConstants.SIMPLE_OBSTACLE))) {
                     Location newLoc = movementHandler.moveObstacleHorizontally(explosiveObstacle, listofObstacles);
                     explosiveObstacle.setLocation(newLoc);

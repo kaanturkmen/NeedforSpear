@@ -45,7 +45,15 @@ public class GamePanel extends JPanel implements ActionListener, MouseMotionList
     protected Timer timer;
     long magicalHexStartTime;
 
-
+    /**
+     * Constructor of GamePanel.
+     *
+     * @param sphereAnimator SphereAnimator to be set.
+     * @param obstacleAnimator ObstacleAnimator to be set.
+     * @param npa NoblePhantasmAnimator to be set.
+     * @param spellAnimator SpellAnimator to be set.
+     * @param bulletAnimator BulletAnimator to be set.
+     */
     public GamePanel(SphereAnimator sphereAnimator, ObstacleAnimator obstacleAnimator, NoblePhantasmAnimator npa, SpellAnimator spellAnimator, BulletAnimator bulletAnimator) {
         if(System.getProperty("os.name").startsWith("Windows")) this.delay = 3;
         else this.delay = 8;
@@ -63,12 +71,23 @@ public class GamePanel extends JPanel implements ActionListener, MouseMotionList
         setFocusTraversalKeysEnabled(false);
 
     }
+
+    /**
+     * Triggered when action event e is performed.
+     *
+     * @param e ActionEvent to be used.
+     */
     public void actionPerformed(ActionEvent e)
     // will run when the timer fires
     {
         repaint();
     }
 
+    /**
+     * Paints the component.
+     *
+     * @param g Graphics to be drawn.
+     */
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
 
@@ -107,6 +126,11 @@ public class GamePanel extends JPanel implements ActionListener, MouseMotionList
 
     }
 
+    /**
+     * Mouse dragged event.
+     *
+     * @param e Event e to be used.
+     */
     @Override
     public void mouseDragged(MouseEvent e) {
         if (NeedforSpearGame.getInstance().getGameInfo().isGameLoaded()) {
@@ -121,6 +145,11 @@ public class GamePanel extends JPanel implements ActionListener, MouseMotionList
         if (NeedforSpearGame.getInstance().getGameInfo().getPlayer().getLives() <= 0) finishGame(NeedforSpearGame.getInstance().getGameInfo().getPlayer(), Constants.UIConstants.LOSE_GAME_TXT);
     }
 
+    /**
+     * Mouse moved event.
+     *
+     * @param e Event e to be used.
+     */
     @Override
     public void mouseMoved(MouseEvent e) {
         if (NeedforSpearGame.getInstance().getGameInfo().isGameLoaded()) {
@@ -136,14 +165,23 @@ public class GamePanel extends JPanel implements ActionListener, MouseMotionList
         }
     }
 
+    /**
+     * Resumes the panel.
+     */
     public void resume() {
         timer.start();
     }
 
+    /**
+     * Pauses the panel.
+     */
     public void pause() {
         timer.stop();
     }
 
+    /**
+     * Prepares the mouse listener.
+     */
     public void prepMouseListener() {
         addMouseListener(new MouseAdapter() {
 
@@ -241,31 +279,55 @@ public class GamePanel extends JPanel implements ActionListener, MouseMotionList
         addMouseMotionListener(this);
     }
 
+    /**
+     * Gets if the game is started.
+     *
+     * @return Boolean value indicating if the game is started.
+     */
     public boolean getIsGameStarted() {
         return isGameStarted;
     }
 
+    /**
+     * Sets the game started boolean.
+     *
+     * @param b Boolean to be set.
+     */
     public void setIsGameStarted(boolean b) {
         isGameStarted = b;
     }
 
-
+    /**
+     * Updates the game started variable.
+     */
     @Override
     public void update() {
         isGameStarted = true;
     }
 
-
+    /**
+     * Sets the hex activated variable.
+     * @param b Boolean b to be set.
+     */
     public void setIsHexActivated(boolean b) {
         isHexActivated = b;
     }
 
+    /**
+     * Second activate method for hex spell.
+     */
     @Override
     public void update2() {
         isHexActivated = true;
         magicalHexStartTime = System.currentTimeMillis();
     }
 
+    /**
+     * Finishes the game.
+     *
+     * @param player Player to be used.
+     * @param finishGameTxt Finish game text to be displayed.
+     */
     public void finishGame(Player player, String finishGameTxt) {
         NeedforSpearGame.getInstance().stopYmirAction();
         JOptionPane.showMessageDialog(NeedforSpearGame.getInstance().getGameInfo().getMainFrame(), finishGameTxt, "Alert", JOptionPane.WARNING_MESSAGE);
@@ -279,6 +341,9 @@ public class GamePanel extends JPanel implements ActionListener, MouseMotionList
         NeedforSpearGame.getInstance().startMainMenu();
     }
 
+    /**
+     * Updates the hollow spell.
+     */
     @Override
     public void updateHollow() {
         BuildModeHandler.getInstance().createHollowObstacles(getGraphics(), obstacleAnimator);

@@ -1,8 +1,10 @@
 package tr.edu.ku.devnull.needforspear.View.PlayViews.Animators;
+
 import tr.edu.ku.devnull.needforspear.Model.GameData.Constants;
 import tr.edu.ku.devnull.needforspear.Model.GameData.Location;
 import tr.edu.ku.devnull.needforspear.Model.UIModels.NoblePhantasm;
 import tr.edu.ku.devnull.needforspear.Viewmodel.GameLogicHandlers.MovementHandler;
+
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 
@@ -12,18 +14,13 @@ import java.awt.geom.AffineTransform;
  *
  * @author Gokce Sevimli
  */
-
 public class NoblePhantasmAnimator {
 
     private Location phantasmLocation;
-    double x_pos_NoblePhantasm;
-    double y_pos_NoblePhantasm;
-    double currentX;
-    double currentY;
+    double x_pos_NoblePhantasm, y_pos_NoblePhantasm, currentX, currentY;
     private boolean isGameStarted = false; //when game starts it should not play without user action.
     private MovementHandler movementHandler = new MovementHandler();
-    Image phantasmSpell;
-    Image phantasm;
+    Image phantasmSpell, phantasm;
 
 
     /**
@@ -33,7 +30,7 @@ public class NoblePhantasmAnimator {
         phantasmLocation = NoblePhantasm.getInstance().getLocation();
         x_pos_NoblePhantasm = phantasmLocation.getXCoordinates();
         y_pos_NoblePhantasm = phantasmLocation.getYCoordinates();
-        phantasmSpell  = getNoblePhantasmImage(Constants.UIConstants.PHANTASM_IMAGE_EXPANSION);
+        phantasmSpell = getNoblePhantasmImage(Constants.UIConstants.PHANTASM_IMAGE_EXPANSION);
         phantasm = getNoblePhantasmImage(Constants.UIConstants.PHANTASM_IMAGE);
 
     }
@@ -50,11 +47,12 @@ public class NoblePhantasmAnimator {
                 .getScaledInstance(NoblePhantasm.getInstance().getSize().getWidth(), Constants.ProportionConstants.HEIGHT_OF_NOBLE_PHANTASM, Image.SCALE_SMOOTH);
 
     }
+
     /**
      * This method draws the NoblePhantasm based on its movement and rotation in MovementHandler class.
+     *
      * @param g Graphic instance to be updated.
      */
-
     public void draw(Graphics g) {
 
         NoblePhantasm noblePhantasm = NoblePhantasm.getInstance();
@@ -69,17 +67,15 @@ public class NoblePhantasmAnimator {
         AffineTransform tx = g2d.getTransform();
 
         movementHandler.rotationOfNoblePhantasm();
-        
-        g2d.rotate(noblePhantasm.getRotationDegree(), currentX + noblePhantasm.getSize().getWidth() / 2, currentY + Constants.ProportionConstants.Y_CENTER_OF_NOBLE_PHANTASM);
-        if(noblePhantasm.isMagicActivated()){
+
+        g2d.rotate(noblePhantasm.getRotationDegree(), currentX + noblePhantasm.getSize().getWidth() / 2.0, currentY + Constants.ProportionConstants.Y_CENTER_OF_NOBLE_PHANTASM);
+        if (noblePhantasm.isMagicActivated()) {
             g2d.drawImage(phantasmSpell, x_location, y_location, noblePhantasm.getSize().getWidth(), noblePhantasm.getSize().getLength(), null);
 
-        }else {
+        } else {
             g2d.drawImage(phantasm, x_location, y_location, noblePhantasm.getSize().getWidth(), noblePhantasm.getSize().getLength(), null);
         }
 
         g2d.setTransform(tx);
     }
-
-
 }

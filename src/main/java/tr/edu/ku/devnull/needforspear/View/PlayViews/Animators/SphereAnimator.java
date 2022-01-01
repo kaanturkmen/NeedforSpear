@@ -6,11 +6,9 @@ import tr.edu.ku.devnull.needforspear.Model.GameData.Location;
 import tr.edu.ku.devnull.needforspear.Model.GameData.Speed;
 import tr.edu.ku.devnull.needforspear.Model.Obstacle.Obstacle;
 import tr.edu.ku.devnull.needforspear.Model.UIModels.NoblePhantasm;
-import tr.edu.ku.devnull.needforspear.Model.UIModels.Sphere;
 import tr.edu.ku.devnull.needforspear.NeedforSpearGame;
 import tr.edu.ku.devnull.needforspear.View.PlayViews.AnimatorStrategy;
 import tr.edu.ku.devnull.needforspear.Viewmodel.GameLogicHandlers.MovementHandler;
-import tr.edu.ku.devnull.needforspear.Viewmodel.GameLogicHandlers.CollisionHandler;
 
 import java.awt.*;
 import java.util.List;
@@ -29,15 +27,15 @@ public class SphereAnimator implements AnimatorStrategy {
     MovementHandler movementHandler = new MovementHandler();
 
     /**
-     * Constructor
+     * Constructor of the SphereAnimator.
      *
-     * @param listofObstacles
+     * @param listofObstacles List of obstacles to be set.
      */
     public SphereAnimator(List<Obstacle> listofObstacles) {
         if (NeedforSpearGame.getInstance().getGameInfo().getDifficultyHandler().getCurrentDifficulty() == Difficulty.NORMAL) {
             NeedforSpearGame.getInstance().getGameInfo().getSphere().setSpeed(new Speed(2, 2));
         } else NeedforSpearGame.getInstance().getGameInfo().getSphere().setSpeed(new Speed(4, 4));
-        this.listofObstacles = listofObstacles;
+        SphereAnimator.listofObstacles = listofObstacles;
         sphereImage = getSphereImage(Constants.UIConstants.SPHERE_IMAGE);
     }
 
@@ -59,7 +57,7 @@ public class SphereAnimator implements AnimatorStrategy {
      * Override on AnimatorStrategy to draw sphere graphics
      * reinvoked in GamePanel
      *
-     * @param g
+     * @param g Graphics to be drawn.
      */
     @Override
     public void draw(Graphics g) {
@@ -73,7 +71,7 @@ public class SphereAnimator implements AnimatorStrategy {
             g.drawImage(sphereImage, x_coordinates_loc, y_coordinates_loc, radius * 2, radius * 2, null);
         } else {
             NoblePhantasm noblePhantasm = NoblePhantasm.getInstance();
-            Location followNoblePhantasm = new Location((noblePhantasm.getLocation().getXCoordinates() + (noblePhantasm.getSize().getWidth() / 2) - radius), (noblePhantasm.getLocation().getYCoordinates() - 2 * radius));
+            Location followNoblePhantasm = new Location((noblePhantasm.getLocation().getXCoordinates() + (noblePhantasm.getSize().getWidth() / 2.0) - radius), (noblePhantasm.getLocation().getYCoordinates() - 2 * radius));
             NeedforSpearGame.getInstance().getGameInfo().getSphere().setLocation(followNoblePhantasm);
             int x_coordinates_loc = (int) followNoblePhantasm.getXCoordinates();
             int y_coordinates_loc = (int) followNoblePhantasm.getYCoordinates();
