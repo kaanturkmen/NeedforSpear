@@ -7,29 +7,38 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * InfiniteVoidSpell is a spell type which implements YmirPower interface.
+ */
 public class InfiniteVoidSpell implements YmirPower {
-    private Random r = new Random();
 
+    /**
+     * Triggers spell effect.
+     */
     @Override
     public void triggerYmirEffect() {
         System.out.println("Infinite Void Spell is activated.");
 
         List<Obstacle> obstacleList = selectRandomObstacles();
         System.out.println(obstacleList.size());
-        for (int i = 0; i <obstacleList.size(); i++){
-            Obstacle obstacle = obstacleList.get(i);
+        for (Obstacle obstacle : obstacleList) {
             obstacle.freeze();
             obstacle.activateInfiniteVoid(true);
         }
 
     }
 
-    public List<Obstacle> selectRandomObstacles(){
+    /**
+     * Selects random obstacles and puts in a list.
+     *
+     * @return List of obstacles which has random obstacles.
+     */
+    public List<Obstacle> selectRandomObstacles() {
         List<Integer> randomIndices = new ArrayList<>();
-        List<Obstacle> obstacleList =  NeedforSpearGame.getInstance().getGameInfo().getGameMap().getListofObstacles();
+        List<Obstacle> obstacleList = NeedforSpearGame.getInstance().getGameInfo().getGameMap().getListofObstacles();
         List<Obstacle> randomObstacleList = new ArrayList<>();
 
-        int randNum = r.nextInt(obstacleList.size());
+        int randNum = new Random().nextInt(obstacleList.size());
         if (obstacleList.size() > 8) {
             while (randomIndices.size() < 8) {
                 if (!randomIndices.contains(randNum)) {
@@ -38,10 +47,10 @@ public class InfiniteVoidSpell implements YmirPower {
                 randomIndices.add(randNum);
             }
 
-            for (int i = 0; i < randomIndices.size(); i++) {
-                randomObstacleList.add(obstacleList.get(randomIndices.get(i)));
+            for (Integer randomIndex : randomIndices) {
+                randomObstacleList.add(obstacleList.get(randomIndex));
             }
-        }else{
+        } else {
             randomObstacleList = obstacleList;
         }
 

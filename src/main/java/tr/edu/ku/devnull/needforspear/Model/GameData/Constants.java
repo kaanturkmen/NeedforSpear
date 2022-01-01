@@ -147,6 +147,7 @@ public interface Constants {
         int ONE_LIVES_GAIN_LOSE = 1;
         int FREEZE_SPELL_DURATION_SECONDS = 15;
         int MILISECONDS_TO_SECONDS = 1000;
+        int SPELL_SIZE_DIVISION_CONSTANT = 2;
 
         double OBSTACLE_MOVE_PROBABILITY = 0.2;
         double SPEED_DIVISION_CONSTANT = 400;
