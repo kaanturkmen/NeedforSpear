@@ -304,7 +304,7 @@ public class Obstacle {
      */
     public void freeze() {
         if (!this.isInfiniteVoidActivated) {
-            int stopDelay = Constants.UIConstants.FREEZE_SPELL_DURATION_SECONDS * Constants.UIConstants.MILISECONDS_TO_SECONDS;
+            int stopDelay = Constants.UIConstants.SPELL_DURATION_SECONDS * Constants.UIConstants.MILISECONDS_TO_SECONDS;
             TimerTask stopTask = new TimerTask() {
                 @Override
                 public void run() {
