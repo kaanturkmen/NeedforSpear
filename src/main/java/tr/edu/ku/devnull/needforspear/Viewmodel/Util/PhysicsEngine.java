@@ -57,7 +57,7 @@ public class PhysicsEngine {
 
         CollisionData result = new CollisionData(incident.getCurrentLocation(), incident.getCurrentSpeed());
 
-        if (obstacle.getSpeed().equals(0.0)) {
+        if (obstacle.getSpeed() == .0) {
 
             if (incident.getCurrentLocation().getXCoordinates() + 2 * Constants.ProportionConstants.RADIUS_OF_THE_SPHERE + incident.getCurrentSpeed().getSpeedOnXAxis() > obstacle.getLocation().getXCoordinates() &&
                     incident.getCurrentLocation().getXCoordinates() + incident.getCurrentSpeed().getSpeedOnXAxis() < obstacle.getLocation().getXCoordinates() + obstacle.getSize().getWidth() &&

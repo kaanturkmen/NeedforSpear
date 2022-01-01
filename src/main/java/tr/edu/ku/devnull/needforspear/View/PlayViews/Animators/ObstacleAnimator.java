@@ -182,7 +182,7 @@ public class ObstacleAnimator implements AnimatorStrategy {
     private void displayFirmObstacleHealth(Graphics2D g2, Obstacle obstacle, Location location) {
         Font font = g2.getFont().deriveFont(16f);
         g2.setFont(font);
-        String text = obstacle.getHealth().toString();
+        String text = String.valueOf(obstacle.getHealth());
         FontRenderContext frc = g2.getFontRenderContext();
         int textWidth = (int) font.getStringBounds(text, frc).getWidth();
         LineMetrics lm = font.getLineMetrics(text, frc);

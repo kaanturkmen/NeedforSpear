@@ -62,8 +62,31 @@ public class Obstacle {
         return orbitCenter;
     }
 
+    /**
+     * Sets the orbit center.
+     *
+     * @param orbitCenter Orbit center to be set.
+     */
     public void setOrbitCenter(Location orbitCenter) {
         this.orbitCenter = orbitCenter;
+    }
+
+    /**
+     * Gets the subscriber method of obstacle.
+     *
+     * @return ObstacleSubscriber of obstacle.
+     */
+    public List<ObstacleSubscriber> getObstacleSubscribers() {
+        return obstacleSubscribers;
+    }
+
+    /**
+     * Sets the subscriber method for obstacle.
+     *
+     * @param obstacleSubscribers ObstacleSubscriber value to be set for obstacle.
+     */
+    public void setObstacleSubscribers(List<ObstacleSubscriber> obstacleSubscribers) {
+        this.obstacleSubscribers = obstacleSubscribers;
     }
 
     /**
@@ -73,6 +96,15 @@ public class Obstacle {
      */
     public String getObstacleType() {
         return obstacleType;
+    }
+
+    /**
+     * Sets the type of obstacle.
+     *
+     * @param obstacleType obstacleType value to be set for Obstacle.
+     */
+    public void setObstacleType(String obstacleType) {
+        this.obstacleType = obstacleType;
     }
 
     /**
@@ -89,8 +121,17 @@ public class Obstacle {
      *
      * @return Integer value of health of Obstacle.
      */
-    public Integer getHealth() {
+    public int getHealth() {
         return health;
+    }
+
+    /**
+     * Sets the health of obstacle.
+     *
+     * @param health health value to be set for Obstacle.
+     */
+    public void setHealth(int health) {
+        this.health = health;
     }
 
     /**
@@ -98,7 +139,7 @@ public class Obstacle {
      *
      * @return Double value of speed of Obstacle.
      */
-    public Double getSpeed() {
+    public double getSpeed() {
         return speed;
     }
 
@@ -107,7 +148,7 @@ public class Obstacle {
      *
      * @param speed speed value to be set for Obstacle.
      */
-    public void setSpeed(Double speed) {
+    public void setSpeed(double speed) {
         this.speed = speed;
     }
 
@@ -154,6 +195,15 @@ public class Obstacle {
      */
     public void subscribe(ObstacleSubscriber obstacleSubscriber) {
         obstacleSubscribers.add(obstacleSubscriber);
+    }
+
+    /**
+     * Unsubscribes the obstacle from given subscriber.
+     *
+     * @param obstacleSubscriber ObstacleSubscriber to be unsubscribed from Obstacle.
+     */
+    public void unsubscribe(ObstacleSubscriber obstacleSubscriber) {
+        obstacleSubscribers.remove(obstacleSubscriber);
     }
 
     /**
