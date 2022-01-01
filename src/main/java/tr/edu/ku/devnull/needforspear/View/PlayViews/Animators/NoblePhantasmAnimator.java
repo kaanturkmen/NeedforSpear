@@ -59,8 +59,8 @@ public class NoblePhantasmAnimator {
 
         NoblePhantasm noblePhantasm = NoblePhantasm.getInstance();
 
-        int x_location =  noblePhantasm.getLocation().getXCoordinates().intValue();
-        int y_location =  noblePhantasm.getLocation().getYCoordinates().intValue();
+        int x_location = (int) noblePhantasm.getLocation().getXCoordinates();
+        int y_location = (int) noblePhantasm.getLocation().getYCoordinates();
         Graphics2D g2d = (Graphics2D) g;
         noblePhantasm.getLocation().setXCoordinates(movementHandler.movementOfNoblePhantasm());
 

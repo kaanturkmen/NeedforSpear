@@ -53,7 +53,7 @@ public class ObstacleAnimator implements AnimatorStrategy {
 
     public Image getObstacleImage(String path) {
         return Toolkit.getDefaultToolkit().getImage(Constants.UIConstants.USER_DIRECTORY_TO_RESOURCE_FOLDER + path)
-                .getScaledInstance(Constants.ProportionConstants.RADIUS_OF_EXPLOSIVE_OBSTACLE*2, Constants.ProportionConstants.RADIUS_OF_EXPLOSIVE_OBSTACLE*2, Image.SCALE_SMOOTH);
+                .getScaledInstance(Constants.ProportionConstants.RADIUS_OF_EXPLOSIVE_OBSTACLE * 2, Constants.ProportionConstants.RADIUS_OF_EXPLOSIVE_OBSTACLE * 2, Image.SCALE_SMOOTH);
 
     }
 
@@ -74,8 +74,8 @@ public class ObstacleAnimator implements AnimatorStrategy {
             int width = obs.getSize().getWidth();
             int length = obs.getSize().getLength();
             g2.setColor(obs.retrieveColorEquivalent(obs.getColor()));
-            int x_coordinates_loc = loc.getXCoordinates().intValue();
-            int y_coordinates_loc = loc.getYCoordinates().intValue();
+            int x_coordinates_loc = (int) loc.getXCoordinates();
+            int y_coordinates_loc = (int) loc.getYCoordinates();
 
             if (obs.getObstacleType().equals(Constants.ObstacleNameConstants.EXP)) {
                 g2.drawImage(explosiveObstacleImage, x_coordinates_loc, y_coordinates_loc, width, length, null);
@@ -83,17 +83,17 @@ public class ObstacleAnimator implements AnimatorStrategy {
             } else if (obs.getObstacleType().equals(Constants.ObstacleNameConstants.FIRM)) {
                 g2.drawImage(firmObstacleImage, x_coordinates_loc, y_coordinates_loc, width, length, null);
 
-            }else if (obs.getObstacleType().equals(Constants.ObstacleNameConstants.SIMPLE)) {
+            } else if (obs.getObstacleType().equals(Constants.ObstacleNameConstants.SIMPLE)) {
                 g2.drawImage(simpleObstacleImage, x_coordinates_loc, y_coordinates_loc, width, length, null);
 
-            }else if (obs.getObstacleType().equals(Constants.ObstacleNameConstants.GIFT)) {
+            } else if (obs.getObstacleType().equals(Constants.ObstacleNameConstants.GIFT)) {
                 g2.drawImage(giftObstacleImage, x_coordinates_loc, y_coordinates_loc, width, length, null);
 
-            }else if (obs.getObstacleType().equals(Constants.ObstacleNameConstants.HOLLOW)) {
+            } else if (obs.getObstacleType().equals(Constants.ObstacleNameConstants.HOLLOW)) {
                 g2.drawImage(hollowObstacleImage, x_coordinates_loc, y_coordinates_loc, width, length, null);
             }
-            if(obs.getObstacleType().equals(Constants.ObstacleNameConstants.FIRM)){
-                displayFirmObstacleHealth(g2,obs,loc);
+            if (obs.getObstacleType().equals(Constants.ObstacleNameConstants.FIRM)) {
+                displayFirmObstacleHealth(g2, obs, loc);
             }
         }
 
@@ -113,18 +113,18 @@ public class ObstacleAnimator implements AnimatorStrategy {
         Location loc = obstacle.getLocation();
         int width = obstacle.getSize().getWidth();
         int length = obstacle.getSize().getLength();
-        int x_coordinates_loc = loc.getXCoordinates().intValue();
-        int y_coordinates_loc = loc.getYCoordinates().intValue();
+        int x_coordinates_loc = (int) loc.getXCoordinates();
+        int y_coordinates_loc = (int) loc.getYCoordinates();
         if (obstacle.getObstacleType().equals(Constants.ObstacleNameConstants.EXP)) {
             g2.drawImage(explosiveObstacleImage, x_coordinates_loc, y_coordinates_loc, width, length, null);
 
         } else if (obstacle.getObstacleType().equals(Constants.ObstacleNameConstants.FIRM)) {
             g2.drawImage(firmObstacleImage, x_coordinates_loc, y_coordinates_loc, width, length, null);
-        }else if (obstacle.getObstacleType().equals(Constants.ObstacleNameConstants.SIMPLE)) {
+        } else if (obstacle.getObstacleType().equals(Constants.ObstacleNameConstants.SIMPLE)) {
             g2.drawImage(simpleObstacleImage, x_coordinates_loc, y_coordinates_loc, width, length, null);
-        }else if (obstacle.getObstacleType().equals(Constants.ObstacleNameConstants.GIFT)) {
+        } else if (obstacle.getObstacleType().equals(Constants.ObstacleNameConstants.GIFT)) {
             g2.drawImage(giftObstacleImage, x_coordinates_loc, y_coordinates_loc, width, length, null);
-        }else if (obstacle.getObstacleType().equals(Constants.ObstacleNameConstants.HOLLOW)) {
+        } else if (obstacle.getObstacleType().equals(Constants.ObstacleNameConstants.HOLLOW)) {
             g2.drawImage(hollowObstacleImage, x_coordinates_loc, y_coordinates_loc, width, length, null);
         }
 
@@ -143,9 +143,9 @@ public class ObstacleAnimator implements AnimatorStrategy {
             for (int i = 0; i < listofObstacles.size(); i++) {
                 Obstacle explosiveObstacle = listofObstacles.get(i);
 
-                if (explosiveObstacle.getObstacleType().equals(Constants.ObstacleNameConstants.EXP)){
-                    int x = explosiveObstacle.getLocation().getXCoordinates().intValue();
-                    int y = explosiveObstacle.getLocation().getYCoordinates().intValue();
+                if (explosiveObstacle.getObstacleType().equals(Constants.ObstacleNameConstants.EXP)) {
+                    int x = (int) explosiveObstacle.getLocation().getXCoordinates();
+                    int y = (int) explosiveObstacle.getLocation().getYCoordinates();
                     int width = explosiveObstacle.getSize().getWidth();
                     int length = explosiveObstacle.getSize().getLength();
                     movementHandler.explosiveAnimation(g2, explosiveObstacle);
@@ -153,20 +153,20 @@ public class ObstacleAnimator implements AnimatorStrategy {
                 }
 
                 //TODO these could be removed from here
-                if (explosiveObstacle.getSpeed() != 0 && (explosiveObstacle.getObstacleType().equals(Constants.ObstacleNameConstants.FIRM)||explosiveObstacle.getObstacleType().equals(Constants.ObstacleNameConstants.SIMPLE) )) {
+                if (explosiveObstacle.getSpeed() != 0 && (explosiveObstacle.getObstacleType().equals(Constants.ObstacleNameConstants.FIRM) || explosiveObstacle.getObstacleType().equals(Constants.ObstacleNameConstants.SIMPLE))) {
                     Location newLoc = movementHandler.moveObstacleHorizontally(explosiveObstacle, listofObstacles);
                     explosiveObstacle.setLocation(newLoc);
-                    int x =  newLoc.getXCoordinates().intValue();
-                    int y =  newLoc.getYCoordinates().intValue();
+                    int x = (int) newLoc.getXCoordinates();
+                    int y = (int) newLoc.getYCoordinates();
                     int width = explosiveObstacle.getSize().getWidth();
                     int length = explosiveObstacle.getSize().getLength();
-                   if (explosiveObstacle.getObstacleType().equals(Constants.ObstacleNameConstants.FIRM)) {
-                    g2.drawImage(firmObstacleImage, x, y, width, length, null);
-                   }else if (explosiveObstacle.getObstacleType().equals(Constants.ObstacleNameConstants.SIMPLE)) {
-                    g2.drawImage(simpleObstacleImage, width, length, width, length, null);
-                   }
+                    if (explosiveObstacle.getObstacleType().equals(Constants.ObstacleNameConstants.FIRM)) {
+                        g2.drawImage(firmObstacleImage, x, y, width, length, null);
+                    } else if (explosiveObstacle.getObstacleType().equals(Constants.ObstacleNameConstants.SIMPLE)) {
+                        g2.drawImage(simpleObstacleImage, width, length, width, length, null);
+                    }
 
-                    if(explosiveObstacle.getObstacleType().equals(Constants.ObstacleNameConstants.FIRM)){
+                    if (explosiveObstacle.getObstacleType().equals(Constants.ObstacleNameConstants.FIRM)) {
                         displayFirmObstacleHealth(g2, explosiveObstacle, newLoc);
                     }
 
@@ -178,20 +178,21 @@ public class ObstacleAnimator implements AnimatorStrategy {
 
     /**
      * draws the firm obstacles' health inside their rectangle
+     *
      * @param g2
      */
     //solution taken from https://coderanch.com/t/342611/java/Text-surrounded-rectangle
-    private void displayFirmObstacleHealth(Graphics2D g2, Obstacle obstacle, Location location){
+    private void displayFirmObstacleHealth(Graphics2D g2, Obstacle obstacle, Location location) {
         Font font = g2.getFont().deriveFont(16f);
         g2.setFont(font);
         String text = obstacle.getHealth().toString();
         FontRenderContext frc = g2.getFontRenderContext();
-        int textWidth = (int)font.getStringBounds(text, frc).getWidth();
+        int textWidth = (int) font.getStringBounds(text, frc).getWidth();
         LineMetrics lm = font.getLineMetrics(text, frc);
-        int textHeight = (int)(lm.getAscent() + lm.getDescent());
-        int x_coordinates_loc = location.getXCoordinates().intValue();
-        int sx = x_coordinates_loc + (obstacle.getSize().getWidth() - textWidth)/2;
-        int sy = (int)(location.getYCoordinates() + (obstacle.getSize().getLength() + textHeight)/2 - lm.getDescent());
+        int textHeight = (int) (lm.getAscent() + lm.getDescent());
+        int x_coordinates_loc = (int) location.getXCoordinates();
+        int sx = x_coordinates_loc + (obstacle.getSize().getWidth() - textWidth) / 2;
+        int sy = (int) (location.getYCoordinates() + (obstacle.getSize().getLength() + textHeight) / 2 - lm.getDescent());
         g2.setColor(Color.BLACK);
         g2.drawString(text, sx, sy);
     }

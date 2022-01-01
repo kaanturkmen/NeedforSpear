@@ -3,7 +3,6 @@ package tr.edu.ku.devnull.needforspear.Viewmodel.GameLogicHandlers;
 import tr.edu.ku.devnull.needforspear.Model.GameData.Constants;
 import tr.edu.ku.devnull.needforspear.Model.Player.Player;
 import tr.edu.ku.devnull.needforspear.NeedforSpearGame;
-import tr.edu.ku.devnull.needforspear.View.PlayViews.GameView;
 
 import java.util.concurrent.TimeUnit;
 
@@ -36,7 +35,7 @@ public class PlayerScoreHandler {
      * @param player Player whose score will be updated
      */
     public void updateScore(Player player) {
-     long currSec= TimeUnit.MILLISECONDS.toSeconds(NeedforSpearGame.getInstance().getGameInfo().getCurrentMillis());
+     long currSec= TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis());
      long startSec= TimeUnit.MILLISECONDS.toSeconds(NeedforSpearGame.getInstance().getGameInfo().getStartMillis());
      long division = currSec-startSec;
      if(division != 0){

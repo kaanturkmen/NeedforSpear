@@ -41,13 +41,13 @@ public class CollisionHandler {
     public boolean collision(Obstacle obstacle, Sphere sphere) {
         Location obsLoc = obstacle.getLocation();
         Size obsSize = obstacle.getSize();
-        int x_coordinates_loc = (int) obsLoc.getXCoordinates().doubleValue();
-        int y_coordinates_loc = (int) obsLoc.getYCoordinates().doubleValue();
+        int x_coordinates_loc = (int) obsLoc.getXCoordinates();
+        int y_coordinates_loc = (int) obsLoc.getYCoordinates();
         Rectangle obsRect = new Rectangle(x_coordinates_loc, y_coordinates_loc, obsSize.getWidth(), obsSize.getLength());
         Location sphereLoc = sphere.getLocation();
         int diameter = 2 * Constants.ProportionConstants.RADIUS_OF_THE_SPHERE;
-        int x_coordinates_sphereloc = (int) sphereLoc.getXCoordinates().doubleValue();
-        int y_coordinates_sphereloc = (int) sphereLoc.getYCoordinates().doubleValue();
+        int x_coordinates_sphereloc = (int) sphereLoc.getXCoordinates();
+        int y_coordinates_sphereloc = (int) sphereLoc.getYCoordinates();
         return obsRect.getBounds().intersects(new Rectangle(x_coordinates_sphereloc, y_coordinates_sphereloc, diameter, diameter));
 
     }
@@ -62,13 +62,13 @@ public class CollisionHandler {
     public boolean collision(Obstacle obstacle, Obstacle obstacle2) {
         Location obsLoc = obstacle.getLocation();
         Size obsSize = obstacle.getSize();
-        int x_coordinates_loc = (int) obsLoc.getXCoordinates().doubleValue();
-        int y_coordinates_loc = (int) obsLoc.getYCoordinates().doubleValue();
+        int x_coordinates_loc = (int) obsLoc.getXCoordinates();
+        int y_coordinates_loc = (int) obsLoc.getYCoordinates();
         Rectangle obsRect = new Rectangle(x_coordinates_loc, y_coordinates_loc, obsSize.getWidth(), obsSize.getLength());
         Location obstacle2Location = obstacle2.getLocation();
         Size obs2Size = obstacle2.getSize();
-        int x_coordinates_obstacle2loc = (int) obstacle2Location.getXCoordinates().doubleValue();
-        int y_coordinates_obstacle2loc = (int) obstacle2Location.getYCoordinates().doubleValue();
+        int x_coordinates_obstacle2loc = (int) obstacle2Location.getXCoordinates();
+        int y_coordinates_obstacle2loc = (int) obstacle2Location.getYCoordinates();
         return obsRect.getBounds().intersects(new Rectangle(x_coordinates_obstacle2loc, y_coordinates_obstacle2loc, obs2Size.getWidth(), obs2Size.getLength()));
 
     }
@@ -84,50 +84,51 @@ public class CollisionHandler {
     public boolean collision(NoblePhantasm noblePhantasm, Sphere sphere) {
         Location noblePhantasmLoc = noblePhantasm.getLocation();
         Size noblePhantasmSize = noblePhantasm.getSize();
-        int x_coordinates_nploc = (int) noblePhantasmLoc.getXCoordinates().doubleValue();
-        int y_coordinates_nploc = (int) noblePhantasmLoc.getYCoordinates().doubleValue();
+        int x_coordinates_nploc = (int) noblePhantasmLoc.getXCoordinates();
+        int y_coordinates_nploc = (int) noblePhantasmLoc.getYCoordinates();
         Rectangle noblePhantasmRect = new Rectangle(x_coordinates_nploc, y_coordinates_nploc, noblePhantasmSize.getWidth(), noblePhantasmSize.getLength());
         Location sphereLoc = sphere.getLocation();
         int diameter = 2 * Constants.ProportionConstants.RADIUS_OF_THE_SPHERE;
-        int x_coordinates_sphereloc = (int) sphereLoc.getXCoordinates().doubleValue();
-        int y_coordinates_sphereloc = (int) sphereLoc.getYCoordinates().doubleValue();
+        int x_coordinates_sphereloc = (int) sphereLoc.getXCoordinates();
+        int y_coordinates_sphereloc = (int) sphereLoc.getYCoordinates();
         return noblePhantasmRect.getBounds().intersects(new Rectangle(x_coordinates_sphereloc, y_coordinates_sphereloc, diameter, diameter));
 
     }
-    public boolean collision (NoblePhantasm noblePhantasm, Spell spell){
+
+    public boolean collision(NoblePhantasm noblePhantasm, Spell spell) {
         Location noblePhantasmLoc = noblePhantasm.getLocation();
         Size noblePhantasmSizeSize = noblePhantasm.getSize();
-        Rectangle noblePhantasmRect = new Rectangle(noblePhantasmLoc.getXCoordinates().intValue(),
-                noblePhantasmLoc.getYCoordinates().intValue(), noblePhantasmSizeSize.getWidth(), noblePhantasmSizeSize.getWidth());
+        Rectangle noblePhantasmRect = new Rectangle((int) noblePhantasmLoc.getXCoordinates(),
+                (int) noblePhantasmLoc.getYCoordinates(), noblePhantasmSizeSize.getWidth(), noblePhantasmSizeSize.getWidth());
         Location spellLoc = spell.getLocation();
         Size spellSize = spell.getSize();
-        return noblePhantasmRect.getBounds().intersects(new Rectangle(spellLoc.getXCoordinates().intValue(),
-                spellLoc.getYCoordinates().intValue(), spellSize.getWidth(), spellSize.getLength()));
+        return noblePhantasmRect.getBounds().intersects(new Rectangle((int) spellLoc.getXCoordinates(),
+                (int) spellLoc.getYCoordinates(), spellSize.getWidth(), spellSize.getLength()));
     }
 
     public boolean collision(Obstacle obstacle, Bullet bullet) {
         Location obsLoc = obstacle.getLocation();
         Size obsSize = obstacle.getSize();
-        int x_coordinates_obsloc = (int) obsLoc.getXCoordinates().doubleValue();
-        int y_coordinates_obsloc = (int) obsLoc.getYCoordinates().doubleValue();
+        int x_coordinates_obsloc = (int) obsLoc.getXCoordinates();
+        int y_coordinates_obsloc = (int) obsLoc.getYCoordinates();
         Rectangle obsRect = new Rectangle(x_coordinates_obsloc, y_coordinates_obsloc, obsSize.getWidth(), obsSize.getLength());
-            Location sphereLoc = bullet.getLocation();
-            int diameter = 2 * Constants.ProportionConstants.RADIUS_OF_THE_BULLET;
-            int x_coordinates_bulletloc = (int) sphereLoc.getXCoordinates().doubleValue();
-            int y_coordinates_bulletloc = (int) sphereLoc.getYCoordinates().doubleValue();
-            return obsRect.getBounds().intersects(new Rectangle(x_coordinates_bulletloc, y_coordinates_bulletloc, diameter, diameter));
+        Location sphereLoc = bullet.getLocation();
+        int diameter = 2 * Constants.ProportionConstants.RADIUS_OF_THE_BULLET;
+        int x_coordinates_bulletloc = (int) sphereLoc.getXCoordinates();
+        int y_coordinates_bulletloc = (int) sphereLoc.getYCoordinates();
+        return obsRect.getBounds().intersects(new Rectangle(x_coordinates_bulletloc, y_coordinates_bulletloc, diameter, diameter));
     }
 
-    public boolean collisionWithExplosive(Obstacle obstacle, NoblePhantasm noblePhantasm){
+    public boolean collisionWithExplosive(Obstacle obstacle, NoblePhantasm noblePhantasm) {
         Location noblePhantasmLoc = noblePhantasm.getLocation();
         Size noblePhantasmSize = noblePhantasm.getSize();
-        int x_np = (int) noblePhantasmLoc.getXCoordinates().doubleValue();
-        int y_np = (int) noblePhantasmLoc.getYCoordinates().doubleValue();
+        int x_np = (int) noblePhantasmLoc.getXCoordinates();
+        int y_np = (int) noblePhantasmLoc.getYCoordinates();
 
         Rectangle noblePhantasmRect = new Rectangle(x_np, y_np, noblePhantasmSize.getWidth(), noblePhantasmSize.getWidth());
         Location obstacleLocation = obstacle.getLocation();
-        int x_obs = (int) obstacleLocation.getXCoordinates().doubleValue();
-        int y_obs = (int) obstacleLocation.getYCoordinates().doubleValue();
+        int x_obs = (int) obstacleLocation.getXCoordinates();
+        int y_obs = (int) obstacleLocation.getYCoordinates();
 
         int diameter = obstacle.getSize().getWidth();
         Rectangle obstacleRect = new Rectangle(x_obs, y_obs, diameter, diameter);
@@ -137,10 +138,10 @@ public class CollisionHandler {
 
     }
 
-    public boolean collisionWithExplosiveOrbit(Rectangle orbit, Obstacle obstacle){
+    public boolean collisionWithExplosiveOrbit(Rectangle orbit, Obstacle obstacle) {
         Location obstacleLocation = obstacle.getLocation();
-        int x_obs = (int) obstacleLocation.getXCoordinates().doubleValue();
-        int y_obs = (int) obstacleLocation.getYCoordinates().doubleValue();
+        int x_obs = (int) obstacleLocation.getXCoordinates();
+        int y_obs = (int) obstacleLocation.getYCoordinates();
 
         int diameter = obstacle.getSize().getWidth();
         Rectangle obstacleRect = new Rectangle(x_obs, y_obs, diameter, diameter);
@@ -157,29 +158,26 @@ public class CollisionHandler {
 
 
         boolean isRemoved = obstacle.getHealth() <= 0;
-        
-         if (isRemoved ) {
+
+        if (isRemoved) {
 
 
-            if(obstacle.getObstacleType().equals(Constants.ObstacleNameConstants.GIFT)){
+            if (obstacle.getObstacleType().equals(Constants.ObstacleNameConstants.GIFT)) {
                 SpellAnimator.listOfMovingSpells.add(obstacle.getSpell());
             }
             //listofObstacles.remove(obstacle);
         }
-    
+
 
         return isRemoved;
     }
 
-    public void removeObstacle(Obstacle obstacle,  List<Obstacle> listofObstacles){
-        if(!obstacle.getObstacleType().equals(Constants.ObstacleNameConstants.HOLLOW)) {
+    public void removeObstacle(Obstacle obstacle, List<Obstacle> listofObstacles) {
+        if (!obstacle.getObstacleType().equals(Constants.ObstacleNameConstants.HOLLOW)) {
             PlayerScoreHandler.getInstance().updateScore(NeedforSpearGame.getInstance().getGameInfo().getPlayer());
         }
         listofObstacles.remove(obstacle);
     }
-
-       
-    
 
 
 }

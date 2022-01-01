@@ -4,23 +4,31 @@ import java.awt.*;
 
 /**
  * Constants interface is used to store all the necessary constants for the game.
+ *
+ * @author Kaan Turkmen
  */
 public interface Constants {
 
+    /**
+     * Constants which are mainly used for the proportion purposes.
+     */
     interface ProportionConstants {
-        Integer HEIGHT_OF_NOBLE_PHANTASM = 20;
-        Integer WIDTH_OF_NOBLE_PHANTASM = Constants.UIConstants.INITIAL_SCREEN_WIDTH / 10;
-        Integer Y_CENTER_OF_NOBLE_PHANTASM = Constants.ProportionConstants.HEIGHT_OF_NOBLE_PHANTASM / 2;
-        Integer HEIGHT_OF_THE_OBSTACLE = 20;
-        Integer RADIUS_OF_THE_SPHERE = 16;
-        Double RATIO_OF_NOBLE_PHANTASM = 0.1;
-        Double EXPLOSIVE_ORBIT_RADIUS = 1.5 * WIDTH_OF_NOBLE_PHANTASM;
-        Integer RADIUS_OF_THE_BULLET = 9;
-        Integer SPEED_OF_THE_BULLET = 4;
-        Integer RADIUS_OF_EXPLOSIVE_OBSTACLE = 15;
-        Integer SPELL_SIZE = 15;
+        int HEIGHT_OF_NOBLE_PHANTASM = 20;
+        int WIDTH_OF_NOBLE_PHANTASM = Constants.UIConstants.INITIAL_SCREEN_WIDTH / 10;
+        int Y_CENTER_OF_NOBLE_PHANTASM = Constants.ProportionConstants.HEIGHT_OF_NOBLE_PHANTASM / 2;
+        int HEIGHT_OF_THE_OBSTACLE = 20;
+        int RADIUS_OF_THE_SPHERE = 16;
+        double RATIO_OF_NOBLE_PHANTASM = 0.1;
+        double EXPLOSIVE_ORBIT_RADIUS = 1.5 * WIDTH_OF_NOBLE_PHANTASM;
+        int RADIUS_OF_THE_BULLET = 9;
+        int SPEED_OF_THE_BULLET = 4;
+        int RADIUS_OF_EXPLOSIVE_OBSTACLE = 15;
+        int SPELL_SIZE = 15;
     }
 
+    /**
+     * Constants which are mainly used for the UI purposes.
+     */
     interface UIConstants {
         String TITLE_SCREEN_BACKGROUND_IMAGE = "TitleScreen.png";
         String ACTIVATION_VIEW_BACKGROUND_IMAGE = "ActivateAccountBackground.png";
@@ -102,7 +110,7 @@ public interface Constants {
         String PINK_COLOR_STRING = "DARKMAGENTA";
         String DARK_GREEN_COLOR_STRING = "DARKGREEN";
 
-        String WEBSITE_TO_BE_PINGED = "http://www.google.com";
+        String WEBSITE_TO_BE_PINGED = "https://www.google.com";
 
         Integer PADDING_BETWEEN_TEXT_FIELDS = 50;
         Integer PADDING_MAIN_MENU = 50;
@@ -130,20 +138,21 @@ public interface Constants {
         Integer INIT_LIVES = 3;
         Integer OVERLAY_PANEL_HEIGHT = 100;
         Integer OBSTACLE_DISTANCE_FROM_PHANTASM = 150;
-
         Integer INIT_SCORE = 0;
 
-        Location LOGIN_VIEW_COMPONENT_LOCATION = new Location(943.0, 186.0);
         Size MENU_AND_AUTH_VIEW_COMPONENT_SIZE = new Size(192, 50);
 
+        Location LOGIN_VIEW_COMPONENT_LOCATION = new Location(943.0, 186.0);
         Location AUTH_VIEW_EXCEPT_LOGIN_LOCATION = new Location(550.0, 80.0);
-
         Location MAIN_MENU_VIEW_LOCATION = new Location(543.0, 361.0);
 
         Color OVERLAY_BACKGROUND_COLOR = new Color(0.21f, 0.22f, 0.28f);
 
     }
 
+    /**
+     * Constants for the names of the obstacles.
+     */
     interface ObstacleNameConstants {
         String SIMPLE = "SimpleObstacle";
         String FIRM = "FirmObstacle";
@@ -152,24 +161,34 @@ public interface Constants {
         String HOLLOW = "HollowPurpleObstacle";
     }
 
+    /**
+     * Constants for the obstacle threshold.
+     */
     interface ObstacleNumberConstants {
-        Integer MIN_SIMPLE_OBSTACLE_NUM = 75;
-        Integer MIN_FIRM_OBSTACLE_NUM = 10;
-        Integer MIN_EXPLOSIVE_OBSTACLE_NUM = 5;
-        Integer MIN_GIFT_OBSTACLE_NUM = 10;
+        int MIN_SIMPLE_OBSTACLE_NUM = 75;
+        int MIN_FIRM_OBSTACLE_NUM = 10;
+        int MIN_EXPLOSIVE_OBSTACLE_NUM = 5;
+        int MIN_GIFT_OBSTACLE_NUM = 10;
 
-        Integer MAX_SIMPLE_OBSTACLE_NUM = 120;
-        Integer MAX_FIRM_OBSTACLE_NUM = 20;
-        Integer MAX_EXPLOSIVE_OBSTACLE_NUM = 10;
-        Integer MAX_GIFT_OBSTACLE_NUM = 20;
+        int MAX_SIMPLE_OBSTACLE_NUM = 120;
+        int MAX_FIRM_OBSTACLE_NUM = 20;
+        int MAX_EXPLOSIVE_OBSTACLE_NUM = 10;
+        int MAX_GIFT_OBSTACLE_NUM = 20;
 
-        Integer HOLLOW_OBSTACLE_NUM = 8;
+        int HOLLOW_OBSTACLE_NUM = 8;
     }
 
+    /**
+     * Array constants for the selections.
+     */
     interface ArrayConstants {
         String[] OBSTACLE_NAMES_ARR = {Constants.ObstacleNameConstants.SIMPLE, Constants.ObstacleNameConstants.FIRM,
                 Constants.ObstacleNameConstants.EXP, Constants.ObstacleNameConstants.GIFT};
     }
+
+    /**
+     * Constants for the names of the spells.
+     */
     interface SpellNameConstants {
         String CHANCE = "ChanceGivingSpell";
         String EXPANSION = "ExpansionSpell";

@@ -4,8 +4,8 @@ package tr.edu.ku.devnull.needforspear.Model.GameData;
  * Size is a class which contains the dimensions of an object.
  */
 public class Size {
-    private Integer width;
-    private Integer length;
+    private int width;
+    private int length;
 
     /**
      * Constructor for Size.
@@ -13,13 +13,13 @@ public class Size {
      * @param width  Integer value of width of size.
      * @param length Integer value of length of size.
      */
-    public Size(Integer width, Integer length) {
+    public Size(int width, int length) {
         this.width = width;
         this.length = length;
     }
 
     /**
-     * Constructor for Size
+     * Empty constructor for database operations.
      */
     public Size() {
     }
@@ -29,7 +29,7 @@ public class Size {
      *
      * @return Integer value of width.
      */
-    public Integer getWidth() {
+    public int getWidth() {
         return width;
     }
 
@@ -38,7 +38,7 @@ public class Size {
      *
      * @param width Integer value to be set for width of size.
      */
-    public void setWidth(Integer width) {
+    public void setWidth(int width) {
         this.width = width;
     }
 
@@ -47,16 +47,7 @@ public class Size {
      *
      * @return Integer value length.
      */
-    public Integer getLength() {
+    public int getLength() {
         return length;
-    }
-
-    /**
-     * Sets the length of size.
-     *
-     * @param length Integer value to be set for length of size.
-     */
-    public void setLength(Integer length) {
-        this.length = length;
     }
 }
