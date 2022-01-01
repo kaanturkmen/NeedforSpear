@@ -24,8 +24,6 @@ public class ExpansionSpell extends Spell {
 
     /**
      * Triggers an effect of the spell.
-     *
-     * @return Spell which their effect is triggered.
      */
     @Override
     public void triggerEffect() {
@@ -33,41 +31,81 @@ public class ExpansionSpell extends Spell {
         NoblePhantasm.getInstance().activateExpansionSpell();
     }
 
+    /**
+     * Gets size of the spell.
+     *
+     * @return Size of the spell.
+     */
     @Override
     public Size getSize() {
         return super.getSize();
     }
 
+    /**
+     * Sets size of the spell.
+     *
+     * @param size Size of the spell to be set.
+     */
     @Override
     public void setSize(Size size) {
         super.setSize(size);
     }
 
+    /**
+     * Gets location of the spell.
+     *
+     * @return Location of the spell.
+     */
     @Override
     public Location getLocation() {
         return super.getLocation();
     }
 
+    /**
+     * Sets location of the spell.
+     *
+     * @param location Location to be set.
+     */
     @Override
     public void setLocation(Location location) {
         super.setLocation(location);
     }
 
+    /**
+     * Gets spell color.
+     *
+     * @return String of spell color.
+     */
     @Override
     public String getSpellColor() {
         return super.getSpellColor();
     }
 
+    /**
+     * Sets the spell color.
+     *
+     * @param spellColor Spell color string to be set
+     */
     @Override
     public void setSpellColor(String spellColor) {
         super.setSpellColor(spellColor);
     }
 
+    /**
+     * Gets the spell type.
+     *
+     * @return Spell type String.
+     */
     @Override
     public String getSpellType() {
         return super.getSpellType();
     }
 
+    /**
+     * Sets the spell type.
+     *
+     * @param spellType Spell type String to be set.
+     */
     @Override
     public void setSpellType(String spellType) {
         super.setSpellType(spellType);
