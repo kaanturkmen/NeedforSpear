@@ -48,8 +48,8 @@ public class LoginView {
      * A method for determining the sizes of the elements.
      */
     private void determineUIElementsSizes() {
-        int x_coordinates_loc = (int) Constants.UIConstants.LOGIN_VIEW_COMPONENT_LOCATION.getXCoordinates().doubleValue();
-        int y_coordinates_loc = (int) Constants.UIConstants.LOGIN_VIEW_COMPONENT_LOCATION.getYCoordinates().doubleValue();
+        int x_coordinates_loc = (int) Constants.UIConstants.LOGIN_VIEW_COMPONENT_LOCATION.getXCoordinates();
+        int y_coordinates_loc = (int) Constants.UIConstants.LOGIN_VIEW_COMPONENT_LOCATION.getYCoordinates();
         usernameField.setBounds(x_coordinates_loc, y_coordinates_loc, Constants.UIConstants.MENU_AND_AUTH_VIEW_COMPONENT_SIZE.getWidth(), Constants.UIConstants.MENU_AND_AUTH_VIEW_COMPONENT_SIZE.getLength());
         emailField.setBounds(x_coordinates_loc, y_coordinates_loc + Constants.UIConstants.PADDING_BETWEEN_TEXT_FIELDS, Constants.UIConstants.MENU_AND_AUTH_VIEW_COMPONENT_SIZE.getWidth(), Constants.UIConstants.MENU_AND_AUTH_VIEW_COMPONENT_SIZE.getLength());
         passwordField.setBounds(x_coordinates_loc, y_coordinates_loc + 2 * Constants.UIConstants.PADDING_BETWEEN_TEXT_FIELDS, Constants.UIConstants.MENU_AND_AUTH_VIEW_COMPONENT_SIZE.getWidth(), Constants.UIConstants.MENU_AND_AUTH_VIEW_COMPONENT_SIZE.getLength());

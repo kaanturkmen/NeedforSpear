@@ -60,7 +60,7 @@ public class BulletAnimator implements AnimatorStrategy {
                 if (bullet != null) {
                     Location newLocBullet = movementHandler.updateBulletMovement(bullet);
                     bullet.setLocation(newLocBullet);
-                    g2.drawImage(bulletImage, newLocBullet.getXCoordinates().intValue(), newLocBullet.getYCoordinates().intValue(), radius * 2, radius * 2, null);
+                    g2.drawImage(bulletImage, (int) newLocBullet.getXCoordinates(), (int) newLocBullet.getYCoordinates(), radius * 2, radius * 2, null);
                     movementHandler.checkForCollisions(listOfObstacles, bullet);
                 }
             }

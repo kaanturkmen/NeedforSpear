@@ -41,8 +41,8 @@ public class MainMenuView {
      * A method for determining the sizes of the elements.
      */
     private void determineUIElementsSizes() {
-        int x_coordinates_loc = (int) Constants.UIConstants.MAIN_MENU_VIEW_LOCATION.getXCoordinates().doubleValue();
-        int y_coordinates_loc = (int) Constants.UIConstants.MAIN_MENU_VIEW_LOCATION.getYCoordinates().doubleValue();
+        int x_coordinates_loc = (int) Constants.UIConstants.MAIN_MENU_VIEW_LOCATION.getXCoordinates();
+        int y_coordinates_loc = (int) Constants.UIConstants.MAIN_MENU_VIEW_LOCATION.getYCoordinates();
         newGameButton.setBounds(x_coordinates_loc, y_coordinates_loc + Constants.UIConstants.PADDING_MAIN_MENU, Constants.UIConstants.MENU_AND_AUTH_VIEW_COMPONENT_SIZE.getWidth(), Constants.UIConstants.MENU_AND_AUTH_VIEW_COMPONENT_SIZE.getLength());
         loadGameButton.setBounds(x_coordinates_loc, y_coordinates_loc + 2 * Constants.UIConstants.PADDING_MAIN_MENU, Constants.UIConstants.MENU_AND_AUTH_VIEW_COMPONENT_SIZE.getWidth(), Constants.UIConstants.MENU_AND_AUTH_VIEW_COMPONENT_SIZE.getLength());
         helpScreenButton.setBounds(x_coordinates_loc, y_coordinates_loc + 3 * Constants.UIConstants.PADDING_MAIN_MENU, Constants.UIConstants.MENU_AND_AUTH_VIEW_COMPONENT_SIZE.getWidth(), Constants.UIConstants.MENU_AND_AUTH_VIEW_COMPONENT_SIZE.getLength());

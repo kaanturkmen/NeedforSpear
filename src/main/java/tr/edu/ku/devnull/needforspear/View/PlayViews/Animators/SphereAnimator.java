@@ -68,15 +68,15 @@ public class SphereAnimator implements AnimatorStrategy {
             movementHandler.sphereMovement(g);
             g.setColor(Color.red);
             //new image on the new location
-            int x_coordinates_loc = (int) NeedforSpearGame.getInstance().getGameInfo().getSphere().getLocation().getXCoordinates().doubleValue();
-            int y_coordinates_loc = (int) NeedforSpearGame.getInstance().getGameInfo().getSphere().getLocation().getYCoordinates().doubleValue();
+            int x_coordinates_loc = (int) NeedforSpearGame.getInstance().getGameInfo().getSphere().getLocation().getXCoordinates();
+            int y_coordinates_loc = (int) NeedforSpearGame.getInstance().getGameInfo().getSphere().getLocation().getYCoordinates();
             g.drawImage(sphereImage, x_coordinates_loc, y_coordinates_loc, radius * 2, radius * 2, null);
         } else {
             NoblePhantasm noblePhantasm = NoblePhantasm.getInstance();
             Location followNoblePhantasm = new Location((noblePhantasm.getLocation().getXCoordinates() + (noblePhantasm.getSize().getWidth() / 2) - radius), (noblePhantasm.getLocation().getYCoordinates() - 2 * radius));
             NeedforSpearGame.getInstance().getGameInfo().getSphere().setLocation(followNoblePhantasm);
-            int x_coordinates_loc = (int) followNoblePhantasm.getXCoordinates().doubleValue();
-            int y_coordinates_loc = (int) followNoblePhantasm.getYCoordinates().doubleValue();
+            int x_coordinates_loc = (int) followNoblePhantasm.getXCoordinates();
+            int y_coordinates_loc = (int) followNoblePhantasm.getYCoordinates();
             g.drawImage(sphereImage, x_coordinates_loc, y_coordinates_loc, radius * 2, radius * 2, null);
         }
     }

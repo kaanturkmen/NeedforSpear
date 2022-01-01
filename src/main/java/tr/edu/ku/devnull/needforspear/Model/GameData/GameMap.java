@@ -19,12 +19,12 @@ public class GameMap {
      * @param size Integer dimensions of the map.
      */
     public GameMap(Size size) {
-        this.listofObstacles = new ArrayList<Obstacle>();
+        this.listofObstacles = new ArrayList<>();
         this.size = size;
     }
 
     /**
-     * Constructor for the GameMap.
+     * Empty constructor for the database operations.
      */
     public GameMap() {
     }
@@ -63,9 +63,6 @@ public class GameMap {
      */
     @Override
     public String toString() {
-        return "GameMap{" +
-                "listofObstacles=" + listofObstacles +
-                ", size=" + size +
-                '}';
+        return "GameMap{" + "listofObstacles=" + listofObstacles + ", size=" + size + '}';
     }
 }

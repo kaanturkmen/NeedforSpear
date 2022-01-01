@@ -235,8 +235,8 @@ public class Obstacle {
 
     //only for explosive obstacle
     public Rectangle retrieveOrbitBounds() {
-        int center_x = orbitCenter.getXCoordinates().intValue();
-        int center_y = orbitCenter.getYCoordinates().intValue();
+        int center_x = (int) orbitCenter.getXCoordinates();
+        int center_y = (int) orbitCenter.getYCoordinates();
 
         double rect_x = center_x - Constants.ProportionConstants.EXPLOSIVE_ORBIT_RADIUS;
         double rect_y = center_y - center_x - Constants.ProportionConstants.EXPLOSIVE_ORBIT_RADIUS;

@@ -22,7 +22,7 @@ public class SavedMapEntry {
     }
 
     /**
-     * Constructor for SavedMapEntry
+     * Empty constructor for the database operations.
      */
     public SavedMapEntry() {
     }

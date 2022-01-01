@@ -54,7 +54,7 @@ public class SpellAnimator implements AnimatorStrategy {
                     g2.setColor(getColorOfSpell(spell));
                     Location newLoc = bounceHandler.moveSpellDownward(spell);
                     spell.setLocation(newLoc);
-                    g2.fillRect(newLoc.getXCoordinates().intValue(), newLoc.getYCoordinates().intValue(), width, length);
+                    g2.fillRect((int) newLoc.getXCoordinates(), (int) newLoc.getYCoordinates(), width, length);
                 }
             }
         }
