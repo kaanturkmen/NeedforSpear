@@ -144,6 +144,7 @@ public interface Constants {
         int OBSTACLE_MULTIPLE_HIT_MAX_HEALTH = 10;
         int OBSTACLE_SIZE_DIVISION_CONSTANT = 5;
         int ONE_HIT_DAMAGE = 1;
+        int ONE_LIVES_GAIN_LOSE = 1;
         int FREEZE_SPELL_DURATION_SECONDS = 15;
         int MILISECONDS_TO_SECONDS = 1000;
 

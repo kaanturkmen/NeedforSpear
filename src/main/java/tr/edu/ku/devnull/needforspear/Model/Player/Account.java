@@ -11,7 +11,7 @@ public class Account {
     private String username;
     private String email;
     private String password;
-    private Integer verificationCode;
+    private int verificationCode;
     private boolean isVerified = false;
 
     /**
