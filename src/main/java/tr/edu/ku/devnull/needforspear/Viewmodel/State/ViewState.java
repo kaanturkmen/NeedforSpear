@@ -2,9 +2,19 @@ package tr.edu.ku.devnull.needforspear.Viewmodel.State;
 
 import tr.edu.ku.devnull.needforspear.NeedforSpearGame;
 
+/**
+ * ViewState is an interface to specify which switch modes are available, and it is part of State design pattern.
+ *
+ * @author Kaan Turkmen, Can Usluel.
+ */
 public abstract class ViewState {
     protected NeedforSpearGame needforSpearGame;
 
+    /**
+     * Constructor of the ViewState.
+     *
+     * @param needforSpearGame The object which has states.
+     */
     public ViewState(NeedforSpearGame needforSpearGame) {
         this.needforSpearGame = needforSpearGame;
     }
