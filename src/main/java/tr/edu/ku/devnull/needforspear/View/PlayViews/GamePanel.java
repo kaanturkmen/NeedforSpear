@@ -28,12 +28,10 @@ public class GamePanel extends JPanel implements ActionListener, MouseMotionList
 
     SphereAnimator sphereAnimator;
     ObstacleAnimator obstacleAnimator;
-    NoblePhantasmAnimator npa = new NoblePhantasmAnimator();
+    NoblePhantasmAnimator npa;
     SpellAnimator spellAnimator;
     BulletAnimator bulletAnimator;
-    NoblePhantasm noblePhantasm = NoblePhantasm.getInstance();
     private MovementHandler movementHandler = new MovementHandler();
-    boolean rotatingRight = false, rotatingLeft = false;
     private boolean isGameStarted = false, isHexActivated=false;
     private Location phantasmLocation;
 
@@ -110,9 +108,6 @@ public class GamePanel extends JPanel implements ActionListener, MouseMotionList
 
         spellAnimator.draw(g);
         obstacleAnimator.draw(g);
-
-
-
 
         if(NeedforSpearGame.getInstance().getGameInfo().getPlayer().getLives() <= 0 ){
             System.out.println("ups i know u died");

@@ -39,7 +39,7 @@ public class Location {
     /**
      * Gets the x coordinate of location.
      *
-     * @return Integer value of x coordinate.
+     * @return double value of x coordinate.
      */
     public double getXCoordinates() {
         return XCoordinates;
@@ -48,7 +48,7 @@ public class Location {
     /**
      * Sets the x coordinate of location.
      *
-     * @param XCoordinates Integer value to be set for x coordinate of Location.
+     * @param XCoordinates double value to be set for x coordinate of Location.
      */
     public void setXCoordinates(double XCoordinates) {
         this.XCoordinates = XCoordinates;

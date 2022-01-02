@@ -1,7 +1,10 @@
 package tr.edu.ku.devnull.needforspear.Model.Spell;
 
+import tr.edu.ku.devnull.needforspear.Model.GameData.Constants;
 import tr.edu.ku.devnull.needforspear.Model.GameData.Location;
 import tr.edu.ku.devnull.needforspear.Model.GameData.Size;
+
+import java.awt.*;
 
 /**
  * Spell is a parent class of all the spell types.
@@ -108,5 +111,32 @@ public class Spell {
      */
     public void setSpellType(String spellType) {
         this.spellType = spellType;
+    }
+
+
+    /**
+     * Gets the color of the spell.
+     *
+     * @return Color that indicates the color of the spell from given color string.
+     */
+    public Color getColorOfSpell(Spell spell) {
+        Color color;
+        switch (spell.getSpellColor()) {
+            case Constants.UIConstants.DARK_GREEN_COLOR_STRING:
+                color = Color.GREEN.darker().darker();
+                break;
+            case Constants.UIConstants.DARK_CYAN_COLOR_STRING:
+                color = Color.CYAN.darker();
+                break;
+            case Constants.UIConstants.DARK_YELLOW_COLOR_STRING:
+                color = Color.YELLOW.darker();
+                break;
+            case Constants.UIConstants.PINK_COLOR_STRING:
+                color = Color.PINK;
+                break;
+            default:
+                color = null;
+        }
+        return color;
     }
 }

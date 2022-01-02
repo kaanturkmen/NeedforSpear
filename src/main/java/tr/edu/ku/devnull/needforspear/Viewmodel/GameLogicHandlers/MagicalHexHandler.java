@@ -13,7 +13,6 @@ public class MagicalHexHandler {
         private static MagicalHexHandler onlyInstance = null;
 
         /**
-
          * Singleton constructor
          *
          * @return

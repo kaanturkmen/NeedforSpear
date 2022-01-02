@@ -43,7 +43,6 @@ public class BulletAnimator implements AnimatorStrategy {
      * @param path Path of the bullet image.
      * @return Image of the bullet.
      */
-
     public Image getBulletImage(String path) {
         return Toolkit.getDefaultToolkit().getImage(Constants.UIConstants.USER_DIRECTORY_TO_RESOURCE_FOLDER + path)
                 .getScaledInstance(radius * 2, radius * 2, Image.SCALE_SMOOTH);
