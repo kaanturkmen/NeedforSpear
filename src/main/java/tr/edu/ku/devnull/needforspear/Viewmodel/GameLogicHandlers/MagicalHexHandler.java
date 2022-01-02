@@ -11,7 +11,7 @@ import java.util.List;
 public class MagicalHexHandler {
 
     private static MagicalHexHandler onlyInstance = null;
-    List<MagicalHexSubscriber> subscribers = new ArrayList<>();
+    private final List<MagicalHexSubscriber> subscribers = new ArrayList<>();
 
     public MagicalHexHandler() {
     }

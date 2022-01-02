@@ -21,7 +21,6 @@ import java.util.Random;
 public class SpellHandler {
 
     private static SpellHandler onlyInstance;
-    Obstacle currentGiftObstacle;
     private final Random r = new Random();
 
     /**
@@ -63,7 +62,7 @@ public class SpellHandler {
     public void determineGiftObstaclesSpells() {
         //ensuring all the spells will be included
         List<Obstacle> giftObstacleList = getGiftObstacleList();
-        currentGiftObstacle = giftObstacleList.get(0);
+        Obstacle currentGiftObstacle = giftObstacleList.get(0);
         System.out.println(currentGiftObstacle);
         currentGiftObstacle.setSpell(SpellFactory.getInstance().getSpell(Constants.SpellNameConstants.CHANCE, currentGiftObstacle));
         currentGiftObstacle = giftObstacleList.get(1);

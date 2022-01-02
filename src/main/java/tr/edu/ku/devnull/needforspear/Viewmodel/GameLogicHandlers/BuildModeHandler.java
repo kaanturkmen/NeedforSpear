@@ -25,7 +25,6 @@ import java.util.List;
  */
 public class BuildModeHandler {
     private static BuildModeHandler onlyInstance = null;
-    //Test variables
     private final ObstacleFactory obstacleFactory;
     private String addedObstacleType;
     private Obstacle selectedObstacle;

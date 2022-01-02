@@ -16,8 +16,7 @@ import java.util.Random;
  */
 public class MailSender {
     private final Integer verificationCode;
-    private final String userMail;
-    private final String username;
+    private final String userMail, username;
 
     /**
      * Constructor for MailSender.

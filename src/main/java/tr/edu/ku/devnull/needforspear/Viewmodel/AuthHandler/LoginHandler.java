@@ -19,7 +19,6 @@ import java.util.regex.Pattern;
  */
 public class LoginHandler implements DatabaseAuthSubscriber {
     private static LoginHandler onlyInstance = null;
-    private Player player;
 
     /**
      * Private Constructor for the LoginHandler.
@@ -128,9 +127,6 @@ public class LoginHandler implements DatabaseAuthSubscriber {
      */
     @Override
     public void loginResponseArrived(Player player, Integer databaseResponse) {
-        this.player = player;
-        System.out.println(player.getLives());
-
         if (databaseResponse.equals(DatabaseCredentials.DATABASE_SUCCESS)) {
             NeedforSpearGame.getInstance().getGameInfo().getMainFrame().getContentPane().removeAll();
             NeedforSpearGame.getInstance().getGameInfo().getMainFrame().getContentPane().repaint();

@@ -25,21 +25,18 @@ import java.util.List;
  * @author Melis Oktayoğlu, Gökçe Sevimli
  */
 public class MovementHandler {
-    double x, y;
-    double dx, dy;
-    int radius = Constants.ProportionConstants.RADIUS_OF_THE_SPHERE;
-    NoblePhantasm noblePhantasm;
-    private double angleObstacle = 0.0;
     private final PhysicsEngine physicsEngine = new PhysicsEngine();
     private final CollisionHandler collisionHandler = new CollisionHandler();
-
+    private double x, y, dx, dy;
+    private NoblePhantasm noblePhantasm;
+    private double angleObstacle = 0.0;
 
     /**
      * Sphere's bouncing of the game frame
      */
     public void bounceSphereFromFrame() {
         getSphereCurrentPhysics();
-        CollisionData collisionData = physicsEngine.reflect(new CollisionData(new Location(x, y), new Speed(new Double(dx).longValue(), new Double(dy).longValue())));
+        CollisionData collisionData = physicsEngine.reflect(new CollisionData(new Location(x, y), new Speed(Double.valueOf(dx).longValue(), Double.valueOf(dy).longValue())));
         checkIfObstacleBelowPhantasm();
         updateSphereMovement(collisionData);
     }
@@ -47,34 +44,10 @@ public class MovementHandler {
     /**
      * Sphere's bouncing from obstacle objects
      *
-     * @param obstacle
+     * @param obstacle Obstacle to be bounced.
      */
     public void bounceSphereFromObstacle(Obstacle obstacle) {
         getSphereCurrentPhysics();
-        Location obstacleLocation = obstacle.getLocation();
-        double obs_x = obstacleLocation.getXCoordinates();
-        double obs_y = obstacleLocation.getYCoordinates();
-
-        int obs_width = obstacle.getSize().getWidth();
-        int obs_length = obstacle.getSize().getLength();
-
-        //solution adapted from https://happycoding.io/tutorials/processing/collision-detection
-/*
-        if (x + 2 * radius + dx > obs_x &&
-                x + dx < obs_x + obs_width &&
-                y + 2 * radius > obs_y &&
-                y < obs_y + obs_length) {
-            dx *= -1;
-        }
-
-        if (x + 2 * radius > obs_x &&
-                x < obs_x + obs_width &&
-                y + 2 * radius + dy > obs_y &&
-                y + dy < obs_y + obs_length) {
-            dy *= -1;
-            dx *= -1;
-        }
-        */
         CollisionData collisionData = null;
 
         try {
@@ -99,7 +72,7 @@ public class MovementHandler {
 
         getSphereCurrentPhysics();
         dy *= -1;
-        y = y - 2 * radius;
+        y = y - 2 * Constants.ProportionConstants.RADIUS_OF_THE_SPHERE;
         updateSphereMovement(new CollisionData(new Location(x, y), new Speed(new Double(dx).longValue(), new Double(dy).longValue())));
     }
 
@@ -108,7 +81,7 @@ public class MovementHandler {
      *
      * @param obstacle        Obstacle to be moved.
      * @param listofObstacles List of obstacles to be updated.
-     * @return
+     * @return Location of updated obstacle.
      */
     public Location moveObstacleHorizontally(Obstacle obstacle, List<Obstacle> listofObstacles) {
         CollisionHandler collisionHandler = new CollisionHandler();
@@ -172,7 +145,7 @@ public class MovementHandler {
      */
     public Location moveSpellDownward(Spell spell) {
         CollisionHandler collisionHandler = new CollisionHandler();
-        Double y = spell.getLocation().getYCoordinates();
+        double y = spell.getLocation().getYCoordinates();
         int length = spell.getSize().getLength();
         int dy = 1;
         if (collisionHandler.collision(NoblePhantasm.getInstance(), spell)) {
@@ -272,7 +245,7 @@ public class MovementHandler {
             }
 
             //Bullet hits screen frame and is destroyed
-            if (bullet.getLocation().getXCoordinates() < 0 || bullet.getLocation().getXCoordinates() > Constants.UIConstants.INITIAL_SCREEN_WIDTH - 2 * radius || bullet.getLocation().getYCoordinates() < 0) {
+            if (bullet.getLocation().getXCoordinates() < 0 || bullet.getLocation().getXCoordinates() > Constants.UIConstants.INITIAL_SCREEN_WIDTH - 2 * Constants.ProportionConstants.RADIUS_OF_THE_SPHERE || bullet.getLocation().getYCoordinates() < 0) {
                 BulletAnimator.getListOfBullets().remove(bullet);
                 System.out.println("bullet exit screen");
             }
@@ -423,7 +396,7 @@ public class MovementHandler {
         noblePhantasm = NoblePhantasm.getInstance();
         Long currentTime = System.currentTimeMillis();
         Long lastUpdateTime = noblePhantasm.getLastUpdateTime();
-        Long moveTimeDiff = currentTime - lastUpdateTime;
+        long moveTimeDiff = currentTime - lastUpdateTime;
         double currentX = noblePhantasm.getLocation().getXCoordinates();
 
         if (noblePhantasm.isMovingLeft()) {

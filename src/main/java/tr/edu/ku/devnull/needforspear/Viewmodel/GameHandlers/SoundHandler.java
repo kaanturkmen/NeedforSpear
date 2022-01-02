@@ -9,14 +9,13 @@ import javax.sound.sampled.Clip;
 import java.io.File;
 
 /**
- * SoundHandler is an Controller Design Pattern for the handling Sound and Music.
+ * SoundHandler is a Controller Design Pattern for the handling Sound and Music.
  *
  * @author Kaan Turkmen
  */
 public class SoundHandler {
-
     private static SoundHandler onlyInstance;
-    private Thread backgroundMusicThread, soundEffectThread;
+    private Thread backgroundMusicThread;
     private Clip backgroundMusicClip;
 
     /**
@@ -76,7 +75,7 @@ public class SoundHandler {
     public void playSound(String path) {
         if (NeedforSpearGame.getInstance().getGameInfo().isMuteModeActivated()) return;
 
-        soundEffectThread = new Thread(() -> {
+        Thread soundEffectThread = new Thread(() -> {
             try {
                 Clip soundEffectClip = AudioSystem.getClip();
                 AudioInputStream inputStream = AudioSystem.getAudioInputStream(new File(Constants.UIConstants.SOUNDS_FOLDER_PATH + path));

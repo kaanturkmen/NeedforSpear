@@ -11,7 +11,7 @@ import java.util.List;
 public class HollowPurpleHandler {
 
     private static HollowPurpleHandler onlyInstance = null;
-    List<HollowPurpleSubscriber> subscribers = new ArrayList<>();
+    private final List<HollowPurpleSubscriber> subscribers = new ArrayList<>();
 
 
     private HollowPurpleHandler() {

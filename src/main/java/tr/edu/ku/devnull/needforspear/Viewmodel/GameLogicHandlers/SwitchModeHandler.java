@@ -14,7 +14,7 @@ import java.util.List;
 public class SwitchModeHandler {
 
     private static SwitchModeHandler onlyInstance = null;
-    List<SwitchModeSubscriber> subscribers = new ArrayList<>();
+    private final List<SwitchModeSubscriber> subscribers = new ArrayList<>();
 
     /**
      * Private constructor of the SwitchModeHandler.
