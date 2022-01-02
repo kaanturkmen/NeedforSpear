@@ -10,9 +10,9 @@ import tr.edu.ku.devnull.needforspear.Model.GameData.Speed;
  */
 public class Bullet {
     private final NoblePhantasm noblePhantasm;
+    private final double angle;
     private Size size;
     private Location location;
-    private final double angle;
     private Speed speed;
 
 

@@ -2,18 +2,15 @@ package tr.edu.ku.devnull.needforspear.View.PlayViews;
 
 import tr.edu.ku.devnull.needforspear.Model.GameData.Constants;
 import tr.edu.ku.devnull.needforspear.Model.GameData.GameMode;
-import tr.edu.ku.devnull.needforspear.Model.GameData.Location;
 import tr.edu.ku.devnull.needforspear.Model.Obstacle.Obstacle;
 import tr.edu.ku.devnull.needforspear.Model.Player.Player;
 import tr.edu.ku.devnull.needforspear.Model.Spell.YmirSpells.HollowPurpleSubscriber;
 import tr.edu.ku.devnull.needforspear.Model.UIModels.Bullet;
-import tr.edu.ku.devnull.needforspear.Model.UIModels.NoblePhantasm;
 import tr.edu.ku.devnull.needforspear.NeedforSpearGame;
 import tr.edu.ku.devnull.needforspear.View.PlayViews.Animators.*;
 import tr.edu.ku.devnull.needforspear.Viewmodel.GameLogicHandlers.BackgroundHandler;
 import tr.edu.ku.devnull.needforspear.Viewmodel.GameLogicHandlers.BuildModeHandler;
 import tr.edu.ku.devnull.needforspear.Viewmodel.GameLogicHandlers.MapHandler;
-import tr.edu.ku.devnull.needforspear.Viewmodel.GameLogicHandlers.MovementHandler;
 
 import javax.swing.*;
 import java.awt.*;
@@ -25,13 +22,13 @@ import java.awt.event.*;
  * @author Can Usluel, Melis Oktayoğlu
  */
 public class GamePanel extends JPanel implements ActionListener, MouseMotionListener, SwitchModeSubscriber, MagicalHexSubscriber, HollowPurpleSubscriber {
-    protected Timer timer;
     private final SphereAnimator sphereAnimator;
     private final ObstacleAnimator obstacleAnimator;
     private final NoblePhantasmAnimator npa;
     private final SpellAnimator spellAnimator;
     private final BulletAnimator bulletAnimator;
     private final Image background = new BackgroundHandler().getBackgroundImage(Constants.UIConstants.GAME_BACKGROUND_IMAGE);
+    protected Timer timer;
     private long magicalHexStartTime;
     private boolean isGameStarted = false, isHexActivated = false;
 
