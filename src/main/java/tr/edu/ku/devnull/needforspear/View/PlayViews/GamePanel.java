@@ -25,21 +25,15 @@ import java.awt.event.*;
  * @author Can Usluel, Melis Oktayoğlu
  */
 public class GamePanel extends JPanel implements ActionListener, MouseMotionListener, SwitchModeSubscriber, MagicalHexSubscriber, HollowPurpleSubscriber {
-
     protected Timer timer;
-    SphereAnimator sphereAnimator;
-    ObstacleAnimator obstacleAnimator;
-    NoblePhantasmAnimator npa;
-    SpellAnimator spellAnimator;
-    BulletAnimator bulletAnimator;
-    Image background = new BackgroundHandler().getBackgroundImage(Constants.UIConstants.GAME_BACKGROUND_IMAGE);
-    double x_pos_NoblePhantasm;
-    double y_pos_NoblePhantasm;
-    long magicalHexStartTime;
-    private final MovementHandler movementHandler = new MovementHandler();
+    private final SphereAnimator sphereAnimator;
+    private final ObstacleAnimator obstacleAnimator;
+    private final NoblePhantasmAnimator npa;
+    private final SpellAnimator spellAnimator;
+    private final BulletAnimator bulletAnimator;
+    private final Image background = new BackgroundHandler().getBackgroundImage(Constants.UIConstants.GAME_BACKGROUND_IMAGE);
+    private long magicalHexStartTime;
     private boolean isGameStarted = false, isHexActivated = false;
-    private final Location phantasmLocation;
-    private final int delay;
 
     /**
      * Constructor of GamePanel.
@@ -51,11 +45,9 @@ public class GamePanel extends JPanel implements ActionListener, MouseMotionList
      * @param bulletAnimator   BulletAnimator to be set.
      */
     public GamePanel(SphereAnimator sphereAnimator, ObstacleAnimator obstacleAnimator, NoblePhantasmAnimator npa, SpellAnimator spellAnimator, BulletAnimator bulletAnimator) {
-        if (System.getProperty("os.name").startsWith("Windows")) this.delay = 3;
-        else this.delay = 8;
-        phantasmLocation = NoblePhantasm.getInstance().getLocation();
-        x_pos_NoblePhantasm = phantasmLocation.getXCoordinates();
-        y_pos_NoblePhantasm = phantasmLocation.getYCoordinates();
+        int delay;
+        if (System.getProperty("os.name").startsWith("Windows")) delay = 3;
+        else delay = 8;
         this.sphereAnimator = sphereAnimator;
         this.obstacleAnimator = obstacleAnimator;
         this.npa = npa;
