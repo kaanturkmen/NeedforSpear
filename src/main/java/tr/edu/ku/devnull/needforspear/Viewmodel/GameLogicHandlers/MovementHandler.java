@@ -7,14 +7,14 @@ import tr.edu.ku.devnull.needforspear.Model.Obstacle.Obstacle;
 import tr.edu.ku.devnull.needforspear.Model.Spell.Spell;
 import tr.edu.ku.devnull.needforspear.Model.UIModels.Bullet;
 import tr.edu.ku.devnull.needforspear.Model.UIModels.NoblePhantasm;
+import tr.edu.ku.devnull.needforspear.NeedforSpearGame;
 import tr.edu.ku.devnull.needforspear.View.PlayViews.Animators.BulletAnimator;
 import tr.edu.ku.devnull.needforspear.View.PlayViews.Animators.ObstacleAnimator;
+import tr.edu.ku.devnull.needforspear.View.PlayViews.Animators.SpellAnimator;
 import tr.edu.ku.devnull.needforspear.View.PlayViews.Animators.SphereAnimator;
 import tr.edu.ku.devnull.needforspear.Viewmodel.GameHandlers.SoundHandler;
 import tr.edu.ku.devnull.needforspear.Viewmodel.Util.CollisionData;
 import tr.edu.ku.devnull.needforspear.Viewmodel.Util.PhysicsEngine;
-import tr.edu.ku.devnull.needforspear.NeedforSpearGame;
-import tr.edu.ku.devnull.needforspear.View.PlayViews.Animators.SpellAnimator;
 
 import java.awt.*;
 import java.util.List;
@@ -30,8 +30,8 @@ public class MovementHandler {
     int radius = Constants.ProportionConstants.RADIUS_OF_THE_SPHERE;
     NoblePhantasm noblePhantasm;
     private double angleObstacle = 0.0;
-    private PhysicsEngine physicsEngine = new PhysicsEngine();
-    private CollisionHandler collisionHandler = new CollisionHandler();
+    private final PhysicsEngine physicsEngine = new PhysicsEngine();
+    private final CollisionHandler collisionHandler = new CollisionHandler();
 
 
     /**

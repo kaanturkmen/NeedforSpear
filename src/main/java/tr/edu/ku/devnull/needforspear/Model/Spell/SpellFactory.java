@@ -3,7 +3,7 @@ package tr.edu.ku.devnull.needforspear.Model.Spell;
 import tr.edu.ku.devnull.needforspear.Model.GameData.Constants;
 import tr.edu.ku.devnull.needforspear.Model.GameData.Location;
 import tr.edu.ku.devnull.needforspear.Model.GameData.Size;
-import tr.edu.ku.devnull.needforspear.Model.Obstacle.*;
+import tr.edu.ku.devnull.needforspear.Model.Obstacle.Obstacle;
 
 /**
  * SpellFactory implements the Factory design pattern

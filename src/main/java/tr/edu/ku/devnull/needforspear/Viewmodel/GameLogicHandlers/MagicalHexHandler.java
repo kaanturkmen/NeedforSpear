@@ -10,11 +10,11 @@ import java.util.List;
  */
 public class MagicalHexHandler {
 
+    private static MagicalHexHandler onlyInstance = null;
     List<MagicalHexSubscriber> subscribers = new ArrayList<>();
 
-    private static MagicalHexHandler onlyInstance = null;
-
-    public MagicalHexHandler() {}
+    public MagicalHexHandler() {
+    }
 
     /**
      * Singleton Design Pattern's getInstance Method.

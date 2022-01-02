@@ -9,8 +9,8 @@ import tr.edu.ku.devnull.needforspear.Model.Obstacle.GiftObstacle;
 import tr.edu.ku.devnull.needforspear.Model.Obstacle.Obstacle;
 import tr.edu.ku.devnull.needforspear.Model.Obstacle.ObstacleFactory;
 import tr.edu.ku.devnull.needforspear.Model.UIModels.NoblePhantasm;
-import tr.edu.ku.devnull.needforspear.View.PlayViews.Animators.ObstacleAnimator;
 import tr.edu.ku.devnull.needforspear.NeedforSpearGame;
+import tr.edu.ku.devnull.needforspear.View.PlayViews.Animators.ObstacleAnimator;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -26,7 +26,7 @@ import java.util.List;
 public class BuildModeHandler {
     private static BuildModeHandler onlyInstance = null;
     //Test variables
-    private ObstacleFactory obstacleFactory;
+    private final ObstacleFactory obstacleFactory;
     private String addedObstacleType;
     private Obstacle selectedObstacle;
     private Location previousLocation;
@@ -41,14 +41,6 @@ public class BuildModeHandler {
     }
 
     /**
-     * This method resets the Noble Phantasm's and Sphere's location
-     */
-    public void resetPhantasmAndSphereLocation() {
-        NoblePhantasm.getInstance().resetLocation();
-        NeedforSpearGame.getInstance().getGameInfo().getSphere().resetLocation();
-    }
-
-    /**
      * Singleton Design Pattern's getInstance Method for BuildModeHandler.
      *
      * @return Single instance of the BuildModeHandler.
@@ -59,12 +51,11 @@ public class BuildModeHandler {
     }
 
     /**
-     * This method sets the type of the added obstacle which added via mouse click
-     *
-     * @param addedObstacleType String value to be set as an obstacle type.
+     * This method resets the Noble Phantasm's and Sphere's location
      */
-    public void setAddedObstacleType(String addedObstacleType) {
-        this.addedObstacleType = addedObstacleType;
+    public void resetPhantasmAndSphereLocation() {
+        NoblePhantasm.getInstance().resetLocation();
+        NeedforSpearGame.getInstance().getGameInfo().getSphere().resetLocation();
     }
 
     /**
@@ -77,21 +68,21 @@ public class BuildModeHandler {
     }
 
     /**
-     * Gets previous location.
-     *
-     * @return Location indicating the location of the current clicked obstacle.
-     */
-    public Location getPreviousLocation() {
-        return previousLocation;
-    }
-
-    /**
      * This method sets the current obstacle to the obstacle which is clicked on.
      *
      * @param obstacle Obstacle to be set.
      */
     public void setSelectedObstacle(Obstacle obstacle) {
         this.selectedObstacle = obstacle;
+    }
+
+    /**
+     * Gets previous location.
+     *
+     * @return Location indicating the location of the current clicked obstacle.
+     */
+    public Location getPreviousLocation() {
+        return previousLocation;
     }
 
     /**
@@ -370,6 +361,15 @@ public class BuildModeHandler {
      */
     public String getAddedObstacleType() {
         return addedObstacleType;
+    }
+
+    /**
+     * This method sets the type of the added obstacle which added via mouse click
+     *
+     * @param addedObstacleType String value to be set as an obstacle type.
+     */
+    public void setAddedObstacleType(String addedObstacleType) {
+        this.addedObstacleType = addedObstacleType;
     }
 
     /**

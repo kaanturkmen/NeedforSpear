@@ -1,9 +1,9 @@
 package tr.edu.ku.devnull.needforspear.Model.GameData;
 
 
+import tr.edu.ku.devnull.needforspear.Model.Player.Player;
 import tr.edu.ku.devnull.needforspear.Model.UIModels.Sphere;
 import tr.edu.ku.devnull.needforspear.Viewmodel.Database.GameDatabase;
-import tr.edu.ku.devnull.needforspear.Model.Player.Player;
 import tr.edu.ku.devnull.needforspear.Viewmodel.GameHandlers.DifficultyHandler;
 
 import javax.swing.*;
@@ -17,14 +17,14 @@ import javax.swing.*;
  */
 public class GameInfo {
     private final JFrame mainFrame = new JFrame();
+    private final Sphere sphere;
+    private final DifficultyHandler difficultyHandler;
     private GameMode gameMode = GameMode.BUILDING_MODE;
     private Player player;
     private GameMap gameMap;
     private GameDatabase gameDatabase;
     private boolean muteModeActivated = false, isPaused = true, isGameLoaded = false;
     private long startMillis;
-    private final Sphere sphere;
-    private final DifficultyHandler difficultyHandler;
 
     /**
      * Constructor for the GameInfo, only initializing the handler and the sphere.
@@ -127,6 +127,7 @@ public class GameInfo {
 
     /**
      * Sets the mute mode of the game.
+     *
      * @param muteModeActivated Mute mode to be set.
      */
     public void setMuteModeActivated(boolean muteModeActivated) {

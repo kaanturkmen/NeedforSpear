@@ -1,6 +1,5 @@
 package tr.edu.ku.devnull.needforspear.View.PlayViews.Animators;
 
-import tr.edu.ku.devnull.needforspear.Model.GameData.Constants;
 import tr.edu.ku.devnull.needforspear.Model.GameData.GameMode;
 import tr.edu.ku.devnull.needforspear.Model.GameData.Location;
 import tr.edu.ku.devnull.needforspear.Model.Obstacle.Obstacle;
@@ -20,9 +19,9 @@ import java.util.List;
  * @author Melis Oktayoğlu
  */
 public class SpellAnimator implements AnimatorStrategy {
-    private List<Obstacle> listOfGiftObstacles;
     public static List<Spell> listOfMovingSpells;
-    private MovementHandler bounceHandler = new MovementHandler();
+    private final List<Obstacle> listOfGiftObstacles;
+    private final MovementHandler bounceHandler = new MovementHandler();
 
     public SpellAnimator() {
         listOfMovingSpells = new ArrayList<>();

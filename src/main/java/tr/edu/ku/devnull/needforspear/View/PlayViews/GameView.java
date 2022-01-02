@@ -9,7 +9,6 @@ import tr.edu.ku.devnull.needforspear.Viewmodel.AuthHandler.LoginHandler;
 import tr.edu.ku.devnull.needforspear.Viewmodel.GameHandlers.SoundHandler;
 import tr.edu.ku.devnull.needforspear.Viewmodel.GameLogicHandlers.*;
 
-
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
@@ -172,32 +171,33 @@ public class GameView {
     /**
      * This method creates action listeners for the spell buttons.
      */
-    private void createActionListenerForSpellButtons(){
+    private void createActionListenerForSpellButtons() {
 
-            chanceGivingSpellButton.addActionListener(e -> {
-                if(!NeedforSpearGame.getInstance().getGameInfo().isPaused()){
-                    SpellHandler.getInstance().activateSpell(SpellHandler.getInstance().getAvailableSpell(Constants.SpellNameConstants.CHANCE));
-                }
-            });
+        chanceGivingSpellButton.addActionListener(e -> {
+            if (!NeedforSpearGame.getInstance().getGameInfo().isPaused()) {
+                SpellHandler.getInstance().activateSpell(SpellHandler.getInstance().getAvailableSpell(Constants.SpellNameConstants.CHANCE));
+            }
+        });
 
-            expansionSpellButton.addActionListener(e -> {
-                if(!NeedforSpearGame.getInstance().getGameInfo().isPaused()) {
-                    SpellHandler.getInstance().activateSpell(SpellHandler.getInstance().getAvailableSpell(Constants.SpellNameConstants.EXPANSION));
-                }
-            });
+        expansionSpellButton.addActionListener(e -> {
+            if (!NeedforSpearGame.getInstance().getGameInfo().isPaused()) {
+                SpellHandler.getInstance().activateSpell(SpellHandler.getInstance().getAvailableSpell(Constants.SpellNameConstants.EXPANSION));
+            }
+        });
 
-            magicalHexButton.addActionListener(e -> {
-                if(!NeedforSpearGame.getInstance().getGameInfo().isPaused()) {
-                    SpellHandler.getInstance().activateSpell(SpellHandler.getInstance().getAvailableSpell(Constants.SpellNameConstants.HEX));
-                }
-            });
-            unstoppableSpellButton.addActionListener(e -> {
-                if(!NeedforSpearGame.getInstance().getGameInfo().isPaused()) {
-                    SpellHandler.getInstance().activateSpell(SpellHandler.getInstance().getAvailableSpell(Constants.SpellNameConstants.UNSTOPPABLE));
-                }
-            });
+        magicalHexButton.addActionListener(e -> {
+            if (!NeedforSpearGame.getInstance().getGameInfo().isPaused()) {
+                SpellHandler.getInstance().activateSpell(SpellHandler.getInstance().getAvailableSpell(Constants.SpellNameConstants.HEX));
+            }
+        });
+        unstoppableSpellButton.addActionListener(e -> {
+            if (!NeedforSpearGame.getInstance().getGameInfo().isPaused()) {
+                SpellHandler.getInstance().activateSpell(SpellHandler.getInstance().getAvailableSpell(Constants.SpellNameConstants.UNSTOPPABLE));
+            }
+        });
 
     }
+
     /**
      * This method adjusts the overlay panel for running mode by changing visibilities of certain UI elements
      */
@@ -216,10 +216,11 @@ public class GameView {
         changeDifficultyButton.setVisible(false);
         difficultyField.setVisible(false);
     }
+
     /**
      * This method adjusts the spell buttons for spells and draws them onto overlayPanel
      */
-    private void adjustSpellButtons(){
+    private void adjustSpellButtons() {
         chanceGivingSpellButton = new JButton(String.valueOf(0));
         expansionSpellButton = new JButton(String.valueOf(0));
         magicalHexButton = new JButton(String.valueOf(0));
@@ -243,6 +244,7 @@ public class GameView {
         unstoppableSpellButton.setVisible(false);
         expansionSpellButton.setVisible(false);
     }
+
     /**
      * This method adjusts the overlay panel for building mode by changing visibilities of certain UI elements
      */
@@ -259,6 +261,7 @@ public class GameView {
         expansionSpellButton.setVisible(false);
 
     }
+
     /**
      * This method adds UI elements to the mainframe and sets background
      */
@@ -396,7 +399,7 @@ public class GameView {
         gamePanel.setLocation(0, overlayPanel.getHeight());
         SwitchModeHandler.getInstance().subscribe(gamePanel);
         MagicalHexHandler.getInstance().subscribe2(gamePanel);
-      
+
         HollowPurpleHandler.getInstance().subscribe(gamePanel);
         NeedforSpearGame.getInstance().getGameInfo().getMainFrame().getContentPane().remove(backgroundPanel);
         NeedforSpearGame.getInstance().getGameInfo().getMainFrame().getContentPane().add(gamePanel, BorderLayout.CENTER);
@@ -473,7 +476,7 @@ public class GameView {
     /**
      * This method updates and displays the current spells of player.
      */
-    public void updateSpellNumbers(){
+    public void updateSpellNumbers() {
         chanceGivingSpellButton.setText(String.valueOf(SpellHandler.getInstance().getSpellNumber(Constants.SpellNameConstants.CHANCE)));
         magicalHexButton.setText(String.valueOf(SpellHandler.getInstance().getSpellNumber(Constants.SpellNameConstants.HEX)));
         unstoppableSpellButton.setText(String.valueOf(SpellHandler.getInstance().getSpellNumber(Constants.SpellNameConstants.UNSTOPPABLE)));

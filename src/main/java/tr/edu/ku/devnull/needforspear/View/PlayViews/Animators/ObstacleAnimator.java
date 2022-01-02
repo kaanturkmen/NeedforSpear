@@ -4,8 +4,8 @@ import tr.edu.ku.devnull.needforspear.Model.GameData.Constants;
 import tr.edu.ku.devnull.needforspear.Model.GameData.GameMode;
 import tr.edu.ku.devnull.needforspear.Model.GameData.Location;
 import tr.edu.ku.devnull.needforspear.Model.Obstacle.Obstacle;
-import tr.edu.ku.devnull.needforspear.View.PlayViews.AnimatorStrategy;
 import tr.edu.ku.devnull.needforspear.NeedforSpearGame;
+import tr.edu.ku.devnull.needforspear.View.PlayViews.AnimatorStrategy;
 import tr.edu.ku.devnull.needforspear.Viewmodel.GameLogicHandlers.MovementHandler;
 
 import java.awt.*;
@@ -21,13 +21,12 @@ import java.util.List;
 public class ObstacleAnimator implements AnimatorStrategy {
 
     public static List<Obstacle> listofObstacles;
-    private MovementHandler movementHandler = new MovementHandler();
-
     Image explosiveObstacleImage;
     Image firmObstacleImage;
     Image simpleObstacleImage;
     Image giftObstacleImage;
     Image hollowObstacleImage;
+    private final MovementHandler movementHandler = new MovementHandler();
 
 
     /**
@@ -104,7 +103,7 @@ public class ObstacleAnimator implements AnimatorStrategy {
     /**
      * To draw single obstacles during build mode
      *
-     * @param g Graphics to be drawn.
+     * @param g        Graphics to be drawn.
      * @param obstacle Obstacle to be drawn.
      */
     public void drawSingleObstacle(Graphics g, Obstacle obstacle) {

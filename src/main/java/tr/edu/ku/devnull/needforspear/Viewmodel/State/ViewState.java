@@ -20,10 +20,16 @@ public abstract class ViewState {
     }
 
     public abstract void switchToActivationView();
+
     public abstract void switchToLoginView();
+
     public abstract void switchToSendVerificationView();
+
     public abstract void switchToValidateAndChangePasswordView();
+
     public abstract void switchToMainMenuView();
+
     public abstract void switchToGameView();
+
     public abstract void switchToHelpView();
 }

@@ -11,15 +11,16 @@ import java.util.concurrent.TimeUnit;
  * and their score and updates it accordingly.
  */
 public class PlayerScoreHandler {
-    private int score= Constants.UIConstants.INIT_SCORE;
+    private static PlayerScoreHandler onlyInstance;
+    private int score = Constants.UIConstants.INIT_SCORE;
     //0 if new map is created, 1 if a map is loaded from db
     private int newMapCreated = 0;
-    private static PlayerScoreHandler onlyInstance;
 
     /**
      * Private Constructor for PlayerScoreHandler.
      */
-    private PlayerScoreHandler() {}
+    private PlayerScoreHandler() {
+    }
 
     /**
      * Singleton Design Pattern's getInstance method.
@@ -39,15 +40,15 @@ public class PlayerScoreHandler {
      * @param player Player whose score will be updated
      */
     public void updateScore(Player player) {
-     long currSec= TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis());
-     long startSec= TimeUnit.MILLISECONDS.toSeconds(NeedforSpearGame.getInstance().getGameInfo().getStartMillis());
-     long division = currSec-startSec;
-     if(division != 0){
-         score+= 300/division;
-     }
+        long currSec = TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis());
+        long startSec = TimeUnit.MILLISECONDS.toSeconds(NeedforSpearGame.getInstance().getGameInfo().getStartMillis());
+        long division = currSec - startSec;
+        if (division != 0) {
+            score += 300 / division;
+        }
         System.out.println(SaveLoadHandler.getInstance().getPreviousScore());
-     player.setScore(SaveLoadHandler.getInstance().getPreviousScore() * newMapCreated + score);
-     NeedforSpearGame.getInstance().getViewData().getGameView().updatePlayerScore(player.getScore());
+        player.setScore(SaveLoadHandler.getInstance().getPreviousScore() * newMapCreated + score);
+        NeedforSpearGame.getInstance().getViewData().getGameView().updatePlayerScore(player.getScore());
     }
 
     /**

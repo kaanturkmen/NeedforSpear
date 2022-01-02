@@ -21,8 +21,8 @@ import java.util.List;
 
 public class SphereAnimator implements AnimatorStrategy {
 
-    int radius = Constants.ProportionConstants.RADIUS_OF_THE_SPHERE;
     public static List<Obstacle> listofObstacles;
+    int radius = Constants.ProportionConstants.RADIUS_OF_THE_SPHERE;
     Image sphereImage;
     MovementHandler movementHandler = new MovementHandler();
 
@@ -47,7 +47,7 @@ public class SphereAnimator implements AnimatorStrategy {
      */
     public Image getSphereImage(String path) {
         return Toolkit.getDefaultToolkit().getImage(Constants.UIConstants.USER_DIRECTORY_TO_RESOURCE_FOLDER + path)
-                .getScaledInstance(radius*2, radius*2, Image.SCALE_SMOOTH);
+                .getScaledInstance(radius * 2, radius * 2, Image.SCALE_SMOOTH);
 
     }
 

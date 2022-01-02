@@ -3,7 +3,10 @@ package tr.edu.ku.devnull.needforspear.Viewmodel.Database;
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
-import com.google.firebase.database.*;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
 import tr.edu.ku.devnull.needforspear.Model.GameData.Constants;
 import tr.edu.ku.devnull.needforspear.Model.GameData.GameMap;
 import tr.edu.ku.devnull.needforspear.Model.GameData.SavedMapEntry;
@@ -265,7 +268,7 @@ public class FirebaseDatabase implements GameDatabase {
      * Helper method of the updatePlayerOnGameMapEntries. Searches the player and updates it.
      *
      * @param dataSnapshot DataSnapshat to be searched in.
-     * @param player Player to be updated.
+     * @param player       Player to be updated.
      */
     private void updatePlayerOnLoadedMaps(DataSnapshot dataSnapshot, Player player) {
         SavedMapEntry savedMapEntry = null;

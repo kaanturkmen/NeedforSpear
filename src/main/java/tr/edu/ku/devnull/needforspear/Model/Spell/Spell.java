@@ -24,20 +24,23 @@ public class Spell {
         this.size = size;
         this.location = location;
     }
+
     public Spell() {
     }
+
     public Spell(Size size, Location location, String spellColor, String spellType) {
         this.size = size;
         this.location = location;
         this.spellColor = spellColor;
         this.spellType = spellType;
     }
+
     /**
      * Triggers an effect of the spell.
      *
      * @return Spell which their effect is triggered.
      */
-    public void triggerEffect(){
+    public void triggerEffect() {
         System.out.println(getSpellType() + " has been triggered!");
     }
 

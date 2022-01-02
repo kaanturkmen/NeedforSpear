@@ -33,16 +33,6 @@ public class ExplosiveObstacle extends Obstacle {
     }
 
     /**
-     * Sets location of center orbit.
-     *
-     * @param orbitCenter Location of the orbit.
-     */
-    @Override
-    public void setOrbitCenter(Location orbitCenter) {
-        super.setOrbitCenter(orbitCenter);
-    }
-
-    /**
      * Alters the default location of the orbit.
      */
     public void alterOrbitCenter() {
@@ -58,6 +48,16 @@ public class ExplosiveObstacle extends Obstacle {
     @Override
     public Location getOrbitCenter() {
         return orbitCenter;
+    }
+
+    /**
+     * Sets location of center orbit.
+     *
+     * @param orbitCenter Location of the orbit.
+     */
+    @Override
+    public void setOrbitCenter(Location orbitCenter) {
+        super.setOrbitCenter(orbitCenter);
     }
 
     /**

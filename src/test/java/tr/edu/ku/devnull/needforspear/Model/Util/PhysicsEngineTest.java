@@ -116,8 +116,8 @@ class PhysicsEngineTest {
     void BlackBoxReflectionException() throws Exception {
         PhysicsEngine pe = new PhysicsEngine();
         assertNull(pe.reflect(null, sampleObstacle));
-        assertNull(pe.reflect( sampleCollisionData, (Obstacle) null));
-        assertNull(pe.reflect( null, (Obstacle) null));
+        assertNull(pe.reflect(sampleCollisionData, (Obstacle) null));
+        assertNull(pe.reflect(null, (Obstacle) null));
     }
 
     @Test

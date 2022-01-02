@@ -16,11 +16,11 @@ import java.awt.geom.AffineTransform;
  */
 public class NoblePhantasmAnimator {
 
-    private Location phantasmLocation;
     double x_pos_NoblePhantasm, y_pos_NoblePhantasm, currentX, currentY;
-    private boolean isGameStarted = false; //when game starts it should not play without user action.
-    private MovementHandler movementHandler = new MovementHandler();
     Image phantasmSpell, phantasm;
+    private final Location phantasmLocation;
+    private final boolean isGameStarted = false; //when game starts it should not play without user action.
+    private final MovementHandler movementHandler = new MovementHandler();
 
 
     /**

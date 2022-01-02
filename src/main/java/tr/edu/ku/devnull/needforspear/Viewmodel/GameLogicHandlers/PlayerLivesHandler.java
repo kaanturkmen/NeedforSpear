@@ -1,8 +1,8 @@
 package tr.edu.ku.devnull.needforspear.Viewmodel.GameLogicHandlers;
 
+import tr.edu.ku.devnull.needforspear.Model.Player.Player;
 import tr.edu.ku.devnull.needforspear.Model.UIModels.NoblePhantasm;
 import tr.edu.ku.devnull.needforspear.Model.UIModels.Sphere;
-import tr.edu.ku.devnull.needforspear.Model.Player.Player;
 import tr.edu.ku.devnull.needforspear.NeedforSpearGame;
 
 import java.util.ArrayList;
@@ -15,19 +15,19 @@ import java.util.List;
  * @author Melis Oktayoğlu
  */
 public class PlayerLivesHandler {
+    private static PlayerLivesHandler onlyInstance;
     //list of players and spheres linked by their indices,
     //preparation for multiple player mode
-    private List<Player> playerList = new ArrayList<>();
-    private List<NoblePhantasm> noblePhantasmList = new ArrayList<>();
-    private List<Sphere> sphereList = new ArrayList<>();
-    private static PlayerLivesHandler onlyInstance;
+    private final List<Player> playerList = new ArrayList<>();
+    private final List<NoblePhantasm> noblePhantasmList = new ArrayList<>();
+    private final List<Sphere> sphereList = new ArrayList<>();
 
     /**
      * Constructor adds the new player and sphere pair to
      * their corresponding lists
      *
-     * @param player Current player.
-     * @param sphere Sphere of the map.
+     * @param player        Current player.
+     * @param sphere        Sphere of the map.
      * @param noblePhantasm Noble phantasm of the map.
      */
     private PlayerLivesHandler(Player player, Sphere sphere, NoblePhantasm noblePhantasm) {
@@ -42,7 +42,8 @@ public class PlayerLivesHandler {
      * @return Single instance of PlayerLivesHandler.
      */
     public static PlayerLivesHandler getInstance() {
-        if (onlyInstance == null) onlyInstance = new PlayerLivesHandler(NeedforSpearGame.getInstance().getGameInfo().getPlayer(), NeedforSpearGame.getInstance().getGameInfo().getSphere(), NoblePhantasm.getInstance());
+        if (onlyInstance == null)
+            onlyInstance = new PlayerLivesHandler(NeedforSpearGame.getInstance().getGameInfo().getPlayer(), NeedforSpearGame.getInstance().getGameInfo().getSphere(), NoblePhantasm.getInstance());
 
         return onlyInstance;
     }
@@ -89,7 +90,7 @@ public class PlayerLivesHandler {
      *
      * @return Integer value of players health.
      */
-    public int getPlayerHealth(){
+    public int getPlayerHealth() {
         return playerList.get(0).getLives();
     }
 

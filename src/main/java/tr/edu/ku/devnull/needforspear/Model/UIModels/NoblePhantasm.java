@@ -1,6 +1,9 @@
 package tr.edu.ku.devnull.needforspear.Model.UIModels;
 
-import tr.edu.ku.devnull.needforspear.Model.GameData.*;
+import tr.edu.ku.devnull.needforspear.Model.GameData.Constants;
+import tr.edu.ku.devnull.needforspear.Model.GameData.GameMap;
+import tr.edu.ku.devnull.needforspear.Model.GameData.Location;
+import tr.edu.ku.devnull.needforspear.Model.GameData.Size;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -16,10 +19,18 @@ public class NoblePhantasm {
     private GameMap gameMap;
     private Size size;
     private Location location;
-    private double speed, rotationDegree, rotationSpeed;
+    private double speed;
+    private double rotationDegree;
+    private final double rotationSpeed;
     private Long lastUpdateTime;
-    private boolean rotatingLeft = false, rotatingRight = false, isMovingRight = false, isMovingLeft = false,
-            isSpeeding = false, isMagicActivated = false, isExpansionSpell = false, isMagicalHex = false;
+    private boolean rotatingLeft = false;
+    private boolean rotatingRight = false;
+    private boolean isMovingRight = false;
+    private boolean isMovingLeft = false;
+    private boolean isSpeeding = false;
+    private boolean isMagicActivated = false;
+    private final boolean isExpansionSpell = false;
+    private final boolean isMagicalHex = false;
     private Long startTimeMoving = 0L;
     private boolean doubleSize = false;
     private long expansionStartTime;
@@ -214,21 +225,21 @@ public class NoblePhantasm {
     }
 
     /**
-     * Gets the rotation speed of the noble phantasm.
-     *
-     * @return Rotation speed of the noble phantasm.
-     */
-    public Double getRotationSpeed() {
-        return rotationSpeed;
-    }
-
-    /**
      * Sets the rotation degree of the noble phantasm.
      *
      * @param rotationDegree Rotation degree to be set.
      */
     public void setRotationDegree(Double rotationDegree) {
         this.rotationDegree = rotationDegree;
+    }
+
+    /**
+     * Gets the rotation speed of the noble phantasm.
+     *
+     * @return Rotation speed of the noble phantasm.
+     */
+    public Double getRotationSpeed() {
+        return rotationSpeed;
     }
 
     /**
@@ -268,21 +279,21 @@ public class NoblePhantasm {
     }
 
     /**
-     * Sets the last update time.
-     *
-     * @param time Time to be set.
-     */
-    public void setLastUpdateTime(Long time) {
-        this.lastUpdateTime = time;
-    }
-
-    /**
      * Gets the last update time.
      *
      * @return Last update time in terms of milliseconds.
      */
     public Long getLastUpdateTime() {
         return this.lastUpdateTime;
+    }
+
+    /**
+     * Sets the last update time.
+     *
+     * @param time Time to be set.
+     */
+    public void setLastUpdateTime(Long time) {
+        this.lastUpdateTime = time;
     }
 
     /**

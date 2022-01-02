@@ -1,9 +1,7 @@
 package tr.edu.ku.devnull.needforspear.View.PlayViews;
 
 import tr.edu.ku.devnull.needforspear.Model.GameData.Constants;
-import tr.edu.ku.devnull.needforspear.Model.UIModels.FocusableJTextField;
 import tr.edu.ku.devnull.needforspear.NeedforSpearGame;
-import tr.edu.ku.devnull.needforspear.Viewmodel.AuthHandler.LoginHandler;
 import tr.edu.ku.devnull.needforspear.Viewmodel.GameLogicHandlers.BackgroundHandler;
 
 import javax.swing.*;

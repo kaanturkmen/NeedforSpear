@@ -9,7 +9,6 @@ import tr.edu.ku.devnull.needforspear.Model.Obstacle.Obstacle;
 import tr.edu.ku.devnull.needforspear.Model.Obstacle.ObstacleFactory;
 import tr.edu.ku.devnull.needforspear.Model.Spell.ExpansionSpell;
 import tr.edu.ku.devnull.needforspear.Model.Spell.Spell;
-
 import tr.edu.ku.devnull.needforspear.Model.UIModels.NoblePhantasm;
 import tr.edu.ku.devnull.needforspear.NeedforSpearGame;
 
@@ -32,36 +31,36 @@ public class CollisionHandlerTest {
     public void obstacleSphereCollisionTest() {
         //BB testing
         sampleObstacle.setLocation(new Location(300, 300));
-        NeedforSpearGame.getInstance().getGameInfo().getSphere().setLocation(new Location(300,300));
+        NeedforSpearGame.getInstance().getGameInfo().getSphere().setLocation(new Location(300, 300));
         //True positive collision
         assertTrue(collisionHandler.collision(sampleObstacle, NeedforSpearGame.getInstance().getGameInfo().getSphere()));
 
-        sampleObstacle.setLocation(new Location(500,500));
+        sampleObstacle.setLocation(new Location(500, 500));
         //False positive collision
         assertFalse(collisionHandler.collision(sampleObstacle, NeedforSpearGame.getInstance().getGameInfo().getSphere()));
 
     }
 
     @Test
-    public void phantasmSpellCollisionTest(){
+    public void phantasmSpellCollisionTest() {
         //BB testing
         noblePhantasm.setLocation(new Location(300, 300));
-        Spell spell = new ExpansionSpell(new Size(50,50), new Location(300, 300));
+        Spell spell = new ExpansionSpell(new Size(50, 50), new Location(300, 300));
 
         //True positive collision
         assertTrue(collisionHandler.collision(noblePhantasm, spell));
 
-        noblePhantasm.setLocation(new Location(500,500));
+        noblePhantasm.setLocation(new Location(500, 500));
         //False positive collision
         assertFalse(collisionHandler.collision(noblePhantasm, spell));
 
     }
 
     @Test
-    public void obstacleObstacleCollisionTest(){
+    public void obstacleObstacleCollisionTest() {
         Obstacle sampleObstacle2 = ObstacleFactory.getInstance().getObstacle("SimpleObstacle");
 
-        sampleObstacle.setLocation(new Location(300,300));
+        sampleObstacle.setLocation(new Location(300, 300));
         sampleObstacle2.setLocation(new Location(300, 300));
 
         assertTrue(collisionHandler.collision(sampleObstacle2, sampleObstacle));
@@ -72,7 +71,7 @@ public class CollisionHandlerTest {
 
 
     @Test
-    public void isRemovedObstacleTest(){
+    public void isRemovedObstacleTest() {
         //MODIFIES obstacle health
 
         //GB testing
@@ -84,14 +83,6 @@ public class CollisionHandlerTest {
         assertTrue(collisionHandler.isRemovedObstacle(sampleObstacle));
         assertEquals(sampleObstacle.getHealth(), 0);
     }
-
-
-
-
-
-
-
-
 
 
 }

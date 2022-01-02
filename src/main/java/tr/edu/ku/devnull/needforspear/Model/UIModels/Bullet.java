@@ -9,10 +9,10 @@ import tr.edu.ku.devnull.needforspear.Model.GameData.Speed;
  * Bullet object is created for the MagicalHexSpell.
  */
 public class Bullet {
-    private NoblePhantasm noblePhantasm;
+    private final NoblePhantasm noblePhantasm;
     private Size size;
     private Location location;
-    private double angle;
+    private final double angle;
     private Speed speed;
 
 

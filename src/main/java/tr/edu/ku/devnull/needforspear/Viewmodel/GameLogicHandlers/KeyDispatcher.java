@@ -1,9 +1,10 @@
 package tr.edu.ku.devnull.needforspear.Viewmodel.GameLogicHandlers;
+
 import tr.edu.ku.devnull.needforspear.Model.GameData.Constants;
 import tr.edu.ku.devnull.needforspear.Model.Spell.YmirSpells.HollowPurpleSpell;
 import tr.edu.ku.devnull.needforspear.Model.UIModels.NoblePhantasm;
-import tr.edu.ku.devnull.needforspear.Model.UIModels.Sphere;
 import tr.edu.ku.devnull.needforspear.NeedforSpearGame;
+
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
@@ -59,7 +60,7 @@ public class KeyDispatcher implements KeyEventDispatcher {
 
             }
 
-            if(e.getKeyCode() == KeyEvent.VK_T){
+            if (e.getKeyCode() == KeyEvent.VK_T) {
                 SpellHandler.getInstance().activateSpell(SpellHandler.getInstance().getAvailableSpell(Constants.SpellNameConstants.EXPANSION));
             }
 
@@ -87,24 +88,24 @@ public class KeyDispatcher implements KeyEventDispatcher {
             if (e.getKeyCode() == KeyEvent.VK_DOWN) {
                 NoblePhantasm.getInstance().setSpeeding(false);
             }
-            if(!NeedforSpearGame.getInstance().getGameInfo().isPaused()){
+            if (!NeedforSpearGame.getInstance().getGameInfo().isPaused()) {
 
-                if(e.getKeyCode() == KeyEvent.VK_C){
+                if (e.getKeyCode() == KeyEvent.VK_C) {
                     //for testing
                     HollowPurpleSpell hollowPurpleSpell = new HollowPurpleSpell();
                     hollowPurpleSpell.triggerYmirEffect();
                     SpellHandler.getInstance().activateSpell(SpellHandler.getInstance().getAvailableSpell(Constants.SpellNameConstants.CHANCE));
                 }
 
-                if(e.getKeyCode() == KeyEvent.VK_E){
+                if (e.getKeyCode() == KeyEvent.VK_E) {
                     SpellHandler.getInstance().activateSpell(SpellHandler.getInstance().getAvailableSpell(Constants.SpellNameConstants.EXPANSION));
                 }
 
-                if(e.getKeyCode() == KeyEvent.VK_M){
+                if (e.getKeyCode() == KeyEvent.VK_M) {
                     SpellHandler.getInstance().activateSpell(SpellHandler.getInstance().getAvailableSpell(Constants.SpellNameConstants.HEX));
                 }
 
-                if(e.getKeyCode() == KeyEvent.VK_U){
+                if (e.getKeyCode() == KeyEvent.VK_U) {
                     SpellHandler.getInstance().activateSpell(SpellHandler.getInstance().getAvailableSpell(Constants.SpellNameConstants.UNSTOPPABLE));
                 }
 

@@ -152,8 +152,7 @@ public class Speed {
      */
     public boolean repOk() {
         if (xLong > Double.MAX_VALUE || xLong < Double.MAX_VALUE * -1) return false;
-        if (yLong > Double.MAX_VALUE || yLong < Double.MAX_VALUE * -1) return false;
-        return true;
+        return !(yLong > Double.MAX_VALUE) && !(yLong < Double.MAX_VALUE * -1);
     }
 
     /**

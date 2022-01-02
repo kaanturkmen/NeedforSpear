@@ -3,15 +3,12 @@ package tr.edu.ku.devnull.needforspear.Viewmodel.GameLogicHandlers;
 import tr.edu.ku.devnull.needforspear.Model.GameData.Constants;
 import tr.edu.ku.devnull.needforspear.Model.GameData.Location;
 import tr.edu.ku.devnull.needforspear.Model.GameData.Size;
-
 import tr.edu.ku.devnull.needforspear.Model.Obstacle.Obstacle;
 import tr.edu.ku.devnull.needforspear.Model.Spell.Spell;
 import tr.edu.ku.devnull.needforspear.Model.UIModels.Bullet;
 import tr.edu.ku.devnull.needforspear.Model.UIModels.NoblePhantasm;
 import tr.edu.ku.devnull.needforspear.Model.UIModels.Sphere;
-
 import tr.edu.ku.devnull.needforspear.NeedforSpearGame;
-
 import tr.edu.ku.devnull.needforspear.View.PlayViews.Animators.SpellAnimator;
 
 import java.awt.*;

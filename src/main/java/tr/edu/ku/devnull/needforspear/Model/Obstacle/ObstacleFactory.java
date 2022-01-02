@@ -1,8 +1,6 @@
 package tr.edu.ku.devnull.needforspear.Model.Obstacle;
 
 import tr.edu.ku.devnull.needforspear.Model.GameData.Constants;
-import tr.edu.ku.devnull.needforspear.Model.GameData.GameMap;
-import tr.edu.ku.devnull.needforspear.Model.GameData.Size;
 import tr.edu.ku.devnull.needforspear.Model.GameData.Location;
 import tr.edu.ku.devnull.needforspear.NeedforSpearGame;
 

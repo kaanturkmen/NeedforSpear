@@ -2,9 +2,7 @@ package tr.edu.ku.devnull.needforspear.Viewmodel.State;
 
 import tr.edu.ku.devnull.needforspear.NeedforSpearGame;
 import tr.edu.ku.devnull.needforspear.View.AuthViews.ActivationView;
-import tr.edu.ku.devnull.needforspear.View.AuthViews.LoginView;
 import tr.edu.ku.devnull.needforspear.View.AuthViews.SendVerificationView;
-import tr.edu.ku.devnull.needforspear.View.PlayViews.GameView;
 import tr.edu.ku.devnull.needforspear.View.PlayViews.MainMenuView;
 
 /**

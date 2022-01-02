@@ -15,14 +15,15 @@ import java.io.File;
  */
 public class SoundHandler {
 
+    private static SoundHandler onlyInstance;
     private Thread backgroundMusicThread, soundEffectThread;
     private Clip backgroundMusicClip;
-    private static SoundHandler onlyInstance;
 
     /**
      * Constructor of SoundHandler.
      */
-    public SoundHandler(){}
+    public SoundHandler() {
+    }
 
     /**
      * Singleton Design Pattern's getInstance method.
@@ -30,7 +31,7 @@ public class SoundHandler {
      * @return Single instance of the SoundHandler.
      */
     public static SoundHandler getInstance() {
-        if(onlyInstance == null) onlyInstance = new SoundHandler();
+        if (onlyInstance == null) onlyInstance = new SoundHandler();
 
         return onlyInstance;
     }
@@ -48,7 +49,7 @@ public class SoundHandler {
                 backgroundMusicClip = AudioSystem.getClip();
                 AudioInputStream inputStream = AudioSystem.getAudioInputStream(new File(Constants.UIConstants.SOUNDS_FOLDER_PATH + Constants.UIConstants.BACKGROUND_MUSIC));
                 backgroundMusicClip.open(inputStream);
-                backgroundMusicClip.loop(0);
+                backgroundMusicClip.loop(Clip.LOOP_CONTINUOUSLY);
                 backgroundMusicClip.start();
             } catch (Exception e) {
                 e.printStackTrace();

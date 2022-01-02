@@ -13,14 +13,14 @@ import java.util.List;
  */
 public class SwitchModeHandler {
 
-    List<SwitchModeSubscriber> subscribers = new ArrayList<>();
-
     private static SwitchModeHandler onlyInstance = null;
+    List<SwitchModeSubscriber> subscribers = new ArrayList<>();
 
     /**
      * Private constructor of the SwitchModeHandler.
      */
-    public SwitchModeHandler() {}
+    public SwitchModeHandler() {
+    }
 
     /**
      * Singleton Design Pattern's getInstance method.
@@ -54,7 +54,7 @@ public class SwitchModeHandler {
     }
 
     /**
-     *  Notifies the subscribers.
+     * Notifies the subscribers.
      */
     public void notifySubscribers() {
         for (SwitchModeSubscriber subscriber : subscribers) {

@@ -130,21 +130,21 @@ public class Sphere {
     }
 
     /**
-     * Sets the moving state.
-     *
-     * @param state Boolean value to be set.
-     */
-    public void setMoving(boolean state) {
-        this.isMoving = state;
-    }
-
-    /**
      * Gets if sphere is moving.
      *
      * @return Boolean value indicating if sphere is moving.
      */
     public boolean isMoving() {
         return this.isMoving;
+    }
+
+    /**
+     * Sets the moving state.
+     *
+     * @param state Boolean value to be set.
+     */
+    public void setMoving(boolean state) {
+        this.isMoving = state;
     }
 
     /**

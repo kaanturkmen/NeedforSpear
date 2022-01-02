@@ -13,7 +13,7 @@ public class PhysicsEngine {
 
     /**
      * Creates a reflection of the given data about the sphere.
-     *
+     * <p>
      * REQUIRES: incident != null.
      * EFFECTS: Creates a new data with the new location and speed to be reflected.
      * MODIFIES: None
@@ -23,17 +23,17 @@ public class PhysicsEngine {
      */
     public CollisionData reflect(CollisionData incident) {
 
-        if(incident == null) return null;
+        if (incident == null) return null;
 
         CollisionData result = new CollisionData(incident.getCurrentLocation(), incident.getCurrentSpeed());
 
         if (incident.getCurrentLocation().getXCoordinates() + incident.getCurrentSpeed().getSpeedOnXAxis() < 0
-                || incident.getCurrentLocation().getXCoordinates() + incident.getCurrentSpeed().getSpeedOnXAxis() > Constants.UIConstants.INITIAL_SCREEN_WIDTH - 2 * Constants.ProportionConstants.RADIUS_OF_THE_SPHERE){
+                || incident.getCurrentLocation().getXCoordinates() + incident.getCurrentSpeed().getSpeedOnXAxis() > Constants.UIConstants.INITIAL_SCREEN_WIDTH - 2 * Constants.ProportionConstants.RADIUS_OF_THE_SPHERE) {
             SoundHandler.getInstance().playSound("frameHitEffect.wav");
             result.getCurrentSpeed().setSpeedOnXAxis(-1 * incident.getCurrentSpeed().getSpeedOnXAxis());
         }
         if (incident.getCurrentLocation().getYCoordinates() + incident.getCurrentSpeed().getSpeedOnYAxis() < 0
-                || incident.getCurrentLocation().getYCoordinates() + incident.getCurrentSpeed().getSpeedOnYAxis()> Constants.UIConstants.INITIAL_SCREEN_HEIGHT){
+                || incident.getCurrentLocation().getYCoordinates() + incident.getCurrentSpeed().getSpeedOnYAxis() > Constants.UIConstants.INITIAL_SCREEN_HEIGHT) {
             SoundHandler.getInstance().playSound("frameHitEffect.wav");
             result.getCurrentSpeed().setSpeedOnYAxis(-1 * incident.getCurrentSpeed().getSpeedOnYAxis());
         }
@@ -42,7 +42,7 @@ public class PhysicsEngine {
 
     /**
      * Creates a reflection of the given data about the sphere.
-     *
+     * <p>
      * REQUIRES: incident != null, obstacle's X and Y coordinates should be inside of the gameMap.
      * EFFECTS: Creates a new data with the new location and speed to be reflected.
      * MODIFIES: None
@@ -52,13 +52,15 @@ public class PhysicsEngine {
      */
     public CollisionData reflect(CollisionData incident, Obstacle obstacle) throws Exception {
 
-        if(incident == null) return null;
+        if (incident == null) return null;
 
-        if(obstacle == null) return null;
+        if (obstacle == null) return null;
 
-        if(obstacle.getLocation().getXCoordinates() < 0 || obstacle.getLocation().getXCoordinates() > 1280) throw new Exception("Illegal placement of obstacle.");
+        if (obstacle.getLocation().getXCoordinates() < 0 || obstacle.getLocation().getXCoordinates() > 1280)
+            throw new Exception("Illegal placement of obstacle.");
 
-        if(obstacle.getLocation().getYCoordinates() < 0 || obstacle.getLocation().getYCoordinates() > 720) throw new Exception("Illegal placement of obstacle.");
+        if (obstacle.getLocation().getYCoordinates() < 0 || obstacle.getLocation().getYCoordinates() > 720)
+            throw new Exception("Illegal placement of obstacle.");
 
         CollisionData result = new CollisionData(incident.getCurrentLocation(), incident.getCurrentSpeed());
 
@@ -112,16 +114,15 @@ public class PhysicsEngine {
     /**
      * Performs collision event between sphere and the noble phantasm.
      *
-     * @param incident Incident data.
+     * @param incident      Incident data.
      * @param noblePhantasm Noble phantasm of the map.
-     *
      * @return CollisionData of the resultant vector.
      */
     public CollisionData reflect(CollisionData incident, NoblePhantasm noblePhantasm) {
         CollisionData result = new CollisionData(incident.getCurrentLocation(), incident.getCurrentSpeed());
 
-        if(noblePhantasm.getRotationDegree().equals(0.0)) {
-            if(noblePhantasm.isSpeeding()) {
+        if (noblePhantasm.getRotationDegree().equals(0.0)) {
+            if (noblePhantasm.isSpeeding()) {
 
                 // If noble phantasm not rotating but speeding in either direction, opposing the speed in Y-axis and changing location speed * 1 second.
                 result.getCurrentSpeed().setSpeedOnYAxis(-1 * incident.getCurrentSpeed().getSpeedOnYAxis());
@@ -154,17 +155,17 @@ public class PhysicsEngine {
                 double rotatedUpperRightX = edgeDX * Math.cos(rotationDegree) - edgeDY * Math.sin(rotationDegree);
                 double rotatedUpperRightY = edgeDY * Math.cos(rotationDegree) + edgeDX * Math.sin(rotationDegree);
 
-                double rotatedLowerLeftX= -edgeDX * Math.cos(rotationDegree) + edgeDY * Math.sin(rotationDegree);
+                double rotatedLowerLeftX = -edgeDX * Math.cos(rotationDegree) + edgeDY * Math.sin(rotationDegree);
 
-                double rotatedLowerRightX = edgeDX * Math.cos(rotationDegree) + edgeDY* Math.sin(rotationDegree);
+                double rotatedLowerRightX = edgeDX * Math.cos(rotationDegree) + edgeDY * Math.sin(rotationDegree);
 
-                double ballX = incident.getCurrentLocation().getXCoordinates() + (double) 2* Constants.ProportionConstants.RADIUS_OF_THE_SPHERE / 2 - NoblePhantasm.getInstance().getLocation().getXCoordinates() - edgeDX;
-                double ballY = -incident.getCurrentLocation().getYCoordinates() - (double)2* Constants.ProportionConstants.RADIUS_OF_THE_SPHERE / 2 + NoblePhantasm.getInstance().getLocation().getYCoordinates() + edgeDY;
+                double ballX = incident.getCurrentLocation().getXCoordinates() + (double) 2 * Constants.ProportionConstants.RADIUS_OF_THE_SPHERE / 2 - NoblePhantasm.getInstance().getLocation().getXCoordinates() - edgeDX;
+                double ballY = -incident.getCurrentLocation().getYCoordinates() - (double) 2 * Constants.ProportionConstants.RADIUS_OF_THE_SPHERE / 2 + NoblePhantasm.getInstance().getLocation().getYCoordinates() + edgeDY;
 
                 double middleUpper = (rotatedUpperLeftY - rotatedUpperRightY) / (rotatedUpperLeftX - rotatedUpperRightX);
 
 
-                if ((ballY - (middleUpper * ballX + edgeDY) <= 2* Constants.ProportionConstants.RADIUS_OF_THE_SPHERE  / 2)
+                if ((ballY - (middleUpper * ballX + edgeDY) <= 2 * Constants.ProportionConstants.RADIUS_OF_THE_SPHERE / 2)
                         && (ballX > rotatedUpperLeftX)
                         && (ballX <= rotatedUpperRightX)
                         && (ballY - (middleUpper * ballX + edgeDY) > 0)) {
@@ -198,17 +199,16 @@ public class PhysicsEngine {
                     double rotationRadians = Math.toRadians(-NoblePhantasm.getInstance().getRotationDegree());
 
                     Speed currentSpeed = result.getCurrentSpeed();
-                    Speed normal = new Speed(new Double(Math.cos(2*rotationRadians)).longValue(), new Double(Math.sin(2*rotationRadians)).longValue());
+                    Speed normal = new Speed(new Double(Math.cos(2 * rotationRadians)).longValue(), new Double(Math.sin(2 * rotationRadians)).longValue());
                     Speed newSpeed = normal.scale(currentSpeed.dot(normal) * 2).subtract(currentSpeed);
 
                     result.setCurrentSpeed(newSpeed);
-                    System.out.println("he" + newSpeed.getSpeedOnXAxis() + " " +newSpeed.getSpeedOnYAxis());
+                    System.out.println("he" + newSpeed.getSpeedOnXAxis() + " " + newSpeed.getSpeedOnYAxis());
                     //result.getCurrentSpeed().setSpeedOnXAxis((normal.getSpeedOnXAxis()- (2 * (getResultant(incident.getCurrentSpeed().getSpeedOnXAxis(), incident.getCurrentSpeed().getSpeedOnXAxis())) * Math.pow((getResultant(incident.getCurrentLocation().getXCoordinates(), incident.getCurrentLocation().getXCoordinates())), 2)) / (Math.pow(getResultant(incident.getCurrentLocation().getXCoordinates(), incident.getCurrentLocation().getXCoordinates()), 2))));
                     // result.getCurrentSpeed().setSpeedOnYAxis(((normal.getSpeedOnYAxis()- (2 * (getResultant(incident.getCurrentSpeed().getSpeedOnYAxis(), incident.getCurrentSpeed().getSpeedOnYAxis())) * Math.pow((getResultant(incident.getCurrentLocation().getYCoordinates(), incident.getCurrentLocation().getYCoordinates())), 2)) / (Math.pow(getResultant(incident.getCurrentLocation().getYCoordinates(), incident.getCurrentLocation().getYCoordinates()), 2)))));
                 }
             }
         }
-
 
 
         return result;
@@ -229,7 +229,6 @@ public class PhysicsEngine {
      *
      * @param x X value of the vector.
      * @param y Y value of the vector.
-     *
      * @return Result of the operation.
      */
     private Double getResultant(Double x, Double y) {

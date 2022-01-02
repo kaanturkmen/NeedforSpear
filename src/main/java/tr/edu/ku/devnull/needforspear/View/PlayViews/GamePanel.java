@@ -26,34 +26,32 @@ import java.awt.event.*;
  */
 public class GamePanel extends JPanel implements ActionListener, MouseMotionListener, SwitchModeSubscriber, MagicalHexSubscriber, HollowPurpleSubscriber {
 
+    protected Timer timer;
     SphereAnimator sphereAnimator;
     ObstacleAnimator obstacleAnimator;
     NoblePhantasmAnimator npa;
     SpellAnimator spellAnimator;
     BulletAnimator bulletAnimator;
-    private MovementHandler movementHandler = new MovementHandler();
-    private boolean isGameStarted = false, isHexActivated=false;
-    private Location phantasmLocation;
-
-
     Image background = new BackgroundHandler().getBackgroundImage(Constants.UIConstants.GAME_BACKGROUND_IMAGE);
     double x_pos_NoblePhantasm;
     double y_pos_NoblePhantasm;
-    private int delay;
-    protected Timer timer;
     long magicalHexStartTime;
+    private final MovementHandler movementHandler = new MovementHandler();
+    private boolean isGameStarted = false, isHexActivated = false;
+    private final Location phantasmLocation;
+    private final int delay;
 
     /**
      * Constructor of GamePanel.
      *
-     * @param sphereAnimator SphereAnimator to be set.
+     * @param sphereAnimator   SphereAnimator to be set.
      * @param obstacleAnimator ObstacleAnimator to be set.
-     * @param npa NoblePhantasmAnimator to be set.
-     * @param spellAnimator SpellAnimator to be set.
-     * @param bulletAnimator BulletAnimator to be set.
+     * @param npa              NoblePhantasmAnimator to be set.
+     * @param spellAnimator    SpellAnimator to be set.
+     * @param bulletAnimator   BulletAnimator to be set.
      */
     public GamePanel(SphereAnimator sphereAnimator, ObstacleAnimator obstacleAnimator, NoblePhantasmAnimator npa, SpellAnimator spellAnimator, BulletAnimator bulletAnimator) {
-        if(System.getProperty("os.name").startsWith("Windows")) this.delay = 3;
+        if (System.getProperty("os.name").startsWith("Windows")) this.delay = 3;
         else this.delay = 8;
         phantasmLocation = NoblePhantasm.getInstance().getLocation();
         x_pos_NoblePhantasm = phantasmLocation.getXCoordinates();
@@ -95,11 +93,11 @@ public class GamePanel extends JPanel implements ActionListener, MouseMotionList
             sphereAnimator.draw(g);
             npa.draw(g);
             if (isHexActivated) {
-                if((System.currentTimeMillis()-magicalHexStartTime)/1000 >=30 ){
+                if ((System.currentTimeMillis() - magicalHexStartTime) / 1000 >= 30) {
                     setIsHexActivated(false);
                 }
                 bulletAnimator.draw(g);
-                if(bulletAnimator.listOfBullets.isEmpty()){
+                if (BulletAnimator.listOfBullets.isEmpty()) {
                     BulletAnimator.listOfBullets.add(Bullet.createLeftBullet());
                     BulletAnimator.listOfBullets.add(Bullet.createRightBullet());
                 }
@@ -109,11 +107,11 @@ public class GamePanel extends JPanel implements ActionListener, MouseMotionList
         spellAnimator.draw(g);
         obstacleAnimator.draw(g);
 
-        if(NeedforSpearGame.getInstance().getGameInfo().getPlayer().getLives() <= 0 ){
+        if (NeedforSpearGame.getInstance().getGameInfo().getPlayer().getLives() <= 0) {
             System.out.println("ups i know u died");
             timer.stop();
             finishGame(NeedforSpearGame.getInstance().getGameInfo().getPlayer(), Constants.UIConstants.LOSE_GAME_TXT);
-        }else if(NeedforSpearGame.getInstance().getGameInfo().getGameMap().getListofObstacles().size() == 0){
+        } else if (NeedforSpearGame.getInstance().getGameInfo().getGameMap().getListofObstacles().size() == 0) {
             System.out.println("you have won");
             timer.stop();
             finishGame(NeedforSpearGame.getInstance().getGameInfo().getPlayer(), Constants.UIConstants.WIN_GAME_TXT + NeedforSpearGame.getInstance().getGameInfo().getPlayer().getScore());
@@ -137,7 +135,8 @@ public class GamePanel extends JPanel implements ActionListener, MouseMotionList
             }
         }
 
-        if (NeedforSpearGame.getInstance().getGameInfo().getPlayer().getLives() <= 0) finishGame(NeedforSpearGame.getInstance().getGameInfo().getPlayer(), Constants.UIConstants.LOSE_GAME_TXT);
+        if (NeedforSpearGame.getInstance().getGameInfo().getPlayer().getLives() <= 0)
+            finishGame(NeedforSpearGame.getInstance().getGameInfo().getPlayer(), Constants.UIConstants.LOSE_GAME_TXT);
     }
 
     /**
@@ -212,20 +211,20 @@ public class GamePanel extends JPanel implements ActionListener, MouseMotionList
                                 BuildModeHandler.getInstance().createNewObstacle(x, y, BuildModeHandler.getInstance().getAddedObstacleType(), getGraphics(), obstacleAnimator);
                                 Obstacle obstacle = BuildModeHandler.getInstance().getObstacleByLocation(x, y);
                                 if (!(obstacle.getObstacleType().equals(Constants.ObstacleNameConstants.SIMPLE_OBSTACLE) &&
-                                        BuildModeHandler.getInstance().checkSimpleObstacleNum(new MapHandler().retrieveSimpleObstacleNumber())  ||
+                                        BuildModeHandler.getInstance().checkSimpleObstacleNum(new MapHandler().retrieveSimpleObstacleNumber()) ||
                                         (obstacle.getObstacleType().equals(Constants.ObstacleNameConstants.FIRM_OBSTACLE) &&
-                                        BuildModeHandler.getInstance().checkFirmObstacleNum(new MapHandler().retrieveFirmObstacleNumber()))  ||
+                                                BuildModeHandler.getInstance().checkFirmObstacleNum(new MapHandler().retrieveFirmObstacleNumber())) ||
                                         (obstacle.getObstacleType().equals(Constants.ObstacleNameConstants.EXPLOSIVE_OBSTACLE) &&
-                                        BuildModeHandler.getInstance().checkExplosiveObstacleNum(new MapHandler().retrieveExplosiveObstacleNumber()))  ||
+                                                BuildModeHandler.getInstance().checkExplosiveObstacleNum(new MapHandler().retrieveExplosiveObstacleNumber())) ||
                                         (obstacle.getObstacleType().equals(Constants.ObstacleNameConstants.GIFT_OBSTACLE) &&
-                                        BuildModeHandler.getInstance().checkGiftObstacleNum(new MapHandler().retrieveGiftObstacleNumber())))) {
+                                                BuildModeHandler.getInstance().checkGiftObstacleNum(new MapHandler().retrieveGiftObstacleNumber())))) {
 
                                     BuildModeHandler.getInstance().removeObstacle(x, y, getGraphics(), BuildModeHandler.getInstance().getObstacleByLocation(x, y));
                                     JOptionPane.showMessageDialog(NeedforSpearGame.getInstance().getGameInfo().getMainFrame(), "Maximum number for that obstacle type is reached", "Alert", JOptionPane.WARNING_MESSAGE);
 
-                                } else if(BuildModeHandler.getInstance().doesObstacleCollide(obstacle)){
+                                } else if (BuildModeHandler.getInstance().doesObstacleCollide(obstacle)) {
                                     BuildModeHandler.getInstance().removeObstacle(x, y, getGraphics(), BuildModeHandler.getInstance().getObstacleByLocation(x, y));
-                                } else if(BuildModeHandler.getInstance().checkObstacleLocation(obstacle)){
+                                } else if (BuildModeHandler.getInstance().checkObstacleLocation(obstacle)) {
                                     BuildModeHandler.getInstance().removeObstacle(x, y, getGraphics(), BuildModeHandler.getInstance().getObstacleByLocation(x, y));
                                     JOptionPane.showMessageDialog(NeedforSpearGame.getInstance().getGameInfo().getMainFrame(), "Obstacle is too close to the phantasm!", "Alert", JOptionPane.WARNING_MESSAGE);
                                 }
@@ -236,16 +235,16 @@ public class GamePanel extends JPanel implements ActionListener, MouseMotionList
                             if (BuildModeHandler.getInstance().getObstacleByLocation(x, y) != null) {
                                 Obstacle obstacle = BuildModeHandler.getInstance().getObstacleByLocation(x, y);
                                 if (obstacle.getObstacleType().equals(Constants.ObstacleNameConstants.SIMPLE_OBSTACLE) &&
-                                        BuildModeHandler.getInstance().checkSimpleObstacleNum(new MapHandler().retrieveSimpleObstacleNumber() -1)  ||
+                                        BuildModeHandler.getInstance().checkSimpleObstacleNum(new MapHandler().retrieveSimpleObstacleNumber() - 1) ||
                                         (obstacle.getObstacleType().equals(Constants.ObstacleNameConstants.FIRM_OBSTACLE) &&
-                                                BuildModeHandler.getInstance().checkFirmObstacleNum(new MapHandler().retrieveFirmObstacleNumber() -1))  ||
+                                                BuildModeHandler.getInstance().checkFirmObstacleNum(new MapHandler().retrieveFirmObstacleNumber() - 1)) ||
                                         (obstacle.getObstacleType().equals(Constants.ObstacleNameConstants.EXPLOSIVE_OBSTACLE) &&
-                                                BuildModeHandler.getInstance().checkExplosiveObstacleNum(new MapHandler().retrieveExplosiveObstacleNumber() -1))  ||
+                                                BuildModeHandler.getInstance().checkExplosiveObstacleNum(new MapHandler().retrieveExplosiveObstacleNumber() - 1)) ||
                                         (obstacle.getObstacleType().equals(Constants.ObstacleNameConstants.GIFT_OBSTACLE) &&
-                                                BuildModeHandler.getInstance().checkGiftObstacleNum(new MapHandler().retrieveGiftObstacleNumber() -1))) {
+                                                BuildModeHandler.getInstance().checkGiftObstacleNum(new MapHandler().retrieveGiftObstacleNumber() - 1))) {
 
                                     BuildModeHandler.getInstance().removeObstacle(x, y, getGraphics(), BuildModeHandler.getInstance().getObstacleByLocation(x, y));
-                                }else{
+                                } else {
                                     JOptionPane.showMessageDialog(NeedforSpearGame.getInstance().getGameInfo().getMainFrame(), "Minimum number for that obstacle type is reached", "Alert", JOptionPane.WARNING_MESSAGE);
                                 }
                             }
@@ -260,7 +259,7 @@ public class GamePanel extends JPanel implements ActionListener, MouseMotionList
                     int y = e.getY();
                     if (!isGameStarted && BuildModeHandler.getInstance().getObstacleByLocation(x, y) != null) {
                         if (BuildModeHandler.getInstance().doesObstacleCollide(BuildModeHandler.getInstance().getObstacleByLocation(x, y)) ||
-                                BuildModeHandler.getInstance().checkObstacleLocation(BuildModeHandler.getInstance().getObstacleByLocation(x, y))){
+                                BuildModeHandler.getInstance().checkObstacleLocation(BuildModeHandler.getInstance().getObstacleByLocation(x, y))) {
                             BuildModeHandler.getInstance().relocateObstacle(0, 0, getGraphics(), obstacleAnimator, false);
                         }
                     } else {
@@ -302,6 +301,7 @@ public class GamePanel extends JPanel implements ActionListener, MouseMotionList
 
     /**
      * Sets the hex activated variable.
+     *
      * @param b Boolean b to be set.
      */
     public void setIsHexActivated(boolean b) {
@@ -320,7 +320,7 @@ public class GamePanel extends JPanel implements ActionListener, MouseMotionList
     /**
      * Finishes the game.
      *
-     * @param player Player to be used.
+     * @param player        Player to be used.
      * @param finishGameTxt Finish game text to be displayed.
      */
     public void finishGame(Player player, String finishGameTxt) {

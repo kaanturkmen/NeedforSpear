@@ -7,8 +7,8 @@ import tr.edu.ku.devnull.needforspear.Model.Obstacle.Obstacle;
 import tr.edu.ku.devnull.needforspear.Model.UIModels.Bullet;
 import tr.edu.ku.devnull.needforspear.NeedforSpearGame;
 import tr.edu.ku.devnull.needforspear.View.PlayViews.AnimatorStrategy;
-import tr.edu.ku.devnull.needforspear.Viewmodel.GameLogicHandlers.MovementHandler;
 import tr.edu.ku.devnull.needforspear.Viewmodel.GameLogicHandlers.CollisionHandler;
+import tr.edu.ku.devnull.needforspear.Viewmodel.GameLogicHandlers.MovementHandler;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -19,12 +19,12 @@ import java.util.List;
  */
 public class BulletAnimator implements AnimatorStrategy {
 
-    int radius = Constants.ProportionConstants.RADIUS_OF_THE_BULLET;
     public static List<Obstacle> listOfObstacles;
     public static List<Bullet> listOfBullets;
-    private MovementHandler movementHandler = new MovementHandler();
-    private CollisionHandler collisionHandler = new CollisionHandler();
+    int radius = Constants.ProportionConstants.RADIUS_OF_THE_BULLET;
     Image bulletImage;
+    private final MovementHandler movementHandler = new MovementHandler();
+    private final CollisionHandler collisionHandler = new CollisionHandler();
 
     /**
      * Constructor of the BulletAnimator.

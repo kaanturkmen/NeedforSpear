@@ -4,7 +4,6 @@ import tr.edu.ku.devnull.needforspear.Model.GameData.Constants;
 import tr.edu.ku.devnull.needforspear.Model.GameData.Location;
 import tr.edu.ku.devnull.needforspear.Model.GameData.Size;
 import tr.edu.ku.devnull.needforspear.Model.UIModels.NoblePhantasm;
-import tr.edu.ku.devnull.needforspear.Model.UIModels.Sphere;
 
 /**
  * ExpansionSpell is a spell type which extends from Spell class.

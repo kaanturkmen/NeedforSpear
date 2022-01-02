@@ -4,7 +4,6 @@ import tr.edu.ku.devnull.needforspear.Model.GameData.Constants;
 import tr.edu.ku.devnull.needforspear.Model.GameData.Location;
 import tr.edu.ku.devnull.needforspear.Model.GameData.Size;
 import tr.edu.ku.devnull.needforspear.Model.UIModels.Bullet;
-import tr.edu.ku.devnull.needforspear.Model.UIModels.NoblePhantasm;
 import tr.edu.ku.devnull.needforspear.View.PlayViews.Animators.BulletAnimator;
 import tr.edu.ku.devnull.needforspear.Viewmodel.GameLogicHandlers.MagicalHexHandler;
 
@@ -19,14 +18,13 @@ public class MagicalHexSpell extends Spell {
      * @param size Size of the spell in the game map.
      */
     public MagicalHexSpell(Size size, Location location) {
-        super(size,location);
+        super(size, location);
         this.spellColor = Constants.UIConstants.DARK_CYAN_COLOR_STRING;
         this.spellType = Constants.SpellNameConstants.HEX;
     }
 
     /**
      * Triggers an effect of the spell.
-     *
      */
     @Override
     public void triggerEffect() {

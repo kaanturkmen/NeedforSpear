@@ -1,12 +1,12 @@
 package tr.edu.ku.devnull.needforspear.Viewmodel.GameLogicHandlers;
 
-import tr.edu.ku.devnull.needforspear.Viewmodel.Database.DatabaseCredentials;
-import tr.edu.ku.devnull.needforspear.Viewmodel.Database.DatabaseSaveLoadSubscriber;
 import tr.edu.ku.devnull.needforspear.Model.GameData.Constants;
 import tr.edu.ku.devnull.needforspear.Model.GameData.GameMap;
 import tr.edu.ku.devnull.needforspear.Model.Player.Player;
 import tr.edu.ku.devnull.needforspear.Model.Spell.Spell;
 import tr.edu.ku.devnull.needforspear.NeedforSpearGame;
+import tr.edu.ku.devnull.needforspear.Viewmodel.Database.DatabaseCredentials;
+import tr.edu.ku.devnull.needforspear.Viewmodel.Database.DatabaseSaveLoadSubscriber;
 import tr.edu.ku.devnull.needforspear.Viewmodel.State.GameViewState;
 import tr.edu.ku.devnull.needforspear.Viewmodel.State.MainMenuViewState;
 
@@ -75,7 +75,7 @@ public class SaveLoadHandler implements DatabaseSaveLoadSubscriber {
             if (databaseResponse.equals(DatabaseCredentials.DATABASE_SUCCESS)) {
                 if (gameMap != null) {
                     System.out.println("GameMap Response Arrived!");
-                    System.out.println(gameMap.toString());
+                    System.out.println(gameMap);
                     if (NeedforSpearGame.getInstance().getGameInfo().getGameMap() != null) {
                         NeedforSpearGame.getInstance().getViewData().getGameView().removeGamePanel();
                     }

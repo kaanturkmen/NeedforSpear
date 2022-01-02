@@ -20,9 +20,9 @@ import java.util.Random;
  */
 public class SpellHandler {
 
-    Obstacle currentGiftObstacle;
     private static SpellHandler onlyInstance;
-    private Random r = new Random();
+    Obstacle currentGiftObstacle;
+    private final Random r = new Random();
 
     /**
      * Private constructor of SpellHandler.

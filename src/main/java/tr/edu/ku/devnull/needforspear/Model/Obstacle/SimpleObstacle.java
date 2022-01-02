@@ -8,7 +8,7 @@ import tr.edu.ku.devnull.needforspear.Model.GameData.Size;
 /**
  * SimpleObstacle is a class that extends Obstacle
  * which contains the attributes of a simple obstacle.
- *
+ * <p>
  * Simple obstacles are obstacles that are destroyed after 1 hit with no extra effect.
  */
 public class SimpleObstacle extends Obstacle {

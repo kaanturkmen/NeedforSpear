@@ -1,7 +1,6 @@
 package tr.edu.ku.devnull.needforspear.Viewmodel.State;
 
 import tr.edu.ku.devnull.needforspear.NeedforSpearGame;
-import tr.edu.ku.devnull.needforspear.View.PlayViews.GameView;
 import tr.edu.ku.devnull.needforspear.View.PlayViews.MainMenuView;
 
 /**

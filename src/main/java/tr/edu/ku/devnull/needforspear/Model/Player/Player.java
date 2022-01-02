@@ -79,6 +79,15 @@ public class Player {
     }
 
     /**
+     * Sets the list of spells
+     *
+     * @param listofSpells List to be set.
+     */
+    public void setListofSpells(List<Spell> listofSpells) {
+        this.listofSpells = listofSpells;
+    }
+
+    /**
      * Decreases the lives of the Player by 1.
      */
     public void decreaseLives() {
@@ -94,14 +103,5 @@ public class Player {
         System.out.println("current lives: " + this.lives);
         this.lives += Constants.UIConstants.ONE_LIVES_GAIN_LOSE;
         System.out.println("player lives increased! current lives: " + this.lives);
-    }
-
-    /**
-     * Sets the list of spells
-     *
-     * @param listofSpells List to be set.
-     */
-    public void setListofSpells(List<Spell> listofSpells) {
-        this.listofSpells = listofSpells;
     }
 }

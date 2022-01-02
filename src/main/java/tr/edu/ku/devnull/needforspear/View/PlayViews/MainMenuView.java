@@ -2,9 +2,9 @@ package tr.edu.ku.devnull.needforspear.View.PlayViews;
 
 import tr.edu.ku.devnull.needforspear.Model.GameData.Constants;
 import tr.edu.ku.devnull.needforspear.Model.UIModels.NoblePhantasm;
+import tr.edu.ku.devnull.needforspear.NeedforSpearGame;
 import tr.edu.ku.devnull.needforspear.Viewmodel.GameLogicHandlers.BackgroundHandler;
 import tr.edu.ku.devnull.needforspear.Viewmodel.GameLogicHandlers.MainMenuHandler;
-import tr.edu.ku.devnull.needforspear.NeedforSpearGame;
 
 import javax.swing.*;
 
@@ -69,11 +69,11 @@ public class MainMenuView {
         helpScreenButton.addActionListener(e -> NeedforSpearGame.getInstance().startHelpView());
 
         exitGameButton.addActionListener(e -> {
-            String[] options = new String[] {"Yes", "No"};
+            String[] options = new String[]{"Yes", "No"};
             int response = JOptionPane.showOptionDialog(NeedforSpearGame.getInstance().getGameInfo().getMainFrame(), "Are you sure?", "Exit",
                     JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE,
                     null, options, options[0]);
-            if(response == 0){
+            if (response == 0) {
                 System.exit(0);
             }
         });

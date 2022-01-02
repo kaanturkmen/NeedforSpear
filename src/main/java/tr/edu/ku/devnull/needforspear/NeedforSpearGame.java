@@ -1,12 +1,12 @@
 package tr.edu.ku.devnull.needforspear;
 
 
-import tr.edu.ku.devnull.needforspear.Viewmodel.Database.FirebaseDatabase;
 import tr.edu.ku.devnull.needforspear.Model.GameData.Constants;
-import tr.edu.ku.devnull.needforspear.Model.GameData.GameMode;
 import tr.edu.ku.devnull.needforspear.Model.GameData.GameInfo;
+import tr.edu.ku.devnull.needforspear.Model.GameData.GameMode;
 import tr.edu.ku.devnull.needforspear.Model.UIModels.ViewData;
 import tr.edu.ku.devnull.needforspear.Model.Ymir.Ymir;
+import tr.edu.ku.devnull.needforspear.Viewmodel.Database.FirebaseDatabase;
 import tr.edu.ku.devnull.needforspear.Viewmodel.GameHandlers.InternetHandler;
 import tr.edu.ku.devnull.needforspear.Viewmodel.GameHandlers.SoundHandler;
 import tr.edu.ku.devnull.needforspear.Viewmodel.State.InitialState;
@@ -24,11 +24,17 @@ import java.util.concurrent.TimeUnit;
  * @author Kaan Turkmen
  */
 public class NeedforSpearGame {
-    private ScheduledExecutorService executorOfYmir;
     private static NeedforSpearGame onlyInstance;
+    private ScheduledExecutorService executorOfYmir;
     private ViewData viewData;
     private ViewState currentState;
     private GameInfo gameInfo;
+
+    /**
+     * Private constructor for NeedforSpear game.
+     */
+    private NeedforSpearGame() {
+    }
 
     /**
      * Main method of the game.
@@ -40,11 +46,6 @@ public class NeedforSpearGame {
         getInstance().init();
         getInstance().startLoginView();
     }
-
-    /**
-     * Private constructor for NeedforSpear game.
-     */
-    private NeedforSpearGame() {}
 
     /**
      * Singleton pattern for the NeedforSpear object.
@@ -129,7 +130,7 @@ public class NeedforSpearGame {
 
     /**
      * Starts measuring time the moment game switches to running mode
-     *
+     * <p>
      * /**
      * Switches building mode to the running mode.
      */
@@ -157,6 +158,7 @@ public class NeedforSpearGame {
 
     /**
      * Gets current state.
+     *
      * @return Current ViewState.
      */
     public ViewState getCurrentState() {
@@ -165,6 +167,7 @@ public class NeedforSpearGame {
 
     /**
      * Sets current state to given state.
+     *
      * @param currentState State to be set.
      */
     public void setCurrentState(ViewState currentState) {
@@ -173,6 +176,7 @@ public class NeedforSpearGame {
 
     /**
      * Gets ViewData for the further use.
+     *
      * @return ViewData to operate on.
      */
     public ViewData getViewData() {
@@ -180,17 +184,18 @@ public class NeedforSpearGame {
     }
 
     /**
-     * Sets GameInfo for the testing purposes.
-     */
-    public void setGameInfo(GameInfo gameInfo) {
-        this.gameInfo = gameInfo;
-    }
-
-    /**
      * Gets GameInfo for the further use.
+     *
      * @return GameInfo to operate on.
      */
     public GameInfo getGameInfo() {
         return gameInfo;
+    }
+
+    /**
+     * Sets GameInfo for the testing purposes.
+     */
+    public void setGameInfo(GameInfo gameInfo) {
+        this.gameInfo = gameInfo;
     }
 }

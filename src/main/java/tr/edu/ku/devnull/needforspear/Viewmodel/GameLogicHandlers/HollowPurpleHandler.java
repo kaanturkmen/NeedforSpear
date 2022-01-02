@@ -10,12 +10,12 @@ import java.util.List;
  */
 public class HollowPurpleHandler {
 
+    private static HollowPurpleHandler onlyInstance = null;
     List<HollowPurpleSubscriber> subscribers = new ArrayList<>();
 
-    private static HollowPurpleHandler onlyInstance = null;
 
-
-    private HollowPurpleHandler() {}
+    private HollowPurpleHandler() {
+    }
 
     /**
      * Singleton Design Pattern's getInstance method.

@@ -14,8 +14,8 @@ import java.util.Objects;
  */
 public class FocusableJTextField extends JTextField implements FocusListener {
 
-    private boolean changedText = false;
     private final String placeholder;
+    private boolean changedText = false;
 
     /**
      * Constructor of FocusableJTextField.

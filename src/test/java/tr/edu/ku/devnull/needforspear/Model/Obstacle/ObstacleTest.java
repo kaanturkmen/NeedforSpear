@@ -23,7 +23,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class ObstacleTest {
 
     GameMap testMap;
-    Obstacle firmObs,simpleObs;
+    Obstacle firmObs, simpleObs;
     List<Obstacle> listOfObstacles;
     CollisionHandler collisionHandler = new CollisionHandler();
     FirstObstacleSubscriber subscriber = new FirstObstacleSubscriber();
@@ -33,8 +33,8 @@ class ObstacleTest {
     void initEach() {
         NeedforSpearGame.getInstance().setGameInfo(new GameInfo());
         testMap = new GameMap(new Size(1280, 720));
-        firmObs = new FirmObstacle(testMap, 0.0, new Location(500.0,100.0));
-        simpleObs = new SimpleObstacle(testMap, 0.0, new Location(700.0,100.0));
+        firmObs = new FirmObstacle(testMap, 0.0, new Location(500.0, 100.0));
+        simpleObs = new SimpleObstacle(testMap, 0.0, new Location(700.0, 100.0));
         listOfObstacles = testMap.getListofObstacles();
     }
 
@@ -71,10 +71,10 @@ class ObstacleTest {
     @Test
     @DisplayName("Checks if firm obstacles are not destroyed by getting hit once but damaged.")
     void damageFirmObstacle() {
-        int prevHealth= firmObs.getHealth();
+        int prevHealth = firmObs.getHealth();
         firmObs.damageObstacle();
         assertFalse(collisionHandler.isRemovedObstacle(firmObs));
-        assertEquals(prevHealth, firmObs.getHealth()+1);
+        assertEquals(prevHealth, firmObs.getHealth() + 1);
     }
 
     /**
@@ -87,7 +87,7 @@ class ObstacleTest {
     void damageDuringInfiniteVoidObstacle() {
         assertNotNull(firmObs);
         firmObs.activateInfiniteVoid(true);
-        int prevHealth= firmObs.getHealth();
+        int prevHealth = firmObs.getHealth();
         firmObs.damageObstacle();
         assertEquals(prevHealth, firmObs.getHealth());
     }
@@ -100,11 +100,11 @@ class ObstacleTest {
     @Test
     @DisplayName("Checks if obstacles are appropriately damaged after infinite void gets deactivated.")
     void damageAfterInfiniteVoidObstacle() {
-        int prevHealth= firmObs.getHealth();
+        int prevHealth = firmObs.getHealth();
         firmObs.activateInfiniteVoid(true);
         firmObs.deactivateInfiniteVoidSpell();
         firmObs.damageObstacle();
-        assertEquals(prevHealth, firmObs.getHealth()+1);
+        assertEquals(prevHealth, firmObs.getHealth() + 1);
     }
 
 
