@@ -9,7 +9,7 @@ import java.util.List;
  * Using controller pattern to handle switching to running mode with an observer.
  * a pure fabrication class
  *
- * @author Melis
+ * @author Melis Oktayoglu
  */
 public class SwitchModeHandler {
 
@@ -18,9 +18,14 @@ public class SwitchModeHandler {
     private static SwitchModeHandler onlyInstance = null;
 
     /**
-     * Singleton constructor
+     * Private constructor of the SwitchModeHandler.
+     */
+    public SwitchModeHandler() {}
+
+    /**
+     * Singleton Design Pattern's getInstance method.
      *
-     * @return
+     * @return Single instance of SwitchModeHandler.
      */
     public static synchronized SwitchModeHandler getInstance() {
         if (onlyInstance == null) {
@@ -33,7 +38,7 @@ public class SwitchModeHandler {
     /**
      * Adds panel to subscribers of the event.
      *
-     * @param panel
+     * @param panel Panel to be subscribed to this object.
      */
     public void subscribe(SwitchModeSubscriber panel) {
         subscribers.add(panel);
@@ -42,16 +47,15 @@ public class SwitchModeHandler {
     /**
      * Removes panel from subscribers of the event.
      *
-     * @param panel
+     * @param panel Panel to be unsubscribed to this object.
      */
     public void unSubscribe(SwitchModeSubscriber panel) {
         subscribers.remove(panel);
     }
 
     /**
-     *  Updates subscribers.
+     *  Notifies the subscribers.
      */
-
     public void notifySubscribers() {
         for (SwitchModeSubscriber subscriber : subscribers) {
             subscriber.update();

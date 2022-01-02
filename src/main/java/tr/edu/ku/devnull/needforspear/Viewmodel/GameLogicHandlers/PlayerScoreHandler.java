@@ -17,11 +17,15 @@ public class PlayerScoreHandler {
     private static PlayerScoreHandler onlyInstance;
 
     /**
-     * Constructor for PlayerScoreHandler.
-
+     * Private Constructor for PlayerScoreHandler.
      */
     private PlayerScoreHandler() {}
 
+    /**
+     * Singleton Design Pattern's getInstance method.
+     *
+     * @return Single instance of PlayerScoreHandler.
+     */
     public static PlayerScoreHandler getInstance() {
         if (onlyInstance == null) onlyInstance = new PlayerScoreHandler();
 
@@ -46,11 +50,20 @@ public class PlayerScoreHandler {
      NeedforSpearGame.getInstance().getViewData().getGameView().updatePlayerScore(player.getScore());
     }
 
+    /**
+     * Sets score of the game.
+     *
+     * @param score Score to be set.
+     */
     public void setScore(int score) {
         this.score = score;
     }
 
-
+    /**
+     * Sets if the new map is created.
+     *
+     * @param newMapCreated NewMapCreated value to be set.
+     */
     public void setNewMapCreated(int newMapCreated) {
         this.newMapCreated = newMapCreated;
     }

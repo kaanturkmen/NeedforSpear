@@ -11,20 +11,25 @@ import tr.edu.ku.devnull.needforspear.NeedforSpearGame;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
 /**
  * SpellHandler computes the operations related to spells
  * such as assigning them to giftObstacles
  *
  * @author Can Usluel
  */
-public class SpellHandler{
+public class SpellHandler {
 
     Obstacle currentGiftObstacle;
     private static SpellHandler onlyInstance;
     private Random r = new Random();
 
-    private SpellHandler(){
+    /**
+     * Private constructor of SpellHandler.
+     */
+    private SpellHandler() {
     }
+
     /**
      * Singleton design pattern implementation for the creation of SpellHandler.
      *
@@ -36,26 +41,28 @@ public class SpellHandler{
         }
         return onlyInstance;
     }
+
     /**
+     * Gets the list of obstacles list.
      *
      * @return List<GiftObstacle> containing only the gift obstacles on the map
      */
-    public List<Obstacle> getGiftObstacleList(){
-        List<Obstacle> giftObstacleList= new ArrayList<>();
-        for(Obstacle obstacle : NeedforSpearGame.getInstance().getGameInfo().getGameMap().getListofObstacles()){
-            if(obstacle.getObstacleType().equals(Constants.ObstacleNameConstants.GIFT_OBSTACLE)){
+    public List<Obstacle> getGiftObstacleList() {
+        List<Obstacle> giftObstacleList = new ArrayList<>();
+        for (Obstacle obstacle : NeedforSpearGame.getInstance().getGameInfo().getGameMap().getListofObstacles()) {
+            if (obstacle.getObstacleType().equals(Constants.ObstacleNameConstants.GIFT_OBSTACLE)) {
                 giftObstacleList.add(obstacle);
             }
         }
         return giftObstacleList;
     }
+
     /**
-     * assigns spells for all giftObstacles on the map
-     *
+     * Assigns spells for all giftObstacles on the map
      */
-    public void determineGiftObstaclesSpells(){
+    public void determineGiftObstaclesSpells() {
         //ensuring all the spells will be included
-        List<Obstacle> giftObstacleList= getGiftObstacleList();
+        List<Obstacle> giftObstacleList = getGiftObstacleList();
         currentGiftObstacle = giftObstacleList.get(0);
         System.out.println(currentGiftObstacle);
         currentGiftObstacle.setSpell(SpellFactory.getInstance().getSpell(Constants.SpellNameConstants.CHANCE, currentGiftObstacle));
@@ -65,58 +72,65 @@ public class SpellHandler{
         currentGiftObstacle.setSpell(SpellFactory.getInstance().getSpell(Constants.SpellNameConstants.EXPANSION, currentGiftObstacle));
         currentGiftObstacle = giftObstacleList.get(3);
         currentGiftObstacle.setSpell(SpellFactory.getInstance().getSpell(Constants.SpellNameConstants.UNSTOPPABLE, currentGiftObstacle));
-        for(int i = 4; i<giftObstacleList.size(); i++){
+        for (int i = 4; i < giftObstacleList.size(); i++) {
             currentGiftObstacle = giftObstacleList.get(i);
             currentGiftObstacle.setSpell(setRandomSpell(currentGiftObstacle));
         }
     }
+
     /**
+     * Sets the random spell.
      *
-     * @param giftObstacle
+     * @param giftObstacle Gift obstacle to be spawned these spells.
      * @return Spell to be assigned to the given giftObstacle
      */
-    public Spell setRandomSpell(Obstacle giftObstacle){
+    public Spell setRandomSpell(Obstacle giftObstacle) {
         int randNum = r.nextInt(4);
         Spell spell;
         switch (randNum) {
             case 0:
-                spell = SpellFactory.getInstance().getSpell(Constants.SpellNameConstants.CHANCE,giftObstacle);
+                spell = SpellFactory.getInstance().getSpell(Constants.SpellNameConstants.CHANCE, giftObstacle);
                 break;
             case 1:
-                spell = SpellFactory.getInstance().getSpell(Constants.SpellNameConstants.HEX,giftObstacle);
+                spell = SpellFactory.getInstance().getSpell(Constants.SpellNameConstants.HEX, giftObstacle);
                 break;
             case 2:
-                spell = SpellFactory.getInstance().getSpell(Constants.SpellNameConstants.EXPANSION,giftObstacle);
+                spell = SpellFactory.getInstance().getSpell(Constants.SpellNameConstants.EXPANSION, giftObstacle);
                 break;
             case 3:
-                spell = SpellFactory.getInstance().getSpell(Constants.SpellNameConstants.UNSTOPPABLE,giftObstacle);
+                spell = SpellFactory.getInstance().getSpell(Constants.SpellNameConstants.UNSTOPPABLE, giftObstacle);
                 break;
             default:
                 spell = null;
         }
         return spell;
     }
+
     /**
      * gets the available spell of given type
-     * @param spellType
+     *
+     * @param spellType Type of the spell.
      * @return List of spells
      */
-    public Spell getAvailableSpell(String spellType){
-        if(NeedforSpearGame.getInstance().getGameInfo().getPlayer().getListofSpells().size() > 0){
-            for(Spell spell: NeedforSpearGame.getInstance().getGameInfo().getPlayer().getListofSpells()){
+    public Spell getAvailableSpell(String spellType) {
+        if (NeedforSpearGame.getInstance().getGameInfo().getPlayer().getListofSpells().size() > 0) {
+            for (Spell spell : NeedforSpearGame.getInstance().getGameInfo().getPlayer().getListofSpells()) {
                 System.out.println(spell.getSpellType());
-                if(spell.getSpellType().equals(spellType)){
+                if (spell.getSpellType().equals(spellType)) {
                     return spell;
                 }
             }
         }
         return null;
     }
-    /** Activates the given spell by calling its triggerEffect()
-     * @param spell
+
+    /**
+     * Activates the given spell by calling its triggerEffect()
+     *
+     * @param spell Spell to be activated.
      */
-    public void activateSpell(Spell spell){
-        if(spell != null){
+    public void activateSpell(Spell spell) {
+        if (spell != null) {
             switch (spell.getSpellType()) {
                 case Constants.SpellNameConstants.CHANCE:
                     ChanceGivingSpell chanceGivingSpell = new ChanceGivingSpell(new Size(0, 0), new Location(0, 0));
@@ -141,17 +155,18 @@ public class SpellHandler{
     }
 
     /**
-     * returns the number of spells that player have from given type
-     * @param spellType
-     * @return number of spells that is given spellType
+     * Gets the number of spell in the given type.
+     *
+     * @param spellType Spell type to be checked.
+     * @return returns the number of spells that player have from given type
      */
-    public int getSpellNumber(String spellType){
+    public int getSpellNumber(String spellType) {
         int x = 0;
-        for(Spell spell: NeedforSpearGame.getInstance().getGameInfo().getPlayer().getListofSpells()){
-            if(spell != null) {
+        for (Spell spell : NeedforSpearGame.getInstance().getGameInfo().getPlayer().getListofSpells()) {
+            if (spell != null) {
                 if (spell.getSpellType().equals(spellType)) {
-                    x+=1;
-               }
+                    x += 1;
+                }
             }
         }
         return x;

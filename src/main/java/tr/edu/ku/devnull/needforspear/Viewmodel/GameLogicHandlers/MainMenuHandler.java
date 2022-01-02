@@ -12,7 +12,7 @@ import javax.swing.*;
 
 /**
  * MainMenuHandler is Controller Design Pattern
- * to achieve MVVM Design on authentication actions.
+ * to achieve MVVM Design on main menu actions.
  *
  * @author Kaan Turkmen
  */

@@ -71,7 +71,6 @@ public class SaveLoadHandler implements DatabaseSaveLoadSubscriber {
      */
     @Override
     public void gameMapResponseArrived(Integer databaseResponse, GameMap gameMap) {
-        // Todo Send this request to GUI to create map.
         if (NeedforSpearGame.getInstance().getCurrentState() instanceof GameViewState && !(NeedforSpearGame.getInstance().getCurrentState() instanceof MainMenuViewState)) {
             if (databaseResponse.equals(DatabaseCredentials.DATABASE_SUCCESS)) {
                 if (gameMap != null) {
@@ -96,7 +95,8 @@ public class SaveLoadHandler implements DatabaseSaveLoadSubscriber {
     }
 
     /**
-     * returns the score of player that is saved to database
+     * Returns the score of player that is saved to database
+     *
      * @return int indicating the previous score of player
      */
     public int getPreviousScore() {
@@ -104,16 +104,18 @@ public class SaveLoadHandler implements DatabaseSaveLoadSubscriber {
     }
 
     /**
-     * sets the previous score of player to the given value
-     * @param previousScore
+     * Sets the previous score of player to the given value
+     *
+     * @param previousScore Previous score of the player.
      */
     public void setPreviousScore(int previousScore) {
         this.previousScore = previousScore;
     }
 
     /**
-     * returns the number of lives of player that is saved to database
-     * @return int indicating the previous number of lives of player
+     * Returns the number of lives of player that is saved to database
+     *
+     * @return Integer indicating the previous number of lives of player
      */
     public int getPreviousLives() {
         return previousLives;
@@ -121,7 +123,8 @@ public class SaveLoadHandler implements DatabaseSaveLoadSubscriber {
 
     /**
      * sets the previous lives of player to the given value
-     * @param previousLives
+     *
+     * @param previousLives Previous lives of the player.
      */
     public void setPreviousLives(int previousLives) {
         this.previousLives = previousLives;
@@ -129,7 +132,8 @@ public class SaveLoadHandler implements DatabaseSaveLoadSubscriber {
 
     /**
      * sets the previous spells of player to the given value
-     * @param previousSpells
+     *
+     * @param previousSpells Previous spells of the player.
      */
     public void setPreviousSpells(List<Spell> previousSpells) {
         this.previousSpells = previousSpells;
@@ -137,10 +141,11 @@ public class SaveLoadHandler implements DatabaseSaveLoadSubscriber {
 
     /**
      * creates new instances of spells that are saved in database to copy the spells that player has.
-     * @param prevSpellList
+     *
+     * @param prevSpellList Previous spell list of the player.
      */
-    public void initializePreviousSpells(List<Spell> prevSpellList){
-        if(prevSpellList.size() > 0){
+    public void initializePreviousSpells(List<Spell> prevSpellList) {
+        if (prevSpellList.size() > 0) {
             previousSpells = new ArrayList<>();
             for (Spell item : prevSpellList) {
                 previousSpells.add(new Spell(item.getSize(), item.getLocation(), item.getSpellColor(), item.getSpellType()));
@@ -151,11 +156,12 @@ public class SaveLoadHandler implements DatabaseSaveLoadSubscriber {
     /**
      * copies previousSpells and returns new list of spells so that original spells
      * that are saved to the database are preserved
+     *
      * @return List<Spell> indicating a copy of the spells that are saved in database
      */
-    public List<Spell> copyPreviousSpells(){
+    public List<Spell> copyPreviousSpells() {
         List<Spell> copy = new ArrayList<>();
-        if(previousSpells != null) {
+        if (previousSpells != null) {
             for (Spell item : previousSpells) {
                 copy.add(new Spell(item.getSize(), item.getLocation(), item.getSpellColor(), item.getSpellType()));
             }

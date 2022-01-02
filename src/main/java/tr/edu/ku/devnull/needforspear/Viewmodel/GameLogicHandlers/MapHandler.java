@@ -4,7 +4,12 @@ import tr.edu.ku.devnull.needforspear.Model.GameData.Constants;
 import tr.edu.ku.devnull.needforspear.Model.Obstacle.Obstacle;
 import tr.edu.ku.devnull.needforspear.NeedforSpearGame;
 
+/**
+ * MapHandler is Controller Design Pattern
+ * to achieve MVVM Design on map actions.
+ */
 public class MapHandler {
+
     /**
      * Finds the number of simple obstacles in game map.
      *

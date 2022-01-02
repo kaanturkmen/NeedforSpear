@@ -39,7 +39,7 @@ public class MovementHandler {
      */
     public void bounceSphereFromFrame() {
         getSphereCurrentPhysics();
-        CollisionData collisionData = physicsEngine.reflect(new CollisionData(new Location(x,y), new Speed(new Double(dx).longValue(),new Double(dy).longValue())));
+        CollisionData collisionData = physicsEngine.reflect(new CollisionData(new Location(x, y), new Speed(new Double(dx).longValue(), new Double(dy).longValue())));
         checkIfObstacleBelowPhantasm();
         updateSphereMovement(collisionData);
     }
@@ -78,13 +78,13 @@ public class MovementHandler {
         CollisionData collisionData = null;
 
         try {
-            collisionData = physicsEngine.reflect(new CollisionData(new Location(x,y), new Speed(new Double(dx).longValue(),new Double(dy).longValue())), obstacle);
+            collisionData = physicsEngine.reflect(new CollisionData(new Location(x, y), new Speed(new Double(dx).longValue(), new Double(dy).longValue())), obstacle);
         } catch (Exception e) {
             System.out.println("Found an exception about obstacle placement.");
         }
 
 
-        if (collisionData!= null)  {
+        if (collisionData != null) {
             SoundHandler.getInstance().playSound("obstacleHitEffect.wav");
             updateSphereMovement(collisionData);
         }
@@ -100,14 +100,14 @@ public class MovementHandler {
         getSphereCurrentPhysics();
         dy *= -1;
         y = y - 2 * radius;
-        updateSphereMovement(new CollisionData(new Location(x, y), new Speed(new Double(dx).longValue(),new Double(dy).longValue())));
+        updateSphereMovement(new CollisionData(new Location(x, y), new Speed(new Double(dx).longValue(), new Double(dy).longValue())));
     }
 
     /**
      * Obstacle's horizontal movement
      *
-     * @param obstacle
-     * @param listofObstacles
+     * @param obstacle        Obstacle to be moved.
+     * @param listofObstacles List of obstacles to be updated.
      * @return
      */
     public Location moveObstacleHorizontally(Obstacle obstacle, List<Obstacle> listofObstacles) {
@@ -117,8 +117,7 @@ public class MovementHandler {
 
         double dx = obstacle.getSpeed();
 
-        for (int i = 0; i < listofObstacles.size(); i++) {
-            Obstacle obs = listofObstacles.get(i);
+        for (Obstacle obs : listofObstacles) {
             if (obs != obstacle) {
                 if (collisionHandler.collision(obs, obstacle) || x + dx < 0 || x + dx + width > Constants.UIConstants.INITIAL_SCREEN_WIDTH) {
                     dx *= -1;
@@ -135,27 +134,33 @@ public class MovementHandler {
     /**
      * This method handles the circular motion of Obstacles.
      *
-     * @param obstacle
-     * @return
+     * @param obstacle Obstacle to be updated.
+     * @return New location of the obstacle.
      */
-    public Location circularMotion(Obstacle obstacle){
+    public Location circularMotion(Obstacle obstacle) {
         int width = obstacle.getSize().getWidth();
         int height = obstacle.getSize().getLength();
         double circle_center_x = obstacle.getOrbitCenter().getXCoordinates();
         double circle_center_y = obstacle.getOrbitCenter().getYCoordinates();
 
-        int x = (int) (Math.cos(angleObstacle) * width/3 + circle_center_x);
-        int y = (int) (Math.sin(angleObstacle) * height/3 + circle_center_y);
+        int x = (int) (Math.cos(angleObstacle) * width / 3 + circle_center_x);
+        int y = (int) (Math.sin(angleObstacle) * height / 3 + circle_center_y);
         angleObstacle += 0.001;
 
-        return new Location(x- width/2,y-height/2);
+        return new Location(x - width / 2, y - height / 2);
     }
 
-    public Location moveObstacleDown(Obstacle obstacle){
+    /**
+     * Moves obstacle down as a location.
+     *
+     * @param obstacle Obstacle to be updated.
+     * @return New location of the obstacle.
+     */
+    public Location moveObstacleDown(Obstacle obstacle) {
 
         double y = obstacle.getLocation().getYCoordinates();
         double downSpeed = Math.abs(obstacle.getSpeed());
-        return new Location(obstacle.getLocation().getXCoordinates(), y +  downSpeed);
+        return new Location(obstacle.getLocation().getXCoordinates(), y + downSpeed);
     }
 
     /**
@@ -171,20 +176,19 @@ public class MovementHandler {
         int length = spell.getSize().getLength();
         int dy = 1;
         if (collisionHandler.collision(NoblePhantasm.getInstance(), spell)) {
-            if(spell.getSpellType().equals(Constants.SpellNameConstants.CHANCE)) {
+            if (spell.getSpellType().equals(Constants.SpellNameConstants.CHANCE)) {
                 SpellAnimator.listOfMovingSpells.remove(spell);
                 PlayerLivesHandler.getInstance().increasePlayerLives(NeedforSpearGame.getInstance().getGameInfo().getPlayer());
-            }
-            else {
+            } else {
                 NeedforSpearGame.getInstance().getGameInfo().getPlayer().getListofSpells().add(spell);
                 SpellAnimator.listOfMovingSpells.remove(spell);
                 NeedforSpearGame.getInstance().getViewData().getGameView().updateSpellNumbers();
                 System.out.println(spell);
             }
-        }else if(y + dy + length > Constants.UIConstants.INITIAL_SCREEN_HEIGHT){
+        } else if (y + dy + length > Constants.UIConstants.INITIAL_SCREEN_HEIGHT) {
             SpellAnimator.listOfMovingSpells.remove(spell);
         }
-        return new Location(spell.getLocation().getXCoordinates(), y+dy);
+        return new Location(spell.getLocation().getXCoordinates(), y + dy);
 
 
     }
@@ -192,8 +196,8 @@ public class MovementHandler {
     /**
      * Updates the movement of the bullet based on x and y coordinates.
      *
-     * @param bullet
-     * @return
+     * @param bullet Bullet to be updated.
+     * @return New location of the bullet.
      */
     public Location updateBulletMovement(Bullet bullet) {
         Location loc = bullet.getLocation();
@@ -206,23 +210,24 @@ public class MovementHandler {
         x += dx;
         y += dy;
 
-        return new Location (x,y);
+        return new Location(x, y);
     }
 
 
     /**
      * Updates Sphere's location and speed
      *
+     * @param collisionData Collision data of the sphere.
      */
     public void updateSphereMovement(CollisionData collisionData) {
         double x = collisionData.getCurrentLocation().getXCoordinates();
         double y = collisionData.getCurrentLocation().getYCoordinates();
-        x +=collisionData.getCurrentSpeed().getSpeedOnXAxis();
+        x += collisionData.getCurrentSpeed().getSpeedOnXAxis();
         y += collisionData.getCurrentSpeed().getSpeedOnYAxis();
 
         //update location and speed
         NeedforSpearGame.getInstance().getGameInfo().getSphere().setLocation(new Location(x, y));
-        NeedforSpearGame.getInstance().getGameInfo().getSphere().setSpeed(new Speed(new Double(collisionData.getCurrentSpeed().getSpeedOnXAxis()).longValue(),  new Double(collisionData.getCurrentSpeed().getSpeedOnYAxis()).longValue()));
+        NeedforSpearGame.getInstance().getGameInfo().getSphere().setSpeed(new Speed(new Double(collisionData.getCurrentSpeed().getSpeedOnXAxis()).longValue(), new Double(collisionData.getCurrentSpeed().getSpeedOnYAxis()).longValue()));
     }
 
     /**
@@ -252,8 +257,9 @@ public class MovementHandler {
 
     /**
      * Checks the collision of bullets and obstacle.
-     * @param listOfObstacles
-     * @param bullet
+     *
+     * @param listOfObstacles List of obstacles to be checked collision through.
+     * @param bullet          Bullet to be checked.
      */
     public void checkForCollisions(List<Obstacle> listOfObstacles, Bullet bullet) {
         //collision with Obstacles - Bullet
@@ -282,16 +288,16 @@ public class MovementHandler {
     /**
      * animates only the explosive obstacles
      *
-     * @param g2       2D graphics
+     * @param g2                2DGraphics to be rendered.
      * @param explosiveObstacle explosive obstacle
      */
-    public void explosiveAnimation(Graphics2D g2, Obstacle explosiveObstacle){
+    public void explosiveAnimation(Graphics2D g2, Obstacle explosiveObstacle) {
 
-        if (collisionHandler.isRemovedObstacle(explosiveObstacle)){
+        if (collisionHandler.isRemovedObstacle(explosiveObstacle)) {
 
             Location newLoc = moveObstacleDown(explosiveObstacle);
             explosiveObstacle.setLocation(newLoc);
-        }else{
+        } else {
             if (!checkIfOrbitCollides(explosiveObstacle.retrieveOrbitBounds())) {
                 Location newLoc = circularMotion(explosiveObstacle);
                 explosiveObstacle.setLocation(newLoc);
@@ -302,10 +308,9 @@ public class MovementHandler {
     /**
      * If collision occurs with explosive orbit, returns true, else returns false.
      *
-     * @param orbit
-     * @return
+     * @param orbit Orbit of the obstacle.
+     * @return Boolean indicates that if there is a collision
      */
-
     public boolean checkIfOrbitCollides(Rectangle orbit) {
 
         for (int i = 0; i < ObstacleAnimator.listofObstacles.size(); i++) {
@@ -320,17 +325,15 @@ public class MovementHandler {
     /**
      * When the collusion occurs, obstacles are removed accordingly.
      *
-     * @param obstacle
+     * @param obstacle Obstacle to be checked.
      */
-
-    public void removingObstacles(Obstacle obstacle){
+    public void removingObstacles(Obstacle obstacle) {
         double y_bottom = obstacle.getLocation().getYCoordinates() + obstacle.getSize().getLength();
-        //TODO carry all removals here EXPLOSIVE REMOVAL
         if (collisionHandler.isRemovedObstacle(obstacle) && obstacle.getObstacleType().equals(Constants.ObstacleNameConstants.EXPLOSIVE_OBSTACLE) &&
-                (collisionHandler.collisionWithExplosive(obstacle,NoblePhantasm.getInstance()) ||
-                        y_bottom > Constants.UIConstants.INITIAL_SCREEN_HEIGHT )){
+                (collisionHandler.collisionWithExplosive(obstacle, NoblePhantasm.getInstance()) ||
+                        y_bottom > Constants.UIConstants.INITIAL_SCREEN_HEIGHT)) {
 
-            if (collisionHandler.collisionWithExplosive(obstacle,NoblePhantasm.getInstance())){
+            if (collisionHandler.collisionWithExplosive(obstacle, NoblePhantasm.getInstance())) {
                 PlayerLivesHandler.getInstance().notifyPlayerExplosiveFall(NoblePhantasm.getInstance());
                 System.out.println("player hit by explosive");
             }
@@ -343,7 +346,7 @@ public class MovementHandler {
     /**
      * Animation of sphere movement
      *
-     * @param g
+     * @param g Graphics to be drawn.
      */
     public void sphereMovement(Graphics g) {
         MovementHandler bounceHandler = new MovementHandler();
@@ -357,7 +360,7 @@ public class MovementHandler {
      * To appropriately animate sphere checks for collisions
      * with different game objects
      *
-     * @param listofObstacles
+     * @param listofObstacles List of obstacles to be checked through.
      */
     public void checkForCollisions(List<Obstacle> listofObstacles) {
         CollisionHandler collisionHandler = new CollisionHandler();
@@ -411,12 +414,12 @@ public class MovementHandler {
     }
 
     /**
-     * @return double x location of NoblePhantasm.
      * This method moves the NoblePhantasm by multiplying time passed with a proper speed, which is L/seconds, according to its direction and the location is updated accordingly.
      * If the NoblePhantasm is speeding, it goes with a 2L/seconds.
+     *
+     * @return double x location of NoblePhantasm.
      */
-
-    public double movementOfNoblePhantasm(){
+    public double movementOfNoblePhantasm() {
         noblePhantasm = NoblePhantasm.getInstance();
         Long currentTime = System.currentTimeMillis();
         Long lastUpdateTime = noblePhantasm.getLastUpdateTime();
@@ -424,23 +427,22 @@ public class MovementHandler {
         double currentX = noblePhantasm.getLocation().getXCoordinates();
 
         if (noblePhantasm.isMovingLeft()) {
-            if(currentX<0){
+            if (currentX < 0) {
                 currentX = 0;
             }
-            if(noblePhantasm.isSpeeding()){
-                currentX =  (currentX - (1.0 * Constants.UIConstants.INITIAL_SCREEN_WIDTH / 5.0 / 1000.0) * moveTimeDiff);
-            }
-            else {
+            if (noblePhantasm.isSpeeding()) {
+                currentX = (currentX - (1.0 * Constants.UIConstants.INITIAL_SCREEN_WIDTH / 5.0 / 1000.0) * moveTimeDiff);
+            } else {
                 currentX = (currentX - (1.0 * Constants.UIConstants.INITIAL_SCREEN_WIDTH / 10.0 / 1000.0) * moveTimeDiff);
             }
 
         } else if (noblePhantasm.isMovingRight()) {
-            if(currentX>Constants.UIConstants.INITIAL_SCREEN_WIDTH-noblePhantasm.getSize().getWidth()){
-                currentX = Constants.UIConstants.INITIAL_SCREEN_WIDTH-noblePhantasm.getSize().getWidth();
+            if (currentX > Constants.UIConstants.INITIAL_SCREEN_WIDTH - noblePhantasm.getSize().getWidth()) {
+                currentX = Constants.UIConstants.INITIAL_SCREEN_WIDTH - noblePhantasm.getSize().getWidth();
             }
             if (noblePhantasm.isSpeeding()) {
                 currentX = (currentX + (1.0 * Constants.UIConstants.INITIAL_SCREEN_WIDTH / 5.0 / 1000.0) * moveTimeDiff);
-            }else {
+            } else {
                 currentX = (currentX + (1.0 * Constants.UIConstants.INITIAL_SCREEN_WIDTH / 10.0 / 1000.0) * moveTimeDiff);
             }
 
@@ -452,8 +454,7 @@ public class MovementHandler {
     /**
      * NoblePhantasm rotation is handled here.
      */
-
-    public void rotationOfNoblePhantasm(){
+    public void rotationOfNoblePhantasm() {
         Long currentTime = System.currentTimeMillis();
         Long lastUpdateTime = noblePhantasm.getLastUpdateTime();
 

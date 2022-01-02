@@ -14,7 +14,6 @@ import java.util.List;
  *
  * @author Melis Oktayoğlu
  */
-
 public class PlayerLivesHandler {
     //list of players and spheres linked by their indices,
     //preparation for multiple player mode
@@ -27,8 +26,9 @@ public class PlayerLivesHandler {
      * Constructor adds the new player and sphere pair to
      * their corresponding lists
      *
-     * @param player
-     * @param sphere
+     * @param player Current player.
+     * @param sphere Sphere of the map.
+     * @param noblePhantasm Noble phantasm of the map.
      */
     private PlayerLivesHandler(Player player, Sphere sphere, NoblePhantasm noblePhantasm) {
         playerList.add(player);
@@ -36,6 +36,11 @@ public class PlayerLivesHandler {
         noblePhantasmList.add(noblePhantasm);
     }
 
+    /**
+     * Singleton Design Pattern's getInstance method.
+     *
+     * @return Single instance of PlayerLivesHandler.
+     */
     public static PlayerLivesHandler getInstance() {
         if (onlyInstance == null) onlyInstance = new PlayerLivesHandler(NeedforSpearGame.getInstance().getGameInfo().getPlayer(), NeedforSpearGame.getInstance().getGameInfo().getSphere(), NoblePhantasm.getInstance());
 
@@ -46,7 +51,7 @@ public class PlayerLivesHandler {
     /**
      * Notify player on sphere's fall
      *
-     * @param sphere
+     * @param sphere Sphere data to notify subscribers.
      */
     public void notifyPlayerSphereFall(Sphere sphere) {
         int index = sphereList.indexOf(sphere);
@@ -56,6 +61,11 @@ public class PlayerLivesHandler {
         //if (currrentPlayer.getLives() <= 0) endGame(currrentPlayer);
     }
 
+    /**
+     * Notify player on explosive obstacle.
+     *
+     * @param noblePhantasm Noble phantasm data to notify subscribers.
+     */
     public void notifyPlayerExplosiveFall(NoblePhantasm noblePhantasm) {
         int index = noblePhantasmList.indexOf(noblePhantasm);
         Player currentPlayer = playerList.get(index);
@@ -74,15 +84,20 @@ public class PlayerLivesHandler {
         NeedforSpearGame.getInstance().getViewData().getGameView().updatePlayerLives(player.getLives());
     }
 
+    /**
+     * Gets players health.
+     *
+     * @return Integer value of players health.
+     */
     public int getPlayerHealth(){
         return playerList.get(0).getLives();
     }
 
-    /**
-     * Ending the game if lives ended
-     *
-     * @param player
-     */
+//    /**
+//     * Ending the game if lives ended
+//     *
+//     * @param player
+//     */
 //    public void endGame(Player player) {
 //        JOptionPane.showMessageDialog(NeedforSpearGame.getMainFrame(), "You have lost", "Alert", JOptionPane.WARNING_MESSAGE);
 //        player.setLives(3);
