@@ -6,14 +6,18 @@ import tr.edu.ku.devnull.needforspear.Model.Obstacle.Obstacle;
 import tr.edu.ku.devnull.needforspear.Model.UIModels.NoblePhantasm;
 import tr.edu.ku.devnull.needforspear.Viewmodel.GameHandlers.SoundHandler;
 
+/**
+ * PhysicsEngine is created to deal with the collisions and hits.
+ */
 public class PhysicsEngine {
 
     /**
      * Creates a reflection of the given data about the sphere.
      *
-     * @requires incident != null.
-     * @effects Creates a new data with the new location and speed to be reflected.
-     * @modifies None
+     * REQUIRES: incident != null.
+     * EFFECTS: Creates a new data with the new location and speed to be reflected.
+     * MODIFIES: None
+     *
      * @param incident Data of the incident vector.
      * @return Returns a collision data of how it is going to be reflected.
      */
@@ -39,9 +43,10 @@ public class PhysicsEngine {
     /**
      * Creates a reflection of the given data about the sphere.
      *
-     * @requires incident != null, obstacle's X and Y coordinates should be inside of the gameMap.
-     * @effects Creates a new data with the new location and speed to be reflected.
-     * @modifies None
+     * REQUIRES: incident != null, obstacle's X and Y coordinates should be inside of the gameMap.
+     * EFFECTS: Creates a new data with the new location and speed to be reflected.
+     * MODIFIES: None
+     *
      * @param incident Data of the incident vector.
      * @return Returns a collision data of how it is going to be reflected.
      */
@@ -104,6 +109,14 @@ public class PhysicsEngine {
         return result;
     }
 
+    /**
+     * Performs collision event between sphere and the noble phantasm.
+     *
+     * @param incident Incident data.
+     * @param noblePhantasm Noble phantasm of the map.
+     *
+     * @return CollisionData of the resultant vector.
+     */
     public CollisionData reflect(CollisionData incident, NoblePhantasm noblePhantasm) {
         CollisionData result = new CollisionData(incident.getCurrentLocation(), incident.getCurrentSpeed());
 
@@ -211,6 +224,14 @@ public class PhysicsEngine {
         return result;
     }*/
 
+    /**
+     * Gets the resultant vector.
+     *
+     * @param x X value of the vector.
+     * @param y Y value of the vector.
+     *
+     * @return Result of the operation.
+     */
     private Double getResultant(Double x, Double y) {
         return Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));
     }
