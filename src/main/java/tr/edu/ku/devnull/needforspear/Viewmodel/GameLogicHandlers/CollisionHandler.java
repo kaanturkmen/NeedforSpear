@@ -177,7 +177,7 @@ public class CollisionHandler {
         boolean isRemoved = obstacle.getHealth() <= 0;
         if (isRemoved) {
             if (obstacle.getObstacleType().equals(Constants.ObstacleNameConstants.GIFT_OBSTACLE)) {
-                SpellAnimator.listOfMovingSpells.add(obstacle.getSpell());
+                SpellAnimator.getListOfMovingSpells().add(obstacle.getSpell());
             }
             //listofObstacles.remove(obstacle);
         }

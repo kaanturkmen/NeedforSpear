@@ -2,12 +2,10 @@ package tr.edu.ku.devnull.needforspear.View.PlayViews.Animators;
 
 import tr.edu.ku.devnull.needforspear.Model.GameData.GameMode;
 import tr.edu.ku.devnull.needforspear.Model.GameData.Location;
-import tr.edu.ku.devnull.needforspear.Model.Obstacle.Obstacle;
 import tr.edu.ku.devnull.needforspear.Model.Spell.Spell;
 import tr.edu.ku.devnull.needforspear.NeedforSpearGame;
 import tr.edu.ku.devnull.needforspear.View.PlayViews.AnimatorStrategy;
 import tr.edu.ku.devnull.needforspear.Viewmodel.GameLogicHandlers.MovementHandler;
-import tr.edu.ku.devnull.needforspear.Viewmodel.GameLogicHandlers.SpellHandler;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -19,13 +17,20 @@ import java.util.List;
  * @author Melis Oktayoğlu
  */
 public class SpellAnimator implements AnimatorStrategy {
-    public static List<Spell> listOfMovingSpells;
-    private final List<Obstacle> listOfGiftObstacles;
+    private static List<Spell> listOfMovingSpells;
     private final MovementHandler bounceHandler = new MovementHandler();
 
     public SpellAnimator() {
         listOfMovingSpells = new ArrayList<>();
-        this.listOfGiftObstacles = SpellHandler.getInstance().getGiftObstacleList();
+    }
+
+    /**
+     * Gets the list of spell which is moving.
+     *
+     * @return List of the spells.
+     */
+    public static List<Spell> getListOfMovingSpells() {
+        return listOfMovingSpells;
     }
 
     /**
@@ -48,6 +53,8 @@ public class SpellAnimator implements AnimatorStrategy {
      */
     public void movementOfSpells(Graphics2D g2) {
         if (NeedforSpearGame.getInstance().getGameInfo().getGameMode() != GameMode.BUILDING_MODE) {
+
+            // Do not use enhanced for: Since enhanced for uses iterator to iterate, it is not compatible with Java Swing Thread.
             for (int i = 0; i < listOfMovingSpells.size(); i++) {
                 Spell spell = listOfMovingSpells.get(i);
                 if (spell != null) {

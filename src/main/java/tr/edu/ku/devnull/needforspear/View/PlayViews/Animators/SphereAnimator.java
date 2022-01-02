@@ -8,6 +8,7 @@ import tr.edu.ku.devnull.needforspear.Model.Obstacle.Obstacle;
 import tr.edu.ku.devnull.needforspear.Model.UIModels.NoblePhantasm;
 import tr.edu.ku.devnull.needforspear.NeedforSpearGame;
 import tr.edu.ku.devnull.needforspear.View.PlayViews.AnimatorStrategy;
+import tr.edu.ku.devnull.needforspear.Viewmodel.GameLogicHandlers.BackgroundHandler;
 import tr.edu.ku.devnull.needforspear.Viewmodel.GameLogicHandlers.MovementHandler;
 
 import java.awt.*;
@@ -20,11 +21,9 @@ import java.util.List;
  */
 
 public class SphereAnimator implements AnimatorStrategy {
-
-    public static List<Obstacle> listofObstacles;
-    int radius = Constants.ProportionConstants.RADIUS_OF_THE_SPHERE;
-    Image sphereImage;
-    MovementHandler movementHandler = new MovementHandler();
+    private static List<Obstacle> listofObstacles;
+    private final Image sphereImage;
+    private final MovementHandler movementHandler = new MovementHandler();
 
     /**
      * Constructor of the SphereAnimator.
@@ -36,19 +35,16 @@ public class SphereAnimator implements AnimatorStrategy {
             NeedforSpearGame.getInstance().getGameInfo().getSphere().setSpeed(new Speed(2, 2));
         } else NeedforSpearGame.getInstance().getGameInfo().getSphere().setSpeed(new Speed(4, 4));
         SphereAnimator.listofObstacles = listofObstacles;
-        sphereImage = getSphereImage(Constants.UIConstants.SPHERE_IMAGE);
+        sphereImage = new BackgroundHandler().getBackgroundImage(Constants.UIConstants.SPHERE_IMAGE);
     }
 
     /**
-     * Creates a sphere image and scaling it.
+     * Gets the list of obstacle.
      *
-     * @param path Path of the sphere image.
-     * @return Image of the sphere.
+     * @return List of obstacle.
      */
-    public Image getSphereImage(String path) {
-        return Toolkit.getDefaultToolkit().getImage(Constants.UIConstants.USER_DIRECTORY_TO_RESOURCE_FOLDER + path)
-                .getScaledInstance(radius * 2, radius * 2, Image.SCALE_SMOOTH);
-
+    public static List<Obstacle> getListofObstacles() {
+        return listofObstacles;
     }
 
     /**
@@ -65,15 +61,14 @@ public class SphereAnimator implements AnimatorStrategy {
             //new image on the new location
             int x_coordinates_loc = (int) NeedforSpearGame.getInstance().getGameInfo().getSphere().getLocation().getXCoordinates();
             int y_coordinates_loc = (int) NeedforSpearGame.getInstance().getGameInfo().getSphere().getLocation().getYCoordinates();
-            g.drawImage(sphereImage, x_coordinates_loc, y_coordinates_loc, radius * 2, radius * 2, null);
+            g.drawImage(sphereImage, x_coordinates_loc, y_coordinates_loc, Constants.ProportionConstants.RADIUS_OF_THE_SPHERE * 2, Constants.ProportionConstants.RADIUS_OF_THE_SPHERE * 2, null);
         } else {
             NoblePhantasm noblePhantasm = NoblePhantasm.getInstance();
-            Location followNoblePhantasm = new Location((noblePhantasm.getLocation().getXCoordinates() + (noblePhantasm.getSize().getWidth() / 2.0) - radius), (noblePhantasm.getLocation().getYCoordinates() - 2 * radius));
+            Location followNoblePhantasm = new Location((noblePhantasm.getLocation().getXCoordinates() + (noblePhantasm.getSize().getWidth() / 2.0) - Constants.ProportionConstants.RADIUS_OF_THE_SPHERE), (noblePhantasm.getLocation().getYCoordinates() - 2 * Constants.ProportionConstants.RADIUS_OF_THE_SPHERE));
             NeedforSpearGame.getInstance().getGameInfo().getSphere().setLocation(followNoblePhantasm);
             int x_coordinates_loc = (int) followNoblePhantasm.getXCoordinates();
             int y_coordinates_loc = (int) followNoblePhantasm.getYCoordinates();
-            g.drawImage(sphereImage, x_coordinates_loc, y_coordinates_loc, radius * 2, radius * 2, null);
+            g.drawImage(sphereImage, x_coordinates_loc, y_coordinates_loc, Constants.ProportionConstants.RADIUS_OF_THE_SPHERE * 2, Constants.ProportionConstants.RADIUS_OF_THE_SPHERE * 2, null);
         }
     }
-
 }

@@ -97,9 +97,9 @@ public class GamePanel extends JPanel implements ActionListener, MouseMotionList
                     setIsHexActivated(false);
                 }
                 bulletAnimator.draw(g);
-                if (BulletAnimator.listOfBullets.isEmpty()) {
-                    BulletAnimator.listOfBullets.add(Bullet.createLeftBullet());
-                    BulletAnimator.listOfBullets.add(Bullet.createRightBullet());
+                if (BulletAnimator.getListOfBullets().isEmpty()) {
+                    BulletAnimator.getListOfBullets().add(Bullet.createLeftBullet());
+                    BulletAnimator.getListOfBullets().add(Bullet.createRightBullet());
                 }
             }
         }

@@ -6,6 +6,7 @@ import tr.edu.ku.devnull.needforspear.Model.GameData.Location;
 import tr.edu.ku.devnull.needforspear.Model.Obstacle.Obstacle;
 import tr.edu.ku.devnull.needforspear.NeedforSpearGame;
 import tr.edu.ku.devnull.needforspear.View.PlayViews.AnimatorStrategy;
+import tr.edu.ku.devnull.needforspear.Viewmodel.GameLogicHandlers.BackgroundHandler;
 import tr.edu.ku.devnull.needforspear.Viewmodel.GameLogicHandlers.MovementHandler;
 
 import java.awt.*;
@@ -19,15 +20,9 @@ import java.util.List;
  * @author Melis Oktayoğlu
  */
 public class ObstacleAnimator implements AnimatorStrategy {
-
-    public static List<Obstacle> listofObstacles;
-    Image explosiveObstacleImage;
-    Image firmObstacleImage;
-    Image simpleObstacleImage;
-    Image giftObstacleImage;
-    Image hollowObstacleImage;
+    private static List<Obstacle> listofObstacles;
+    private final Image explosiveObstacleImage, firmObstacleImage, simpleObstacleImage, giftObstacleImage, hollowObstacleImage;
     private final MovementHandler movementHandler = new MovementHandler();
-
 
     /**
      * Constructor of ObstacleAnimator.
@@ -35,27 +30,22 @@ public class ObstacleAnimator implements AnimatorStrategy {
      * @param listofObstacles List of obstacles to be set.
      */
     public ObstacleAnimator(List<Obstacle> listofObstacles) {
-
         ObstacleAnimator.listofObstacles = listofObstacles;
-        explosiveObstacleImage = getObstacleImage(Constants.UIConstants.EXPLOSIVE_OBSTACLE);
-        firmObstacleImage = getObstacleImage(Constants.UIConstants.FIRM_OBSTACLE);
-        giftObstacleImage = getObstacleImage(Constants.UIConstants.GIFT_OBSTACLE);
-        simpleObstacleImage = getObstacleImage(Constants.UIConstants.SIMPLE_OBSTACLE);
-        hollowObstacleImage = getObstacleImage(Constants.UIConstants.HOLLOW_OBSTACLE);
+        explosiveObstacleImage = new BackgroundHandler().getBackgroundImage(Constants.UIConstants.EXPLOSIVE_OBSTACLE);
+        firmObstacleImage = new BackgroundHandler().getBackgroundImage(Constants.UIConstants.FIRM_OBSTACLE);
+        giftObstacleImage = new BackgroundHandler().getBackgroundImage(Constants.UIConstants.GIFT_OBSTACLE);
+        simpleObstacleImage = new BackgroundHandler().getBackgroundImage(Constants.UIConstants.SIMPLE_OBSTACLE);
+        hollowObstacleImage = new BackgroundHandler().getBackgroundImage(Constants.UIConstants.HOLLOW_OBSTACLE);
     }
 
     /**
-     * Creates a obstacle image and scaling it.
+     * Gets the list of obstacles.
      *
-     * @param path Path of the obstacle image.
-     * @return Image of the obstacle.
+     * @return List of obstacles.
      */
-    public Image getObstacleImage(String path) {
-        return Toolkit.getDefaultToolkit().getImage(Constants.UIConstants.USER_DIRECTORY_TO_RESOURCE_FOLDER + path)
-                .getScaledInstance(Constants.ProportionConstants.RADIUS_OF_EXPLOSIVE_OBSTACLE * 2, Constants.ProportionConstants.RADIUS_OF_EXPLOSIVE_OBSTACLE * 2, Image.SCALE_SMOOTH);
-
+    public static List<Obstacle> getListofObstacles() {
+        return listofObstacles;
     }
-
 
     /**
      * Override on AnimatorStrategy to draw obstacle graphics
@@ -98,7 +88,6 @@ public class ObstacleAnimator implements AnimatorStrategy {
         movementOfObstacles(g2);
 
     }
-
 
     /**
      * To draw single obstacles during build mode
@@ -176,9 +165,9 @@ public class ObstacleAnimator implements AnimatorStrategy {
     /**
      * draws the firm obstacles' health inside their rectangle
      *
-     * @param g2
+     * @param g2 Graphics2D to be rendered.
      */
-    //solution taken from https://coderanch.com/t/342611/java/Text-surrounded-rectangle
+    // Solution taken from https://coderanch.com/t/342611/java/Text-surrounded-rectangle
     private void displayFirmObstacleHealth(Graphics2D g2, Obstacle obstacle, Location location) {
         Font font = g2.getFont().deriveFont(16f);
         g2.setFont(font);
@@ -193,5 +182,4 @@ public class ObstacleAnimator implements AnimatorStrategy {
         g2.setColor(Color.BLACK);
         g2.drawString(text, sx, sy);
     }
-
 }

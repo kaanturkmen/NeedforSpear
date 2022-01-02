@@ -29,8 +29,8 @@ public class MagicalHexSpell extends Spell {
     @Override
     public void triggerEffect() {
         super.triggerEffect();
-        BulletAnimator.listOfBullets.add(Bullet.createLeftBullet());
-        BulletAnimator.listOfBullets.add(Bullet.createRightBullet());
+        BulletAnimator.getListOfBullets().add(Bullet.createLeftBullet());
+        BulletAnimator.getListOfBullets().add(Bullet.createRightBullet());
         MagicalHexHandler.getInstance().notifySubscribers();
     }
 

@@ -177,16 +177,16 @@ public class MovementHandler {
         int dy = 1;
         if (collisionHandler.collision(NoblePhantasm.getInstance(), spell)) {
             if (spell.getSpellType().equals(Constants.SpellNameConstants.CHANCE)) {
-                SpellAnimator.listOfMovingSpells.remove(spell);
+                SpellAnimator.getListOfMovingSpells().remove(spell);
                 PlayerLivesHandler.getInstance().increasePlayerLives(NeedforSpearGame.getInstance().getGameInfo().getPlayer());
             } else {
                 NeedforSpearGame.getInstance().getGameInfo().getPlayer().getListofSpells().add(spell);
-                SpellAnimator.listOfMovingSpells.remove(spell);
+                SpellAnimator.getListOfMovingSpells().remove(spell);
                 NeedforSpearGame.getInstance().getViewData().getGameView().updateSpellNumbers();
                 System.out.println(spell);
             }
         } else if (y + dy + length > Constants.UIConstants.INITIAL_SCREEN_HEIGHT) {
-            SpellAnimator.listOfMovingSpells.remove(spell);
+            SpellAnimator.getListOfMovingSpells().remove(spell);
         }
         return new Location(spell.getLocation().getXCoordinates(), y + dy);
 
@@ -268,12 +268,12 @@ public class MovementHandler {
             if (collisionHandler.collision(obs, bullet)) {
                 System.out.println("bullet hit obstacle");
                 obs.damageObstacle();
-                BulletAnimator.listOfBullets.remove(bullet);
+                BulletAnimator.getListOfBullets().remove(bullet);
             }
 
             //Bullet hits screen frame and is destroyed
             if (bullet.getLocation().getXCoordinates() < 0 || bullet.getLocation().getXCoordinates() > Constants.UIConstants.INITIAL_SCREEN_WIDTH - 2 * radius || bullet.getLocation().getYCoordinates() < 0) {
-                BulletAnimator.listOfBullets.remove(bullet);
+                BulletAnimator.getListOfBullets().remove(bullet);
                 System.out.println("bullet exit screen");
             }
             if (collisionHandler.isRemovedObstacle(obs)) {
@@ -313,8 +313,8 @@ public class MovementHandler {
      */
     public boolean checkIfOrbitCollides(Rectangle orbit) {
 
-        for (int i = 0; i < ObstacleAnimator.listofObstacles.size(); i++) {
-            Obstacle obstacle = ObstacleAnimator.listofObstacles.get(i);
+        for (int i = 0; i < ObstacleAnimator.getListofObstacles().size(); i++) {
+            Obstacle obstacle = ObstacleAnimator.getListofObstacles().get(i);
             if (collisionHandler.collisionWithExplosiveOrbit(orbit, obstacle)) {
                 return true;
             }
@@ -338,7 +338,7 @@ public class MovementHandler {
                 System.out.println("player hit by explosive");
             }
 
-            collisionHandler.removeObstacle(obstacle, ObstacleAnimator.listofObstacles);
+            collisionHandler.removeObstacle(obstacle, ObstacleAnimator.getListofObstacles());
         }
     }
 
@@ -351,7 +351,7 @@ public class MovementHandler {
     public void sphereMovement(Graphics g) {
         MovementHandler bounceHandler = new MovementHandler();
         bounceHandler.bounceSphereFromFrame();
-        checkForCollisions(SphereAnimator.listofObstacles);
+        checkForCollisions(SphereAnimator.getListofObstacles());
 
     }
 
