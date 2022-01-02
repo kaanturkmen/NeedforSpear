@@ -48,7 +48,8 @@ public class SpellAnimator implements AnimatorStrategy {
      */
     public void movementOfSpells(Graphics2D g2) {
         if (NeedforSpearGame.getInstance().getGameInfo().getGameMode() != GameMode.BUILDING_MODE) {
-            for (Spell spell : listOfMovingSpells) {
+            for (int i = 0; i < listOfMovingSpells.size(); i++) {
+                Spell spell = listOfMovingSpells.get(i);
                 if (spell != null) {
                     int width = spell.getSize().getWidth();
                     int length = spell.getSize().getLength();

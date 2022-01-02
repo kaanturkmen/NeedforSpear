@@ -67,7 +67,8 @@ public class BulletAnimator implements AnimatorStrategy {
      */
     private void bulletMovement(Graphics2D g2) {
         if (NeedforSpearGame.getInstance().getGameInfo().getGameMode() != GameMode.BUILDING_MODE) {
-            for (Bullet bullet : listOfBullets) {
+            for (int i = 0; i < listOfBullets.size(); i++) {
+                Bullet bullet = listOfBullets.get(i);
                 if (bullet != null) {
                     Location newLocBullet = movementHandler.updateBulletMovement(bullet);
                     bullet.setLocation(newLocBullet);
