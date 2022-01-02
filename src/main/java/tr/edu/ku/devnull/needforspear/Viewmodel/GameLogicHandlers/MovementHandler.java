@@ -29,9 +29,7 @@ public class MovementHandler {
     double dx, dy;
     int radius = Constants.ProportionConstants.RADIUS_OF_THE_SPHERE;
     NoblePhantasm noblePhantasm;
-
-    double currentX;
-    double currentY;
+    private double angleObstacle = 0.0;
     private PhysicsEngine physicsEngine = new PhysicsEngine();
     private CollisionHandler collisionHandler = new CollisionHandler();
 
@@ -134,8 +132,12 @@ public class MovementHandler {
 
     }
 
-    private double angleObstacle = 0.0;
-
+    /**
+     * This method handles the circular motion of Obstacles.
+     *
+     * @param obstacle
+     * @return
+     */
     public Location circularMotion(Obstacle obstacle){
         int width = obstacle.getSize().getWidth();
         int height = obstacle.getSize().getLength();
@@ -146,15 +148,12 @@ public class MovementHandler {
         int y = (int) (Math.sin(angleObstacle) * height/3 + circle_center_y);
         angleObstacle += 0.001;
 
-
         return new Location(x- width/2,y-height/2);
     }
 
     public Location moveObstacleDown(Obstacle obstacle){
 
         double y = obstacle.getLocation().getYCoordinates();
-
-
         double downSpeed = Math.abs(obstacle.getSpeed());
         return new Location(obstacle.getLocation().getXCoordinates(), y +  downSpeed);
     }
@@ -190,7 +189,12 @@ public class MovementHandler {
 
     }
 
-
+    /**
+     * Updates the movement of the bullet based on x and y coordinates.
+     *
+     * @param bullet
+     * @return
+     */
     public Location updateBulletMovement(Bullet bullet) {
         Location loc = bullet.getLocation();
         x = loc.getXCoordinates();
@@ -251,8 +255,6 @@ public class MovementHandler {
      * @param listOfObstacles
      * @param bullet
      */
-
-
     public void checkForCollisions(List<Obstacle> listOfObstacles, Bullet bullet) {
         //collision with Obstacles - Bullet
         for (int i = 0; i < listOfObstacles.size(); i++) {
@@ -297,6 +299,13 @@ public class MovementHandler {
         }
     }
 
+    /**
+     * If collision occurs with explosive orbit, returns true, else returns false.
+     *
+     * @param orbit
+     * @return
+     */
+
     public boolean checkIfOrbitCollides(Rectangle orbit) {
 
         for (int i = 0; i < ObstacleAnimator.listofObstacles.size(); i++) {
@@ -307,6 +316,12 @@ public class MovementHandler {
         }
         return false;
     }
+
+    /**
+     * When the collusion occurs, obstacles are removed accordingly.
+     *
+     * @param obstacle
+     */
 
     public void removingObstacles(Obstacle obstacle){
         double y_bottom = obstacle.getLocation().getYCoordinates() + obstacle.getSize().getLength();
@@ -321,9 +336,6 @@ public class MovementHandler {
             }
 
             collisionHandler.removeObstacle(obstacle, ObstacleAnimator.listofObstacles);
-
-
-
         }
     }
 
@@ -409,8 +421,7 @@ public class MovementHandler {
         Long currentTime = System.currentTimeMillis();
         Long lastUpdateTime = noblePhantasm.getLastUpdateTime();
         Long moveTimeDiff = currentTime - lastUpdateTime;
-        currentX = noblePhantasm.getLocation().getXCoordinates();
-        currentY = noblePhantasm.getLocation().getYCoordinates();
+        double currentX = noblePhantasm.getLocation().getXCoordinates();
 
         if (noblePhantasm.isMovingLeft()) {
             if(currentX<0){

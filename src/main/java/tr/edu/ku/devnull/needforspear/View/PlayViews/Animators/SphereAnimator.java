@@ -45,8 +45,6 @@ public class SphereAnimator implements AnimatorStrategy {
      * @param path Path of the sphere image.
      * @return Image of the sphere.
      */
-
-
     public Image getSphereImage(String path) {
         return Toolkit.getDefaultToolkit().getImage(Constants.UIConstants.USER_DIRECTORY_TO_RESOURCE_FOLDER + path)
                 .getScaledInstance(radius*2, radius*2, Image.SCALE_SMOOTH);
@@ -61,7 +59,6 @@ public class SphereAnimator implements AnimatorStrategy {
      */
     @Override
     public void draw(Graphics g) {
-
         if (NeedforSpearGame.getInstance().getGameInfo().getSphere().isMoving()) {
             movementHandler.sphereMovement(g);
             g.setColor(Color.red);

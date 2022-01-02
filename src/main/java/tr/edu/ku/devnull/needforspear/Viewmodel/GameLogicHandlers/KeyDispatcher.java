@@ -28,7 +28,6 @@ public class KeyDispatcher implements KeyEventDispatcher {
                 noblePhantasm.setMovingLeft(false);
                 noblePhantasm.setMovingRight(true);
                 noblePhantasm.setStartTimeMoving(System.currentTimeMillis());
-
             }
 
             if (e.getKeyCode() == KeyEvent.VK_LEFT) {
@@ -36,24 +35,22 @@ public class KeyDispatcher implements KeyEventDispatcher {
                 noblePhantasm.setMovingRight(false);
                 noblePhantasm.setMovingLeft(true);
                 noblePhantasm.setStartTimeMoving(System.currentTimeMillis());
-
             }
 
             if (e.getKeyCode() == KeyEvent.VK_DOWN) {
                 NoblePhantasm noblePhantasm = NoblePhantasm.getInstance();
                 noblePhantasm.setSpeeding(true);
                 noblePhantasm.setStartTimeMoving(System.currentTimeMillis());
-
             }
 
             if (e.getKeyCode() == KeyEvent.VK_A) {
-                NoblePhantasm.getInstance().setRightRotate(true);
-                NoblePhantasm.getInstance().setLeftRotate(false);
+                NoblePhantasm.getInstance().setRightRotate(false);
+                NoblePhantasm.getInstance().setLeftRotate(true);
             }
 
             if (e.getKeyCode() == KeyEvent.VK_D) {
-                NoblePhantasm.getInstance().setRightRotate(false);
-                NoblePhantasm.getInstance().setLeftRotate(true);
+                NoblePhantasm.getInstance().setRightRotate(true);
+                NoblePhantasm.getInstance().setLeftRotate(false);
 
             }
 

@@ -75,7 +75,6 @@ public class CollisionHandler {
      * @param sphere Sphere to be checked.
      * @return true if there is collision.
      */
-
     public boolean collision(NoblePhantasm noblePhantasm, Sphere sphere) {
         Location noblePhantasmLoc = noblePhantasm.getLocation();
         Size noblePhantasmSize = noblePhantasm.getSize();
@@ -178,20 +177,13 @@ public class CollisionHandler {
      * @return true if removed
      */
     public boolean isRemovedObstacle(Obstacle obstacle) {
-
-
         boolean isRemoved = obstacle.getHealth() <= 0;
-
         if (isRemoved) {
-
-
             if (obstacle.getObstacleType().equals(Constants.ObstacleNameConstants.GIFT_OBSTACLE)) {
                 SpellAnimator.listOfMovingSpells.add(obstacle.getSpell());
             }
             //listofObstacles.remove(obstacle);
         }
-
-
         return isRemoved;
     }
 
@@ -207,8 +199,6 @@ public class CollisionHandler {
         }
         listofObstacles.remove(obstacle);
     }
-
-
 }
 
 

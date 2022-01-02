@@ -51,10 +51,11 @@ public class SpellAnimator implements AnimatorStrategy {
         if (NeedforSpearGame.getInstance().getGameInfo().getGameMode() != GameMode.BUILDING_MODE) {
             for (int i = 0; i < listOfMovingSpells.size(); i++) {
                 Spell spell = listOfMovingSpells.get(i);
+
                 if (spell != null) {
                     int width = spell.getSize().getWidth();
                     int length = spell.getSize().getLength();
-                    g2.setColor(getColorOfSpell(spell));
+                    g2.setColor(spell.getColorOfSpell(spell));
                     Location newLoc = bounceHandler.moveSpellDownward(spell);
                     spell.setLocation(newLoc);
                     g2.fillRect((int) newLoc.getXCoordinates(), (int) newLoc.getYCoordinates(), width, length);
@@ -62,31 +63,4 @@ public class SpellAnimator implements AnimatorStrategy {
             }
         }
     }
-
-    /**
-     * Gets the color of the spell.
-     *
-     * @return Color that indicates the color of the spell from given color string.
-     */
-    public Color getColorOfSpell(Spell spell) {
-        Color color;
-        switch (spell.getSpellColor()) {
-            case Constants.UIConstants.DARK_GREEN_COLOR_STRING:
-                color = Color.GREEN.darker().darker();
-                break;
-            case Constants.UIConstants.DARK_CYAN_COLOR_STRING:
-                color = Color.CYAN.darker();
-                break;
-            case Constants.UIConstants.DARK_YELLOW_COLOR_STRING:
-                color = Color.YELLOW.darker();
-                break;
-            case Constants.UIConstants.PINK_COLOR_STRING:
-                color = Color.PINK;
-                break;
-            default:
-                color = null;
-        }
-        return color;
-    }
-
 }

@@ -12,8 +12,6 @@ import tr.edu.ku.devnull.needforspear.Viewmodel.GameLogicHandlers.*;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -170,6 +168,10 @@ public class GameView {
             NeedforSpearGame.getInstance().startMainMenu();
         });
     }
+
+    /**
+     * This method creates action listeners for the spell buttons.
+     */
     private void createActionListenerForSpellButtons(){
 
             chanceGivingSpellButton.addActionListener(e -> {

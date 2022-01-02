@@ -31,7 +31,7 @@ public class SwitchModeHandler {
     }
 
     /**
-     * Adds panel to subscribers of the event
+     * Adds panel to subscribers of the event.
      *
      * @param panel
      */
@@ -39,10 +39,18 @@ public class SwitchModeHandler {
         subscribers.add(panel);
     }
 
-
+    /**
+     * Removes panel from subscribers of the event.
+     *
+     * @param panel
+     */
     public void unSubscribe(SwitchModeSubscriber panel) {
         subscribers.remove(panel);
     }
+
+    /**
+     *  Updates subscribers.
+     */
 
     public void notifySubscribers() {
         for (SwitchModeSubscriber subscriber : subscribers) {
