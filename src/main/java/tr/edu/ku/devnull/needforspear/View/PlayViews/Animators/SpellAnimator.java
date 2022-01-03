@@ -1,10 +1,12 @@
 package tr.edu.ku.devnull.needforspear.View.PlayViews.Animators;
 
+import tr.edu.ku.devnull.needforspear.Model.GameData.Constants;
 import tr.edu.ku.devnull.needforspear.Model.GameData.GameMode;
 import tr.edu.ku.devnull.needforspear.Model.GameData.Location;
 import tr.edu.ku.devnull.needforspear.Model.Spell.Spell;
 import tr.edu.ku.devnull.needforspear.NeedforSpearGame;
 import tr.edu.ku.devnull.needforspear.View.PlayViews.AnimatorStrategy;
+import tr.edu.ku.devnull.needforspear.Viewmodel.GameLogicHandlers.BackgroundHandler;
 import tr.edu.ku.devnull.needforspear.Viewmodel.GameLogicHandlers.MovementHandler;
 
 import java.awt.*;
@@ -19,9 +21,17 @@ import java.util.List;
 public class SpellAnimator implements AnimatorStrategy {
     private static List<Spell> listOfMovingSpells;
     private final MovementHandler bounceHandler = new MovementHandler();
+    private final Image chanceGivingAbility;
+    private final Image expansionSpell;
+    private final Image hexSpell;
+    private final Image unstoppableSpell;
 
     public SpellAnimator() {
         listOfMovingSpells = new ArrayList<>();
+        chanceGivingAbility = new BackgroundHandler().getBackgroundImage(Constants.UIConstants.CHANCE_GIVING_ABILITY);
+        expansionSpell = new BackgroundHandler().getBackgroundImage(Constants.UIConstants.EXPANSION_SPELL);
+        hexSpell = new BackgroundHandler().getBackgroundImage(Constants.UIConstants.HEX_SPELL);
+        unstoppableSpell = new BackgroundHandler().getBackgroundImage(Constants.UIConstants.EXPANSION_SPELL);
     }
 
     /**
@@ -63,7 +73,15 @@ public class SpellAnimator implements AnimatorStrategy {
                     g2.setColor(spell.getColorOfSpell(spell));
                     Location newLoc = bounceHandler.moveSpellDownward(spell);
                     spell.setLocation(newLoc);
-                    g2.fillRect((int) newLoc.getXCoordinates(), (int) newLoc.getYCoordinates(), width, length);
+                    if (spell.getSpellType().equals(Constants.SpellNameConstants.CHANCE)) {
+                        g2.drawImage(chanceGivingAbility, (int) newLoc.getXCoordinates(), (int) newLoc.getYCoordinates(), width, length, null );
+                    }else if (spell.getSpellType().equals(Constants.SpellNameConstants.EXPANSION)) {
+                        g2.drawImage(expansionSpell, (int) newLoc.getXCoordinates(), (int) newLoc.getYCoordinates(), width, length, null);
+                    }else if (spell.getSpellType().equals(Constants.SpellNameConstants.HEX)) {
+                        g2.drawImage(hexSpell, (int) newLoc.getXCoordinates(), (int) newLoc.getYCoordinates(), width, length, null);
+                    }else if (spell.getSpellType().equals(Constants.SpellNameConstants.UNSTOPPABLE)) {
+                        g2.drawImage(unstoppableSpell, (int) newLoc.getXCoordinates(), (int) newLoc.getYCoordinates(), width, length, null);
+                    }
                 }
             }
         }
