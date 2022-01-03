@@ -301,7 +301,7 @@ public class GamePanel extends JPanel implements ActionListener, MouseMotionList
      * Second activate method for hex spell.
      */
     @Override
-    public void update2() {
+    public void updateHex() {
         isHexActivated = true;
         magicalHexStartTime = System.currentTimeMillis();
     }
