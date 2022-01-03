@@ -3,7 +3,7 @@
 This game is developed by /dev/null team (see contributors), and it is final project for the Software Engineering course (COMP302).
 The main objective on this project is to implement design patterns, obey the MVVM design and get used to Agile Development.
 
-While we were developing this game, we did not only wanted to only practise what we have learned, but also such game that we will be enjoyed playing.
+While we were developing this game, we did not only wanted to practise what we have learned, but also create a such game that we will be enjoying while playing.
 
 Furthermore, Need for Spear game is developed for educational purposes. We are publishing this project to contribute to open source community.
 
