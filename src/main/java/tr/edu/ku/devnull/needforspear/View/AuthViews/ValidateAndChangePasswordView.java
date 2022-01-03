@@ -15,7 +15,7 @@ import javax.swing.*;
  * @author Kaan Turkmen
  */
 public class ValidateAndChangePasswordView {
-    private FocusableJTextField emailField, codeField;
+    private FocusableJTextField dummyField, emailField, codeField;
     private JPasswordField passwordField;
     private JButton activateButton, backButton;
 
@@ -35,6 +35,7 @@ public class ValidateAndChangePasswordView {
      */
     private void createUIElements() {
         NeedforSpearGame.getInstance().getGameInfo().getMainFrame().setTitle(Constants.UIConstants.GAME_NAME);
+        dummyField = new FocusableJTextField(Constants.UIConstants.EMAIL_TEXT_FIELD_PLACEHOLDER);
         emailField = new FocusableJTextField(Constants.UIConstants.EMAIL_TEXT_FIELD_PLACEHOLDER);
         codeField = new FocusableJTextField(Constants.UIConstants.VERIFICATION_CODE_PLACEHOLDER);
         passwordField = new JPasswordField(Constants.UIConstants.NEW_PASSWORD_PLACEHOLDER);
@@ -79,6 +80,7 @@ public class ValidateAndChangePasswordView {
      */
     private void obtainVisibility() {
         NeedforSpearGame.getInstance().getGameInfo().getMainFrame().setContentPane(new BackgroundHandler().getBackgroundedJPanel(Constants.UIConstants.SEND_VERIFICATION_VIEW_BACKGROUND_IMAGE));
+        NeedforSpearGame.getInstance().getGameInfo().getMainFrame().add(dummyField);
         NeedforSpearGame.getInstance().getGameInfo().getMainFrame().add(emailField);
         NeedforSpearGame.getInstance().getGameInfo().getMainFrame().add(codeField);
         NeedforSpearGame.getInstance().getGameInfo().getMainFrame().add(passwordField);

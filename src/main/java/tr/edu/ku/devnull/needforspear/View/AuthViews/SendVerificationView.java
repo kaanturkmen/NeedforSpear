@@ -15,7 +15,7 @@ import javax.swing.*;
  * @author Kaan Turkmen
  */
 public class SendVerificationView {
-    private FocusableJTextField emailField;
+    private FocusableJTextField dummyField, emailField;
     private JButton resetPasswordButton, backButton;
 
     /**
@@ -34,6 +34,7 @@ public class SendVerificationView {
      */
     private void createUIElements() {
         NeedforSpearGame.getInstance().getGameInfo().getMainFrame().setTitle(Constants.UIConstants.GAME_NAME);
+        dummyField = new FocusableJTextField(Constants.UIConstants.EMAIL_TEXT_FIELD_PLACEHOLDER);
         emailField = new FocusableJTextField(Constants.UIConstants.EMAIL_TEXT_FIELD_PLACEHOLDER);
         resetPasswordButton = new JButton(Constants.UIConstants.RESET_PASSWORD_PLACEHOLDER);
         backButton = new JButton(Constants.UIConstants.BACK_BUTTON_PLACEHOLDER);
@@ -73,6 +74,7 @@ public class SendVerificationView {
      */
     private void obtainVisibility() {
         NeedforSpearGame.getInstance().getGameInfo().getMainFrame().setContentPane(new BackgroundHandler().getBackgroundedJPanel(Constants.UIConstants.VALIDATE_AND_CHANGE_PASSWORD_VIEW_BACKGROUND_IMAGE));
+        NeedforSpearGame.getInstance().getGameInfo().getMainFrame().add(dummyField);
         NeedforSpearGame.getInstance().getGameInfo().getMainFrame().add(emailField);
         NeedforSpearGame.getInstance().getGameInfo().getMainFrame().add(resetPasswordButton);
         NeedforSpearGame.getInstance().getGameInfo().getMainFrame().add(backButton);
