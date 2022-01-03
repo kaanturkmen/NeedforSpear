@@ -1,8 +1,20 @@
-# Need for Spear by Devnull.
+# Need for Spear by /dev/null
 
-This game is developed by devnull team (see contributors), and it is final project for the Software Engineering course (COMP302).
+This game is developed by /dev/null team (see contributors), and it is final project for the Software Engineering course (COMP302).
+The main objective on this project is to implement design patterns, obey the MVVM design and get used to Agile Development.
 
-Need for Spear game is developed for educational purposes. We are publishing this project to contribute open source community.
+While we were developing this game, we always wanted to create a such game that we will be enjoyed playing.
+
+Furthermore, Need for Spear game is developed for educational purposes. We are publishing this project to contribute to open source community.
+
+# Table of Contents
+* [License](#license)
+* [Contributors](#contributors)
+* [Additional Info](#additional-info)
+* [Photos from Need for Spear](#photos-from-need-for-spear)
+    * [Authentication System](#authentication-system)
+    * [Main Menu and Help Screen](#main-menu-and-help-screen)
+    * [Building and Play Mode](#main-menu-and-help-screen)
 
 # License
 
@@ -10,23 +22,26 @@ See the LICENSE file for detailed info.
 
 # Contributors
 
-Devnull worked as a team while developing Need for Spear, however, each team member had specialized part in the project. Below you can find these parts.
+Dev/null worked as a team while developing Need for Spear, however, each team member had specialized part in the project. Below you can find these parts.
 
-| Flags                        |                                      Purpose                                       |
+| Flags                        |                                 Main Contribution                                  |
 |------------------------------|:----------------------------------------------------------------------------------:|
 | Kaan Turkmen (kaanturkmen)   |   Threading Concepts, Database Implementation, Authentication System and Views.    |
 | Can Usluel (canusluel)       |        Obstacle Placement Algorithms, GameView GUI and Hollow Purple Spell.        |
 | Melis Oktayoglu (moktayoglu) | Physics Engine, Sphere movement & Interaction, Infinite Void & Double Accel Spell. |
-| Doruk Yildirim (dorkyhog)    |     Game Assets, Magical Hex Spell, Chance Giving Spell & Score Calculation.       |
+| Doruk Yildirim (dorkyhog)    |      Game Assets, Magical Hex Spell, Chance Giving Spell & Score Calculation.      |
 | Gokce Sevimli (gokcesevimli) |                     Noble Phantasm (Paddle), Expansion Spell.                      |
 
 # Additional Info
 
-I was the team lead on this project. We have used private Git server of our university for developing Need for Spear game. Most of the version control data is located in private git server.
+As a dev/null, we were using the private Git server as a version control system and most of our commits located on that server.
+
+Also, I was the team lead on this project. I have followed Agile Development phases: Requirements, Design and Development for each
+sprint to perform task divisions between team members.
 
 Special thanks to all my team members for their commitment on this project.
 
-# Photos from Need for Spear.
+# Photos from Need for Spear
 
 # Authentication System
 
