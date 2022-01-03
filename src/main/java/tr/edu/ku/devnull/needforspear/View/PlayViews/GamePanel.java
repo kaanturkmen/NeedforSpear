@@ -27,7 +27,7 @@ public class GamePanel extends JPanel implements ActionListener, MouseMotionList
     private final NoblePhantasmAnimator npa;
     private final SpellAnimator spellAnimator;
     private final BulletAnimator bulletAnimator;
-    private final Image background = new BackgroundHandler().getBackgroundImage(Constants.UIConstants.GAME_BACKGROUND_IMAGE);
+    private final Image background = new BackgroundHandler().getRespectiveImage(Constants.UIConstants.GAME_BACKGROUND_IMAGE);
     protected Timer timer;
     private long magicalHexStartTime;
     private boolean isGameStarted = false, isHexActivated = false;

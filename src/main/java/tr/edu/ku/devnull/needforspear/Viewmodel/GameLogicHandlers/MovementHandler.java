@@ -111,16 +111,15 @@ public class MovementHandler {
      * @return New location of the obstacle.
      */
     public Location circularMotion(Obstacle obstacle) {
-        int width = obstacle.getSize().getWidth();
-        int height = obstacle.getSize().getLength();
         double circle_center_x = obstacle.getOrbitCenter().getXCoordinates();
         double circle_center_y = obstacle.getOrbitCenter().getYCoordinates();
 
-        int x = (int) (Math.cos(angleObstacle) * width / 3 + circle_center_x);
-        int y = (int) (Math.sin(angleObstacle) * height / 3 + circle_center_y);
+        int x = (int) (Math.cos(angleObstacle) * Constants.ProportionConstants.CHANGE_IN_X_LOCATION_USING_WIDTH_OF_EXPLOSIVE_OBSTACLE + circle_center_x);
+        int y = (int) (Math.sin(angleObstacle) * Constants.ProportionConstants.CHANGE_IN_Y_LOCATION_USING_HEIGHT_OF_EXPLOSIVE_OBSTACLE + circle_center_y);
         angleObstacle += 0.001;
 
-        return new Location(x - width / 2, y - height / 2);
+        return new Location(x - Constants.ProportionConstants.RADIUS_OF_EXPLOSIVE_OBSTACLE, y -Constants.ProportionConstants.RADIUS_OF_EXPLOSIVE_OBSTACLE);
+
     }
 
     /**
@@ -130,7 +129,6 @@ public class MovementHandler {
      * @return New location of the obstacle.
      */
     public Location moveObstacleDown(Obstacle obstacle) {
-
         double y = obstacle.getLocation().getYCoordinates();
         double downSpeed = Math.abs(obstacle.getSpeed());
         return new Location(obstacle.getLocation().getXCoordinates(), y + downSpeed);
@@ -355,7 +353,7 @@ public class MovementHandler {
                         obs.damageObstacle();
                     }
 
-                    if ((current_time - start_time) / 1000 >= 30) {
+                    if ((current_time - start_time) / 1000 >= 30) { //30 seconds activation
                         NeedforSpearGame.getInstance().getGameInfo().getSphere().deactivateUnstoppable();
                     }
                 } else {
@@ -404,9 +402,9 @@ public class MovementHandler {
                 currentX = 0;
             }
             if (noblePhantasm.isSpeeding()) {
-                currentX = (currentX - (1.0 * Constants.UIConstants.INITIAL_SCREEN_WIDTH / 5.0 / 1000.0) * moveTimeDiff);
+                currentX = (currentX - Constants.ProportionConstants.DOUBLE_SPEED_OF_NOBLE_PHANTASM * moveTimeDiff);
             } else {
-                currentX = (currentX - (1.0 * Constants.UIConstants.INITIAL_SCREEN_WIDTH / 10.0 / 1000.0) * moveTimeDiff);
+                currentX = (currentX - Constants.ProportionConstants.REGULAR_SPEED_OF_NOBLE_PHANTASM * moveTimeDiff);
             }
 
         } else if (noblePhantasm.isMovingRight()) {
@@ -414,9 +412,9 @@ public class MovementHandler {
                 currentX = Constants.UIConstants.INITIAL_SCREEN_WIDTH - noblePhantasm.getSize().getWidth();
             }
             if (noblePhantasm.isSpeeding()) {
-                currentX = (currentX + (1.0 * Constants.UIConstants.INITIAL_SCREEN_WIDTH / 5.0 / 1000.0) * moveTimeDiff);
+                currentX = (currentX + Constants.ProportionConstants.DOUBLE_SPEED_OF_NOBLE_PHANTASM * moveTimeDiff);
             } else {
-                currentX = (currentX + (1.0 * Constants.UIConstants.INITIAL_SCREEN_WIDTH / 10.0 / 1000.0) * moveTimeDiff);
+                currentX = (currentX + Constants.ProportionConstants.REGULAR_SPEED_OF_NOBLE_PHANTASM * moveTimeDiff);
             }
 
         }
@@ -439,10 +437,10 @@ public class MovementHandler {
             if (lastUpdateTime == 0L) {
                 newAngle = angle + 0.01;
             } else {
-                newAngle = angle + (0.35 / 1000.0) * (currentTime - lastUpdateTime);  //radian equivalence of 20 degrees is 0.35
+                newAngle = angle + Constants.ProportionConstants.RATE_OF_TWENTY_DEGREES_PER_SECOND * (currentTime - lastUpdateTime);  //radian equivalence of 20 degrees is 0.35
             }
-            if (newAngle > 0.78) //radian equivalence of 45 degrees is 0.78.
-                newAngle = 0.78;
+            if (newAngle > Constants.ProportionConstants.RADIAN_EQUIVALENCE_OF_FOURTY_FIVE_DEGREES) //radian equivalence of 45 degrees is 0.78.
+                newAngle = Constants.ProportionConstants.RADIAN_EQUIVALENCE_OF_FOURTY_FIVE_DEGREES;
 
 
         } else if (NoblePhantasm.getInstance().isLeftRotate()) {
@@ -450,24 +448,24 @@ public class MovementHandler {
             if (lastUpdateTime == 0L) {
                 newAngle = angle - 0.01;
             } else {
-                newAngle = angle - (0.35 / 1000.0) * (currentTime - lastUpdateTime);
+                newAngle = angle - Constants.ProportionConstants.RATE_OF_TWENTY_DEGREES_PER_SECOND * (currentTime - lastUpdateTime);
             }
-            if (newAngle < -0.78)
-                newAngle = -0.78;
+            if (newAngle < -Constants.ProportionConstants.RADIAN_EQUIVALENCE_OF_FOURTY_FIVE_DEGREES)
+                newAngle = -Constants.ProportionConstants.RADIAN_EQUIVALENCE_OF_FOURTY_FIVE_DEGREES;
 
         } else {
             angle = noblePhantasm.getRotationDegree();
 
             if (angle > 0) {
 
-                newAngle = angle - (0.78 / 1000) * (currentTime - lastUpdateTime);
+                newAngle = angle - Constants.ProportionConstants.RATE_OF_FOURTY_FIVE_DEGREES_PER_SECOND * (currentTime - lastUpdateTime);
                 if (newAngle < 0) {
                     newAngle = 0;
                 }
                 noblePhantasm.setRotationDegree(newAngle);
                 noblePhantasm.setLastUpdateTime(currentTime);
             } else if (angle < 0) {
-                newAngle = angle + (0.78 / 1000) * (currentTime - lastUpdateTime);
+                newAngle = angle + Constants.ProportionConstants.RATE_OF_FOURTY_FIVE_DEGREES_PER_SECOND * (currentTime - lastUpdateTime);
                 if (newAngle > 0) {
                     newAngle = 0;
                 }

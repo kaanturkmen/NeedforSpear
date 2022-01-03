@@ -78,7 +78,7 @@ public class NeedforSpearGame {
         gameInfo.getMainFrame().setResizable(false);
         gameInfo.getMainFrame().setSize(Constants.UIConstants.INITIAL_SCREEN_WIDTH, Constants.UIConstants.INITIAL_SCREEN_HEIGHT);
         gameInfo.getMainFrame().setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        gameInfo.getMainFrame().setIconImage(new BackgroundHandler().getBackgroundImage(Constants.UIConstants.GAME_ICON));
+        gameInfo.getMainFrame().setIconImage(new BackgroundHandler().getRespectiveImage(Constants.UIConstants.GAME_ICON));
     }
 
     /**

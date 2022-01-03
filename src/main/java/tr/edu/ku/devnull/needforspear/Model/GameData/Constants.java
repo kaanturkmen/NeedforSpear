@@ -5,7 +5,7 @@ import java.awt.*;
 /**
  * Constants interface is used to store all the necessary constants for the game.
  *
- * @author Kaan Turkmen
+ * @author Kaan Turkmen, Gökçe Sevimli
  */
 public interface Constants {
 
@@ -16,6 +16,11 @@ public interface Constants {
         int HEIGHT_OF_NOBLE_PHANTASM = 20;
         int WIDTH_OF_NOBLE_PHANTASM = Constants.UIConstants.INITIAL_SCREEN_WIDTH / 10;
         int Y_CENTER_OF_NOBLE_PHANTASM = Constants.ProportionConstants.HEIGHT_OF_NOBLE_PHANTASM / 2;
+        double REGULAR_SPEED_OF_NOBLE_PHANTASM  = (1.0 * Constants.UIConstants.INITIAL_SCREEN_WIDTH / 10.0 / 1000.0);
+        double DOUBLE_SPEED_OF_NOBLE_PHANTASM = (1.0 * Constants.UIConstants.INITIAL_SCREEN_WIDTH / 5.0 / 1000.0);
+        double RATE_OF_TWENTY_DEGREES_PER_SECOND = (0.35 / 1000.0);
+        double RATE_OF_FOURTY_FIVE_DEGREES_PER_SECOND = (0.78 / 1000);
+        double RADIAN_EQUIVALENCE_OF_FOURTY_FIVE_DEGREES = 0.78;
         int HEIGHT_OF_THE_OBSTACLE = 20;
         int RADIUS_OF_THE_SPHERE = 16;
         double RATIO_OF_NOBLE_PHANTASM = 0.1;
@@ -24,6 +29,18 @@ public interface Constants {
         int SPEED_OF_THE_BULLET = 4;
         int RADIUS_OF_EXPLOSIVE_OBSTACLE = 15;
         int SPELL_SIZE = 15;
+        int WIDTH_OF_EXPLOSIVE_OBSTACLE = 30;
+        int HEIGHT_OF_EXPLOSIVE_OBSTACLE = 30;
+        int CHANGE_IN_X_LOCATION_USING_WIDTH_OF_EXPLOSIVE_OBSTACLE = WIDTH_OF_EXPLOSIVE_OBSTACLE/3;
+        int CHANGE_IN_Y_LOCATION_USING_HEIGHT_OF_EXPLOSIVE_OBSTACLE = HEIGHT_OF_EXPLOSIVE_OBSTACLE/3;
+
+
+
+
+
+
+
+
     }
 
     /**
