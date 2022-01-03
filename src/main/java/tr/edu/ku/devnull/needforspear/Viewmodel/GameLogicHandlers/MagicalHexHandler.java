@@ -52,7 +52,7 @@ public class MagicalHexHandler {
      */
     public void notifySubscribers() {
         for (MagicalHexSubscriber subscriber : subscribers) {
-            subscriber.update2();
+            subscriber.updateHex();
         }
     }
 }

@@ -42,7 +42,7 @@ public class BackgroundHandler {
      * @param path Path of the background image.
      * @return Image of the background.
      */
-    public Image getBackgroundImage(String path) {
+    public Image getRespectiveImage(String path) {
         return Toolkit.getDefaultToolkit().getImage(Constants.UIConstants.USER_DIRECTORY_TO_RESOURCE_FOLDER + path)
                 .getScaledInstance(Constants.UIConstants.INITIAL_SCREEN_WIDTH, Constants.UIConstants.INITIAL_SCREEN_HEIGHT, Image.SCALE_SMOOTH);
     }
