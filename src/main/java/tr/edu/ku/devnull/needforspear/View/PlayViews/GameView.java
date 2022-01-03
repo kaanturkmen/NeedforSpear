@@ -22,7 +22,7 @@ import java.util.List;
 public class GameView {
 
     private JButton switchRunningModeButton, createNewMapButton, saveMapButton, loadMapButton, pauseButton,
-            resumeButton, chanceGivingSpellButton, expansionSpellButton, magicalHexButton, unstoppableSpellButton,
+            resumeButton, expansionSpellButton, magicalHexButton, unstoppableSpellButton,
             muteButton, unmuteButton, changeDifficultyButton, backToMenuButton;
     private JTextField difficultyField;
     private JPanel overlayPanel, backgroundPanel;
@@ -173,12 +173,6 @@ public class GameView {
      */
     private void createActionListenerForSpellButtons() {
 
-        chanceGivingSpellButton.addActionListener(e -> {
-            if (!NeedforSpearGame.getInstance().getGameInfo().isPaused()) {
-                SpellHandler.getInstance().activateSpell(SpellHandler.getInstance().getAvailableSpell(Constants.SpellNameConstants.CHANCE));
-            }
-        });
-
         expansionSpellButton.addActionListener(e -> {
             if (!NeedforSpearGame.getInstance().getGameInfo().isPaused()) {
                 SpellHandler.getInstance().activateSpell(SpellHandler.getInstance().getAvailableSpell(Constants.SpellNameConstants.EXPANSION));
@@ -208,7 +202,6 @@ public class GameView {
         lives.setVisible(true);
         pauseButton.setVisible(true);
         createNewMapButton.setVisible(false);
-        chanceGivingSpellButton.setVisible(true);
         magicalHexButton.setVisible(true);
         unstoppableSpellButton.setVisible(true);
         expansionSpellButton.setVisible(true);
@@ -221,25 +214,20 @@ public class GameView {
      * This method adjusts the spell buttons for spells and draws them onto overlayPanel
      */
     private void adjustSpellButtons() {
-        chanceGivingSpellButton = new JButton(String.valueOf(0));
         expansionSpellButton = new JButton(String.valueOf(0));
         magicalHexButton = new JButton(String.valueOf(0));
         unstoppableSpellButton = new JButton(String.valueOf(0));
-        overlayPanel.add(chanceGivingSpellButton, FlowLayout.LEFT);
         overlayPanel.add(magicalHexButton, FlowLayout.LEFT);
-        overlayPanel.add(unstoppableSpellButton);
+        overlayPanel.add(unstoppableSpellButton, FlowLayout.LEFT);
         overlayPanel.add(expansionSpellButton);
-        chanceGivingSpellButton.setBackground(Color.GREEN.darker().darker());
         expansionSpellButton.setBackground(Color.PINK);
         magicalHexButton.setBackground(Color.CYAN.darker());
         unstoppableSpellButton.setBackground(Color.YELLOW.darker());
 
-        chanceGivingSpellButton.setOpaque(true);
         expansionSpellButton.setOpaque(true);
         magicalHexButton.setOpaque(true);
         unstoppableSpellButton.setOpaque(true);
 
-        chanceGivingSpellButton.setVisible(false);
         magicalHexButton.setVisible(false);
         unstoppableSpellButton.setVisible(false);
         expansionSpellButton.setVisible(false);
@@ -255,7 +243,6 @@ public class GameView {
         difficultyField.setVisible(true);
         createNewMapButton.setVisible(false);
         saveMapButton.setVisible(true);
-        chanceGivingSpellButton.setVisible(false);
         magicalHexButton.setVisible(false);
         unstoppableSpellButton.setVisible(false);
         expansionSpellButton.setVisible(false);
@@ -477,7 +464,6 @@ public class GameView {
      * This method updates and displays the current spells of player.
      */
     public void updateSpellNumbers() {
-        chanceGivingSpellButton.setText(String.valueOf(SpellHandler.getInstance().getSpellNumber(Constants.SpellNameConstants.CHANCE)));
         magicalHexButton.setText(String.valueOf(SpellHandler.getInstance().getSpellNumber(Constants.SpellNameConstants.HEX)));
         unstoppableSpellButton.setText(String.valueOf(SpellHandler.getInstance().getSpellNumber(Constants.SpellNameConstants.UNSTOPPABLE)));
         expansionSpellButton.setText(String.valueOf(SpellHandler.getInstance().getSpellNumber(Constants.SpellNameConstants.EXPANSION)));

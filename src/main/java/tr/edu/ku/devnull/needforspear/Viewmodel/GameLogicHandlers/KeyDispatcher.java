@@ -90,22 +90,15 @@ public class KeyDispatcher implements KeyEventDispatcher {
             }
             if (!NeedforSpearGame.getInstance().getGameInfo().isPaused()) {
 
-                if (e.getKeyCode() == KeyEvent.VK_C) {
-                    //for testing
-                    HollowPurpleSpell hollowPurpleSpell = new HollowPurpleSpell();
-                    hollowPurpleSpell.triggerYmirEffect();
-                    SpellHandler.getInstance().activateSpell(SpellHandler.getInstance().getAvailableSpell(Constants.SpellNameConstants.CHANCE));
-                }
-
-                if (e.getKeyCode() == KeyEvent.VK_E) {
+                if (e.getKeyCode() == KeyEvent.VK_E || e.getKeyCode() == KeyEvent.VK_Q) {
                     SpellHandler.getInstance().activateSpell(SpellHandler.getInstance().getAvailableSpell(Constants.SpellNameConstants.EXPANSION));
                 }
 
-                if (e.getKeyCode() == KeyEvent.VK_M) {
+                if (e.getKeyCode() == KeyEvent.VK_M || e.getKeyCode() == KeyEvent.VK_E) {
                     SpellHandler.getInstance().activateSpell(SpellHandler.getInstance().getAvailableSpell(Constants.SpellNameConstants.HEX));
                 }
 
-                if (e.getKeyCode() == KeyEvent.VK_U) {
+                if (e.getKeyCode() == KeyEvent.VK_U || e.getKeyCode() == KeyEvent.VK_R) {
                     SpellHandler.getInstance().activateSpell(SpellHandler.getInstance().getAvailableSpell(Constants.SpellNameConstants.UNSTOPPABLE));
                 }
 
