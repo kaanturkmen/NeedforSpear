@@ -9,6 +9,7 @@ import tr.edu.ku.devnull.needforspear.Model.Ymir.Ymir;
 import tr.edu.ku.devnull.needforspear.Viewmodel.Database.FirebaseDatabase;
 import tr.edu.ku.devnull.needforspear.Viewmodel.GameHandlers.InternetHandler;
 import tr.edu.ku.devnull.needforspear.Viewmodel.GameHandlers.SoundHandler;
+import tr.edu.ku.devnull.needforspear.Viewmodel.GameLogicHandlers.BackgroundHandler;
 import tr.edu.ku.devnull.needforspear.Viewmodel.State.InitialState;
 import tr.edu.ku.devnull.needforspear.Viewmodel.State.ViewState;
 
@@ -77,6 +78,7 @@ public class NeedforSpearGame {
         gameInfo.getMainFrame().setResizable(false);
         gameInfo.getMainFrame().setSize(Constants.UIConstants.INITIAL_SCREEN_WIDTH, Constants.UIConstants.INITIAL_SCREEN_HEIGHT);
         gameInfo.getMainFrame().setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        gameInfo.getMainFrame().setIconImage(new BackgroundHandler().getBackgroundImage(Constants.UIConstants.GAME_ICON));
     }
 
     /**

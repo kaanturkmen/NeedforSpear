@@ -46,6 +46,7 @@ public interface Constants {
         String GIFT_OBSTACLE = "GiftObstacle.png";
         String HOLLOW_OBSTACLE = "HollowObstacle.png";
         String HELP_VIEW_BACKGROUND_IMAGE = "HelpScreen.png";
+        String GAME_ICON = "GameIcon.png";
 
         String USER_DIRECTORY_KEYWORD = "user.dir";
         String USER_DIRECTORY_TO_RESOURCE_FOLDER = "src/main/java/tr/edu/ku/devnull/needforspear/Resources/Images/";
