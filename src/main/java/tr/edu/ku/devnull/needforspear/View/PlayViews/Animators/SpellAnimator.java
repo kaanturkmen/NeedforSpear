@@ -31,7 +31,7 @@ public class SpellAnimator implements AnimatorStrategy {
         chanceGivingAbility = new BackgroundHandler().getBackgroundImage(Constants.UIConstants.CHANCE_GIVING_ABILITY);
         expansionSpell = new BackgroundHandler().getBackgroundImage(Constants.UIConstants.EXPANSION_SPELL);
         hexSpell = new BackgroundHandler().getBackgroundImage(Constants.UIConstants.HEX_SPELL);
-        unstoppableSpell = new BackgroundHandler().getBackgroundImage(Constants.UIConstants.EXPANSION_SPELL);
+        unstoppableSpell = new BackgroundHandler().getBackgroundImage(Constants.UIConstants.UNSTOPPABLE_SPELL);
     }
 
     /**
@@ -63,7 +63,6 @@ public class SpellAnimator implements AnimatorStrategy {
      */
     public void movementOfSpells(Graphics2D g2) {
         if (NeedforSpearGame.getInstance().getGameInfo().getGameMode() != GameMode.BUILDING_MODE) {
-
             // Do not use enhanced for: Since enhanced for uses iterator to iterate, it is not compatible with Java Swing Thread.
             for (int i = 0; i < listOfMovingSpells.size(); i++) {
                 Spell spell = listOfMovingSpells.get(i);
