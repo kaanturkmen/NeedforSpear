@@ -90,11 +90,11 @@ public class KeyDispatcher implements KeyEventDispatcher {
             }
             if (!NeedforSpearGame.getInstance().getGameInfo().isPaused()) {
 
-                if (e.getKeyCode() == KeyEvent.VK_E || e.getKeyCode() == KeyEvent.VK_Q) {
+                if (e.getKeyCode() == KeyEvent.VK_E) {
                     SpellHandler.getInstance().activateSpell(SpellHandler.getInstance().getAvailableSpell(Constants.SpellNameConstants.EXPANSION));
                 }
 
-                if (e.getKeyCode() == KeyEvent.VK_M || e.getKeyCode() == KeyEvent.VK_E) {
+                if (e.getKeyCode() == KeyEvent.VK_M || e.getKeyCode() == KeyEvent.VK_Q) {
                     SpellHandler.getInstance().activateSpell(SpellHandler.getInstance().getAvailableSpell(Constants.SpellNameConstants.HEX));
                 }
 
