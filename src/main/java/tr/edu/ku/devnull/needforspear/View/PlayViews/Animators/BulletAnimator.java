@@ -31,7 +31,7 @@ public class BulletAnimator implements AnimatorStrategy {
     public BulletAnimator(List<Obstacle> listOfObstacles) {
         BulletAnimator.listOfObstacles = listOfObstacles;
         listOfBullets = new ArrayList<>();
-        bulletImage = new BackgroundHandler().getBackgroundImage(Constants.UIConstants.BULLET_IMAGE);
+        bulletImage = new BackgroundHandler().getRespectiveImage(Constants.UIConstants.BULLET_IMAGE);
     }
 
     /**

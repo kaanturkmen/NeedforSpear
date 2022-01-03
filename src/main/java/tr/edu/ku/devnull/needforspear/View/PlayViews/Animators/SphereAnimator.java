@@ -35,7 +35,7 @@ public class SphereAnimator implements AnimatorStrategy {
             NeedforSpearGame.getInstance().getGameInfo().getSphere().setSpeed(new Speed(2, 2));
         } else NeedforSpearGame.getInstance().getGameInfo().getSphere().setSpeed(new Speed(4, 4));
         SphereAnimator.listofObstacles = listofObstacles;
-        sphereImage = new BackgroundHandler().getBackgroundImage(Constants.UIConstants.SPHERE_IMAGE);
+        sphereImage = new BackgroundHandler().getRespectiveImage(Constants.UIConstants.SPHERE_IMAGE);
     }
 
     /**

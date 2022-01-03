@@ -31,11 +31,11 @@ public class ObstacleAnimator implements AnimatorStrategy {
      */
     public ObstacleAnimator(List<Obstacle> listofObstacles) {
         ObstacleAnimator.listofObstacles = listofObstacles;
-        explosiveObstacleImage = new BackgroundHandler().getBackgroundImage(Constants.UIConstants.EXPLOSIVE_OBSTACLE);
-        firmObstacleImage = new BackgroundHandler().getBackgroundImage(Constants.UIConstants.FIRM_OBSTACLE);
-        giftObstacleImage = new BackgroundHandler().getBackgroundImage(Constants.UIConstants.GIFT_OBSTACLE);
-        simpleObstacleImage = new BackgroundHandler().getBackgroundImage(Constants.UIConstants.SIMPLE_OBSTACLE);
-        hollowObstacleImage = new BackgroundHandler().getBackgroundImage(Constants.UIConstants.HOLLOW_OBSTACLE);
+        explosiveObstacleImage = new BackgroundHandler().getRespectiveImage(Constants.UIConstants.EXPLOSIVE_OBSTACLE);
+        firmObstacleImage = new BackgroundHandler().getRespectiveImage(Constants.UIConstants.FIRM_OBSTACLE);
+        giftObstacleImage = new BackgroundHandler().getRespectiveImage(Constants.UIConstants.GIFT_OBSTACLE);
+        simpleObstacleImage = new BackgroundHandler().getRespectiveImage(Constants.UIConstants.SIMPLE_OBSTACLE);
+        hollowObstacleImage = new BackgroundHandler().getRespectiveImage(Constants.UIConstants.HOLLOW_OBSTACLE);
     }
 
     /**

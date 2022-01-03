@@ -28,10 +28,10 @@ public class SpellAnimator implements AnimatorStrategy {
 
     public SpellAnimator() {
         listOfMovingSpells = new ArrayList<>();
-        chanceGivingAbility = new BackgroundHandler().getBackgroundImage(Constants.UIConstants.CHANCE_GIVING_ABILITY);
-        expansionSpell = new BackgroundHandler().getBackgroundImage(Constants.UIConstants.EXPANSION_SPELL);
-        hexSpell = new BackgroundHandler().getBackgroundImage(Constants.UIConstants.HEX_SPELL);
-        unstoppableSpell = new BackgroundHandler().getBackgroundImage(Constants.UIConstants.UNSTOPPABLE_SPELL);
+        chanceGivingAbility = new BackgroundHandler().getRespectiveImage(Constants.UIConstants.CHANCE_GIVING_ABILITY);
+        expansionSpell = new BackgroundHandler().getRespectiveImage(Constants.UIConstants.EXPANSION_SPELL);
+        hexSpell = new BackgroundHandler().getRespectiveImage(Constants.UIConstants.HEX_SPELL);
+        unstoppableSpell = new BackgroundHandler().getRespectiveImage(Constants.UIConstants.UNSTOPPABLE_SPELL);
     }
 
     /**

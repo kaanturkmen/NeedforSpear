@@ -22,8 +22,8 @@ public class NoblePhantasmAnimator {
      * Constructor for NoblePhantasmaAnimator.
      */
     public NoblePhantasmAnimator() {
-        phantasmSpell = new BackgroundHandler().getBackgroundImage(Constants.UIConstants.PHANTASM_IMAGE_EXPANSION);
-        phantasm = new BackgroundHandler().getBackgroundImage(Constants.UIConstants.PHANTASM_IMAGE);
+        phantasmSpell = new BackgroundHandler().getRespectiveImage(Constants.UIConstants.PHANTASM_IMAGE_EXPANSION);
+        phantasm = new BackgroundHandler().getRespectiveImage(Constants.UIConstants.PHANTASM_IMAGE);
     }
 
     /**
