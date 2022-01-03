@@ -4,6 +4,29 @@ This game is developed by devnull team (see contributors), and it is final proje
 
 Need for Spear game is developed for educational purposes. We are publishing this project to contribute open source community.
 
+# Authentication System
+
+![LoginView](https://user-images.githubusercontent.com/63169561/147973464-c63f8f5c-411b-4e12-8fcc-736cfaa88de9.png)
+
+![ResetPasswordView](https://user-images.githubusercontent.com/63169561/147973598-7a73642f-b504-4f1a-874d-47d315b275d2.png)
+
+<img width="1392" alt="ResetPasswordView2" src="https://user-images.githubusercontent.com/63169561/147973844-424114c3-0441-4d39-a26f-3b03b0ec0bfb.png">
+
+![ActivateAccountView](https://user-images.githubusercontent.com/63169561/147973648-9b9d537a-c7e8-43f3-b554-294c6a330dab.png)
+
+# Main Menu and Help Screen
+
+![MainMenuView](https://user-images.githubusercontent.com/63169561/147973683-2f48b964-c157-4bdf-bfd7-cc138a871b8d.png)
+
+![HelpScreenView](https://user-images.githubusercontent.com/63169561/147973690-b2cf047c-24ab-4b85-b134-8e927e129028.png)
+
+# Building and Playing Mode
+
+![BuildingModeView](https://user-images.githubusercontent.com/63169561/147973731-8179bc3b-5784-4787-9599-5b51cd9959ff.png)
+
+![PlayModeView](https://user-images.githubusercontent.com/63169561/147973744-8b1d1d96-cfd3-4430-82e7-66a6bf39f4d5.png)
+
+
 # License
 
 See the LICENSE file for detailed info.
