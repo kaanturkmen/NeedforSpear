@@ -4,6 +4,8 @@ import tr.edu.ku.devnull.needforspear.Model.GameData.Constants;
 import tr.edu.ku.devnull.needforspear.Model.GameData.Location;
 import tr.edu.ku.devnull.needforspear.Model.GameData.Size;
 import tr.edu.ku.devnull.needforspear.Model.GameData.Speed;
+import tr.edu.ku.devnull.needforspear.Viewmodel.GameLogicHandlers.MovementHandler;
+import tr.edu.ku.devnull.needforspear.Viewmodel.Util.CollisionData;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -145,6 +147,28 @@ public class Sphere {
      */
     public void setMoving(boolean state) {
         this.isMoving = state;
+
+        if(state){
+            MovementHandler movementHandler = new MovementHandler();
+            double h = 2*Constants.ProportionConstants.RADIUS_OF_THE_SPHERE;
+            double xDiff = h*Math.sin(NoblePhantasm.getInstance().getRotationDegree());
+            double yDiff = h*(1.0-Math.cos(NoblePhantasm.getInstance().getRotationDegree()));
+            System.out.println("Location Check"+ NoblePhantasm.getInstance().getLocation().getXCoordinates() + " "+this.getLocation().getXCoordinates());
+
+            System.out.println(xDiff + "   "+ yDiff+" hhh");
+            int currX = (int) (this.getLocation().getXCoordinates() + xDiff);
+            int currY = (int) (this.getLocation().getYCoordinates());
+            //this.getLocation().setXCoordinates(currX);
+            //this.getLocation().setYCoordinates(currY);
+
+            double magnitude=Math.sqrt(this.getSpeed().getSpeedOnXAxis()*this.getSpeed().getSpeedOnXAxis()+this.getSpeed().getSpeedOnYAxis()*this.getSpeed().getSpeedOnYAxis());
+            //this.setSpeed(new Speed(-magnitude*Math.sin(-NoblePhantasm.getInstance().getRotationDegree()), -magnitude*Math.cos(NoblePhantasm.getInstance().getRotationDegree())));
+
+            //this.setLocation(new Location(currX + this.getSpeed().getSpeedOnXAxis(), currY + this.getSpeed().getSpeedOnYAxis()));
+            movementHandler.updateSphereMovement(new CollisionData(new Location(currX + this.getSpeed().getSpeedOnXAxis(), currY + this.getSpeed().getSpeedOnYAxis()), new Speed(new Double(-magnitude*Math.sin(-NoblePhantasm.getInstance().getRotationDegree())).longValue(), new Double(-magnitude*Math.cos(NoblePhantasm.getInstance().getRotationDegree())).longValue())));
+            System.out.println("merhabalar cnm");
+            System.out.println("merhabalar cnm "+this.getSpeed().getSpeedOnXAxis() + " " + this.getSpeed().getSpeedOnYAxis());
+        }
     }
 
     /**
