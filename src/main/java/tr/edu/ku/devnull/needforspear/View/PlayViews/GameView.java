@@ -448,6 +448,7 @@ public class GameView {
         NeedforSpearGame.getInstance().getGameInfo().getMainFrame().revalidate();
 
         gamePanel = null;
+        NeedforSpearGame.getInstance().getGameInfo().getSphere().setMoving(false);
         BuildModeHandler.getInstance().resetPhantasmAndSphereLocation();
     }
 

@@ -12,6 +12,7 @@ import tr.edu.ku.devnull.needforspear.Viewmodel.GameLogicHandlers.BackgroundHand
 import tr.edu.ku.devnull.needforspear.Viewmodel.GameLogicHandlers.MovementHandler;
 
 import java.awt.*;
+import java.awt.geom.AffineTransform;
 import java.util.List;
 
 /**
@@ -56,19 +57,31 @@ public class SphereAnimator implements AnimatorStrategy {
     @Override
     public void draw(Graphics g) {
         if (NeedforSpearGame.getInstance().getGameInfo().getSphere().isMoving()) {
-            movementHandler.sphereMovement(g);
-            g.setColor(Color.red);
+
+
             //new image on the new location
-            int x_coordinates_loc = (int) NeedforSpearGame.getInstance().getGameInfo().getSphere().getLocation().getXCoordinates();
-            int y_coordinates_loc = (int) NeedforSpearGame.getInstance().getGameInfo().getSphere().getLocation().getYCoordinates();
-            g.drawImage(sphereImage, x_coordinates_loc, y_coordinates_loc, Constants.ProportionConstants.RADIUS_OF_THE_SPHERE * 2, Constants.ProportionConstants.RADIUS_OF_THE_SPHERE * 2, null);
+            int x_location = (int) NeedforSpearGame.getInstance().getGameInfo().getSphere().getLocation().getXCoordinates();
+            int y_location = (int) NeedforSpearGame.getInstance().getGameInfo().getSphere().getLocation().getYCoordinates();
+            g.drawImage(sphereImage, x_location, y_location, Constants.ProportionConstants.RADIUS_OF_THE_SPHERE * 2, Constants.ProportionConstants.RADIUS_OF_THE_SPHERE * 2, null);
+            movementHandler.sphereMovement(g);
         } else {
             NoblePhantasm noblePhantasm = NoblePhantasm.getInstance();
             Location followNoblePhantasm = new Location((noblePhantasm.getLocation().getXCoordinates() + (noblePhantasm.getSize().getWidth() / 2.0) - Constants.ProportionConstants.RADIUS_OF_THE_SPHERE), (noblePhantasm.getLocation().getYCoordinates() - 2 * Constants.ProportionConstants.RADIUS_OF_THE_SPHERE));
             NeedforSpearGame.getInstance().getGameInfo().getSphere().setLocation(followNoblePhantasm);
-            int x_coordinates_loc = (int) followNoblePhantasm.getXCoordinates();
-            int y_coordinates_loc = (int) followNoblePhantasm.getYCoordinates();
-            g.drawImage(sphereImage, x_coordinates_loc, y_coordinates_loc, Constants.ProportionConstants.RADIUS_OF_THE_SPHERE * 2, Constants.ProportionConstants.RADIUS_OF_THE_SPHERE * 2, null);
+            int x_location_np = (int) noblePhantasm.getLocation().getXCoordinates();
+            int y_location_np = (int) noblePhantasm.getLocation().getYCoordinates();
+
+            int x_location = (int) NeedforSpearGame.getInstance().getGameInfo().getSphere().getLocation().getXCoordinates();
+            int y_location = (int) NeedforSpearGame.getInstance().getGameInfo().getSphere().getLocation().getYCoordinates();
+
+            Graphics2D g2d = (Graphics2D) g;
+
+            AffineTransform tx = g2d.getTransform();
+            g2d.rotate(noblePhantasm.getRotationDegree(), x_location_np + noblePhantasm.getSize().getWidth() / 2.0, y_location_np + Constants.ProportionConstants.Y_CENTER_OF_NOBLE_PHANTASM);
+
+            g.drawImage(sphereImage, x_location, y_location, Constants.ProportionConstants.RADIUS_OF_THE_SPHERE * 2, Constants.ProportionConstants.RADIUS_OF_THE_SPHERE * 2, null);
+            g2d.setTransform(tx);
+
         }
     }
 }
