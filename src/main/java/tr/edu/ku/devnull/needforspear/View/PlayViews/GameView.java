@@ -29,6 +29,7 @@ public class GameView {
     private GamePanel gamePanel;
     private JLabel score, lives;
     private JComboBox<String> addObstacleChoice;
+    private JFrame obstacleNumberCheckFrame;
 
     private boolean areKeysLoaded = false;
 
@@ -295,7 +296,11 @@ public class GameView {
      * This method asks for obstacles and constructs a new map if user pushes create new map button
      */
     private void askForObstacles() {
-        JFrame obstacleNumberCheckFrame = new JFrame();
+        if (obstacleNumberCheckFrame != null) {
+            obstacleNumberCheckFrame.dispose();
+            obstacleNumberCheckFrame = null;
+        }
+        obstacleNumberCheckFrame = new JFrame();
 
         FocusableJTextField dummyField = new FocusableJTextField(Constants.UIConstants.SIMPLE_OBSTACLE_NUM_TEXT);
         FocusableJTextField simpObstacleTxt = new FocusableJTextField(Constants.UIConstants.SIMPLE_OBSTACLE_NUM_TEXT);
@@ -311,7 +316,7 @@ public class GameView {
         giftObstacleTxt.setBounds(Constants.UIConstants.OBSTACLE_TXT_X, Constants.UIConstants.OBSTACLE_TXT_Y + 3 * Constants.UIConstants.OBSTACLE_TXT_X_PADDING, Constants.UIConstants.OBSTACLE_TXT_WIDTH, Constants.UIConstants.OBSTACLE_TXT_HEIGHT);
         confirm.setBounds(Constants.UIConstants.OBSTACLE_TXT_X, Constants.UIConstants.OBSTACLE_TXT_Y + 4 * Constants.UIConstants.OBSTACLE_TXT_X_PADDING, Constants.UIConstants.OBSTACLE_TXT_WIDTH - 6 * Constants.UIConstants.OBSTACLE_TXT_X_PADDING, Constants.UIConstants.OBSTACLE_TXT_HEIGHT + Constants.UIConstants.OBSTACLE_TXT_Y_PADDING);
 
-        confirm.addActionListener(e -> buildGameMap(obstacleNumberCheckFrame, simpObstacleTxt, firmObstacleTxt, explosiveObstacleTxt, giftObstacleTxt));
+        confirm.addActionListener(e -> buildGameMap(simpObstacleTxt, firmObstacleTxt, explosiveObstacleTxt, giftObstacleTxt));
         obstacleNumberCheckFrame.add(dummyField);
         obstacleNumberCheckFrame.add(simpObstacleTxt);
         obstacleNumberCheckFrame.add(firmObstacleTxt);
@@ -328,7 +333,7 @@ public class GameView {
      * This method gets input from the user and constructs and calls
      * the method which builds the gamePanel that the game will be played on
      */
-    private void buildGameMap(JFrame obstacleNumberCheckFrame, JTextField simpleObstacleTxt, JTextField firmObstacleTxt, JTextField explosiveObstacleTxt, JTextField giftObstacleTxt) {
+    private void buildGameMap(JTextField simpleObstacleTxt, JTextField firmObstacleTxt, JTextField explosiveObstacleTxt, JTextField giftObstacleTxt) {
         int simpObstacleNum = 0, firmObstacleNum = 0, explosiveObstacleNum = 0, giftObstacleNum = 0;
         try {
             simpObstacleNum = Integer.parseInt(simpleObstacleTxt.getText());
@@ -342,6 +347,7 @@ public class GameView {
         if (BuildModeHandler.getInstance().checkObstacleNumbers(simpObstacleNum, firmObstacleNum, explosiveObstacleNum, giftObstacleNum)) {
             prepObstacles(BuildModeHandler.getInstance(), simpObstacleNum, firmObstacleNum, explosiveObstacleNum, giftObstacleNum);
             obstacleNumberCheckFrame.dispose();
+            obstacleNumberCheckFrame = null;
             adjustOverlayPanelForBuildingMode();
             NeedforSpearGame.getInstance().getGameInfo().setGameLoaded(true);
             SpellHandler.getInstance().determineGiftObstaclesSpells();
@@ -352,7 +358,6 @@ public class GameView {
             NeedforSpearGame.getInstance().getGameInfo().getPlayer().setScore(Constants.UIConstants.INIT_SCORE);
         } else {
             JOptionPane.showMessageDialog(obstacleNumberCheckFrame, Constants.UIConstants.ENTER_BETWEEN_GIVEN_VALUES_TEXT, Constants.UIConstants.ALERT_TEXT, JOptionPane.WARNING_MESSAGE);
-
         }
     }
 
