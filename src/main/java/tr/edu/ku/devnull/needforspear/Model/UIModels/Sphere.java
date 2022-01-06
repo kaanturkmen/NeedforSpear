@@ -1,9 +1,7 @@
 package tr.edu.ku.devnull.needforspear.Model.UIModels;
 
-import tr.edu.ku.devnull.needforspear.Model.GameData.Constants;
-import tr.edu.ku.devnull.needforspear.Model.GameData.Location;
-import tr.edu.ku.devnull.needforspear.Model.GameData.Size;
-import tr.edu.ku.devnull.needforspear.Model.GameData.Speed;
+import tr.edu.ku.devnull.needforspear.Model.GameData.*;
+import tr.edu.ku.devnull.needforspear.NeedforSpearGame;
 import tr.edu.ku.devnull.needforspear.Viewmodel.GameLogicHandlers.MovementHandler;
 import tr.edu.ku.devnull.needforspear.Viewmodel.Util.CollisionData;
 
@@ -160,14 +158,39 @@ public class Sphere {
             int currY = (int) (this.getLocation().getYCoordinates());
             //this.getLocation().setXCoordinates(currX);
             //this.getLocation().setYCoordinates(currY);
+            System.out.println(NoblePhantasm.getInstance().getRotationDegree());
+            System.out.println("setMoving: speed before change "+this.getSpeed().getSpeedOnXAxis() + " " + this.getSpeed().getSpeedOnYAxis());
+            //double magnitude=Math.sqrt(this.getSpeed().getSpeedOnXAxis()*this.getSpeed().getSpeedOnXAxis()+this.getSpeed().getSpeedOnYAxis()*this.getSpeed().getSpeedOnYAxis());
+            double magnitude =Math.pow(Constants.SphereConstantSpeeds.NORMAL_SPEED,2);
+            if (NeedforSpearGame.getInstance().getGameInfo().getDifficultyHandler().getCurrentDifficulty() == Difficulty.HARD){
+                magnitude =  Math.pow(Constants.SphereConstantSpeeds.HARD_SPEED,2);
+            }
 
-            double magnitude=Math.sqrt(this.getSpeed().getSpeedOnXAxis()*this.getSpeed().getSpeedOnXAxis()+this.getSpeed().getSpeedOnYAxis()*this.getSpeed().getSpeedOnYAxis());
             //this.setSpeed(new Speed(-magnitude*Math.sin(-NoblePhantasm.getInstance().getRotationDegree()), -magnitude*Math.cos(NoblePhantasm.getInstance().getRotationDegree())));
+            double dx = -magnitude*Math.sin(-NoblePhantasm.getInstance().getRotationDegree());
+            double dy = -magnitude*Math.cos(-NoblePhantasm.getInstance().getRotationDegree());
 
+            /*if(Math.abs(dx) < 0){
+                dx = 1.5*dx;
+            }
+
+            if (dx ==0 && Math.toRadians(NoblePhantasm.getInstance().getRotationDegree()) != Math.PI/2 ){
+
+                if (NoblePhantasm.getInstance().isLeftRotate()){
+                    dx = -1;
+                }else if (NoblePhantasm.getInstance().isRightRotate()){
+                    dx = 1;
+                }
+            }
+
+            if(Math.abs(dy) < 0){
+                dy = 1.5*dy;
+            }*/
             //this.setLocation(new Location(currX + this.getSpeed().getSpeedOnXAxis(), currY + this.getSpeed().getSpeedOnYAxis()));
-            movementHandler.updateSphereMovement(new CollisionData(new Location(currX + this.getSpeed().getSpeedOnXAxis(), currY + this.getSpeed().getSpeedOnYAxis()), new Speed(new Double(-magnitude*Math.sin(-NoblePhantasm.getInstance().getRotationDegree())).longValue(), new Double(-magnitude*Math.cos(NoblePhantasm.getInstance().getRotationDegree())).longValue())));
-            System.out.println("merhabalar cnm");
-            System.out.println("merhabalar cnm "+this.getSpeed().getSpeedOnXAxis() + " " + this.getSpeed().getSpeedOnYAxis());
+            movementHandler.updateSphereMovement(new CollisionData(new Location(currX + this.getSpeed().getSpeedOnXAxis(), currY + this.getSpeed().getSpeedOnYAxis()),
+                    new Speed(new Double(dx).longValue(), new Double(dy).longValue())));
+
+            System.out.println("setMoving: speed after change "+this.getSpeed().getSpeedOnXAxis() + " " + this.getSpeed().getSpeedOnYAxis());
         }
     }
 

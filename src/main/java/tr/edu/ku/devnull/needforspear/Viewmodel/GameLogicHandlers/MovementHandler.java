@@ -71,9 +71,12 @@ public class MovementHandler {
         SoundHandler.getInstance().playSound("phantasmHitEffect.wav");
 
         getSphereCurrentPhysics();
-        dy *= -1;
-        y = y - 2 * Constants.ProportionConstants.RADIUS_OF_THE_SPHERE;
-        updateSphereMovement(new CollisionData(new Location(x, y), new Speed(new Double(dx).longValue(), new Double(dy).longValue())));
+        // dy *= -1;
+        //y = y - 2 * Constants.ProportionConstants.RADIUS_OF_THE_SPHERE;
+        // updateSphereMovement(new CollisionData(new Location(x, y), new Speed(new Double(dx).longValue(), new Double(dy).longValue())));
+        CollisionData collisionData = physicsEngine.reflect(new CollisionData(new Location(x, y), new Speed(new Double(dx).longValue(), new Double(dy).longValue())), NoblePhantasm.getInstance());
+        updateSphereMovement(collisionData);
+
     }
 
     /**
@@ -300,16 +303,21 @@ public class MovementHandler {
      */
     public void removingObstacles(Obstacle obstacle) {
         double y_bottom = obstacle.getLocation().getYCoordinates() + obstacle.getSize().getLength();
-        if (collisionHandler.isRemovedObstacle(obstacle) && obstacle.getObstacleType().equals(Constants.ObstacleNameConstants.EXPLOSIVE_OBSTACLE) &&
-                (collisionHandler.collisionWithExplosive(obstacle, NoblePhantasm.getInstance()) ||
-                        y_bottom > Constants.UIConstants.INITIAL_SCREEN_HEIGHT)) {
+        if (collisionHandler.isRemovedObstacle(obstacle) && obstacle.getObstacleType().equals(Constants.ObstacleNameConstants.EXPLOSIVE_OBSTACLE)){
+
+
 
             if (collisionHandler.collisionWithExplosive(obstacle, NoblePhantasm.getInstance())) {
                 PlayerLivesHandler.getInstance().notifyPlayerExplosiveFall(NoblePhantasm.getInstance());
+                collisionHandler.removeObstacle(obstacle, ObstacleAnimator.getListofObstacles());
                 System.out.println("player hit by explosive");
             }
+            if (y_bottom > Constants.UIConstants.INITIAL_SCREEN_HEIGHT) {
+                collisionHandler.removeObstacle(obstacle, ObstacleAnimator.getListofObstacles());
 
-            collisionHandler.removeObstacle(obstacle, ObstacleAnimator.getListofObstacles());
+            }
+
+
         }
     }
 

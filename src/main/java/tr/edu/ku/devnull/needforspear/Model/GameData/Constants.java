@@ -36,11 +36,11 @@ public interface Constants {
 
 
 
+    }
 
-
-
-
-
+    interface SphereConstantSpeeds{
+        int NORMAL_SPEED = 2;
+        int HARD_SPEED = 4;
     }
 
     /**
