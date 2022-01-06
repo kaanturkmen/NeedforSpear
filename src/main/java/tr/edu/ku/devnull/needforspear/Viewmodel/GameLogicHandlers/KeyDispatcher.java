@@ -63,8 +63,6 @@ public class KeyDispatcher implements KeyEventDispatcher {
             if (e.getKeyCode() == KeyEvent.VK_T) {
                 SpellHandler.getInstance().activateSpell(SpellHandler.getInstance().getAvailableSpell(Constants.SpellNameConstants.EXPANSION));
             }
-
-            return true;
         }
         if (e.getID() == KeyEvent.KEY_RELEASED) {
             if (e.getKeyCode() == KeyEvent.VK_A) {
@@ -103,7 +101,6 @@ public class KeyDispatcher implements KeyEventDispatcher {
                 }
 
             }
-            return true;
         }
         return false;
     }
