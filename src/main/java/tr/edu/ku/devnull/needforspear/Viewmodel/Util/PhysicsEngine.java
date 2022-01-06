@@ -1,9 +1,11 @@
 package tr.edu.ku.devnull.needforspear.Viewmodel.Util;
 
 import tr.edu.ku.devnull.needforspear.Model.GameData.Constants;
+import tr.edu.ku.devnull.needforspear.Model.GameData.Difficulty;
 import tr.edu.ku.devnull.needforspear.Model.GameData.Speed;
 import tr.edu.ku.devnull.needforspear.Model.Obstacle.Obstacle;
 import tr.edu.ku.devnull.needforspear.Model.UIModels.NoblePhantasm;
+import tr.edu.ku.devnull.needforspear.NeedforSpearGame;
 import tr.edu.ku.devnull.needforspear.Viewmodel.GameHandlers.SoundHandler;
 
 /**
@@ -143,60 +145,24 @@ public class PhysicsEngine {
                 //result.getCurrentSpeed().setSpeedOnYAxis((incident.getCurrentSpeed().getSpeedOnYAxis() - (2 * (getResultant(incident.getCurrentSpeed().getSpeedOnYAxis(), incident.getCurrentSpeed().getSpeedOnYAxis())) * Math.pow((getResultant(incident.getCurrentLocation().getYCoordinates(), incident.getCurrentLocation().getYCoordinates())), 2)) / (Math.pow(getResultant(incident.getCurrentLocation().getYCoordinates(), incident.getCurrentLocation().getYCoordinates()), 2))));
                 //result.getCurrentLocation().setXCoordinates((incident.getCurrentLocation().getXCoordinates() + noblePhantasm.getSpeed()));
             } else {
+/*
+                    double rotationDegree  = - NoblePhantasm.getInstance().getRotationDegree();
+                    System.out.println("REFLECTION");
+                    double dx = incident.getCurrentSpeed().getSpeedOnXAxis();
+                    double dy = -Math.abs(incident.getCurrentSpeed().getSpeedOnYAxis());
 
-                double rotationDegree = -NoblePhantasm.getInstance().getRotationDegree();
+                    double newdx = dx * Math.cos(-2 * rotationDegree) - dy * Math.sin(-2 * rotationDegree);
+                    double newdy = dy * Math.cos(-2 * rotationDegree) + dx * Math.sin(-2 * rotationDegree);
 
-                double edgeDX = NoblePhantasm.getInstance().getSize().getWidth() / 2;
-                double edgeDY = NoblePhantasm.getInstance().getSize().getLength() / 2;
+                    result.getCurrentSpeed().setSpeedOnXAxis(newdx);
+                    result.getCurrentSpeed().setSpeedOnYAxis(newdy);
 
-                double rotatedUpperLeftX = -edgeDX * Math.cos(rotationDegree) - edgeDY * Math.sin(rotationDegree);
-                double rotatedUpperLeftY = edgeDY * Math.cos(rotationDegree) - edgeDX * Math.sin(rotationDegree);
-
-                double rotatedUpperRightX = edgeDX * Math.cos(rotationDegree) - edgeDY * Math.sin(rotationDegree);
-                double rotatedUpperRightY = edgeDY * Math.cos(rotationDegree) + edgeDX * Math.sin(rotationDegree);
-
-                double rotatedLowerLeftX = -edgeDX * Math.cos(rotationDegree) + edgeDY * Math.sin(rotationDegree);
-
-                double rotatedLowerRightX = edgeDX * Math.cos(rotationDegree) + edgeDY * Math.sin(rotationDegree);
-
-                double ballX = incident.getCurrentLocation().getXCoordinates() + (double) 2 * Constants.ProportionConstants.RADIUS_OF_THE_SPHERE / 2 - NoblePhantasm.getInstance().getLocation().getXCoordinates() - edgeDX;
-                double ballY = -incident.getCurrentLocation().getYCoordinates() - (double) 2 * Constants.ProportionConstants.RADIUS_OF_THE_SPHERE / 2 + NoblePhantasm.getInstance().getLocation().getYCoordinates() + edgeDY;
-
-                double middleUpper = (rotatedUpperLeftY - rotatedUpperRightY) / (rotatedUpperLeftX - rotatedUpperRightX);
-
-
-                if ((ballY - (middleUpper * ballX + edgeDY) <= 2 * Constants.ProportionConstants.RADIUS_OF_THE_SPHERE / 2)
-                        && (ballX > rotatedUpperLeftX)
-                        && (ballX <= rotatedUpperRightX)
-                        && (ballY - (middleUpper * ballX + edgeDY) > 0)) {
-               /* System.out.println("HEEY");
-                double dx = incident.getCurrentSpeed().getSpeedOnXAxis();
-                double dy = -Math.abs(incident.getCurrentSpeed().getSpeedOnYAxis());
-
-                double newdx = dx * Math.cos(-2 * rotationDegree) - dy * Math.sin(-2 * rotationDegree);
-                double newdy = dy* Math.cos(-2 * rotationDegree) + dx * Math.sin(-2 * rotationDegree);
-
-                result.getCurrentSpeed().setSpeedOnXAxis(newdx);
-                result.getCurrentSpeed().setSpeedOnYAxis(newdy);
-
-                //update new location
-                result.getCurrentLocation().setXCoordinates((result.getCurrentLocation().getXCoordinates() + dx));
-                result.getCurrentLocation().setYCoordinates((result.getCurrentLocation().getYCoordinates() + dy));
-                System.out.println(result.getCurrentSpeed().getSpeedOnXAxis() + " " + result.getCurrentSpeed().getSpeedOnYAxis() );
-            }
-                /*double dx = incident.getCurrentSpeed().getSpeedOnXAxis();
-                double dy = -Math.abs(incident.getCurrentSpeed().getSpeedOnYAxis());
-                double newdx = dx * Math.cos(-2 * rotationDegree) - dy * Math.sin(-2 * rotationDegree);
-                double newdy = dy * Math.cos(-2 * rotationDegree) + dx * Math.sin(-2 * rotationDegree);
-
-                result.getCurrentSpeed().setSpeedOnXAxis(newdx);
-                result.getCurrentSpeed().setSpeedOnYAxis(newdy);
-
-                //update new location
-                result.getCurrentLocation().setXCoordinates((result.getCurrentLocation().getXCoordinates() + dx));
-                result.getCurrentLocation().setYCoordinates((result.getCurrentLocation().getYCoordinates() + dy));
+                    //update new location
+                    result.getCurrentLocation().setXCoordinates((result.getCurrentLocation().getXCoordinates() + newdx));
+                    result.getCurrentLocation().setYCoordinates((result.getCurrentLocation().getYCoordinates() + newdy));
+                    System.out.println(result.getCurrentSpeed().getSpeedOnXAxis() + " " + result.getCurrentSpeed().getSpeedOnYAxis());
 */
-                    double rotationRadians = Math.toRadians(-NoblePhantasm.getInstance().getRotationDegree());
+/*                   double rotationRadians = Math.toRadians(-NoblePhantasm.getInstance().getRotationDegree());
 
                     Speed currentSpeed = result.getCurrentSpeed();
                     Speed normal = new Speed(new Double(Math.cos(2 * rotationRadians)).longValue(), new Double(Math.sin(2 * rotationRadians)).longValue());
@@ -206,7 +172,36 @@ public class PhysicsEngine {
                     System.out.println("he" + newSpeed.getSpeedOnXAxis() + " " + newSpeed.getSpeedOnYAxis());
                     //result.getCurrentSpeed().setSpeedOnXAxis((normal.getSpeedOnXAxis()- (2 * (getResultant(incident.getCurrentSpeed().getSpeedOnXAxis(), incident.getCurrentSpeed().getSpeedOnXAxis())) * Math.pow((getResultant(incident.getCurrentLocation().getXCoordinates(), incident.getCurrentLocation().getXCoordinates())), 2)) / (Math.pow(getResultant(incident.getCurrentLocation().getXCoordinates(), incident.getCurrentLocation().getXCoordinates()), 2))));
                     // result.getCurrentSpeed().setSpeedOnYAxis(((normal.getSpeedOnYAxis()- (2 * (getResultant(incident.getCurrentSpeed().getSpeedOnYAxis(), incident.getCurrentSpeed().getSpeedOnYAxis())) * Math.pow((getResultant(incident.getCurrentLocation().getYCoordinates(), incident.getCurrentLocation().getYCoordinates())), 2)) / (Math.pow(getResultant(incident.getCurrentLocation().getYCoordinates(), incident.getCurrentLocation().getYCoordinates()), 2)))));
+ */
+                //}
+                double h = 2*Constants.ProportionConstants.RADIUS_OF_THE_SPHERE;
+                double xDiff = h*Math.sin(NoblePhantasm.getInstance().getRotationDegree());
+                double yDiff = h*(1.0-Math.cos(NoblePhantasm.getInstance().getRotationDegree()));
+                System.out.println("Location Check"+ NoblePhantasm.getInstance().getLocation().getXCoordinates() + " "+incident.getCurrentLocation().getXCoordinates());
+
+                System.out.println(xDiff + "   "+ yDiff+" hhh");
+                int currX = (int) (incident.getCurrentLocation().getXCoordinates() + xDiff);
+                int currY = (int) (incident.getCurrentLocation().getYCoordinates());
+                //this.getLocation().setXCoordinates(currX);
+                //this.getLocation().setYCoordinates(currY);
+                System.out.println(NoblePhantasm.getInstance().getRotationDegree());
+                System.out.println("setMoving: speed before change "+incident.getCurrentSpeed().getSpeedOnXAxis() + " " + incident.getCurrentSpeed().getSpeedOnXAxis());
+                //double magnitude=Math.sqrt(this.getSpeed().getSpeedOnXAxis()*this.getSpeed().getSpeedOnXAxis()+this.getSpeed().getSpeedOnYAxis()*this.getSpeed().getSpeedOnYAxis());
+                double magnitude =Math.pow(Constants.SphereConstantSpeeds.NORMAL_SPEED,2);
+                if (NeedforSpearGame.getInstance().getGameInfo().getDifficultyHandler().getCurrentDifficulty() == Difficulty.HARD){
+                    magnitude =  Math.pow(Constants.SphereConstantSpeeds.HARD_SPEED,2);
                 }
+
+                //this.setSpeed(new Speed(-magnitude*Math.sin(-NoblePhantasm.getInstance().getRotationDegree()), -magnitude*Math.cos(NoblePhantasm.getInstance().getRotationDegree())));
+                double dx = -magnitude*Math.sin(-NoblePhantasm.getInstance().getRotationDegree());
+                double dy = -magnitude*Math.cos(-NoblePhantasm.getInstance().getRotationDegree());
+                result.getCurrentSpeed().setSpeedOnXAxis(dx);
+                result.getCurrentSpeed().setSpeedOnYAxis(dy);
+
+                //update new location
+                result.getCurrentLocation().setXCoordinates(currX);
+                result.getCurrentLocation().setYCoordinates((result.getCurrentLocation().getYCoordinates())); //TODO might add dx dy
+                System.out.println(result.getCurrentSpeed().getSpeedOnXAxis() + " " + result.getCurrentSpeed().getSpeedOnYAxis());
             }
         }
 
