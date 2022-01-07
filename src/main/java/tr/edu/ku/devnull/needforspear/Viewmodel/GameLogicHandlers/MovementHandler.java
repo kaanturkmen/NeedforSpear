@@ -221,7 +221,7 @@ public class MovementHandler {
      */
     public void checkIfObstacleBelowPhantasm() {
         NoblePhantasm noblePhantasm = NoblePhantasm.getInstance();
-        if (y > noblePhantasm.getLocation().getYCoordinates()) {
+        if (y > Constants.UIConstants.INITIAL_SCREEN_HEIGHT-Constants.ProportionConstants.RADIUS_OF_THE_SPHERE) {
             NeedforSpearGame.getInstance().getGameInfo().getSphere().setMoving(false);
             PlayerLivesHandler.getInstance().notifyPlayerSphereFall(NeedforSpearGame.getInstance().getGameInfo().getSphere());
 

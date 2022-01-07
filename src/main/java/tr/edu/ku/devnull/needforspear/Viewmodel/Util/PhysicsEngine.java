@@ -135,7 +135,8 @@ public class PhysicsEngine {
                 result.getCurrentSpeed().setSpeedOnYAxis(-1 * incident.getCurrentSpeed().getSpeedOnYAxis());
             }
         } else {
-            if (noblePhantasm.isSpeeding()) {
+            //if (noblePhantasm.isSpeeding()) {
+               // System.out.println("is it becusee here");
                 /*double rotationDegree = Math.toRadians(-NoblePhantasm.getInstance().getRotationDegree());
                 double dx = result.getCurrentSpeed().getSpeedOnXAxis() * Math.cos(-2 * rotationDegree) - result.getCurrentSpeed().getSpeedOnYAxis() * Math.sin(-2 * rotationDegree);
                 double dy = result.getCurrentSpeed().getSpeedOnXAxis() * Math.cos(-2 * rotationDegree) + result.getCurrentSpeed().getSpeedOnYAxis() * Math.sin(-2 * rotationDegree);
@@ -144,7 +145,7 @@ public class PhysicsEngine {
                 // result.getCurrentSpeed().setSpeedOnXAxis((incident.getCurrentSpeed().getSpeedOnXAxis() - (2 * (getResultant(incident.getCurrentSpeed().getSpeedOnXAxis(), incident.getCurrentSpeed().getSpeedOnXAxis())) * Math.pow((getResultant(incident.getCurrentLocation().getXCoordinates(), incident.getCurrentLocation().getXCoordinates())), 2)) / (Math.pow(getResultant(incident.getCurrentLocation().getXCoordinates(), incident.getCurrentLocation().getXCoordinates()), 2))));
                 //result.getCurrentSpeed().setSpeedOnYAxis((incident.getCurrentSpeed().getSpeedOnYAxis() - (2 * (getResultant(incident.getCurrentSpeed().getSpeedOnYAxis(), incident.getCurrentSpeed().getSpeedOnYAxis())) * Math.pow((getResultant(incident.getCurrentLocation().getYCoordinates(), incident.getCurrentLocation().getYCoordinates())), 2)) / (Math.pow(getResultant(incident.getCurrentLocation().getYCoordinates(), incident.getCurrentLocation().getYCoordinates()), 2))));
                 //result.getCurrentLocation().setXCoordinates((incident.getCurrentLocation().getXCoordinates() + noblePhantasm.getSpeed()));
-            } else {
+           // } else {
 /*
                     double rotationDegree  = - NoblePhantasm.getInstance().getRotationDegree();
                     System.out.println("REFLECTION");
@@ -202,7 +203,7 @@ public class PhysicsEngine {
                 result.getCurrentLocation().setXCoordinates(currX);
                 result.getCurrentLocation().setYCoordinates((result.getCurrentLocation().getYCoordinates())); //TODO might add dx dy
                 System.out.println(result.getCurrentSpeed().getSpeedOnXAxis() + " " + result.getCurrentSpeed().getSpeedOnYAxis());
-            }
+            //}
         }
 
 
