@@ -178,8 +178,9 @@ public class MovementHandler {
         x = loc.getXCoordinates();
         y = loc.getYCoordinates();
 
-        dx = bullet.getSpeed().getSpeedOnXAxis();
-        dy = -bullet.getSpeed().getSpeedOnYAxis();
+        double magnitude =Math.pow(Constants.ProportionConstants.SPEED_OF_THE_BULLET,2);
+        dx = -magnitude*Math.sin(-NoblePhantasm.getInstance().getRotationDegree());
+        dy = -magnitude*Math.cos(-NoblePhantasm.getInstance().getRotationDegree());
 
         x += dx;
         y += dy;
