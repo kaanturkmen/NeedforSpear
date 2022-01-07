@@ -7,7 +7,7 @@ import tr.edu.ku.devnull.needforspear.Model.Obstacle.GiftObstacle;
 import tr.edu.ku.devnull.needforspear.Model.Obstacle.Obstacle;
 import tr.edu.ku.devnull.needforspear.Model.UIModels.NoblePhantasm;
 import tr.edu.ku.devnull.needforspear.NeedforSpearGame;
-import tr.edu.ku.devnull.needforspear.Viewmodel.Util.CollisionData;
+import tr.edu.ku.devnull.needforspear.Model.UIModels.CollisionData;
 import tr.edu.ku.devnull.needforspear.Viewmodel.Util.PhysicsEngine;
 
 import static org.junit.jupiter.api.Assertions.*;

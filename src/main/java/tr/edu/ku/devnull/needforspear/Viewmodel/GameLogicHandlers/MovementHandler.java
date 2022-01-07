@@ -13,7 +13,7 @@ import tr.edu.ku.devnull.needforspear.View.PlayViews.Animators.ObstacleAnimator;
 import tr.edu.ku.devnull.needforspear.View.PlayViews.Animators.SpellAnimator;
 import tr.edu.ku.devnull.needforspear.View.PlayViews.Animators.SphereAnimator;
 import tr.edu.ku.devnull.needforspear.Viewmodel.GameHandlers.SoundHandler;
-import tr.edu.ku.devnull.needforspear.Viewmodel.Util.CollisionData;
+import tr.edu.ku.devnull.needforspear.Model.UIModels.CollisionData;
 import tr.edu.ku.devnull.needforspear.Viewmodel.Util.PhysicsEngine;
 
 import java.awt.*;

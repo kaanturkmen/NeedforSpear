@@ -3,7 +3,6 @@ package tr.edu.ku.devnull.needforspear.Model.UIModels;
 import tr.edu.ku.devnull.needforspear.Model.GameData.*;
 import tr.edu.ku.devnull.needforspear.NeedforSpearGame;
 import tr.edu.ku.devnull.needforspear.Viewmodel.GameLogicHandlers.MovementHandler;
-import tr.edu.ku.devnull.needforspear.Viewmodel.Util.CollisionData;
 
 import java.util.Timer;
 import java.util.TimerTask;
