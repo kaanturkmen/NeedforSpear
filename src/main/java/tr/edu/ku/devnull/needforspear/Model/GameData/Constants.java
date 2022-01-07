@@ -26,7 +26,7 @@ public interface Constants {
         double RATIO_OF_NOBLE_PHANTASM = 0.1;
         double EXPLOSIVE_ORBIT_RADIUS = 1.5 * WIDTH_OF_NOBLE_PHANTASM;
         int RADIUS_OF_THE_BULLET = 9;
-        int SPEED_OF_THE_BULLET = 4;
+        int SPEED_OF_THE_BULLET = 2;
         int RADIUS_OF_EXPLOSIVE_OBSTACLE = 15;
         int SPELL_SIZE = 15;
         int WIDTH_OF_EXPLOSIVE_OBSTACLE = 30;
