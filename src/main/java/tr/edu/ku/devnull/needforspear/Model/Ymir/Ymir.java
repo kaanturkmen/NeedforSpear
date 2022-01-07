@@ -41,7 +41,7 @@ public class Ymir extends Thread {
     public void run() {
         System.out.println("Ymir is calculating!");
 
-        if (r.nextFloat() <= activationProbability) return;
+        if (r.nextFloat() > activationProbability) return;
         YmirPower currentPower = determineRandomSpell(ThreadLocalRandom.current().nextInt(0, 3));
 
         if (currentPower == null) {
