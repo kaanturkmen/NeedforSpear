@@ -57,7 +57,8 @@ public class ObstacleAnimator implements AnimatorStrategy {
     public void draw(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;
 
-        for (Obstacle obs : listofObstacles) {
+        for (int i = 0; i < listofObstacles.size(); i ++) {
+            Obstacle obs = listofObstacles.get(i);
             Location loc = obs.getLocation();
             int width = obs.getSize().getWidth();
             int length = obs.getSize().getLength();
