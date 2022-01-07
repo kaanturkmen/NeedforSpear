@@ -277,7 +277,12 @@ public class GameView {
         switchRunningModeButton.setVisible(false);
         addObstacleChoice.setVisible(false);
         saveMapButton.setVisible(false);
-        unmuteButton.setVisible(false);
+        if(NeedforSpearGame.getInstance().getGameInfo().isMuteModeActivated()){
+            unmuteButton.setVisible(true);
+            muteButton.setVisible(false);
+        }else{
+            unmuteButton.setVisible(false);
+        }
         changeDifficultyButton.setVisible(false);
         difficultyField.setVisible(false);
         difficultyField.setEditable(false);
