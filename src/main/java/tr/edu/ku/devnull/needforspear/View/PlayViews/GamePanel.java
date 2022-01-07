@@ -2,6 +2,7 @@ package tr.edu.ku.devnull.needforspear.View.PlayViews;
 
 import tr.edu.ku.devnull.needforspear.Model.GameData.Constants;
 import tr.edu.ku.devnull.needforspear.Model.GameData.GameMode;
+import tr.edu.ku.devnull.needforspear.Model.GameData.Location;
 import tr.edu.ku.devnull.needforspear.Model.Obstacle.Obstacle;
 import tr.edu.ku.devnull.needforspear.Model.Player.Player;
 import tr.edu.ku.devnull.needforspear.Model.Spell.YmirSpells.HollowPurpleSubscriber;
@@ -121,6 +122,9 @@ public class GamePanel extends JPanel implements ActionListener, MouseMotionList
 
             if (BuildModeHandler.getInstance().getSelectedObstacle() != null && !isGameStarted) {
                 BuildModeHandler.getInstance().relocateObstacle(x, y, getGraphics(), obstacleAnimator, true);
+                if(BuildModeHandler.getInstance().getObstacleByLocation(x, y).getObstacleType().equals(Constants.ObstacleNameConstants.GIFT_OBSTACLE)){
+                    BuildModeHandler.getInstance().getObstacleByLocation(x, y).getSpell().setLocation(new Location(x,y));
+                }
             }
         }
 
