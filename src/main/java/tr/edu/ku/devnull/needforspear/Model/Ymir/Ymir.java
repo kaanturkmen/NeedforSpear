@@ -62,11 +62,11 @@ public class Ymir extends Thread {
         switch (index) {
             case 0: {
                 System.out.println("Double Accel is activated by Ymir.");
-                return new InfiniteVoidSpell();
+                return new DoubleAccelSpell();
             }
             case 1: {
                 System.out.println("Hollow Purple is activated by Ymir.");
-                return new InfiniteVoidSpell();
+                return new HollowPurpleSpell();
             }
             case 2: {
                 System.out.println("Infinite Void is activated by Ymir.");
