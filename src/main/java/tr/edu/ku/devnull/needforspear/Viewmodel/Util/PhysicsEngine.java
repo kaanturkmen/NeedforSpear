@@ -31,12 +31,12 @@ public class PhysicsEngine {
 
         if (incident.getCurrentLocation().getXCoordinates() + incident.getCurrentSpeed().getSpeedOnXAxis() < 0
                 || incident.getCurrentLocation().getXCoordinates() + incident.getCurrentSpeed().getSpeedOnXAxis() > Constants.UIConstants.INITIAL_SCREEN_WIDTH - 2 * Constants.ProportionConstants.RADIUS_OF_THE_SPHERE) {
-            SoundHandler.getInstance().playSound("frameHitEffect.wav");
+            SoundHandler.getInstance().playSound(Constants.SoundConstants.FRAME_HIT_SOUND);
             result.getCurrentSpeed().setSpeedOnXAxis(-1 * incident.getCurrentSpeed().getSpeedOnXAxis());
         }
         if (incident.getCurrentLocation().getYCoordinates() + incident.getCurrentSpeed().getSpeedOnYAxis() < 0
                 || incident.getCurrentLocation().getYCoordinates() + incident.getCurrentSpeed().getSpeedOnYAxis() > Constants.UIConstants.INITIAL_SCREEN_HEIGHT) {
-            SoundHandler.getInstance().playSound("frameHitEffect.wav");
+            SoundHandler.getInstance().playSound(Constants.SoundConstants.FRAME_HIT_SOUND);
             result.getCurrentSpeed().setSpeedOnYAxis(-1 * incident.getCurrentSpeed().getSpeedOnYAxis());
         }
         return result;
@@ -72,7 +72,6 @@ public class PhysicsEngine {
                     incident.getCurrentLocation().getXCoordinates() + incident.getCurrentSpeed().getSpeedOnXAxis() < obstacle.getLocation().getXCoordinates() + obstacle.getSize().getWidth() &&
                     incident.getCurrentLocation().getYCoordinates() + 2 * Constants.ProportionConstants.RADIUS_OF_THE_SPHERE > obstacle.getLocation().getYCoordinates() &&
                     incident.getCurrentLocation().getYCoordinates() < obstacle.getLocation().getYCoordinates() + obstacle.getSize().getLength()) {
-                SoundHandler.getInstance().playSound("obstacleHitEffect.wav");
                 result.getCurrentSpeed().setSpeedOnXAxis(-1 * incident.getCurrentSpeed().getSpeedOnXAxis());
 
                 System.out.println("1st if");
@@ -82,7 +81,6 @@ public class PhysicsEngine {
                     incident.getCurrentLocation().getXCoordinates() < obstacle.getLocation().getXCoordinates() + obstacle.getSize().getWidth() &&
                     incident.getCurrentLocation().getYCoordinates() + Constants.ProportionConstants.RADIUS_OF_THE_SPHERE + incident.getCurrentSpeed().getSpeedOnYAxis() > obstacle.getLocation().getYCoordinates() &&
                     incident.getCurrentLocation().getYCoordinates() + incident.getCurrentSpeed().getSpeedOnYAxis() < obstacle.getLocation().getYCoordinates() + obstacle.getSize().getLength()) {
-                SoundHandler.getInstance().playSound("obstacleHitEffect.wav");
                 result.getCurrentSpeed().setSpeedOnYAxis(-1 * incident.getCurrentSpeed().getSpeedOnYAxis());
                 result.getCurrentSpeed().setSpeedOnXAxis(-1 * incident.getCurrentSpeed().getSpeedOnXAxis());
                 System.out.println("2nd if");
@@ -94,17 +92,14 @@ public class PhysicsEngine {
                     incident.getCurrentLocation().getXCoordinates() + incident.getCurrentSpeed().getSpeedOnXAxis() < obstacle.getLocation().getXCoordinates() + obstacle.getSize().getWidth() &&
                     incident.getCurrentLocation().getYCoordinates() + 2 * Constants.ProportionConstants.RADIUS_OF_THE_SPHERE > obstacle.getLocation().getYCoordinates() &&
                     incident.getCurrentLocation().getYCoordinates() < obstacle.getLocation().getYCoordinates() + obstacle.getSize().getLength()) {
-                SoundHandler.getInstance().playSound("obstacleHitEffect.wav");
                 result.getCurrentSpeed().setSpeedOnXAxis(-1 * incident.getCurrentSpeed().getSpeedOnXAxis());
                 result.getCurrentLocation().setXCoordinates(result.getCurrentLocation().getXCoordinates() + obstacle.getSpeed());
             } else if (incident.getCurrentLocation().getXCoordinates() + 2 * Constants.ProportionConstants.RADIUS_OF_THE_SPHERE > obstacle.getLocation().getXCoordinates() &&
                     incident.getCurrentLocation().getXCoordinates() < obstacle.getLocation().getXCoordinates() + obstacle.getSize().getWidth() &&
                     incident.getCurrentLocation().getYCoordinates() + Constants.ProportionConstants.RADIUS_OF_THE_SPHERE + incident.getCurrentSpeed().getSpeedOnYAxis() > obstacle.getLocation().getYCoordinates() &&
                     incident.getCurrentLocation().getYCoordinates() + incident.getCurrentSpeed().getSpeedOnYAxis() < obstacle.getLocation().getYCoordinates() + obstacle.getSize().getLength()) {
-                SoundHandler.getInstance().playSound("obstacleHitEffect.wav");
                 result.getCurrentSpeed().setSpeedOnYAxis(-1 * incident.getCurrentSpeed().getSpeedOnYAxis());
                 result.getCurrentSpeed().setSpeedOnXAxis(-1 * incident.getCurrentSpeed().getSpeedOnXAxis());
-                result.getCurrentLocation().setXCoordinates(result.getCurrentLocation().getXCoordinates() + obstacle.getSpeed());
             } else {
                 return null;
             }

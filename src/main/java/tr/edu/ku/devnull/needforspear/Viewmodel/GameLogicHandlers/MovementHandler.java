@@ -6,6 +6,7 @@ import tr.edu.ku.devnull.needforspear.Model.GameData.Speed;
 import tr.edu.ku.devnull.needforspear.Model.Obstacle.Obstacle;
 import tr.edu.ku.devnull.needforspear.Model.Spell.Spell;
 import tr.edu.ku.devnull.needforspear.Model.UIModels.Bullet;
+import tr.edu.ku.devnull.needforspear.Model.UIModels.CollisionData;
 import tr.edu.ku.devnull.needforspear.Model.UIModels.NoblePhantasm;
 import tr.edu.ku.devnull.needforspear.NeedforSpearGame;
 import tr.edu.ku.devnull.needforspear.View.PlayViews.Animators.BulletAnimator;
@@ -13,11 +14,12 @@ import tr.edu.ku.devnull.needforspear.View.PlayViews.Animators.ObstacleAnimator;
 import tr.edu.ku.devnull.needforspear.View.PlayViews.Animators.SpellAnimator;
 import tr.edu.ku.devnull.needforspear.View.PlayViews.Animators.SphereAnimator;
 import tr.edu.ku.devnull.needforspear.Viewmodel.GameHandlers.SoundHandler;
-import tr.edu.ku.devnull.needforspear.Model.UIModels.CollisionData;
 import tr.edu.ku.devnull.needforspear.Viewmodel.Util.PhysicsEngine;
 
 import java.awt.*;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * This class does the location calculations for movements of sphere, obstacles and NoblePhantasm.
@@ -58,7 +60,6 @@ public class MovementHandler {
 
 
         if (collisionData != null) {
-            SoundHandler.getInstance().playSound("obstacleHitEffect.wav");
             updateSphereMovement(collisionData);
         }
 
@@ -68,7 +69,7 @@ public class MovementHandler {
      * Sphere's bounce from phantasm
      */
     public void bounceSphereFromPhantasm() {
-        SoundHandler.getInstance().playSound("phantasmHitEffect.wav");
+        SoundHandler.getInstance().playSound(Constants.SoundConstants.NOBLE_PHANTASM_HIT_SOUND);
 
         getSphereCurrentPhysics();
         // dy *= -1;
@@ -121,7 +122,7 @@ public class MovementHandler {
         int y = (int) (Math.sin(angleObstacle) * Constants.ProportionConstants.CHANGE_IN_Y_LOCATION_USING_HEIGHT_OF_EXPLOSIVE_OBSTACLE + circle_center_y);
         angleObstacle += 0.001;
 
-        return new Location(x - Constants.ProportionConstants.RADIUS_OF_EXPLOSIVE_OBSTACLE, y -Constants.ProportionConstants.RADIUS_OF_EXPLOSIVE_OBSTACLE);
+        return new Location(x - Constants.ProportionConstants.RADIUS_OF_EXPLOSIVE_OBSTACLE, y - Constants.ProportionConstants.RADIUS_OF_EXPLOSIVE_OBSTACLE);
 
     }
 
@@ -178,9 +179,9 @@ public class MovementHandler {
         x = loc.getXCoordinates();
         y = loc.getYCoordinates();
 
-        double magnitude =Math.pow(Constants.ProportionConstants.SPEED_OF_THE_BULLET,2);
-        dx = -magnitude*Math.sin(-NoblePhantasm.getInstance().getRotationDegree());
-        dy = -magnitude*Math.cos(-NoblePhantasm.getInstance().getRotationDegree());
+        double magnitude = Math.pow(Constants.ProportionConstants.SPEED_OF_THE_BULLET, 2);
+        dx = -magnitude * Math.sin(-NoblePhantasm.getInstance().getRotationDegree());
+        dy = -magnitude * Math.cos(-NoblePhantasm.getInstance().getRotationDegree());
 
         x += dx;
         y += dy;
@@ -222,7 +223,7 @@ public class MovementHandler {
      */
     public void checkIfObstacleBelowPhantasm() {
         NoblePhantasm noblePhantasm = NoblePhantasm.getInstance();
-        if (y > Constants.UIConstants.INITIAL_SCREEN_HEIGHT-Constants.ProportionConstants.RADIUS_OF_THE_SPHERE) {
+        if (y > Constants.UIConstants.INITIAL_SCREEN_HEIGHT - Constants.ProportionConstants.RADIUS_OF_THE_SPHERE) {
             NeedforSpearGame.getInstance().getGameInfo().getSphere().setMoving(false);
             PlayerLivesHandler.getInstance().notifyPlayerSphereFall(NeedforSpearGame.getInstance().getGameInfo().getSphere());
 
@@ -304,8 +305,7 @@ public class MovementHandler {
      */
     public void removingObstacles(Obstacle obstacle) {
         double y_bottom = obstacle.getLocation().getYCoordinates() + obstacle.getSize().getLength();
-        if (collisionHandler.isRemovedObstacle(obstacle) && obstacle.getObstacleType().equals(Constants.ObstacleNameConstants.EXPLOSIVE_OBSTACLE)){
-
+        if (collisionHandler.isRemovedObstacle(obstacle) && obstacle.getObstacleType().equals(Constants.ObstacleNameConstants.EXPLOSIVE_OBSTACLE)) {
 
 
             if (collisionHandler.collisionWithExplosive(obstacle, NoblePhantasm.getInstance())) {
@@ -359,14 +359,39 @@ public class MovementHandler {
 
                     int current_health = obs.getHealth();
                     for (int k = 0; k < current_health; k++) {
-                        obs.damageObstacle();
+                        if (!obs.isInvincible()) {
+                            SoundHandler.getInstance().playSound(Constants.SoundConstants.OBSTACLE_HIT_SOUND);
+                            obs.damageObstacle();
+                            if (obs.getObstacleType().equals(Constants.ObstacleNameConstants.FIRM_OBSTACLE)) {
+                                obs.setInvincible(true);
+                                new Timer().schedule(new TimerTask() {
+                                    @Override
+                                    public void run() {
+                                        obs.setInvincible(false);
+                                    }
+                                }, 200);
+                            }
+                        }
                     }
 
                     if ((current_time - start_time) / 1000 >= 30) { //30 seconds activation
                         NeedforSpearGame.getInstance().getGameInfo().getSphere().deactivateUnstoppable();
                     }
                 } else {
-                    obs.damageObstacle();
+                    if (!obs.isInvincible()) {
+                        SoundHandler.getInstance().playSound(Constants.SoundConstants.OBSTACLE_HIT_SOUND);
+                        obs.damageObstacle();
+                        if (obs.getObstacleType().equals(Constants.ObstacleNameConstants.FIRM_OBSTACLE)
+                        && !NeedforSpearGame.getInstance().getGameInfo().getSphere().isUnstoppable()) {
+                            obs.setInvincible(true);
+                            new Timer().schedule(new TimerTask() {
+                                @Override
+                                public void run() {
+                                    obs.setInvincible(false);
+                                }
+                            }, 200);
+                        }
+                    }
                     bounceHandler.bounceSphereFromObstacle(obs);
                 }
 

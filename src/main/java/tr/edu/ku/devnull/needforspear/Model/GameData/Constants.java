@@ -16,7 +16,7 @@ public interface Constants {
         int HEIGHT_OF_NOBLE_PHANTASM = 20;
         int WIDTH_OF_NOBLE_PHANTASM = Constants.UIConstants.INITIAL_SCREEN_WIDTH / 10;
         int Y_CENTER_OF_NOBLE_PHANTASM = Constants.ProportionConstants.HEIGHT_OF_NOBLE_PHANTASM / 2;
-        double REGULAR_SPEED_OF_NOBLE_PHANTASM  = (1.0 * Constants.UIConstants.INITIAL_SCREEN_WIDTH / 10.0 / 1000.0);
+        double REGULAR_SPEED_OF_NOBLE_PHANTASM = (1.0 * Constants.UIConstants.INITIAL_SCREEN_WIDTH / 10.0 / 1000.0);
         double DOUBLE_SPEED_OF_NOBLE_PHANTASM = (1.0 * Constants.UIConstants.INITIAL_SCREEN_WIDTH / 5.0 / 1000.0);
         double RATE_OF_TWENTY_DEGREES_PER_SECOND = (0.35 / 1000.0);
         double RATE_OF_FOURTY_FIVE_DEGREES_PER_SECOND = (0.78 / 1000);
@@ -31,11 +31,11 @@ public interface Constants {
         int SPELL_SIZE = 15;
         int WIDTH_OF_EXPLOSIVE_OBSTACLE = 30;
         int HEIGHT_OF_EXPLOSIVE_OBSTACLE = 30;
-        int CHANGE_IN_X_LOCATION_USING_WIDTH_OF_EXPLOSIVE_OBSTACLE = WIDTH_OF_EXPLOSIVE_OBSTACLE/3;
-        int CHANGE_IN_Y_LOCATION_USING_HEIGHT_OF_EXPLOSIVE_OBSTACLE = HEIGHT_OF_EXPLOSIVE_OBSTACLE/3;
+        int CHANGE_IN_X_LOCATION_USING_WIDTH_OF_EXPLOSIVE_OBSTACLE = WIDTH_OF_EXPLOSIVE_OBSTACLE / 3;
+        int CHANGE_IN_Y_LOCATION_USING_HEIGHT_OF_EXPLOSIVE_OBSTACLE = HEIGHT_OF_EXPLOSIVE_OBSTACLE / 3;
     }
 
-    interface SphereConstantSpeeds{
+    interface SphereConstantSpeeds {
         int NORMAL_SPEED = 2;
         int HARD_SPEED = 4;
     }
@@ -240,5 +240,14 @@ public interface Constants {
         String EXPANSION = "ExpansionSpell";
         String HEX = "MagicalHexSpell";
         String UNSTOPPABLE = "UnstoppableSpell";
+    }
+
+    /**
+     * Constants for the name of the sounds to be played.
+     */
+    interface SoundConstants {
+        String NOBLE_PHANTASM_HIT_SOUND = "phantasmHitEffect.wav";
+        String FRAME_HIT_SOUND = "frameHitEffect.wav";
+        String OBSTACLE_HIT_SOUND = "obstacleHitEffect.wav";
     }
 }
