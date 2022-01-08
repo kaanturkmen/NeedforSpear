@@ -37,7 +37,7 @@ public class MovementHandler {
     public void bounceSphereFromFrame() {
         getSphereCurrentPhysics();
         CollisionData collisionData = physicsEngine.reflect(new CollisionData(new Location(x, y), new Speed(Double.valueOf(dx).longValue(), Double.valueOf(dy).longValue())));
-        checkIfObstacleBelowPhantasm();
+        checkIfSphereBelowPhantasm();
         updateSphereMovement(collisionData);
     }
 
@@ -220,9 +220,8 @@ public class MovementHandler {
     /**
      * Checks if obstacle is below the noble phantasm
      */
-    public void checkIfObstacleBelowPhantasm() {
-        NoblePhantasm noblePhantasm = NoblePhantasm.getInstance();
-        if (y > Constants.UIConstants.INITIAL_SCREEN_HEIGHT-Constants.ProportionConstants.RADIUS_OF_THE_SPHERE) {
+    public void checkIfSphereBelowPhantasm() {
+       if (y > Constants.UIConstants.INITIAL_SCREEN_HEIGHT - (Constants.UIConstants.OVERLAY_PANEL_HEIGHT + Constants.UIConstants.OVERLAY_PANEL_HEIGHT / Constants.UIConstants.DIVISION_CONSTANT_OF_PHANTASM)){
             NeedforSpearGame.getInstance().getGameInfo().getSphere().setMoving(false);
             PlayerLivesHandler.getInstance().notifyPlayerSphereFall(NeedforSpearGame.getInstance().getGameInfo().getSphere());
 
