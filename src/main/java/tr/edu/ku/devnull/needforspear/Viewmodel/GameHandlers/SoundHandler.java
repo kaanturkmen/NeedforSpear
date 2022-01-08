@@ -63,7 +63,6 @@ public class SoundHandler {
      */
     public void stopBackgroundMusic() {
         backgroundMusicClip.stop();
-        backgroundMusicThread.stop();
         backgroundMusicThread = null;
     }
 

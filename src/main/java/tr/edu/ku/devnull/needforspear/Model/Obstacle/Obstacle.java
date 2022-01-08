@@ -29,6 +29,7 @@ public class Obstacle {
     protected Size size;
     protected Spell spell;
     protected boolean isInfiniteVoidActivated;
+    protected boolean isInvincible = false;
 
     /**
      * Empty constructor of Obstacle for the database operations.
@@ -331,5 +332,23 @@ public class Obstacle {
     public void deactivateInfiniteVoidSpell() {
         this.isInfiniteVoidActivated = false;
         System.out.println("infinite void deactivated");
+    }
+
+    /**
+     * Gets if the obstacle is invincible.
+     *
+     * @return Boolean value indicating if the obstacle is invincible.
+     */
+    public boolean isInvincible() {
+        return isInvincible;
+    }
+
+    /**
+     * Sets if the obstacle is invincible.
+     *
+     * @param invincible Boolean value to be set.
+     */
+    public void setInvincible(boolean invincible) {
+        isInvincible = invincible;
     }
 }
