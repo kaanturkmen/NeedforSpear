@@ -27,10 +27,12 @@ public class Ymir extends Thread {
      */
     public Ymir() {
         if (NeedforSpearGame.getInstance().getGameInfo().getDifficultyHandler().getCurrentDifficulty() == Difficulty.NORMAL) {
-            activationProbability = Constants.UIConstants.YMIR_NORMAL_MODE_PROBABILITY;
+           // activationProbability = Constants.UIConstants.YMIR_NORMAL_MODE_PROBABILITY;
+            activationProbability = 1;
         } else {
             System.out.println(Constants.MessageConstants.YMIR_ACTIVATION_MESSAGE);
-            activationProbability = Constants.UIConstants.YMIR_HARD_MODE_PROBABILITY;
+           // activationProbability = Constants.UIConstants.YMIR_HARD_MODE_PROBABILITY;
+            activationProbability = 1;
         }
     }
 
@@ -66,11 +68,13 @@ public class Ymir extends Thread {
             }
             case 1: {
                 System.out.println(Constants.MessageConstants.HOLLOW_PURPLE_TRIGGERED);
-                return new HollowPurpleSpell();
+                //return new HollowPurpleSpell();
+                return new DoubleAccelSpell();
             }
             case 2: {
                 System.out.println(Constants.MessageConstants.INFINITE_VOID_TRIGGERED);
-                return new InfiniteVoidSpell();
+                //return new InfiniteVoidSpell();
+                return new DoubleAccelSpell();
             }
             default:
                 return null;
