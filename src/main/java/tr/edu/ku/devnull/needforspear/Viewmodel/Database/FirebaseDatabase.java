@@ -456,10 +456,10 @@ public class FirebaseDatabase implements GameDatabase {
                 mailExists = true;
             }
 
-            if (currentPlayer.getAccount().getEmail().equals(player.getAccount().getEmail()) && currentPlayer.getAccount().getUsername().equals(player.getAccount().getUsername()))
+            if (currentPlayer.getAccount().getEmail().equals(player.getAccount().getEmail()) && currentPlayer.getAccount().getUsername().equals(player.getAccount().getUsername())) {
                 userExists = true;
-
-            break;
+                break;
+            }
         }
 
         if (!userExists) {
