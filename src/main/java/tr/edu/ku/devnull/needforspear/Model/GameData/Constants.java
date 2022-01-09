@@ -260,7 +260,6 @@ public interface Constants {
      */
     interface MessageConstants {
         String OBSTACLE_SUBSCRIBER_MESSAGE = "I just detected that this obstacle got destroyed! I must set my isDestroyed value to true!";
-        String HOLLOW_PURPLE_SUBSCRIBER_MESSAGE = "Hollow Purple subscriber notified.";
         String HOLLOW_PURPLE_TRIGGERED = "Hollow Purple Spell is activated.";
         String DOUBLE_ACCEL_TRIGGERED = "Double Accel is activated.";
         String INFINITE_VOID_TRIGGERED = "Infinite Void is activated.";
@@ -269,11 +268,8 @@ public interface Constants {
         String YMIR_ACTIVATION_MESSAGE = "Activation probability is set to 0.75";
         String YMIR_CALCULATION_MESSAGE = "Ymir is calculating!";
         String YMIR_EXCEPTION_MESSAGE = "EXCEPTION: YMIR Spell Method returned as a null.";
-        String GAME_MUTE_MESSAGE = "Game Muted.";
-        String GAME_UNMUTE_MESSAGE = "Game Unmuted.";
         String LOGIN_RESPONSE_FAIL = "Login Failed";
         String OBSTACLE_PLACEMENT_EXCEPTION = "Found an exception about obstacle placement.";
-        String GAMEMAP_RESPONSE = "GameMap Response Arrived!";
         String USER_NOMAP_EXCEPTION = "There isn't a previously saved map.";
         String PREVIOUS_GAME_LOST = "You have lost in previous game.";
         String CONFIRM_EXIT = "Are you sure?";
