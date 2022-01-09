@@ -1,5 +1,6 @@
 package tr.edu.ku.devnull.needforspear.Viewmodel.AuthHandler;
 
+import tr.edu.ku.devnull.needforspear.Model.GameData.Constants;
 import tr.edu.ku.devnull.needforspear.Model.Player.Account;
 import tr.edu.ku.devnull.needforspear.Model.Player.Player;
 import tr.edu.ku.devnull.needforspear.NeedforSpearGame;
@@ -147,7 +148,7 @@ public class LoginHandler implements DatabaseAuthSubscriber {
 
             NeedforSpearGame.getInstance().startMainMenu();
         } else if (databaseResponse.equals(DatabaseCredentials.DATABASE_FAIL)) {
-            System.out.println("Failed");
+            System.out.println(Constants.MessageConstants.LOGIN_RESPONSE_FAIL);
         }
     }
 }

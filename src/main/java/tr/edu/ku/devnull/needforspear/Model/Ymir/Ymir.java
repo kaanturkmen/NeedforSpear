@@ -29,7 +29,7 @@ public class Ymir extends Thread {
         if (NeedforSpearGame.getInstance().getGameInfo().getDifficultyHandler().getCurrentDifficulty() == Difficulty.NORMAL) {
             activationProbability = Constants.UIConstants.YMIR_NORMAL_MODE_PROBABILITY;
         } else {
-            System.out.println("Activation probability is set to 0.75");
+            System.out.println(Constants.MessageConstants.YMIR_ACTIVATION_MESSAGE);
             activationProbability = Constants.UIConstants.YMIR_HARD_MODE_PROBABILITY;
         }
     }
@@ -39,13 +39,13 @@ public class Ymir extends Thread {
      */
     @Override
     public void run() {
-        System.out.println("Ymir is calculating!");
+        System.out.println(Constants.MessageConstants.YMIR_CALCULATION_MESSAGE);
 
         if (r.nextFloat() > activationProbability) return;
         YmirPower currentPower = determineRandomSpell(ThreadLocalRandom.current().nextInt(0, 3));
 
         if (currentPower == null) {
-            System.err.println("EXCEPTION: YMIR Spell Method returned as a null.");
+            System.err.println(Constants.MessageConstants.YMIR_EXCEPTION_MESSAGE);
             return;
         }
 
@@ -61,15 +61,15 @@ public class Ymir extends Thread {
     private YmirPower determineRandomSpell(Integer index) {
         switch (index) {
             case 0: {
-                System.out.println("Double Accel is activated by Ymir.");
+                System.out.println(Constants.MessageConstants.DOUBLE_ACCEL_TRIGGERED);
                 return new DoubleAccelSpell();
             }
             case 1: {
-                System.out.println("Hollow Purple is activated by Ymir.");
+                System.out.println(Constants.MessageConstants.HOLLOW_PURPLE_TRIGGERED);
                 return new HollowPurpleSpell();
             }
             case 2: {
-                System.out.println("Infinite Void is activated by Ymir.");
+                System.out.println(Constants.MessageConstants.INFINITE_VOID_TRIGGERED);
                 return new InfiniteVoidSpell();
             }
             default:

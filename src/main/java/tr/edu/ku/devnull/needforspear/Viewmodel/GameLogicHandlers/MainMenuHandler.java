@@ -1,5 +1,6 @@
 package tr.edu.ku.devnull.needforspear.Viewmodel.GameLogicHandlers;
 
+import tr.edu.ku.devnull.needforspear.Model.GameData.Constants;
 import tr.edu.ku.devnull.needforspear.Model.GameData.GameMap;
 import tr.edu.ku.devnull.needforspear.Model.Player.Player;
 import tr.edu.ku.devnull.needforspear.NeedforSpearGame;
@@ -66,7 +67,7 @@ public class MainMenuHandler implements DatabaseSaveLoadSubscriber {
                     NeedforSpearGame.getInstance().getViewData().getGameView().loadAMap();
                     NeedforSpearGame.getInstance().getGameInfo().setGameLoaded(true);
                 } else {
-                    JOptionPane.showMessageDialog(NeedforSpearGame.getInstance().getGameInfo().getMainFrame(), "You have lost in previous game", "Alert", JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(NeedforSpearGame.getInstance().getGameInfo().getMainFrame(), Constants.UIConstants.PREVIOUS_GAME_LOST_TEXT, "Alert", JOptionPane.WARNING_MESSAGE);
                 }
             }
         }

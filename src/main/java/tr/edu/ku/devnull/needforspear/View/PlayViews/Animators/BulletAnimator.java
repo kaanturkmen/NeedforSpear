@@ -61,8 +61,6 @@ public class BulletAnimator implements AnimatorStrategy {
      */
     private void bulletMovement(Graphics2D g2) {
         if (NeedforSpearGame.getInstance().getGameInfo().getGameMode() != GameMode.BUILDING_MODE) {
-
-            // Do not use enhanced for: Since enhanced for uses iterator to iterate, it is not compatible with Java Swing Thread.
             for (int i = 0; i < listOfBullets.size(); i++) {
                 Bullet bullet = listOfBullets.get(i);
                 if (bullet != null) {

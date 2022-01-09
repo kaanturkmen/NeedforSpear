@@ -154,7 +154,7 @@ public class Sphere {
             double yDiff = h*(1.0-Math.cos(NoblePhantasm.getInstance().getRotationDegree()));
             System.out.println("Location Check"+ NoblePhantasm.getInstance().getLocation().getXCoordinates() + " "+this.getLocation().getXCoordinates());
 
-            System.out.println(xDiff + "   "+ yDiff+" hhh");
+            System.out.println(xDiff + "   "+ yDiff+"");
             int currX = (int) (this.getLocation().getXCoordinates() + xDiff);
             int currY = (int) (this.getLocation().getYCoordinates());
             //this.getLocation().setXCoordinates(currX);

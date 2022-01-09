@@ -92,7 +92,7 @@ public class ViewData {
     /**
      * Sets the verification view.
      *
-     * @param sendVerificationView VerificaitonView to be set.
+     * @param sendVerificationView Verification View to be set.
      */
     public void setSendVerificationView(SendVerificationView sendVerificationView) {
         this.sendVerificationView = sendVerificationView;

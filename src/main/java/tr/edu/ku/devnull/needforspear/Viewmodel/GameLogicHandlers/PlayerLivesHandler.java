@@ -94,20 +94,4 @@ public class PlayerLivesHandler {
         return playerList.get(0).getLives();
     }
 
-//    /**
-//     * Ending the game if lives ended
-//     *
-//     * @param player
-//     */
-//    public void endGame(Player player) {
-//        JOptionPane.showMessageDialog(NeedforSpearGame.getMainFrame(), "You have lost", "Alert", JOptionPane.WARNING_MESSAGE);
-//        player.setLives(3);
-//        GamePanel.setIsGameLoaded(false);
-//        GamePanel.setIsGameStarted(false);
-//        NeedforSpearGame.setGameMode(GameMode.BUILDING_MODE);
-//        NeedforSpearGame.setIsPaused(false);
-//        NeedforSpearGame.getMainFrame().getContentPane().removeAll();
-//        NeedforSpearGame.getMainFrame().repaint();
-//        NeedforSpearGame.startMainMenu();
-//    }
 }

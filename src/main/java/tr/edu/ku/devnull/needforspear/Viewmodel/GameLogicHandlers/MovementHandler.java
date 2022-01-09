@@ -55,7 +55,7 @@ public class MovementHandler {
         try {
             collisionData = physicsEngine.reflect(new CollisionData(new Location(x, y), new Speed(new Double(dx).longValue(), new Double(dy).longValue())), obstacle);
         } catch (Exception e) {
-            System.out.println("Found an exception about obstacle placement.");
+            System.out.println(Constants.MessageConstants.OBSTACLE_PLACEMENT_EXCEPTION);
         }
 
 
@@ -72,9 +72,6 @@ public class MovementHandler {
         SoundHandler.getInstance().playSound(Constants.SoundConstants.NOBLE_PHANTASM_HIT_SOUND);
 
         getSphereCurrentPhysics();
-        // dy *= -1;
-        //y = y - 2 * Constants.ProportionConstants.RADIUS_OF_THE_SPHERE;
-        // updateSphereMovement(new CollisionData(new Location(x, y), new Speed(new Double(dx).longValue(), new Double(dy).longValue())));
         CollisionData collisionData = physicsEngine.reflect(new CollisionData(new Location(x, y), new Speed(new Double(dx).longValue(), new Double(dy).longValue())), NoblePhantasm.getInstance());
         updateSphereMovement(collisionData);
 
