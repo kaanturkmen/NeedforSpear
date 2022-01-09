@@ -122,8 +122,8 @@ public class GamePanel extends JPanel implements ActionListener, MouseMotionList
 
             if (BuildModeHandler.getInstance().getSelectedObstacle() != null && !isGameStarted) {
                 BuildModeHandler.getInstance().relocateObstacle(x, y, getGraphics(), obstacleAnimator, true);
-                if(BuildModeHandler.getInstance().getObstacleByLocation(x, y).getObstacleType().equals(Constants.ObstacleNameConstants.GIFT_OBSTACLE)){
-                    BuildModeHandler.getInstance().getObstacleByLocation(x, y).getSpell().setLocation(new Location(x,y));
+                if (BuildModeHandler.getInstance().getObstacleByLocation(x, y).getObstacleType().equals(Constants.ObstacleNameConstants.GIFT_OBSTACLE)) {
+                    BuildModeHandler.getInstance().getObstacleByLocation(x, y).getSpell().setLocation(new Location(x, y));
                 }
             }
         }
@@ -258,7 +258,7 @@ public class GamePanel extends JPanel implements ActionListener, MouseMotionList
                     } else {
                         if (SwingUtilities.isLeftMouseButton(e)) {
                             if (!NeedforSpearGame.getInstance().getGameInfo().getSphere().isMoving())
-                            NeedforSpearGame.getInstance().getGameInfo().getSphere().setMoving(true);
+                                NeedforSpearGame.getInstance().getGameInfo().getSphere().setMoving(true);
                         }
                     }
                 }

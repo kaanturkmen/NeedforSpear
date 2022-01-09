@@ -1,13 +1,17 @@
 # Need for Spear by /dev/null
 
-This game is developed by /dev/null team (see contributors), and it is final project for the Software Engineering course (COMP302).
-The main objective on this project is to implement design patterns, obey the MVVM design and get used to Agile Development.
+This game is developed by /dev/null team (see contributors), and it is our final project for the Software Engineering
+course (COMP302). The main objective on this project is to implement design patterns, obey the MVVM design and get used
+to Agile Development.
 
-While we were developing this game, we did not only wanted to practise what we have learned, but also we wanted to create a such game that we will be enjoying while playing.
+While we were developing this game, we did not only want to practise what we have learned in the course, but also create
+a game that we will enjoy while playing.
 
-Furthermore, Need for Spear game is developed for educational purposes. We are publishing this project to contribute to open source community.
+Need for Spear game is developed for educational purposes. We are publishing this project to contribute to the open
+source community.
 
 # Table of Contents
+
 * [License](#license)
 * [Contributors](#contributors)
 * [Additional Info](#additional-info)
@@ -22,7 +26,8 @@ See the LICENSE file for detailed info.
 
 # Contributors
 
-Dev/null worked as a team while developing Need for Spear, however, each team member had specialized part in the project. Below you can find these parts.
+Dev/null worked collaboratively during the development of the project, but the main efforts of each member is as
+follows;
 
 | Flags                        |                                 Main Contribution                                  |
 |------------------------------|:----------------------------------------------------------------------------------:|
@@ -34,10 +39,11 @@ Dev/null worked as a team while developing Need for Spear, however, each team me
 
 # Additional Info
 
-As a dev/null, we were using the private Git server as a version control system and most of our commits located on that server.
+As dev/null, we were using the private Git server as a version control system and most of our commits are located on
+that server.
 
-Also, I was the team lead on this project. I have followed Agile Development phases: Requirements, Design and Development for each
-sprint to perform task divisions between team members.
+Also, I was the team lead on this project. I have followed Agile Development phases: Requirements, Design and
+Development for each sprint to perform task divisions between team members.
 
 Special thanks to all my team members for their commitment on this project.
 

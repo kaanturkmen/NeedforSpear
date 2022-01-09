@@ -1,5 +1,7 @@
 package tr.edu.ku.devnull.needforspear.Model.UIModels;
 
+import tr.edu.ku.devnull.needforspear.Model.GameData.Constants;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.FocusEvent;
@@ -82,7 +84,7 @@ public class FocusableJTextField extends JTextField implements FocusListener {
     @Override
     public void focusLost(FocusEvent e) {
         if (this.getText().isEmpty()) {
-            super.setForeground(Color.GRAY);
+            super.setForeground(Constants.UIConstants.TEXT_FIELD_FOREGROUND_COLOR);
             super.setText(this.placeholder);
             this.changedText = false;
         } else {

@@ -19,8 +19,8 @@ public interface Constants {
         double REGULAR_SPEED_OF_NOBLE_PHANTASM = (1.0 * Constants.UIConstants.INITIAL_SCREEN_WIDTH / 10.0 / 1000.0);
         double DOUBLE_SPEED_OF_NOBLE_PHANTASM = (1.0 * Constants.UIConstants.INITIAL_SCREEN_WIDTH / 5.0 / 1000.0);
         double RATE_OF_TWENTY_DEGREES_PER_SECOND = (0.35 / 1000.0);
-        double RATE_OF_FOURTY_FIVE_DEGREES_PER_SECOND = (0.78 / 1000);
-        double RADIAN_EQUIVALENCE_OF_FOURTY_FIVE_DEGREES = 0.78;
+        double RATE_OF_FORTY_FIVE_DEGREES_PER_SECOND = (0.78 / 1000);
+        double RADIAN_EQUIVALENCE_OF_FORTY_FIVE_DEGREES = 0.78;
         int HEIGHT_OF_THE_OBSTACLE = 20;
         int RADIUS_OF_THE_SPHERE = 16;
         double RATIO_OF_NOBLE_PHANTASM = 0.1;
@@ -115,11 +115,13 @@ public interface Constants {
         String ENTER_BETWEEN_GIVEN_VALUES_TEXT = "Please enter number between given values";
         String LOSE_GAME_TXT = "You have lost";
         String WIN_GAME_TXT = "You have won!\n Score: ";
+        String PREVIOUS_GAME_LOST_TEXT = "You have lost in a previous game.";
 
         String USER_EXISTS_TEXT = "This user already exists on the game, please try another credentials!";
         String INCORRECT_PASSWORD_TEXT = "Incorrect password.";
         String NEW_VERIFICATION_TEXT = "New verification code is sent to your email!";
         String VERIFY_BEFORE_LOGIN_TEXT = "Please verify your account before logging into your account!";
+        String INTERNET_CONNECTION_ERROR_MESSAGE = "You do not have an internet connection! This game requires an internet connection to play!";
 
         String RED_COLOR_STRING = "RED";
         String BLUE_COLOR_STRING = "BLUE";
@@ -169,7 +171,7 @@ public interface Constants {
         int ONE_LIVES_GAIN_LOSE = 1;
         int SPELL_DURATION_SECONDS = 15;
         int TWICE_SPELL_DURATION_SECONDS = 30;
-        int MILISECONDS_TO_SECONDS = 1000;
+        int MILLISECONDS_TO_SECONDS = 1000;
         int MULTIPLIER_CONSTANT_OF_SPHERE = 2;
         int BULLET_MULTIPLIER_CONSTANT_OF_LOCATION = 2;
         int BULLET_MULTIPLIER_CONSTANT_OF_LOCATION_SECOND = 7;
@@ -194,6 +196,12 @@ public interface Constants {
         Color OVERLAY_BACKGROUND_COLOR = new Color(0.21f, 0.22f, 0.28f);
         Color PURPLE_COLOR = new Color(102, 0, 153);
 
+        Color GREEN_SPELL = Color.GREEN.darker().darker();
+        Color CYAN_SPELL = Color.CYAN.darker();
+        Color YELLOW_SPELL = Color.YELLOW.darker();
+        Color PINK_SPELL = Color.PINK;
+
+        Color TEXT_FIELD_FOREGROUND_COLOR = Color.GRAY;
     }
 
     /**
@@ -222,6 +230,7 @@ public interface Constants {
         int MAX_GIFT_OBSTACLE_NUM = 20;
 
         int HOLLOW_OBSTACLE_NUM = 8;
+        int INFINITE_VOID_NUM = 8;
     }
 
     /**
@@ -240,6 +249,28 @@ public interface Constants {
         String EXPANSION = "ExpansionSpell";
         String HEX = "MagicalHexSpell";
         String UNSTOPPABLE = "UnstoppableSpell";
+    }
+
+    /**
+     * Constants for the method messages.
+     */
+    interface MessageConstants {
+        String OBSTACLE_SUBSCRIBER_MESSAGE = "I just detected that this obstacle got destroyed! I must set my isDestroyed value to true!";
+        String HOLLOW_PURPLE_SUBSCRIBER_MESSAGE = "Hollow Purple subscriber notified.";
+        String HOLLOW_PURPLE_TRIGGERED = "Hollow Purple Spell is activated.";
+        String DOUBLE_ACCEL_TRIGGERED = "Double Accel is activated.";
+        String INFINITE_VOID_TRIGGERED = "Infinite Void is activated.";
+        String RIGHT_BULLET_CREATION = "Right bullet created.";
+        String LEFT_BULLET_CREATION = "Left bullet created.";
+        String YMIR_ACTIVATION_MESSAGE = "Activation probability is set to 0.75";
+        String YMIR_CALCULATION_MESSAGE = "Ymir is calculating!";
+        String YMIR_EXCEPTION_MESSAGE = "EXCEPTION: YMIR Spell Method returned as a null.";
+        String GAME_MUTE_MESSAGE = "Game Muted.";
+        String GAME_UNMUTE_MESSAGE = "Game Unmuted.";
+        String LOGIN_RESPONSE_FAIL = "Login Failed";
+        String OBSTACLE_PLACEMENT_EXCEPTION = "Found an exception about obstacle placement.";
+        String GAMEMAP_RESPONSE = "GameMap Response Arrived!";
+        String USER_NOMAP_EXCEPTION = "Failed while loading map. User does not have any saved map.";
     }
 
     /**

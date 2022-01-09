@@ -55,7 +55,7 @@ public class MovementHandler {
         try {
             collisionData = physicsEngine.reflect(new CollisionData(new Location(x, y), new Speed(new Double(dx).longValue(), new Double(dy).longValue())), obstacle);
         } catch (Exception e) {
-            System.out.println("Found an exception about obstacle placement.");
+            System.out.println(Constants.MessageConstants.OBSTACLE_PLACEMENT_EXCEPTION);
         }
 
 
@@ -72,9 +72,6 @@ public class MovementHandler {
         SoundHandler.getInstance().playSound(Constants.SoundConstants.NOBLE_PHANTASM_HIT_SOUND);
 
         getSphereCurrentPhysics();
-        // dy *= -1;
-        //y = y - 2 * Constants.ProportionConstants.RADIUS_OF_THE_SPHERE;
-        // updateSphereMovement(new CollisionData(new Location(x, y), new Speed(new Double(dx).longValue(), new Double(dy).longValue())));
         CollisionData collisionData = physicsEngine.reflect(new CollisionData(new Location(x, y), new Speed(new Double(dx).longValue(), new Double(dy).longValue())), NoblePhantasm.getInstance());
         updateSphereMovement(collisionData);
 
@@ -357,7 +354,7 @@ public class MovementHandler {
                     long current_time = System.currentTimeMillis();
                     long start_time = NeedforSpearGame.getInstance().getGameInfo().getSphere().getUnstoppableStartTime();
 
-                   int current_health = obs.getHealth();
+                    int current_health = obs.getHealth();
                     for (int k = 0; k < current_health; k++) {
                         if (!obs.isInvincible()) {
                             SoundHandler.getInstance().playSound(Constants.SoundConstants.OBSTACLE_HIT_SOUND);
@@ -476,8 +473,8 @@ public class MovementHandler {
             } else {
                 newAngle = angle + Constants.ProportionConstants.RATE_OF_TWENTY_DEGREES_PER_SECOND * (currentTime - lastUpdateTime);  //radian equivalence of 20 degrees is 0.35
             }
-            if (newAngle > Constants.ProportionConstants.RADIAN_EQUIVALENCE_OF_FOURTY_FIVE_DEGREES) //radian equivalence of 45 degrees is 0.78.
-                newAngle = Constants.ProportionConstants.RADIAN_EQUIVALENCE_OF_FOURTY_FIVE_DEGREES;
+            if (newAngle > Constants.ProportionConstants.RADIAN_EQUIVALENCE_OF_FORTY_FIVE_DEGREES) //radian equivalence of 45 degrees is 0.78.
+                newAngle = Constants.ProportionConstants.RADIAN_EQUIVALENCE_OF_FORTY_FIVE_DEGREES;
 
 
         } else if (NoblePhantasm.getInstance().isLeftRotate()) {
@@ -487,22 +484,22 @@ public class MovementHandler {
             } else {
                 newAngle = angle - Constants.ProportionConstants.RATE_OF_TWENTY_DEGREES_PER_SECOND * (currentTime - lastUpdateTime);
             }
-            if (newAngle < -Constants.ProportionConstants.RADIAN_EQUIVALENCE_OF_FOURTY_FIVE_DEGREES)
-                newAngle = -Constants.ProportionConstants.RADIAN_EQUIVALENCE_OF_FOURTY_FIVE_DEGREES;
+            if (newAngle < -Constants.ProportionConstants.RADIAN_EQUIVALENCE_OF_FORTY_FIVE_DEGREES)
+                newAngle = -Constants.ProportionConstants.RADIAN_EQUIVALENCE_OF_FORTY_FIVE_DEGREES;
 
         } else {
             angle = noblePhantasm.getRotationDegree();
 
             if (angle > 0) {
 
-                newAngle = angle - Constants.ProportionConstants.RATE_OF_FOURTY_FIVE_DEGREES_PER_SECOND * (currentTime - lastUpdateTime);
+                newAngle = angle - Constants.ProportionConstants.RATE_OF_FORTY_FIVE_DEGREES_PER_SECOND * (currentTime - lastUpdateTime);
                 if (newAngle < 0) {
                     newAngle = 0;
                 }
                 noblePhantasm.setRotationDegree(newAngle);
                 noblePhantasm.setLastUpdateTime(currentTime);
             } else if (angle < 0) {
-                newAngle = angle + Constants.ProportionConstants.RATE_OF_FOURTY_FIVE_DEGREES_PER_SECOND * (currentTime - lastUpdateTime);
+                newAngle = angle + Constants.ProportionConstants.RATE_OF_FORTY_FIVE_DEGREES_PER_SECOND * (currentTime - lastUpdateTime);
                 if (newAngle > 0) {
                     newAngle = 0;
                 }

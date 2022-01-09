@@ -126,16 +126,16 @@ public class Spell {
         Color color;
         switch (spell.getSpellColor()) {
             case Constants.UIConstants.DARK_GREEN_COLOR_STRING:
-                color = Color.GREEN.darker().darker();
+                color = Constants.UIConstants.GREEN_SPELL;
                 break;
             case Constants.UIConstants.DARK_CYAN_COLOR_STRING:
-                color = Color.CYAN.darker();
+                color = Constants.UIConstants.CYAN_SPELL;
                 break;
             case Constants.UIConstants.DARK_YELLOW_COLOR_STRING:
-                color = Color.YELLOW.darker();
+                color = Constants.UIConstants.YELLOW_SPELL;
                 break;
             case Constants.UIConstants.PINK_COLOR_STRING:
-                color = Color.PINK;
+                color = Constants.UIConstants.PINK_SPELL;
                 break;
             default:
                 color = null;

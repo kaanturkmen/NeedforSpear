@@ -34,7 +34,8 @@ public class SphereAnimator implements AnimatorStrategy {
     public SphereAnimator(List<Obstacle> listofObstacles) {
         if (NeedforSpearGame.getInstance().getGameInfo().getDifficultyHandler().getCurrentDifficulty() == Difficulty.NORMAL) {
             NeedforSpearGame.getInstance().getGameInfo().getSphere().setSpeed(new Speed(Constants.SphereConstantSpeeds.NORMAL_SPEED, Constants.SphereConstantSpeeds.NORMAL_SPEED));
-        } else NeedforSpearGame.getInstance().getGameInfo().getSphere().setSpeed(new Speed(Constants.SphereConstantSpeeds.HARD_SPEED, Constants.SphereConstantSpeeds.HARD_SPEED));
+        } else
+            NeedforSpearGame.getInstance().getGameInfo().getSphere().setSpeed(new Speed(Constants.SphereConstantSpeeds.HARD_SPEED, Constants.SphereConstantSpeeds.HARD_SPEED));
         SphereAnimator.listofObstacles = listofObstacles;
         sphereImage = new BackgroundHandler().getRespectiveImage(Constants.UIConstants.SPHERE_IMAGE);
     }
@@ -84,7 +85,7 @@ public class SphereAnimator implements AnimatorStrategy {
 
         }
 
-        if (NeedforSpearGame.getInstance().getGameInfo().getSphere().getSpeed().getSpeedOnYAxis()==0){
+        if (NeedforSpearGame.getInstance().getGameInfo().getSphere().getSpeed().getSpeedOnYAxis() == 0) {
             NeedforSpearGame.getInstance().getGameInfo().getSphere().getSpeed().setSpeedOnYAxis(1);
         }
     }

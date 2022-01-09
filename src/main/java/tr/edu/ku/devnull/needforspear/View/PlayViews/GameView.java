@@ -145,7 +145,7 @@ public class GameView {
         muteButton.addActionListener(e -> {
             unmuteButton.setVisible(true);
             muteButton.setVisible(false);
-            System.out.println("Game muted");
+            System.out.println(Constants.MessageConstants.GAME_MUTE_MESSAGE);
             NeedforSpearGame.getInstance().getGameInfo().setMuteModeActivated(true);
             SoundHandler.getInstance().stopBackgroundMusic();
         });
@@ -153,7 +153,7 @@ public class GameView {
         unmuteButton.addActionListener(e -> {
             unmuteButton.setVisible(false);
             muteButton.setVisible(true);
-            System.out.println("Game unmuted");
+            System.out.println(Constants.MessageConstants.GAME_UNMUTE_MESSAGE);
             NeedforSpearGame.getInstance().getGameInfo().setMuteModeActivated(false);
             SoundHandler.getInstance().playBackgroundMusic();
         });
@@ -277,10 +277,10 @@ public class GameView {
         switchRunningModeButton.setVisible(false);
         addObstacleChoice.setVisible(false);
         saveMapButton.setVisible(false);
-        if(NeedforSpearGame.getInstance().getGameInfo().isMuteModeActivated()){
+        if (NeedforSpearGame.getInstance().getGameInfo().isMuteModeActivated()) {
             unmuteButton.setVisible(true);
             muteButton.setVisible(false);
-        }else{
+        } else {
             unmuteButton.setVisible(false);
         }
         changeDifficultyButton.setVisible(false);

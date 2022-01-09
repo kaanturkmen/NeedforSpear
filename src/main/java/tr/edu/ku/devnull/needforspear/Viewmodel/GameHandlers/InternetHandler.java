@@ -32,7 +32,7 @@ public class InternetHandler {
             connection.connect();
             return true;
         } catch (Exception e) {
-            System.err.println("You do not have an internet connection! This game requires an internet connection to play!");
+            System.err.println(Constants.UIConstants.INTERNET_CONNECTION_ERROR_MESSAGE);
             return false;
         }
     }

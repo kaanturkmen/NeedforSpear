@@ -43,8 +43,11 @@ public class PlayerScoreHandler {
         long currSec = TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis());
         long startSec = TimeUnit.MILLISECONDS.toSeconds(NeedforSpearGame.getInstance().getGameInfo().getStartMillis());
         long division = currSec - startSec;
-        if (division <= 0) { score += 1; }
-        else { score += 300 / division; }
+        if (division <= 0) {
+            score += 1;
+        } else {
+            score += 300 / division;
+        }
         System.out.println(SaveLoadHandler.getInstance().getPreviousScore());
         player.setScore(SaveLoadHandler.getInstance().getPreviousScore() * newMapCreated + score);
         NeedforSpearGame.getInstance().getViewData().getGameView().updatePlayerScore(player.getScore());

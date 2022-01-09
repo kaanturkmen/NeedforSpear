@@ -147,7 +147,7 @@ public class NeedforSpearGame {
     public void startYmirAction() {
         Ymir y = new Ymir();
         executorOfYmir = Executors.newScheduledThreadPool(1);
-        executorOfYmir.scheduleAtFixedRate(y, 0, 30, TimeUnit.SECONDS);
+        executorOfYmir.scheduleAtFixedRate(y, 5, 30, TimeUnit.SECONDS);
     }
 
     /**

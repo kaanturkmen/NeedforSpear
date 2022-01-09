@@ -1,5 +1,6 @@
 package tr.edu.ku.devnull.needforspear.Model.Spell.YmirSpells;
 
+import tr.edu.ku.devnull.needforspear.Model.GameData.Constants;
 import tr.edu.ku.devnull.needforspear.Model.Obstacle.Obstacle;
 import tr.edu.ku.devnull.needforspear.NeedforSpearGame;
 
@@ -17,7 +18,7 @@ public class InfiniteVoidSpell implements YmirPower {
      */
     @Override
     public void triggerYmirEffect() {
-        System.out.println("Infinite Void Spell is activated.");
+        System.out.println(Constants.MessageConstants.INFINITE_VOID_TRIGGERED);
 
         List<Obstacle> obstacleList = selectRandomObstacles();
         System.out.println(obstacleList.size());
@@ -39,8 +40,8 @@ public class InfiniteVoidSpell implements YmirPower {
         List<Obstacle> randomObstacleList = new ArrayList<>();
 
         int randNum = new Random().nextInt(obstacleList.size());
-        if (obstacleList.size() > 8) {
-            while (randomIndices.size() < 8) {
+        if (obstacleList.size() > Constants.ObstacleNumberConstants.INFINITE_VOID_NUM) {
+            while (randomIndices.size() < Constants.ObstacleNumberConstants.INFINITE_VOID_NUM) {
                 if (!randomIndices.contains(randNum)) {
                     randomIndices.add(randNum);
                 }

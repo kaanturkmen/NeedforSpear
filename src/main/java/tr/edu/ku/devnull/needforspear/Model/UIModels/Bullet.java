@@ -31,7 +31,7 @@ public class Bullet {
      * @return Created bullet object.
      */
     public static Bullet createLeftBullet() {
-        System.out.println("left bullet created");
+        System.out.println(Constants.MessageConstants.LEFT_BULLET_CREATION);
         Bullet bulletLeft = new Bullet();
         bulletLeft.setLocation(new Location((NoblePhantasm.getInstance().getLocation().getXCoordinates() + (NoblePhantasm.getInstance().getSize().getWidth() / Constants.UIConstants.BULLET_DIVISION_CONSTANT) - (bulletLeft.getSize().getWidth())), (NoblePhantasm.getInstance().getLocation().getYCoordinates() - Constants.UIConstants.BULLET_MULTIPLIER_CONSTANT_OF_LOCATION * bulletLeft.getSize().getWidth())));
         bulletLeft.setSpeed(new Speed(0, Constants.ProportionConstants.SPEED_OF_THE_BULLET));
@@ -44,7 +44,7 @@ public class Bullet {
      * @return Created bullet object.
      */
     public static Bullet createRightBullet() {
-        System.out.println("right bullet created");
+        System.out.println(Constants.MessageConstants.RIGHT_BULLET_CREATION);
         Bullet bulletRight = new Bullet();
         bulletRight.setLocation(new Location((NoblePhantasm.getInstance().getLocation().getXCoordinates() + ((NoblePhantasm.getInstance().getSize().getWidth() * Constants.UIConstants.BULLET_MULTIPLIER_CONSTANT_OF_LOCATION_SECOND) / Constants.UIConstants.BULLET_DIVISION_CONSTANT) - (bulletRight.getSize().getWidth())), (NoblePhantasm.getInstance().getLocation().getYCoordinates() - Constants.UIConstants.BULLET_MULTIPLIER_CONSTANT_OF_LOCATION * bulletRight.getSize().getWidth())));
         bulletRight.setSpeed(new Speed(0, Constants.ProportionConstants.SPEED_OF_THE_BULLET));
@@ -112,15 +112,6 @@ public class Bullet {
      */
     public void setSize(Size size) {
         this.size = size;
-    }
-
-    /**
-     * Gets the angle of the bullet.
-     *
-     * @return Double angle value of the bullet.
-     */
-    public double getAngle() {
-        return angle;
     }
 
 }
