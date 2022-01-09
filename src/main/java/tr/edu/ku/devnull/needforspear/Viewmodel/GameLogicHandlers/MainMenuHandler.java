@@ -69,6 +69,8 @@ public class MainMenuHandler implements DatabaseSaveLoadSubscriber {
                 } else {
                     JOptionPane.showMessageDialog(NeedforSpearGame.getInstance().getGameInfo().getMainFrame(), Constants.UIConstants.PREVIOUS_GAME_LOST_TEXT, Constants.UIConstants.ALERT_TEXT, JOptionPane.WARNING_MESSAGE);
                 }
+            }else {
+                JOptionPane.showMessageDialog(NeedforSpearGame.getInstance().getGameInfo().getMainFrame(), "There isn't a previously saved map", Constants.UIConstants.ALERT_TEXT, JOptionPane.WARNING_MESSAGE);
             }
         }
     }
