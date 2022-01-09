@@ -114,7 +114,6 @@ public interface Constants {
         String ENTER_BETWEEN_GIVEN_VALUES_TEXT = "Please enter number between given values";
         String LOSE_GAME_TXT = "You have lost";
         String WIN_GAME_TXT = "You have won!\n Score: ";
-        String PREVIOUS_GAME_LOST_TEXT = "You have lost in a previous game.";
 
         String USER_EXISTS_TEXT = "This user already exists on the game, please try another credentials!";
         String USER_IS_NOT_REGISTERED = "There is no user associated with this credentials, please register the game first.";
@@ -190,7 +189,6 @@ public interface Constants {
         double YMIR_HARD_MODE_PROBABILITY = 0.75;
         double DIVISION_CONSTANT_OF_SPHERE = 2.0;
         double DIVISION_CONSTANT_OF_PHANTASM = 2.0;
-        double BULLET_MULTIPLIER_CONSTANT = 57.29;
         double BULLET_DIVISION_CONSTANT = 8.0;
 
         Size MENU_AND_AUTH_VIEW_COMPONENT_SIZE = new Size(192, 50);
