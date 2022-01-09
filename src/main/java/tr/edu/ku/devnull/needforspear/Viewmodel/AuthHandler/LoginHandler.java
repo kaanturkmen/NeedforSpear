@@ -48,13 +48,11 @@ public class LoginHandler implements DatabaseAuthSubscriber {
      * @param password Password of the player.
      */
     public void register(String username, String email, String password) {
-        Thread t = new Thread(() -> NeedforSpearGame.getInstance().getGameInfo().getGameDatabase().register(new Player(new Account(username, email, password))));
-        t.start();
+        NeedforSpearGame.getInstance().getGameInfo().getGameDatabase().register(new Player(new Account(username, email, password)));
     }
 
     public void updateP(Player p) {
-        Thread t = new Thread(() -> NeedforSpearGame.getInstance().getGameInfo().getGameDatabase().updatePlayer(p));
-        t.start();
+        NeedforSpearGame.getInstance().getGameInfo().getGameDatabase().updatePlayer(p);
     }
 
     /**
@@ -65,8 +63,7 @@ public class LoginHandler implements DatabaseAuthSubscriber {
      * @param password Password of the player.
      */
     public void login(String username, String email, String password) {
-        Thread t = new Thread(() -> NeedforSpearGame.getInstance().getGameInfo().getGameDatabase().login(new Player(new Account(username, email, password))));
-        t.start();
+        NeedforSpearGame.getInstance().getGameInfo().getGameDatabase().login(new Player(new Account(username, email, password)));
     }
 
     /**
@@ -75,8 +72,7 @@ public class LoginHandler implements DatabaseAuthSubscriber {
      * @param email Email address of the player.
      */
     public void forgotPassword(String email) {
-        Thread t = new Thread(() -> NeedforSpearGame.getInstance().getGameInfo().getGameDatabase().forgotPassword(email));
-        t.start();
+        NeedforSpearGame.getInstance().getGameInfo().getGameDatabase().forgotPassword(email);
     }
 
     /**
@@ -86,8 +82,7 @@ public class LoginHandler implements DatabaseAuthSubscriber {
      * @param verificationCode Verification code of the player.
      */
     public void confirmUser(String email, String verificationCode) {
-        Thread t = new Thread(() -> NeedforSpearGame.getInstance().getGameInfo().getGameDatabase().confirmPlayer(email, verificationCode));
-        t.start();
+        NeedforSpearGame.getInstance().getGameInfo().getGameDatabase().confirmPlayer(email, verificationCode);
     }
 
     /**
@@ -98,8 +93,7 @@ public class LoginHandler implements DatabaseAuthSubscriber {
      * @param newPassword      New password of the user.
      */
     public void resetPassword(String email, String verificationCode, String newPassword) {
-        Thread t = new Thread(() -> NeedforSpearGame.getInstance().getGameInfo().getGameDatabase().resetPassword(email, verificationCode, newPassword));
-        t.start();
+        NeedforSpearGame.getInstance().getGameInfo().getGameDatabase().resetPassword(email, verificationCode, newPassword);
     }
 
     /**

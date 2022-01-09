@@ -119,6 +119,7 @@ public interface Constants {
 
         String USER_EXISTS_TEXT = "This user already exists on the game, please try another credentials!";
         String INCORRECT_PASSWORD_TEXT = "Incorrect password.";
+        String VERIFICATION_TEXT = "Verification code is sent to your email!";
         String NEW_VERIFICATION_TEXT = "New verification code is sent to your email!";
         String VERIFY_BEFORE_LOGIN_TEXT = "Please verify your account before logging into your account!";
         String INTERNET_CONNECTION_ERROR_MESSAGE = "You do not have an internet connection! This game requires an internet connection to play!";

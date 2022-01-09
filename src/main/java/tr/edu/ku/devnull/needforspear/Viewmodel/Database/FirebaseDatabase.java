@@ -479,6 +479,7 @@ public class FirebaseDatabase implements GameDatabase {
         player.getAccount().sendVerification();
         DatabaseReference newPostRef = getReferenceOfChild(DatabaseCredentials.DATABASE_USERS_PATH, DatabaseCredentials.DATABASE_USERS_CHILD_PATH).child(player.getAccount().getUid());
         newPostRef.setValueAsync(player);
+        JOptionPane.showMessageDialog(NeedforSpearGame.getInstance().getGameInfo().getMainFrame(), Constants.UIConstants.VERIFICATION_TEXT, Constants.UIConstants.ALERT_TEXT, JOptionPane.WARNING_MESSAGE);
     }
 
     /**
