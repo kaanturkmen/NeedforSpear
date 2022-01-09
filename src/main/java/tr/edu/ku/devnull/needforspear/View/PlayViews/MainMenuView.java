@@ -70,7 +70,7 @@ public class MainMenuView {
 
         exitGameButton.addActionListener(e -> {
             String[] options = new String[]{"Yes", "No"};
-            int response = JOptionPane.showOptionDialog(NeedforSpearGame.getInstance().getGameInfo().getMainFrame(), "Are you sure?", "Exit",
+            int response = JOptionPane.showOptionDialog(NeedforSpearGame.getInstance().getGameInfo().getMainFrame(), Constants.MessageConstants.CONFIRM_EXIT, Constants.MessageConstants.EXIT_TEXT,
                     JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE,
                     null, options, options[0]);
             if (response == 0) {

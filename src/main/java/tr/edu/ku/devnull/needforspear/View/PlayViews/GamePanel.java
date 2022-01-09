@@ -208,13 +208,13 @@ public class GamePanel extends JPanel implements ActionListener, MouseMotionList
                                                 BuildModeHandler.getInstance().checkGiftObstacleNum(new MapHandler().retrieveObstacleNumber(Constants.ObstacleNameConstants.GIFT_OBSTACLE))))) {
 
                                     BuildModeHandler.getInstance().removeObstacle(x, y, getGraphics(), BuildModeHandler.getInstance().getObstacleByLocation(x, y));
-                                    JOptionPane.showMessageDialog(NeedforSpearGame.getInstance().getGameInfo().getMainFrame(), "Maximum number for that obstacle type is reached", "Alert", JOptionPane.WARNING_MESSAGE);
+                                    JOptionPane.showMessageDialog(NeedforSpearGame.getInstance().getGameInfo().getMainFrame(), Constants.UIConstants.MAXIMUM_OBSTACLE_NUMBER_TEXT, Constants.UIConstants.ALERT_TEXT, JOptionPane.WARNING_MESSAGE);
 
                                 } else if (BuildModeHandler.getInstance().doesObstacleCollide(obstacle)) {
                                     BuildModeHandler.getInstance().removeObstacle(x, y, getGraphics(), BuildModeHandler.getInstance().getObstacleByLocation(x, y));
                                 } else if (BuildModeHandler.getInstance().checkObstacleLocation(obstacle)) {
                                     BuildModeHandler.getInstance().removeObstacle(x, y, getGraphics(), BuildModeHandler.getInstance().getObstacleByLocation(x, y));
-                                    JOptionPane.showMessageDialog(NeedforSpearGame.getInstance().getGameInfo().getMainFrame(), "Obstacle is too close to the phantasm!", "Alert", JOptionPane.WARNING_MESSAGE);
+                                    JOptionPane.showMessageDialog(NeedforSpearGame.getInstance().getGameInfo().getMainFrame(), Constants.UIConstants.OBSTACLE_CLOSE_PHANTASM_TEXT, Constants.UIConstants.ALERT_TEXT, JOptionPane.WARNING_MESSAGE);
                                 }
                             }
                         }
@@ -233,7 +233,7 @@ public class GamePanel extends JPanel implements ActionListener, MouseMotionList
 
                                     BuildModeHandler.getInstance().removeObstacle(x, y, getGraphics(), BuildModeHandler.getInstance().getObstacleByLocation(x, y));
                                 } else {
-                                    JOptionPane.showMessageDialog(NeedforSpearGame.getInstance().getGameInfo().getMainFrame(), "Minimum number for that obstacle type is reached", "Alert", JOptionPane.WARNING_MESSAGE);
+                                    JOptionPane.showMessageDialog(NeedforSpearGame.getInstance().getGameInfo().getMainFrame(), Constants.UIConstants.MINIMUM_OBSTACLE_NUMBER_TEXT, Constants.UIConstants.ALERT_TEXT, JOptionPane.WARNING_MESSAGE);
                                 }
                             }
                         }
@@ -314,7 +314,7 @@ public class GamePanel extends JPanel implements ActionListener, MouseMotionList
      */
     public void finishGame(Player player, String finishGameTxt) {
         NeedforSpearGame.getInstance().stopYmirAction();
-        JOptionPane.showMessageDialog(NeedforSpearGame.getInstance().getGameInfo().getMainFrame(), finishGameTxt, "Alert", JOptionPane.WARNING_MESSAGE);
+        JOptionPane.showMessageDialog(NeedforSpearGame.getInstance().getGameInfo().getMainFrame(), finishGameTxt, Constants.UIConstants.ALERT_TEXT, JOptionPane.WARNING_MESSAGE);
         player.setLives(3);
         NeedforSpearGame.getInstance().getGameInfo().setGameLoaded(false);
         NeedforSpearGame.getInstance().getViewData().getGameView().getGamePanel().setIsGameStarted(false);
