@@ -102,7 +102,6 @@ public interface Constants {
         String RESUME_GAME_TEXT = "Resume game";
         String SCORE_TEXT = "Score: ";
         String LIVES_TEXT = "Remaining lives: ";
-        String NON_EXISTING_MAP_ERROR_TEXT = "There isn't a previously saved map";
         String ALERT_TEXT = "Alert";
         String MUTE_TEXT = "Mute";
         String UNMUTE_TEXT = "Unmute";
@@ -119,6 +118,8 @@ public interface Constants {
 
         String USER_EXISTS_TEXT = "This user already exists on the game, please try another credentials!";
         String USER_IS_NOT_REGISTERED = "There is no user associated with this credentials, please register the game first.";
+        String USERNAME_IS_TAKEN = "This username is registered with another credentials.";
+        String MAIL_IS_TAKEN = "This mail is registered with another credentials.";
         String INCORRECT_PASSWORD_TEXT = "Incorrect password.";
         String VERIFICATION_TEXT = "Verification code is sent to your email!";
         String NEW_VERIFICATION_TEXT = "New verification code is sent to your email!";

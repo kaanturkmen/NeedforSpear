@@ -102,7 +102,7 @@ public class GameView {
                     // If user loaded a map before, then delete it and replace it with the map in the database
                     SaveLoadHandler.getInstance().loadGame(NeedforSpearGame.getInstance().getGameInfo().getPlayer());
                 } else {
-                    JOptionPane.showMessageDialog(NeedforSpearGame.getInstance().getGameInfo().getMainFrame(), Constants.UIConstants.NON_EXISTING_MAP_ERROR_TEXT, Constants.UIConstants.ALERT_TEXT, JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(NeedforSpearGame.getInstance().getGameInfo().getMainFrame(), Constants.MessageConstants.USER_NOMAP_EXCEPTION, Constants.UIConstants.ALERT_TEXT, JOptionPane.WARNING_MESSAGE);
                 }
             }
         });

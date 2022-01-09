@@ -443,20 +443,40 @@ public class FirebaseDatabase implements GameDatabase {
      */
     private void findRegisteredUser(DataSnapshot dataSnapshot, Player player) {
         Player currentPlayer = null;
-        boolean exists = false;
+        boolean userExists = false, mailExists = false, usernameExists = false;
 
         for (DataSnapshot unit : dataSnapshot.getChildren()) {
             currentPlayer = unit.getValue(Player.class);
+
+            if (currentPlayer.getAccount().getUsername().equals(player.getAccount().getUsername())) {
+                usernameExists = true;
+            }
+
+            if (currentPlayer.getAccount().getEmail().equals(player.getAccount().getEmail())) {
+                mailExists = true;
+            }
+
             if (currentPlayer.getAccount().getEmail().equals(player.getAccount().getEmail()) && currentPlayer.getAccount().getUsername().equals(player.getAccount().getUsername()))
-                exists = true;
-                break;
+                userExists = true;
+
+            break;
         }
 
-        databaseResponse = checkIfValidCredentials(player, currentPlayer);
+        if (!userExists) {
+            if (usernameExists) {
+                JOptionPane.showMessageDialog(NeedforSpearGame.getInstance().getGameInfo().getMainFrame(), Constants.UIConstants.USERNAME_IS_TAKEN, Constants.UIConstants.ALERT_TEXT, JOptionPane.WARNING_MESSAGE);
+            } else if (mailExists) {
+                JOptionPane.showMessageDialog(NeedforSpearGame.getInstance().getGameInfo().getMainFrame(), Constants.UIConstants.MAIL_IS_TAKEN, Constants.UIConstants.ALERT_TEXT, JOptionPane.WARNING_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(NeedforSpearGame.getInstance().getGameInfo().getMainFrame(), Constants.UIConstants.USER_IS_NOT_REGISTERED, Constants.UIConstants.ALERT_TEXT, JOptionPane.WARNING_MESSAGE);
+            }
+        } else {
+            databaseResponse = checkIfValidCredentials(player, currentPlayer);
 
-        if (!exists) {
-            JOptionPane.showMessageDialog(NeedforSpearGame.getInstance().getGameInfo().getMainFrame(), Constants.UIConstants.USER_IS_NOT_REGISTERED, Constants.UIConstants.ALERT_TEXT, JOptionPane.WARNING_MESSAGE);
-        } else if (databaseResponse.equals(DatabaseCredentials.DATABASE_SUCCESS)) confirmedPlayer = currentPlayer;
+            if (databaseResponse.equals(DatabaseCredentials.DATABASE_SUCCESS)) {
+                confirmedPlayer = currentPlayer;
+            }
+        }
 
         notifyAuthSubscribers();
     }
