@@ -189,7 +189,7 @@ public class Sphere {
             }*/
             //this.setLocation(new Location(currX + this.getSpeed().getSpeedOnXAxis(), currY + this.getSpeed().getSpeedOnYAxis()));
             movementHandler.updateSphereMovement(new CollisionData(new Location(currX + this.getSpeed().getSpeedOnXAxis(), currY + this.getSpeed().getSpeedOnYAxis()),
-                    new Speed(new Double(dx).longValue(), new Double(dy).longValue())));
+                    new Speed(Double.valueOf(dx).longValue(), Double.valueOf(dy).longValue())));
 
             System.out.println("setMoving: speed after change " + this.getSpeed().getSpeedOnXAxis() + " " + this.getSpeed().getSpeedOnYAxis());
         }

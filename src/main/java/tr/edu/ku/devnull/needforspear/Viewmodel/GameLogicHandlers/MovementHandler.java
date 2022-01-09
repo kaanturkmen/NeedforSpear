@@ -53,7 +53,7 @@ public class MovementHandler {
         CollisionData collisionData = null;
 
         try {
-            collisionData = physicsEngine.reflect(new CollisionData(new Location(x, y), new Speed(new Double(dx).longValue(), new Double(dy).longValue())), obstacle);
+            collisionData = physicsEngine.reflect(new CollisionData(new Location(x, y), new Speed(Double.valueOf(dx).longValue(), Double.valueOf(dy).longValue())), obstacle);
         } catch (Exception e) {
             System.out.println(Constants.MessageConstants.OBSTACLE_PLACEMENT_EXCEPTION);
         }
@@ -72,7 +72,7 @@ public class MovementHandler {
         SoundHandler.getInstance().playSound(Constants.SoundConstants.NOBLE_PHANTASM_HIT_SOUND);
 
         getSphereCurrentPhysics();
-        CollisionData collisionData = physicsEngine.reflect(new CollisionData(new Location(x, y), new Speed(new Double(dx).longValue(), new Double(dy).longValue())), NoblePhantasm.getInstance());
+        CollisionData collisionData = physicsEngine.reflect(new CollisionData(new Location(x, y), new Speed(Double.valueOf(dx).longValue(), Double.valueOf(dy).longValue())), NoblePhantasm.getInstance());
         updateSphereMovement(collisionData);
 
     }
@@ -200,7 +200,7 @@ public class MovementHandler {
 
         //update location and speed
         NeedforSpearGame.getInstance().getGameInfo().getSphere().setLocation(new Location(x, y));
-        NeedforSpearGame.getInstance().getGameInfo().getSphere().setSpeed(new Speed(new Double(collisionData.getCurrentSpeed().getSpeedOnXAxis()).longValue(), new Double(collisionData.getCurrentSpeed().getSpeedOnYAxis()).longValue()));
+        NeedforSpearGame.getInstance().getGameInfo().getSphere().setSpeed(new Speed(Double.valueOf(collisionData.getCurrentSpeed().getSpeedOnXAxis()).longValue(), Double.valueOf(collisionData.getCurrentSpeed().getSpeedOnYAxis()).longValue()));
     }
 
     /**
