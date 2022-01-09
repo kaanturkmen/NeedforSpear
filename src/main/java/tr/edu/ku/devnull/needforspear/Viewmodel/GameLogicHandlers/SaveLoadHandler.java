@@ -83,10 +83,10 @@ public class SaveLoadHandler implements DatabaseSaveLoadSubscriber {
                     NeedforSpearGame.getInstance().getViewData().getGameView().adjustOverlayPanelForBuildingMode();
                     NeedforSpearGame.getInstance().getViewData().getGameView().loadAMap();
                 } else {
-                    JOptionPane.showMessageDialog(NeedforSpearGame.getInstance().getGameInfo().getMainFrame(), Constants.MessageConstants.PREVIOUS_GAME_LOST, Constants.UIConstants.ALERT_TEXT, JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(NeedforSpearGame.getInstance().getGameInfo().getMainFrame(), Constants.MessageConstants.USER_NO_MAP_EXCEPTION, Constants.UIConstants.ALERT_TEXT, JOptionPane.WARNING_MESSAGE);
                 }
             } else {
-                JOptionPane.showMessageDialog(NeedforSpearGame.getInstance().getGameInfo().getMainFrame(), Constants.MessageConstants.USER_NOMAP_EXCEPTION, Constants.UIConstants.ALERT_TEXT, JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(NeedforSpearGame.getInstance().getGameInfo().getMainFrame(), Constants.MessageConstants.USER_NO_MAP_EXCEPTION, Constants.UIConstants.ALERT_TEXT, JOptionPane.WARNING_MESSAGE);
             }
         }
     }

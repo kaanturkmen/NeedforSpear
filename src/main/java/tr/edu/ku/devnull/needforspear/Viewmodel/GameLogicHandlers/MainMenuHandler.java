@@ -67,10 +67,10 @@ public class MainMenuHandler implements DatabaseSaveLoadSubscriber {
                     NeedforSpearGame.getInstance().getViewData().getGameView().loadAMap();
                     NeedforSpearGame.getInstance().getGameInfo().setGameLoaded(true);
                 } else {
-                    JOptionPane.showMessageDialog(NeedforSpearGame.getInstance().getGameInfo().getMainFrame(), Constants.UIConstants.PREVIOUS_GAME_LOST_TEXT, Constants.UIConstants.ALERT_TEXT, JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(NeedforSpearGame.getInstance().getGameInfo().getMainFrame(), Constants.MessageConstants.USER_NO_MAP_EXCEPTION, Constants.UIConstants.ALERT_TEXT, JOptionPane.WARNING_MESSAGE);
                 }
             } else {
-                JOptionPane.showMessageDialog(NeedforSpearGame.getInstance().getGameInfo().getMainFrame(), Constants.MessageConstants.USER_NOMAP_EXCEPTION, Constants.UIConstants.ALERT_TEXT, JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(NeedforSpearGame.getInstance().getGameInfo().getMainFrame(), Constants.MessageConstants.USER_NO_MAP_EXCEPTION, Constants.UIConstants.ALERT_TEXT, JOptionPane.WARNING_MESSAGE);
             }
         }
     }
