@@ -122,6 +122,9 @@ public interface Constants {
         String NEW_VERIFICATION_TEXT = "New verification code is sent to your email!";
         String VERIFY_BEFORE_LOGIN_TEXT = "Please verify your account before logging into your account!";
         String INTERNET_CONNECTION_ERROR_MESSAGE = "You do not have an internet connection! This game requires an internet connection to play!";
+        String OBSTACLE_CLOSE_PHANTASM_TEXT = "Obstacle is too close to the phantasm!";
+        String MAXIMUM_OBSTACLE_NUMBER_TEXT = "Maximum number for that obstacle type is reached";
+        String MINIMUM_OBSTACLE_NUMBER_TEXT = "Minimum number for that obstacle type is reached";
 
         String RED_COLOR_STRING = "RED";
         String BLUE_COLOR_STRING = "BLUE";
@@ -270,7 +273,10 @@ public interface Constants {
         String LOGIN_RESPONSE_FAIL = "Login Failed";
         String OBSTACLE_PLACEMENT_EXCEPTION = "Found an exception about obstacle placement.";
         String GAMEMAP_RESPONSE = "GameMap Response Arrived!";
-        String USER_NOMAP_EXCEPTION = "Failed while loading map. User does not have any saved map.";
+        String USER_NOMAP_EXCEPTION = "There isn't a previously saved map.";
+        String PREVIOUS_GAME_LOST = "You have lost in previous game.";
+        String CONFIRM_EXIT = "Are you sure?";
+        String EXIT_TEXT = "Exit";
     }
 
     /**

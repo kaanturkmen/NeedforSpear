@@ -360,7 +360,7 @@ public class FirebaseDatabase implements GameDatabase {
                 user.put(currentPlayer.getAccount().getUid() + "/account/verificationCode", a.getVerificationCode());
                 getReferenceOfChild(DatabaseCredentials.DATABASE_USERS_PATH, DatabaseCredentials.DATABASE_USERS_CHILD_PATH).updateChildrenAsync(user);
 
-                JOptionPane.showMessageDialog(NeedforSpearGame.getInstance().getGameInfo().getMainFrame(), Constants.UIConstants.NEW_VERIFICATION_TEXT, "Alert", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(NeedforSpearGame.getInstance().getGameInfo().getMainFrame(), Constants.UIConstants.NEW_VERIFICATION_TEXT, Constants.UIConstants.ALERT_TEXT, JOptionPane.WARNING_MESSAGE);
 
                 System.out.println("New verification is sent.");
             }
