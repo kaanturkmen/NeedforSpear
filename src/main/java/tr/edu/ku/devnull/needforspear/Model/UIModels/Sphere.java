@@ -156,8 +156,8 @@ public class Sphere {
             if (NeedforSpearGame.getInstance().getGameInfo().getDifficultyHandler().getCurrentDifficulty() == Difficulty.HARD) {
                 magnitude = Math.pow(Constants.SphereConstantSpeeds.HARD_SPEED, 2) - Constants.SphereConstantSpeeds.HARD_SPEED / 2.0;
             }
-            if (NeedforSpearGame.getInstance().getGameInfo().getSphere().isDoubleAccelActivated()){
-                magnitude = magnitude /2.0;
+            if (NeedforSpearGame.getInstance().getGameInfo().getSphere().isDoubleAccelActivated()) {
+                magnitude = magnitude / 2.0;
             }
             double dx = -magnitude * Math.sin(-NoblePhantasm.getInstance().getRotationDegree());
             double dy = -magnitude * Math.cos(-NoblePhantasm.getInstance().getRotationDegree());
