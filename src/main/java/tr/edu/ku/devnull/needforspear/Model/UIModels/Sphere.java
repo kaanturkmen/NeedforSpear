@@ -175,9 +175,10 @@ public class Sphere {
     }
 
     /**
+     * Gets if the double accel is activated.
+     *
      * @return true if doubleAccel Spell is currently active
      */
-
     public boolean isDoubleAccelActivated() {
         return isDoubleAccelActivated;
     }
