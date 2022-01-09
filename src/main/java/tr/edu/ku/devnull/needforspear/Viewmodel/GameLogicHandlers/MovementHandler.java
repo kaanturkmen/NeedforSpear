@@ -222,7 +222,7 @@ public class MovementHandler {
      * Checks if obstacle is below the noble phantasm
      */
     public void checkIfSphereBelowPhantasm() {
-       if (y > Constants.UIConstants.INITIAL_SCREEN_HEIGHT - (Constants.UIConstants.OVERLAY_PANEL_HEIGHT + Constants.UIConstants.OVERLAY_PANEL_HEIGHT / Constants.UIConstants.DIVISION_CONSTANT_OF_PHANTASM)){
+        if (y > Constants.UIConstants.INITIAL_SCREEN_HEIGHT - (Constants.UIConstants.OVERLAY_PANEL_HEIGHT + Constants.UIConstants.OVERLAY_PANEL_HEIGHT / Constants.UIConstants.DIVISION_CONSTANT_OF_PHANTASM)) {
             NeedforSpearGame.getInstance().getGameInfo().getSphere().setMoving(false);
             PlayerLivesHandler.getInstance().notifyPlayerSphereFall(NeedforSpearGame.getInstance().getGameInfo().getSphere());
 
@@ -361,7 +361,8 @@ public class MovementHandler {
                         if (!obs.isInvincible()) {
                             SoundHandler.getInstance().playSound(Constants.SoundConstants.OBSTACLE_HIT_SOUND);
                             obs.damageObstacle();
-                            if (obs.getObstacleType().equals(Constants.ObstacleNameConstants.FIRM_OBSTACLE)) {
+                            if (obs.getObstacleType().equals(Constants.ObstacleNameConstants.FIRM_OBSTACLE)
+                                    && !NeedforSpearGame.getInstance().getGameInfo().getSphere().isUnstoppable()) {
                                 obs.setInvincible(true);
                                 new Timer().schedule(new TimerTask() {
                                     @Override
@@ -381,7 +382,7 @@ public class MovementHandler {
                         SoundHandler.getInstance().playSound(Constants.SoundConstants.OBSTACLE_HIT_SOUND);
                         obs.damageObstacle();
                         if (obs.getObstacleType().equals(Constants.ObstacleNameConstants.FIRM_OBSTACLE)
-                        && !NeedforSpearGame.getInstance().getGameInfo().getSphere().isUnstoppable()) {
+                                && !NeedforSpearGame.getInstance().getGameInfo().getSphere().isUnstoppable()) {
                             obs.setInvincible(true);
                             new Timer().schedule(new TimerTask() {
                                 @Override
