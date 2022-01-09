@@ -257,6 +257,7 @@ public class GamePanel extends JPanel implements ActionListener, MouseMotionList
                         }
                     } else {
                         if (SwingUtilities.isLeftMouseButton(e)) {
+                            if (!NeedforSpearGame.getInstance().getGameInfo().getSphere().isMoving())
                             NeedforSpearGame.getInstance().getGameInfo().getSphere().setMoving(true);
                         }
                     }
