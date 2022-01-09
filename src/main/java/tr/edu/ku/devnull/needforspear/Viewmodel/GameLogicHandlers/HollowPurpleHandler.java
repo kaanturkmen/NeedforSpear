@@ -1,6 +1,5 @@
 package tr.edu.ku.devnull.needforspear.Viewmodel.GameLogicHandlers;
 
-import tr.edu.ku.devnull.needforspear.Model.GameData.Constants;
 import tr.edu.ku.devnull.needforspear.Model.Spell.YmirSpells.HollowPurpleSubscriber;
 
 import java.util.ArrayList;

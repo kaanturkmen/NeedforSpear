@@ -37,8 +37,6 @@ public class Spell {
 
     /**
      * Triggers an effect of the spell.
-     *
-     * @return Spell which their effect is triggered.
      */
     public void triggerEffect() {
         System.out.println(getSpellType() + " has been triggered!");

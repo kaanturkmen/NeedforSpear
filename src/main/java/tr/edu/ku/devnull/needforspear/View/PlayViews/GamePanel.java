@@ -64,7 +64,7 @@ public class GamePanel extends JPanel implements ActionListener, MouseMotionList
      * @param e ActionEvent to be used.
      */
     public void actionPerformed(ActionEvent e) {
-    // will run when the timer fires
+        // will run when the timer fires
         repaint();
     }
 

@@ -1,7 +1,6 @@
 package tr.edu.ku.devnull.needforspear.Viewmodel.GameLogicHandlers;
 
 import tr.edu.ku.devnull.needforspear.Model.GameData.Constants;
-import tr.edu.ku.devnull.needforspear.Model.Spell.YmirSpells.HollowPurpleSpell;
 import tr.edu.ku.devnull.needforspear.Model.UIModels.NoblePhantasm;
 import tr.edu.ku.devnull.needforspear.NeedforSpearGame;
 
