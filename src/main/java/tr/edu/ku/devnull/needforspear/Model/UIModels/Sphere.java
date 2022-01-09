@@ -96,6 +96,8 @@ public class Sphere {
      * Doubles up to speed for double accel spell.
      */
     public void doubleSpeedForAccel() {
+
+        speed.doubleSpeed();
         this.setDoubleAccelActivated(false);
     }
 
@@ -109,7 +111,7 @@ public class Sphere {
             TimerTask stopTask = new TimerTask() {
                 @Override
                 public void run() {
-                    speed.doubleSpeed();
+
                     doubleSpeedForAccel();
                 }
             };
@@ -160,9 +162,9 @@ public class Sphere {
             System.out.println(NoblePhantasm.getInstance().getRotationDegree());
             System.out.println("setMoving: speed before change "+this.getSpeed().getSpeedOnXAxis() + " " + this.getSpeed().getSpeedOnYAxis());
             //double magnitude=Math.sqrt(this.getSpeed().getSpeedOnXAxis()*this.getSpeed().getSpeedOnXAxis()+this.getSpeed().getSpeedOnYAxis()*this.getSpeed().getSpeedOnYAxis());
-            double magnitude =Math.pow(Constants.SphereConstantSpeeds.NORMAL_SPEED,2);
+            double magnitude =Math.pow(Constants.SphereConstantSpeeds.NORMAL_SPEED,2) - Constants.SphereConstantSpeeds.NORMAL_SPEED / 2 ;
             if (NeedforSpearGame.getInstance().getGameInfo().getDifficultyHandler().getCurrentDifficulty() == Difficulty.HARD){
-                magnitude =  Math.pow(Constants.SphereConstantSpeeds.HARD_SPEED,2);
+                magnitude =  Math.pow(Constants.SphereConstantSpeeds.HARD_SPEED,2) - Constants.SphereConstantSpeeds.HARD_SPEED / 2;
             }
 
             //this.setSpeed(new Speed(-magnitude*Math.sin(-NoblePhantasm.getInstance().getRotationDegree()), -magnitude*Math.cos(NoblePhantasm.getInstance().getRotationDegree())));

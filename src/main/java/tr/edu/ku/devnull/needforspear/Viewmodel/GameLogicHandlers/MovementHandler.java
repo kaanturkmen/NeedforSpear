@@ -218,6 +218,7 @@ public class MovementHandler {
         dy = NeedforSpearGame.getInstance().getGameInfo().getSphere().getSpeed().getSpeedOnYAxis();
     }
 
+
     /**
      * Checks if obstacle is below the noble phantasm
      */
@@ -356,13 +357,15 @@ public class MovementHandler {
                     long current_time = System.currentTimeMillis();
                     long start_time = NeedforSpearGame.getInstance().getGameInfo().getSphere().getUnstoppableStartTime();
 
-                    int current_health = obs.getHealth();
+                   int current_health = obs.getHealth();
                     for (int k = 0; k < current_health; k++) {
                         if (!obs.isInvincible()) {
                             SoundHandler.getInstance().playSound(Constants.SoundConstants.OBSTACLE_HIT_SOUND);
                             obs.damageObstacle();
+
                             if (obs.getObstacleType().equals(Constants.ObstacleNameConstants.FIRM_OBSTACLE)
                                     && !NeedforSpearGame.getInstance().getGameInfo().getSphere().isUnstoppable()) {
+
                                 obs.setInvincible(true);
                                 new Timer().schedule(new TimerTask() {
                                     @Override
