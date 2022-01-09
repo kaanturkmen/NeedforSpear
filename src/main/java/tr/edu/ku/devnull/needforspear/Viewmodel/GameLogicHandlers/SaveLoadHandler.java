@@ -74,8 +74,6 @@ public class SaveLoadHandler implements DatabaseSaveLoadSubscriber {
         if (NeedforSpearGame.getInstance().getCurrentState() instanceof GameViewState && !(NeedforSpearGame.getInstance().getCurrentState() instanceof MainMenuViewState)) {
             if (databaseResponse.equals(DatabaseCredentials.DATABASE_SUCCESS)) {
                 if (gameMap != null) {
-                    System.out.println(Constants.MessageConstants.GAMEMAP_RESPONSE);
-                    System.out.println(gameMap);
                     if (NeedforSpearGame.getInstance().getGameInfo().getGameMap() != null) {
                         NeedforSpearGame.getInstance().getViewData().getGameView().removeGamePanel();
                     }
@@ -89,7 +87,6 @@ public class SaveLoadHandler implements DatabaseSaveLoadSubscriber {
                 }
             } else {
                 JOptionPane.showMessageDialog(NeedforSpearGame.getInstance().getGameInfo().getMainFrame(), "There isn't a previously saved map", Constants.UIConstants.ALERT_TEXT, JOptionPane.WARNING_MESSAGE);
-                System.out.println(Constants.MessageConstants.USER_NOMAP_EXCEPTION);
             }
         }
     }

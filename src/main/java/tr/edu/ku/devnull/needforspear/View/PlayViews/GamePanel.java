@@ -179,9 +179,7 @@ public class GamePanel extends JPanel implements ActionListener, MouseMotionList
                         BuildModeHandler.getInstance().setSelectedObstacle(BuildModeHandler.getInstance().getObstacleByLocation(x, y));
                         if (BuildModeHandler.getInstance().getSelectedObstacle() != null) {
                             BuildModeHandler.getInstance().setPreviousLocation(BuildModeHandler.getInstance().getSelectedObstacle().getLocation());
-                            System.out.println(BuildModeHandler.getInstance().getSelectedObstacle().getLocation().getXCoordinates());
                         }
-                        System.out.println(x);
                     }
                 }
             }

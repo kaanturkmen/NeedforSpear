@@ -48,7 +48,6 @@ public class PlayerScoreHandler {
         } else {
             score += 300 / division;
         }
-        System.out.println(SaveLoadHandler.getInstance().getPreviousScore());
         player.setScore(SaveLoadHandler.getInstance().getPreviousScore() * newMapCreated + score);
         NeedforSpearGame.getInstance().getViewData().getGameView().updatePlayerScore(player.getScore());
     }
