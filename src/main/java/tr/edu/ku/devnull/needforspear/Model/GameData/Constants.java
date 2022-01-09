@@ -118,6 +118,7 @@ public interface Constants {
         String PREVIOUS_GAME_LOST_TEXT = "You have lost in a previous game.";
 
         String USER_EXISTS_TEXT = "This user already exists on the game, please try another credentials!";
+        String USER_IS_NOT_REGISTERED = "There is no user associated with this credentials, please register the game first.";
         String INCORRECT_PASSWORD_TEXT = "Incorrect password.";
         String VERIFICATION_TEXT = "Verification code is sent to your email!";
         String NEW_VERIFICATION_TEXT = "New verification code is sent to your email!";

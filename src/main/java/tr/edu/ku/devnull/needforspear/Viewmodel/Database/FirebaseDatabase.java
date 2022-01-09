@@ -443,16 +443,20 @@ public class FirebaseDatabase implements GameDatabase {
      */
     private void findRegisteredUser(DataSnapshot dataSnapshot, Player player) {
         Player currentPlayer = null;
+        boolean exists = false;
 
         for (DataSnapshot unit : dataSnapshot.getChildren()) {
             currentPlayer = unit.getValue(Player.class);
             if (currentPlayer.getAccount().getEmail().equals(player.getAccount().getEmail()) && currentPlayer.getAccount().getUsername().equals(player.getAccount().getUsername()))
+                exists = true;
                 break;
         }
 
         databaseResponse = checkIfValidCredentials(player, currentPlayer);
 
-        if (databaseResponse.equals(DatabaseCredentials.DATABASE_SUCCESS)) confirmedPlayer = currentPlayer;
+        if (!exists) {
+            JOptionPane.showMessageDialog(NeedforSpearGame.getInstance().getGameInfo().getMainFrame(), Constants.UIConstants.USER_IS_NOT_REGISTERED, Constants.UIConstants.ALERT_TEXT, JOptionPane.WARNING_MESSAGE);
+        } else if (databaseResponse.equals(DatabaseCredentials.DATABASE_SUCCESS)) confirmedPlayer = currentPlayer;
 
         notifyAuthSubscribers();
     }
