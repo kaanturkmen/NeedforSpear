@@ -272,7 +272,7 @@ public interface Constants {
         String YMIR_EXCEPTION_MESSAGE = "EXCEPTION: YMIR Spell Method returned as a null.";
         String LOGIN_RESPONSE_FAIL = "Login Failed";
         String OBSTACLE_PLACEMENT_EXCEPTION = "Found an exception about obstacle placement.";
-        String USER_NO_MAP_EXCEPTION = "There is not a saved map associated with this account";
+        String USER_NO_MAP_EXCEPTION = "There is not a saved map associated with this account.";
         String CONFIRM_EXIT = "Are you sure?";
         String EXIT_TEXT = "Exit";
     }
