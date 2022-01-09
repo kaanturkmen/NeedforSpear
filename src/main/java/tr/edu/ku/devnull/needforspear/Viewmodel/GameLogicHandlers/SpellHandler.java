@@ -63,7 +63,6 @@ public class SpellHandler {
         //ensuring all the spells will be included
         List<Obstacle> giftObstacleList = getGiftObstacleList();
         Obstacle currentGiftObstacle = giftObstacleList.get(0);
-        System.out.println(currentGiftObstacle);
         currentGiftObstacle.setSpell(SpellFactory.getInstance().getSpell(Constants.SpellNameConstants.CHANCE, currentGiftObstacle));
         currentGiftObstacle = giftObstacleList.get(1);
         currentGiftObstacle.setSpell(SpellFactory.getInstance().getSpell(Constants.SpellNameConstants.HEX, currentGiftObstacle));
@@ -114,7 +113,6 @@ public class SpellHandler {
     public Spell getAvailableSpell(String spellType) {
         if (NeedforSpearGame.getInstance().getGameInfo().getPlayer().getListofSpells().size() > 0) {
             for (Spell spell : NeedforSpearGame.getInstance().getGameInfo().getPlayer().getListofSpells()) {
-                System.out.println(spell.getSpellType());
                 if (spell.getSpellType().equals(spellType)) {
                     return spell;
                 }

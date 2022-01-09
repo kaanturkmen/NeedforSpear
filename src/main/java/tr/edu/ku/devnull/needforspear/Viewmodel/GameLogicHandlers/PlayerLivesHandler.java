@@ -59,7 +59,6 @@ public class PlayerLivesHandler {
         Player currrentPlayer = playerList.get(index);
         currrentPlayer.decreaseLives();
         NeedforSpearGame.getInstance().getViewData().getGameView().updatePlayerLives(currrentPlayer.getLives());
-        //if (currrentPlayer.getLives() <= 0) endGame(currrentPlayer);
     }
 
     /**
@@ -72,7 +71,6 @@ public class PlayerLivesHandler {
         Player currentPlayer = playerList.get(index);
         currentPlayer.decreaseLives();
         NeedforSpearGame.getInstance().getViewData().getGameView().updatePlayerLives(currentPlayer.getLives());
-        //if (currentPlayer.getLives() <= 0) endGame(currentPlayer);
     }
 
     /**

@@ -58,8 +58,6 @@ public class SphereAnimator implements AnimatorStrategy {
     @Override
     public void draw(Graphics g) {
         if (NeedforSpearGame.getInstance().getGameInfo().getSphere().isMoving()) {
-
-
             //new image on the new location
             int x_location = (int) NeedforSpearGame.getInstance().getGameInfo().getSphere().getLocation().getXCoordinates();
             int y_location = (int) NeedforSpearGame.getInstance().getGameInfo().getSphere().getLocation().getYCoordinates();

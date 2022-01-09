@@ -74,8 +74,6 @@ public class SaveLoadHandler implements DatabaseSaveLoadSubscriber {
         if (NeedforSpearGame.getInstance().getCurrentState() instanceof GameViewState && !(NeedforSpearGame.getInstance().getCurrentState() instanceof MainMenuViewState)) {
             if (databaseResponse.equals(DatabaseCredentials.DATABASE_SUCCESS)) {
                 if (gameMap != null) {
-                    System.out.println(Constants.MessageConstants.GAMEMAP_RESPONSE);
-                    System.out.println(gameMap);
                     if (NeedforSpearGame.getInstance().getGameInfo().getGameMap() != null) {
                         NeedforSpearGame.getInstance().getViewData().getGameView().removeGamePanel();
                     }
@@ -85,11 +83,10 @@ public class SaveLoadHandler implements DatabaseSaveLoadSubscriber {
                     NeedforSpearGame.getInstance().getViewData().getGameView().adjustOverlayPanelForBuildingMode();
                     NeedforSpearGame.getInstance().getViewData().getGameView().loadAMap();
                 } else {
-                    JOptionPane.showMessageDialog(NeedforSpearGame.getInstance().getGameInfo().getMainFrame(), Constants.MessageConstants.PREVIOUS_GAME_LOST, Constants.UIConstants.ALERT_TEXT, JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(NeedforSpearGame.getInstance().getGameInfo().getMainFrame(), "You have lost in previous game.", Constants.UIConstants.ALERT_TEXT, JOptionPane.WARNING_MESSAGE);
                 }
             } else {
-                JOptionPane.showMessageDialog(NeedforSpearGame.getInstance().getGameInfo().getMainFrame(), Constants.MessageConstants.USER_NOMAP_EXCEPTION, Constants.UIConstants.ALERT_TEXT, JOptionPane.WARNING_MESSAGE);
-                System.out.println(Constants.MessageConstants.USER_NOMAP_EXCEPTION);
+                JOptionPane.showMessageDialog(NeedforSpearGame.getInstance().getGameInfo().getMainFrame(), "There isn't a previously saved map", Constants.UIConstants.ALERT_TEXT, JOptionPane.WARNING_MESSAGE);
             }
         }
     }

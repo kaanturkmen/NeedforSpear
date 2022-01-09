@@ -124,16 +124,10 @@ public class PhysicsEngine {
             double h = 2 * Constants.ProportionConstants.RADIUS_OF_THE_SPHERE;
             double xDiff = h * Math.sin(NoblePhantasm.getInstance().getRotationDegree());
             double yDiff = h * (1.0 - Math.cos(NoblePhantasm.getInstance().getRotationDegree()));
-            System.out.println("Location Check" + NoblePhantasm.getInstance().getLocation().getXCoordinates() + " " + incident.getCurrentLocation().getXCoordinates());
-
-            System.out.println(xDiff + "   " + yDiff + " hhh");
             int currX = (int) (incident.getCurrentLocation().getXCoordinates() + xDiff);
-            int currY = (int) (incident.getCurrentLocation().getYCoordinates());
-            System.out.println(NoblePhantasm.getInstance().getRotationDegree());
-            System.out.println("setMoving: speed before change " + incident.getCurrentSpeed().getSpeedOnXAxis() + " " + incident.getCurrentSpeed().getSpeedOnXAxis());
-            double magnitude = Math.pow(Constants.SphereConstantSpeeds.NORMAL_SPEED, 2) - Constants.SphereConstantSpeeds.NORMAL_SPEED / 2;
+            double magnitude = Math.pow(Constants.SphereConstantSpeeds.NORMAL_SPEED, 2) - Constants.SphereConstantSpeeds.NORMAL_SPEED / 2.0;
             if (NeedforSpearGame.getInstance().getGameInfo().getDifficultyHandler().getCurrentDifficulty() == Difficulty.HARD) {
-                magnitude = Math.pow(Constants.SphereConstantSpeeds.HARD_SPEED, 2) - Constants.SphereConstantSpeeds.HARD_SPEED / 2;
+                magnitude = Math.pow(Constants.SphereConstantSpeeds.HARD_SPEED, 2) - Constants.SphereConstantSpeeds.HARD_SPEED / 2.0;
             }
 
             double dx = -magnitude * Math.sin(-NoblePhantasm.getInstance().getRotationDegree());
@@ -144,7 +138,6 @@ public class PhysicsEngine {
             //update new location
             result.getCurrentLocation().setXCoordinates(currX);
             result.getCurrentLocation().setYCoordinates((result.getCurrentLocation().getYCoordinates()));
-            System.out.println(result.getCurrentSpeed().getSpeedOnXAxis() + " " + result.getCurrentSpeed().getSpeedOnYAxis());
         }
 
 

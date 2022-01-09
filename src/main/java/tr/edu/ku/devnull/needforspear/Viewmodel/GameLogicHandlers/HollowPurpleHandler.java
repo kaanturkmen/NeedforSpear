@@ -54,7 +54,6 @@ public class HollowPurpleHandler {
      */
     public void notifySubscribers() {
         for (HollowPurpleSubscriber subscriber : subscribers) {
-            System.out.println(Constants.MessageConstants.HOLLOW_PURPLE_SUBSCRIBER_MESSAGE);
             subscriber.updateHollow();
         }
     }

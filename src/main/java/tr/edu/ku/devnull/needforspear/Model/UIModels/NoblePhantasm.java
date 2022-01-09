@@ -17,23 +17,12 @@ import java.util.TimerTask;
 public class NoblePhantasm {
     private static NoblePhantasm onlyInstance;
     private final double rotationSpeed;
-    private final boolean isExpansionSpell = false;
-    private final boolean isMagicalHex = false;
+    private double speed, rotationDegree;
     private GameMap gameMap;
     private Size size;
     private Location location;
-    private double speed;
-    private double rotationDegree;
-    private Long lastUpdateTime;
-    private boolean rotatingLeft = false;
-    private boolean rotatingRight = false;
-    private boolean isMovingRight = false;
-    private boolean isMovingLeft = false;
-    private boolean isSpeeding = false;
-    private boolean isMagicActivated = false;
-    private Long startTimeMoving = 0L;
-    private boolean doubleSize = false;
-    private long expansionStartTime;
+    private Long lastUpdateTime, startTimeMoving = 0L;
+    private boolean rotatingLeft, rotatingRight, isMovingRight, isMovingLeft, isSpeeding, isMagicActivated, doubleSize;
 
 
     /**

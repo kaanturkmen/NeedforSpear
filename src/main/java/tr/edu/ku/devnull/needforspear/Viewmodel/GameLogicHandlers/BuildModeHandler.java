@@ -279,8 +279,6 @@ public class BuildModeHandler {
                     int otherObstacleLength = obstacleList.get(i).getSize().getLength();
                     Rectangle otherDrawnObstacle = new Rectangle((int) otherObstacleX, (int) otherObstacleY, otherObstacleWidth, otherObstacleLength);
                     if (selectedObstacle.intersects(otherDrawnObstacle)) {
-                        System.out.println("Intersection with " + selectedObstacle + otherDrawnObstacle);
-                        System.out.println(i);
                         return true;
                     }
                 }
@@ -404,7 +402,6 @@ public class BuildModeHandler {
         List<Location> availableLocations = getAvailableLocations();
         Collections.shuffle(availableLocations);
         for (int i = 0; i < Constants.ObstacleNumberConstants.HOLLOW_OBSTACLE_NUM; i++) {
-            System.out.println(availableLocations.get(i).getXCoordinates() + " " + availableLocations.get(i).getYCoordinates());
             createNewObstacle(availableLocations.get(i).getXCoordinates(), availableLocations.get(i).getYCoordinates(),
                     Constants.ObstacleNameConstants.HOLLOW_PURPLE_OBSTACLE, graphics, obstacleAnimator);
         }

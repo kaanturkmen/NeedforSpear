@@ -139,13 +139,11 @@ public class GameView {
 
         addObstacleChoice.addActionListener(e -> {
             BuildModeHandler.getInstance().setAddedObstacleType((String) addObstacleChoice.getSelectedItem());
-            System.out.println(BuildModeHandler.getInstance().getAddedObstacleType());
         });
 
         muteButton.addActionListener(e -> {
             unmuteButton.setVisible(true);
             muteButton.setVisible(false);
-            System.out.println(Constants.MessageConstants.GAME_MUTE_MESSAGE);
             NeedforSpearGame.getInstance().getGameInfo().setMuteModeActivated(true);
             SoundHandler.getInstance().stopBackgroundMusic();
         });
@@ -153,13 +151,11 @@ public class GameView {
         unmuteButton.addActionListener(e -> {
             unmuteButton.setVisible(false);
             muteButton.setVisible(true);
-            System.out.println(Constants.MessageConstants.GAME_UNMUTE_MESSAGE);
             NeedforSpearGame.getInstance().getGameInfo().setMuteModeActivated(false);
             SoundHandler.getInstance().playBackgroundMusic();
         });
 
         changeDifficultyButton.addActionListener(e -> {
-            System.out.println("Difficulty:" + NeedforSpearGame.getInstance().getGameInfo().getDifficultyHandler().getCurrentDifficulty());
             NeedforSpearGame.getInstance().getGameInfo().getDifficultyHandler().changeDifficulty();
             difficultyField.setText(NeedforSpearGame.getInstance().getGameInfo().getDifficultyHandler().getCurrentDifficulty().toString());
         });
@@ -438,7 +434,6 @@ public class GameView {
      * This method removes all the components from the gamePanel and removes gamePanel from mainFrame.
      */
     public void removeGamePanel() {
-        //gamePanel.resetKeyboardActions();
         gamePanel.removeAll();
         gamePanel.repaint();
         gamePanel.revalidate();

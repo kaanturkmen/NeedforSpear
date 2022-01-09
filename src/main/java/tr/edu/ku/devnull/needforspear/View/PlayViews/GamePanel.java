@@ -63,9 +63,8 @@ public class GamePanel extends JPanel implements ActionListener, MouseMotionList
      *
      * @param e ActionEvent to be used.
      */
-    public void actionPerformed(ActionEvent e)
+    public void actionPerformed(ActionEvent e) {
     // will run when the timer fires
-    {
         repaint();
     }
 
@@ -98,11 +97,9 @@ public class GamePanel extends JPanel implements ActionListener, MouseMotionList
         obstacleAnimator.draw(g);
 
         if (NeedforSpearGame.getInstance().getGameInfo().getPlayer().getLives() <= 0) {
-            System.out.println("ups i know u died");
             timer.stop();
             finishGame(NeedforSpearGame.getInstance().getGameInfo().getPlayer(), Constants.UIConstants.LOSE_GAME_TXT);
         } else if (NeedforSpearGame.getInstance().getGameInfo().getGameMap().getListofObstacles().size() == 0) {
-            System.out.println("you have won");
             timer.stop();
             finishGame(NeedforSpearGame.getInstance().getGameInfo().getPlayer(), Constants.UIConstants.WIN_GAME_TXT + NeedforSpearGame.getInstance().getGameInfo().getPlayer().getScore());
         }
@@ -182,9 +179,7 @@ public class GamePanel extends JPanel implements ActionListener, MouseMotionList
                         BuildModeHandler.getInstance().setSelectedObstacle(BuildModeHandler.getInstance().getObstacleByLocation(x, y));
                         if (BuildModeHandler.getInstance().getSelectedObstacle() != null) {
                             BuildModeHandler.getInstance().setPreviousLocation(BuildModeHandler.getInstance().getSelectedObstacle().getLocation());
-                            System.out.println(BuildModeHandler.getInstance().getSelectedObstacle().getLocation().getXCoordinates());
                         }
-                        System.out.println(x);
                     }
                 }
             }

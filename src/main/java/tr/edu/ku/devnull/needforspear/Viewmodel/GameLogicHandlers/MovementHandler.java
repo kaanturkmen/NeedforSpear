@@ -53,7 +53,7 @@ public class MovementHandler {
         CollisionData collisionData = null;
 
         try {
-            collisionData = physicsEngine.reflect(new CollisionData(new Location(x, y), new Speed(new Double(dx).longValue(), new Double(dy).longValue())), obstacle);
+            collisionData = physicsEngine.reflect(new CollisionData(new Location(x, y), new Speed(Double.valueOf(dx).longValue(), Double.valueOf(dy).longValue())), obstacle);
         } catch (Exception e) {
             System.out.println(Constants.MessageConstants.OBSTACLE_PLACEMENT_EXCEPTION);
         }
@@ -72,7 +72,7 @@ public class MovementHandler {
         SoundHandler.getInstance().playSound(Constants.SoundConstants.NOBLE_PHANTASM_HIT_SOUND);
 
         getSphereCurrentPhysics();
-        CollisionData collisionData = physicsEngine.reflect(new CollisionData(new Location(x, y), new Speed(new Double(dx).longValue(), new Double(dy).longValue())), NoblePhantasm.getInstance());
+        CollisionData collisionData = physicsEngine.reflect(new CollisionData(new Location(x, y), new Speed(Double.valueOf(dx).longValue(), Double.valueOf(dy).longValue())), NoblePhantasm.getInstance());
         updateSphereMovement(collisionData);
 
     }
@@ -155,7 +155,6 @@ public class MovementHandler {
                 NeedforSpearGame.getInstance().getGameInfo().getPlayer().getListofSpells().add(spell);
                 SpellAnimator.getListOfMovingSpells().remove(spell);
                 NeedforSpearGame.getInstance().getViewData().getGameView().updateSpellNumbers();
-                System.out.println(spell);
             }
         } else if (y + dy + length > Constants.UIConstants.INITIAL_SCREEN_HEIGHT) {
             SpellAnimator.getListOfMovingSpells().remove(spell);
@@ -200,7 +199,7 @@ public class MovementHandler {
 
         //update location and speed
         NeedforSpearGame.getInstance().getGameInfo().getSphere().setLocation(new Location(x, y));
-        NeedforSpearGame.getInstance().getGameInfo().getSphere().setSpeed(new Speed(new Double(collisionData.getCurrentSpeed().getSpeedOnXAxis()).longValue(), new Double(collisionData.getCurrentSpeed().getSpeedOnYAxis()).longValue()));
+        NeedforSpearGame.getInstance().getGameInfo().getSphere().setSpeed(new Speed(Double.valueOf(collisionData.getCurrentSpeed().getSpeedOnXAxis()).longValue(), Double.valueOf(collisionData.getCurrentSpeed().getSpeedOnYAxis()).longValue()));
     }
 
     /**
@@ -239,7 +238,6 @@ public class MovementHandler {
         for (int i = 0; i < listOfObstacles.size(); i++) {
             Obstacle obs = listOfObstacles.get(i);
             if (collisionHandler.collision(obs, bullet)) {
-                System.out.println("bullet hit obstacle");
                 obs.damageObstacle();
                 BulletAnimator.getListOfBullets().remove(bullet);
             }
@@ -247,7 +245,6 @@ public class MovementHandler {
             //Bullet hits screen frame and is destroyed
             if (bullet.getLocation().getXCoordinates() < 0 || bullet.getLocation().getXCoordinates() > Constants.UIConstants.INITIAL_SCREEN_WIDTH - 2 * Constants.ProportionConstants.RADIUS_OF_THE_SPHERE || bullet.getLocation().getYCoordinates() < 0) {
                 BulletAnimator.getListOfBullets().remove(bullet);
-                System.out.println("bullet exit screen");
             }
             if (collisionHandler.isRemovedObstacle(obs)) {
                 if (!obs.getObstacleType().equals(Constants.ObstacleNameConstants.EXPLOSIVE_OBSTACLE)) {
@@ -308,7 +305,6 @@ public class MovementHandler {
             if (collisionHandler.collisionWithExplosive(obstacle, NoblePhantasm.getInstance())) {
                 PlayerLivesHandler.getInstance().notifyPlayerExplosiveFall(NoblePhantasm.getInstance());
                 collisionHandler.removeObstacle(obstacle, ObstacleAnimator.getListofObstacles());
-                System.out.println("player hit by explosive");
             }
             if (y_bottom > Constants.UIConstants.INITIAL_SCREEN_HEIGHT) {
                 collisionHandler.removeObstacle(obstacle, ObstacleAnimator.getListofObstacles());
@@ -395,8 +391,6 @@ public class MovementHandler {
                     bounceHandler.bounceSphereFromObstacle(obs);
                 }
 
-
-                //TODO HANDLING OBSTACLE REMOVALS should be removed from here for better cohesion and less coupling
                 if (!collisionHandler.isRemovedObstacle(obs)) {
                     bounceHandler.bounceSphereFromObstacle(obs);
                 } else {
@@ -412,7 +406,6 @@ public class MovementHandler {
 
         //collision with Noble Phantasm - Sphere
         if (collisionHandler.collision(NoblePhantasm.getInstance(), NeedforSpearGame.getInstance().getGameInfo().getSphere())) {
-            System.out.println("collision with noble phantasm!");
             bounceHandler.bounceSphereFromPhantasm();
         }
 
