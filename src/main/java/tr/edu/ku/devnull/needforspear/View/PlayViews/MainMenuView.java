@@ -56,6 +56,8 @@ public class MainMenuView {
         newGameButton.addActionListener(e -> {
             NoblePhantasm npa = NoblePhantasm.getInstance();
             npa.resetLocation();
+            NeedforSpearGame.getInstance().getGameInfo().getSphere().resetLocation();
+            NeedforSpearGame.getInstance().getGameInfo().getPlayer().setScore(0);
             NeedforSpearGame.getInstance().getGameInfo().getMainFrame().getContentPane().removeAll();
             NeedforSpearGame.getInstance().getGameInfo().getMainFrame().repaint();
             NeedforSpearGame.getInstance().startGameView();
