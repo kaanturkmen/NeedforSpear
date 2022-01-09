@@ -395,8 +395,6 @@ public class MovementHandler {
                     bounceHandler.bounceSphereFromObstacle(obs);
                 }
 
-
-                //TODO HANDLING OBSTACLE REMOVALS should be removed from here for better cohesion and less coupling
                 if (!collisionHandler.isRemovedObstacle(obs)) {
                     bounceHandler.bounceSphereFromObstacle(obs);
                 } else {

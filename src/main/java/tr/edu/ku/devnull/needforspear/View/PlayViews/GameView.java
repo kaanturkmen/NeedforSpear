@@ -159,7 +159,6 @@ public class GameView {
         });
 
         changeDifficultyButton.addActionListener(e -> {
-            System.out.println("Difficulty:" + NeedforSpearGame.getInstance().getGameInfo().getDifficultyHandler().getCurrentDifficulty());
             NeedforSpearGame.getInstance().getGameInfo().getDifficultyHandler().changeDifficulty();
             difficultyField.setText(NeedforSpearGame.getInstance().getGameInfo().getDifficultyHandler().getCurrentDifficulty().toString());
         });
@@ -438,7 +437,6 @@ public class GameView {
      * This method removes all the components from the gamePanel and removes gamePanel from mainFrame.
      */
     public void removeGamePanel() {
-        //gamePanel.resetKeyboardActions();
         gamePanel.removeAll();
         gamePanel.repaint();
         gamePanel.revalidate();

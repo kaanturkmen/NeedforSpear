@@ -179,7 +179,6 @@ public class CollisionHandler {
             if (obstacle.getObstacleType().equals(Constants.ObstacleNameConstants.GIFT_OBSTACLE)) {
                 SpellAnimator.getListOfMovingSpells().add(obstacle.getSpell());
             }
-            //listofObstacles.remove(obstacle);
         }
         return isRemoved;
     }

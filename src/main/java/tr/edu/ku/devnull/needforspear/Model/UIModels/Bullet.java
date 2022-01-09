@@ -10,7 +10,6 @@ import tr.edu.ku.devnull.needforspear.Model.GameData.Speed;
  */
 public class Bullet {
     private final NoblePhantasm noblePhantasm;
-    private final double angle;
     private Size size;
     private Location location;
     private Speed speed;
@@ -22,7 +21,6 @@ public class Bullet {
     public Bullet() {
         this.noblePhantasm = NoblePhantasm.getInstance();
         this.size = new Size(Constants.ProportionConstants.RADIUS_OF_THE_BULLET, Constants.ProportionConstants.RADIUS_OF_THE_BULLET);
-        this.angle = noblePhantasm.getRotationDegree() * Constants.UIConstants.BULLET_MULTIPLIER_CONSTANT;
     }
 
     /**

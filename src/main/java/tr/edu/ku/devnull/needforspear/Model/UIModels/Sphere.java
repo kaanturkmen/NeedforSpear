@@ -111,7 +111,6 @@ public class Sphere {
             TimerTask stopTask = new TimerTask() {
                 @Override
                 public void run() {
-
                     doubleSpeedForAccel();
                 }
             };
@@ -151,47 +150,16 @@ public class Sphere {
             MovementHandler movementHandler = new MovementHandler();
             double h = 2 * Constants.ProportionConstants.RADIUS_OF_THE_SPHERE;
             double xDiff = h * Math.sin(NoblePhantasm.getInstance().getRotationDegree());
-            double yDiff = h * (1.0 - Math.cos(NoblePhantasm.getInstance().getRotationDegree()));
-            System.out.println("Location Check" + NoblePhantasm.getInstance().getLocation().getXCoordinates() + " " + this.getLocation().getXCoordinates());
-
-            System.out.println(xDiff + "   " + yDiff + "");
             int currX = (int) (this.getLocation().getXCoordinates() + xDiff);
             int currY = (int) (this.getLocation().getYCoordinates());
-            //this.getLocation().setXCoordinates(currX);
-            //this.getLocation().setYCoordinates(currY);
-            System.out.println(NoblePhantasm.getInstance().getRotationDegree());
-            System.out.println("setMoving: speed before change " + this.getSpeed().getSpeedOnXAxis() + " " + this.getSpeed().getSpeedOnYAxis());
-            //double magnitude=Math.sqrt(this.getSpeed().getSpeedOnXAxis()*this.getSpeed().getSpeedOnXAxis()+this.getSpeed().getSpeedOnYAxis()*this.getSpeed().getSpeedOnYAxis());
-            double magnitude = Math.pow(Constants.SphereConstantSpeeds.NORMAL_SPEED, 2) - Constants.SphereConstantSpeeds.NORMAL_SPEED / 2;
+            double magnitude = Math.pow(Constants.SphereConstantSpeeds.NORMAL_SPEED, 2) - Constants.SphereConstantSpeeds.NORMAL_SPEED / 2.0;
             if (NeedforSpearGame.getInstance().getGameInfo().getDifficultyHandler().getCurrentDifficulty() == Difficulty.HARD) {
-                magnitude = Math.pow(Constants.SphereConstantSpeeds.HARD_SPEED, 2) - Constants.SphereConstantSpeeds.HARD_SPEED / 2;
+                magnitude = Math.pow(Constants.SphereConstantSpeeds.HARD_SPEED, 2) - Constants.SphereConstantSpeeds.HARD_SPEED / 2.0;
             }
-
-            //this.setSpeed(new Speed(-magnitude*Math.sin(-NoblePhantasm.getInstance().getRotationDegree()), -magnitude*Math.cos(NoblePhantasm.getInstance().getRotationDegree())));
             double dx = -magnitude * Math.sin(-NoblePhantasm.getInstance().getRotationDegree());
             double dy = -magnitude * Math.cos(-NoblePhantasm.getInstance().getRotationDegree());
-
-            /*if(Math.abs(dx) < 0){
-                dx = 1.5*dx;
-            }
-
-            if (dx ==0 && Math.toRadians(NoblePhantasm.getInstance().getRotationDegree()) != Math.PI/2 ){
-
-                if (NoblePhantasm.getInstance().isLeftRotate()){
-                    dx = -1;
-                }else if (NoblePhantasm.getInstance().isRightRotate()){
-                    dx = 1;
-                }
-            }
-
-            if(Math.abs(dy) < 0){
-                dy = 1.5*dy;
-            }*/
-            //this.setLocation(new Location(currX + this.getSpeed().getSpeedOnXAxis(), currY + this.getSpeed().getSpeedOnYAxis()));
             movementHandler.updateSphereMovement(new CollisionData(new Location(currX + this.getSpeed().getSpeedOnXAxis(), currY + this.getSpeed().getSpeedOnYAxis()),
                     new Speed(Double.valueOf(dx).longValue(), Double.valueOf(dy).longValue())));
-
-            System.out.println("setMoving: speed after change " + this.getSpeed().getSpeedOnXAxis() + " " + this.getSpeed().getSpeedOnYAxis());
         }
     }
 

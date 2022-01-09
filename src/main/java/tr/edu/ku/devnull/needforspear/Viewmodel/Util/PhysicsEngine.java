@@ -131,9 +131,9 @@ public class PhysicsEngine {
             int currY = (int) (incident.getCurrentLocation().getYCoordinates());
             System.out.println(NoblePhantasm.getInstance().getRotationDegree());
             System.out.println("setMoving: speed before change " + incident.getCurrentSpeed().getSpeedOnXAxis() + " " + incident.getCurrentSpeed().getSpeedOnXAxis());
-            double magnitude = Math.pow(Constants.SphereConstantSpeeds.NORMAL_SPEED, 2) - Constants.SphereConstantSpeeds.NORMAL_SPEED / 2;
+            double magnitude = Math.pow(Constants.SphereConstantSpeeds.NORMAL_SPEED, 2) - Constants.SphereConstantSpeeds.NORMAL_SPEED / 2.0;
             if (NeedforSpearGame.getInstance().getGameInfo().getDifficultyHandler().getCurrentDifficulty() == Difficulty.HARD) {
-                magnitude = Math.pow(Constants.SphereConstantSpeeds.HARD_SPEED, 2) - Constants.SphereConstantSpeeds.HARD_SPEED / 2;
+                magnitude = Math.pow(Constants.SphereConstantSpeeds.HARD_SPEED, 2) - Constants.SphereConstantSpeeds.HARD_SPEED / 2.0;
             }
 
             double dx = -magnitude * Math.sin(-NoblePhantasm.getInstance().getRotationDegree());
