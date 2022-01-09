@@ -149,8 +149,6 @@ public class ObstacleAnimator implements AnimatorStrategy {
                     int length = explosiveObstacle.getSize().getLength();
                     if (explosiveObstacle.getObstacleType().equals(Constants.ObstacleNameConstants.FIRM_OBSTACLE)) {
                         g2.drawImage(firmObstacleImage, x, y, width, length, null);
-                    } else if (explosiveObstacle.getObstacleType().equals(Constants.ObstacleNameConstants.SIMPLE_OBSTACLE)) {
-                        g2.drawImage(simpleObstacleImage, width, length, width, length, null);
                     }
 
                     if (explosiveObstacle.getObstacleType().equals(Constants.ObstacleNameConstants.FIRM_OBSTACLE)) {
