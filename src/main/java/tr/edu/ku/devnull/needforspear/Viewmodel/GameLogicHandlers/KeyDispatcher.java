@@ -57,7 +57,7 @@ public class KeyDispatcher implements KeyEventDispatcher {
 
             if (e.getKeyCode() == KeyEvent.VK_W) {
                 if (!NeedforSpearGame.getInstance().getGameInfo().getSphere().isMoving())
-                NeedforSpearGame.getInstance().getGameInfo().getSphere().setMoving(true);
+                    NeedforSpearGame.getInstance().getGameInfo().getSphere().setMoving(true);
 
             }
 

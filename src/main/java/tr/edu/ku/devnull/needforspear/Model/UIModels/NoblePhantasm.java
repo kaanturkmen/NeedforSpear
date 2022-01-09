@@ -337,7 +337,7 @@ public class NoblePhantasm {
      */
     public void activateExpansionSpell() {
         if (!this.isMagicActivated) {
-            int stopDelay = Constants.UIConstants.TWICE_SPELL_DURATION_SECONDS * Constants.UIConstants.MILISECONDS_TO_SECONDS; //milliseconds
+            int stopDelay = Constants.UIConstants.TWICE_SPELL_DURATION_SECONDS * Constants.UIConstants.MILLISECONDS_TO_SECONDS; //milliseconds
             TimerTask stopTask = new TimerTask() {
                 @Override
                 public void run() {

@@ -277,10 +277,10 @@ public class GameView {
         switchRunningModeButton.setVisible(false);
         addObstacleChoice.setVisible(false);
         saveMapButton.setVisible(false);
-        if(NeedforSpearGame.getInstance().getGameInfo().isMuteModeActivated()){
+        if (NeedforSpearGame.getInstance().getGameInfo().isMuteModeActivated()) {
             unmuteButton.setVisible(true);
             muteButton.setVisible(false);
-        }else{
+        } else {
             unmuteButton.setVisible(false);
         }
         changeDifficultyButton.setVisible(false);

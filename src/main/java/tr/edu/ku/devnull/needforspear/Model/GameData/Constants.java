@@ -19,8 +19,8 @@ public interface Constants {
         double REGULAR_SPEED_OF_NOBLE_PHANTASM = (1.0 * Constants.UIConstants.INITIAL_SCREEN_WIDTH / 10.0 / 1000.0);
         double DOUBLE_SPEED_OF_NOBLE_PHANTASM = (1.0 * Constants.UIConstants.INITIAL_SCREEN_WIDTH / 5.0 / 1000.0);
         double RATE_OF_TWENTY_DEGREES_PER_SECOND = (0.35 / 1000.0);
-        double RATE_OF_FOURTY_FIVE_DEGREES_PER_SECOND = (0.78 / 1000);
-        double RADIAN_EQUIVALENCE_OF_FOURTY_FIVE_DEGREES = 0.78;
+        double RATE_OF_FORTY_FIVE_DEGREES_PER_SECOND = (0.78 / 1000);
+        double RADIAN_EQUIVALENCE_OF_FORTY_FIVE_DEGREES = 0.78;
         int HEIGHT_OF_THE_OBSTACLE = 20;
         int RADIUS_OF_THE_SPHERE = 16;
         double RATIO_OF_NOBLE_PHANTASM = 0.1;
@@ -171,7 +171,7 @@ public interface Constants {
         int ONE_LIVES_GAIN_LOSE = 1;
         int SPELL_DURATION_SECONDS = 15;
         int TWICE_SPELL_DURATION_SECONDS = 30;
-        int MILISECONDS_TO_SECONDS = 1000;
+        int MILLISECONDS_TO_SECONDS = 1000;
         int MULTIPLIER_CONSTANT_OF_SPHERE = 2;
         int BULLET_MULTIPLIER_CONSTANT_OF_LOCATION = 2;
         int BULLET_MULTIPLIER_CONSTANT_OF_LOCATION_SECOND = 7;
@@ -260,8 +260,8 @@ public interface Constants {
         String HOLLOW_PURPLE_TRIGGERED = "Hollow Purple Spell is activated.";
         String DOUBLE_ACCEL_TRIGGERED = "Double Accel is activated.";
         String INFINITE_VOID_TRIGGERED = "Infinite Void is activated.";
-        String RIGHT_BULLET_CREATION = = "Right bullet created.";
-        String LEFT_BULLET_CREATION = = "Left bullet created.";
+        String RIGHT_BULLET_CREATION = "Right bullet created.";
+        String LEFT_BULLET_CREATION = "Left bullet created.";
         String YMIR_ACTIVATION_MESSAGE = "Activation probability is set to 0.75";
         String YMIR_CALCULATION_MESSAGE = "Ymir is calculating!";
         String YMIR_EXCEPTION_MESSAGE = "EXCEPTION: YMIR Spell Method returned as a null.";

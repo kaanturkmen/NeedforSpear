@@ -71,7 +71,8 @@ public class PhysicsEngine {
             if (incident.getCurrentLocation().getXCoordinates() + 2 * Constants.ProportionConstants.RADIUS_OF_THE_SPHERE + incident.getCurrentSpeed().getSpeedOnXAxis() > obstacle.getLocation().getXCoordinates() &&
                     incident.getCurrentLocation().getXCoordinates() + incident.getCurrentSpeed().getSpeedOnXAxis() < obstacle.getLocation().getXCoordinates() + obstacle.getSize().getWidth() &&
                     incident.getCurrentLocation().getYCoordinates() + 2 * Constants.ProportionConstants.RADIUS_OF_THE_SPHERE > obstacle.getLocation().getYCoordinates() &&
-                    incident.getCurrentLocation().getYCoordinates() < obstacle.getLocation().getYCoordinates() + obstacle.getSize().getLength()) {result.getCurrentSpeed().setSpeedOnYAxis(-1 * incident.getCurrentSpeed().getSpeedOnYAxis());
+                    incident.getCurrentLocation().getYCoordinates() < obstacle.getLocation().getYCoordinates() + obstacle.getSize().getLength()) {
+                result.getCurrentSpeed().setSpeedOnYAxis(-1 * incident.getCurrentSpeed().getSpeedOnYAxis());
             } else if (incident.getCurrentLocation().getXCoordinates() + 2 * Constants.ProportionConstants.RADIUS_OF_THE_SPHERE > obstacle.getLocation().getXCoordinates() &&
                     incident.getCurrentLocation().getXCoordinates() < obstacle.getLocation().getXCoordinates() + obstacle.getSize().getWidth() &&
                     incident.getCurrentLocation().getYCoordinates() + Constants.ProportionConstants.RADIUS_OF_THE_SPHERE + incident.getCurrentSpeed().getSpeedOnYAxis() > obstacle.getLocation().getYCoordinates() &&
@@ -120,35 +121,36 @@ public class PhysicsEngine {
                 result.getCurrentSpeed().setSpeedOnYAxis(-1 * incident.getCurrentSpeed().getSpeedOnYAxis());
             }
         } else {
-                double h = 2*Constants.ProportionConstants.RADIUS_OF_THE_SPHERE;
-                double xDiff = h*Math.sin(NoblePhantasm.getInstance().getRotationDegree());
-                double yDiff = h*(1.0-Math.cos(NoblePhantasm.getInstance().getRotationDegree()));
-                System.out.println("Location Check"+ NoblePhantasm.getInstance().getLocation().getXCoordinates() + " "+incident.getCurrentLocation().getXCoordinates());
+            double h = 2 * Constants.ProportionConstants.RADIUS_OF_THE_SPHERE;
+            double xDiff = h * Math.sin(NoblePhantasm.getInstance().getRotationDegree());
+            double yDiff = h * (1.0 - Math.cos(NoblePhantasm.getInstance().getRotationDegree()));
+            System.out.println("Location Check" + NoblePhantasm.getInstance().getLocation().getXCoordinates() + " " + incident.getCurrentLocation().getXCoordinates());
 
-                System.out.println(xDiff + "   "+ yDiff+" hhh");
-                int currX = (int) (incident.getCurrentLocation().getXCoordinates() + xDiff);
-                int currY = (int) (incident.getCurrentLocation().getYCoordinates());
-                System.out.println(NoblePhantasm.getInstance().getRotationDegree());
-                System.out.println("setMoving: speed before change "+incident.getCurrentSpeed().getSpeedOnXAxis() + " " + incident.getCurrentSpeed().getSpeedOnXAxis());
-                double magnitude =Math.pow(Constants.SphereConstantSpeeds.NORMAL_SPEED,2) - Constants.SphereConstantSpeeds.NORMAL_SPEED/2;
-                if (NeedforSpearGame.getInstance().getGameInfo().getDifficultyHandler().getCurrentDifficulty() == Difficulty.HARD){
-                    magnitude =  Math.pow(Constants.SphereConstantSpeeds.HARD_SPEED,2) - Constants.SphereConstantSpeeds.HARD_SPEED/2;
-                }
+            System.out.println(xDiff + "   " + yDiff + " hhh");
+            int currX = (int) (incident.getCurrentLocation().getXCoordinates() + xDiff);
+            int currY = (int) (incident.getCurrentLocation().getYCoordinates());
+            System.out.println(NoblePhantasm.getInstance().getRotationDegree());
+            System.out.println("setMoving: speed before change " + incident.getCurrentSpeed().getSpeedOnXAxis() + " " + incident.getCurrentSpeed().getSpeedOnXAxis());
+            double magnitude = Math.pow(Constants.SphereConstantSpeeds.NORMAL_SPEED, 2) - Constants.SphereConstantSpeeds.NORMAL_SPEED / 2;
+            if (NeedforSpearGame.getInstance().getGameInfo().getDifficultyHandler().getCurrentDifficulty() == Difficulty.HARD) {
+                magnitude = Math.pow(Constants.SphereConstantSpeeds.HARD_SPEED, 2) - Constants.SphereConstantSpeeds.HARD_SPEED / 2;
+            }
 
-                double dx = -magnitude*Math.sin(-NoblePhantasm.getInstance().getRotationDegree());
-                double dy = -magnitude*Math.cos(-NoblePhantasm.getInstance().getRotationDegree());
-                result.getCurrentSpeed().setSpeedOnXAxis(dx);
-                result.getCurrentSpeed().setSpeedOnYAxis(dy);
+            double dx = -magnitude * Math.sin(-NoblePhantasm.getInstance().getRotationDegree());
+            double dy = -magnitude * Math.cos(-NoblePhantasm.getInstance().getRotationDegree());
+            result.getCurrentSpeed().setSpeedOnXAxis(dx);
+            result.getCurrentSpeed().setSpeedOnYAxis(dy);
 
-                //update new location
-                result.getCurrentLocation().setXCoordinates(currX);
-                result.getCurrentLocation().setYCoordinates((result.getCurrentLocation().getYCoordinates()));
-                System.out.println(result.getCurrentSpeed().getSpeedOnXAxis() + " " + result.getCurrentSpeed().getSpeedOnYAxis());
+            //update new location
+            result.getCurrentLocation().setXCoordinates(currX);
+            result.getCurrentLocation().setYCoordinates((result.getCurrentLocation().getYCoordinates()));
+            System.out.println(result.getCurrentSpeed().getSpeedOnXAxis() + " " + result.getCurrentSpeed().getSpeedOnYAxis());
         }
 
 
         return result;
     }
+
     /**
      * Gets the resultant vector.
      *

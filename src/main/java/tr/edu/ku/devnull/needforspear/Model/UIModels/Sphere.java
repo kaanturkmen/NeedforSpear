@@ -107,7 +107,7 @@ public class Sphere {
     public void activateDoubleAccel() {
         if (!this.isDoubleAccelActivated) {
             setDoubleAccelActivated(true);
-            int stopDelay = Constants.UIConstants.SPELL_DURATION_SECONDS * Constants.UIConstants.MILISECONDS_TO_SECONDS; //milliseconds
+            int stopDelay = Constants.UIConstants.SPELL_DURATION_SECONDS * Constants.UIConstants.MILLISECONDS_TO_SECONDS; //milliseconds
             TimerTask stopTask = new TimerTask() {
                 @Override
                 public void run() {
@@ -147,29 +147,29 @@ public class Sphere {
     public void setMoving(boolean state) {
         this.isMoving = state;
 
-        if(state){
+        if (state) {
             MovementHandler movementHandler = new MovementHandler();
-            double h = 2*Constants.ProportionConstants.RADIUS_OF_THE_SPHERE;
-            double xDiff = h*Math.sin(NoblePhantasm.getInstance().getRotationDegree());
-            double yDiff = h*(1.0-Math.cos(NoblePhantasm.getInstance().getRotationDegree()));
-            System.out.println("Location Check"+ NoblePhantasm.getInstance().getLocation().getXCoordinates() + " "+this.getLocation().getXCoordinates());
+            double h = 2 * Constants.ProportionConstants.RADIUS_OF_THE_SPHERE;
+            double xDiff = h * Math.sin(NoblePhantasm.getInstance().getRotationDegree());
+            double yDiff = h * (1.0 - Math.cos(NoblePhantasm.getInstance().getRotationDegree()));
+            System.out.println("Location Check" + NoblePhantasm.getInstance().getLocation().getXCoordinates() + " " + this.getLocation().getXCoordinates());
 
-            System.out.println(xDiff + "   "+ yDiff+"");
+            System.out.println(xDiff + "   " + yDiff + "");
             int currX = (int) (this.getLocation().getXCoordinates() + xDiff);
             int currY = (int) (this.getLocation().getYCoordinates());
             //this.getLocation().setXCoordinates(currX);
             //this.getLocation().setYCoordinates(currY);
             System.out.println(NoblePhantasm.getInstance().getRotationDegree());
-            System.out.println("setMoving: speed before change "+this.getSpeed().getSpeedOnXAxis() + " " + this.getSpeed().getSpeedOnYAxis());
+            System.out.println("setMoving: speed before change " + this.getSpeed().getSpeedOnXAxis() + " " + this.getSpeed().getSpeedOnYAxis());
             //double magnitude=Math.sqrt(this.getSpeed().getSpeedOnXAxis()*this.getSpeed().getSpeedOnXAxis()+this.getSpeed().getSpeedOnYAxis()*this.getSpeed().getSpeedOnYAxis());
-            double magnitude =Math.pow(Constants.SphereConstantSpeeds.NORMAL_SPEED,2) - Constants.SphereConstantSpeeds.NORMAL_SPEED / 2 ;
-            if (NeedforSpearGame.getInstance().getGameInfo().getDifficultyHandler().getCurrentDifficulty() == Difficulty.HARD){
-                magnitude =  Math.pow(Constants.SphereConstantSpeeds.HARD_SPEED,2) - Constants.SphereConstantSpeeds.HARD_SPEED / 2;
+            double magnitude = Math.pow(Constants.SphereConstantSpeeds.NORMAL_SPEED, 2) - Constants.SphereConstantSpeeds.NORMAL_SPEED / 2;
+            if (NeedforSpearGame.getInstance().getGameInfo().getDifficultyHandler().getCurrentDifficulty() == Difficulty.HARD) {
+                magnitude = Math.pow(Constants.SphereConstantSpeeds.HARD_SPEED, 2) - Constants.SphereConstantSpeeds.HARD_SPEED / 2;
             }
 
             //this.setSpeed(new Speed(-magnitude*Math.sin(-NoblePhantasm.getInstance().getRotationDegree()), -magnitude*Math.cos(NoblePhantasm.getInstance().getRotationDegree())));
-            double dx = -magnitude*Math.sin(-NoblePhantasm.getInstance().getRotationDegree());
-            double dy = -magnitude*Math.cos(-NoblePhantasm.getInstance().getRotationDegree());
+            double dx = -magnitude * Math.sin(-NoblePhantasm.getInstance().getRotationDegree());
+            double dy = -magnitude * Math.cos(-NoblePhantasm.getInstance().getRotationDegree());
 
             /*if(Math.abs(dx) < 0){
                 dx = 1.5*dx;
@@ -191,7 +191,7 @@ public class Sphere {
             movementHandler.updateSphereMovement(new CollisionData(new Location(currX + this.getSpeed().getSpeedOnXAxis(), currY + this.getSpeed().getSpeedOnYAxis()),
                     new Speed(new Double(dx).longValue(), new Double(dy).longValue())));
 
-            System.out.println("setMoving: speed after change "+this.getSpeed().getSpeedOnXAxis() + " " + this.getSpeed().getSpeedOnYAxis());
+            System.out.println("setMoving: speed after change " + this.getSpeed().getSpeedOnXAxis() + " " + this.getSpeed().getSpeedOnYAxis());
         }
     }
 

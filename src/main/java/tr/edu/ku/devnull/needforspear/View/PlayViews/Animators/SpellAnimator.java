@@ -73,12 +73,12 @@ public class SpellAnimator implements AnimatorStrategy {
                     Location newLoc = bounceHandler.moveSpellDownward(spell);
                     spell.setLocation(newLoc);
                     if (spell.getSpellType().equals(Constants.SpellNameConstants.CHANCE)) {
-                        g2.drawImage(chanceGivingAbility, (int) newLoc.getXCoordinates(), (int) newLoc.getYCoordinates(), width, length, null );
-                    }else if (spell.getSpellType().equals(Constants.SpellNameConstants.EXPANSION)) {
+                        g2.drawImage(chanceGivingAbility, (int) newLoc.getXCoordinates(), (int) newLoc.getYCoordinates(), width, length, null);
+                    } else if (spell.getSpellType().equals(Constants.SpellNameConstants.EXPANSION)) {
                         g2.drawImage(expansionSpell, (int) newLoc.getXCoordinates(), (int) newLoc.getYCoordinates(), width, length, null);
-                    }else if (spell.getSpellType().equals(Constants.SpellNameConstants.HEX)) {
+                    } else if (spell.getSpellType().equals(Constants.SpellNameConstants.HEX)) {
                         g2.drawImage(hexSpell, (int) newLoc.getXCoordinates(), (int) newLoc.getYCoordinates(), width, length, null);
-                    }else if (spell.getSpellType().equals(Constants.SpellNameConstants.UNSTOPPABLE)) {
+                    } else if (spell.getSpellType().equals(Constants.SpellNameConstants.UNSTOPPABLE)) {
                         g2.drawImage(unstoppableSpell, (int) newLoc.getXCoordinates(), (int) newLoc.getYCoordinates(), width, length, null);
                     }
                 }
