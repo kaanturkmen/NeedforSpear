@@ -10,6 +10,8 @@ a game that we will enjoy while playing.
 Need for Spear game is developed for educational purposes. We are publishing this project to contribute to the open
 source community.
 
+For the Agile Development documents, and resources please see [Extra](https://github.com/kaanturkmen/NeedforSpear-Extra)
+
 # Table of Contents
 
 * [License](#license)
