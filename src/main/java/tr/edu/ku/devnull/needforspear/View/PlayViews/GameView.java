@@ -117,7 +117,7 @@ public class GameView {
                 LoginHandler.getInstance().updateP(NeedforSpearGame.getInstance().getGameInfo().getPlayer());
                 SaveLoadHandler.getInstance().setPreviousLives(NeedforSpearGame.getInstance().getGameInfo().getPlayer().getLives());
                 SaveLoadHandler.getInstance().setPreviousScore(NeedforSpearGame.getInstance().getGameInfo().getPlayer().getScore());
-                SaveLoadHandler.getInstance().setPreviousSpells(NeedforSpearGame.getInstance().getGameInfo().getPlayer().getListofSpells());
+                SaveLoadHandler.getInstance().initializePreviousSpells(NeedforSpearGame.getInstance().getGameInfo().getPlayer().getListofSpells());
             }
         });
 
