@@ -37,7 +37,7 @@ follows;
 | Can Usluel (canusluel)       |        Obstacle Placement Algorithms, GameView GUI and Hollow Purple Spell.        |
 | Melis Oktayoglu (moktayoglu) | Physics Engine, Sphere movement & Interaction, Infinite Void & Double Accel Spell. |
 | Doruk Yildirim (dorkyhog)    |      Game Assets, Magical Hex Spell, Chance Giving Spell & Score Calculation.      |
-| Gokce Sevimli (gokcesevimli) |                     Noble Phantasm (Paddle), Expansion Spell.                      |
+| Gokce Sevimli (gokcesevimli) |              Physics Engine, Noble Phantasm (Paddle), Expansion Spell.             |
 
 # Additional Info
 
