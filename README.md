@@ -31,7 +31,7 @@ See the LICENSE file for detailed info.
 Dev/null worked collaboratively during the development of the project, but the main efforts of each member is as
 follows;
 
-| Flags                        |                                 Main Contribution                                  |
+| Person                        |                                 Main Contribution                                 |
 |------------------------------|:----------------------------------------------------------------------------------:|
 | Kaan Turkmen (kaanturkmen)   |   Threading Concepts, Database Implementation, Authentication System and Views.    |
 | Can Usluel (canusluel)       |        Obstacle Placement Algorithms, GameView GUI and Hollow Purple Spell.        |
